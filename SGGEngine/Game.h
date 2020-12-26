@@ -11,7 +11,9 @@
 #else
 #define SGGENGINE_API __declspec(dllimport)
 #endif
-
+#include "Point.h"
+#include <memory>
+#include <SDL_video.h>
 
 
 namespace SG
@@ -23,13 +25,22 @@ namespace SG
 	{
 
 			public:
-				Game();
+				Game(Point screenSize = Point(640,280));
 				~Game();
 				/**
 				 * \brief Main Game loop, this is called by the main function when the program is started.
 				 */
 				void Loop();
 			private:
+				Point _screenSize;
+
+				/**
+				 * \brief Game window,  we can use a Raw pointer here, as this has built in destroy functionality that we will put in the Game destructor
+				 */
+				SDL_Window* _gameWindow;
+				SDL_Surface* _windowSurface;
+
+				//TODO Finish adding in the FPS calculation.
 				double _previousClockInMs;
 				double _currentClockInMs;
 				double _elapsedTimeInMs;
@@ -38,6 +49,21 @@ namespace SG
 				const double _updateTime = 1000.00 / 60.00;
 
 			private:
+
+				/**
+				 * \brief Used to initialize the proper components to start the game, this is ran after the constructor and prior to the loop being called.
+				 * \return Returns true if things were initialized successfully
+				 */
+				bool Startup();
+				/**
+				 * \brief Used to Initialize SDL as a whole, needs to be ran at startup.
+				 */
+				static bool InitializeSdl();
+				/**
+				 * \brief Creates the actual game window to be used for rendering the entire game.
+				 * \return Returns true if the window was initialized successfully
+				 */
+				bool CreateGameWindow();
 
 				/**
 				 * \brief Calculates the amount of time between this frame and the last frame and updates the Game member variables.

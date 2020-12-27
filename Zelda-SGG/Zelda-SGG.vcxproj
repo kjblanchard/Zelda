@@ -33,6 +33,10 @@
       <Project>{5d4c97d0-5297-4eba-a466-0749ab6f3440}</Project>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\graphics\Hero.png" />
+    <Image Include="assets\graphics\Link_Movement.png" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -111,13 +115,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\blanc\OneDrive - Supergoon Games\src\C++\libs\SDL2-2.0.14\include;C:\Users\blanc\OneDrive - Supergoon Games\src\C++\ZeldaMulti\Zelda-SDL\SGGEngine;C:\Users\blanc\OneDrive - Supergoon Games\src\C++\ZeldaMulti\Zelda-SDL\Zelda-SGG\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\blanc\OneDrive - Supergoon Games\src\C++\libs\SDL2-2.0.14\include;C:\Users\blanc\OneDrive - Supergoon Games\src\C++\ZeldaMulti\Zelda-SDL\SGGEngine;C:\Users\blanc\OneDrive - Supergoon Games\src\C++\ZeldaMulti\Zelda-SDL\Zelda-SGG\include;C:\Users\blanc\OneDrive - Supergoon Games\src\C++\libs\SDL2_image-2.0.5\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\blanc\OneDrive - Supergoon Games\src\C++\libs\SDL2-2.0.14\lib\x86;C:\Users\blanc\OneDrive - Supergoon Games\src\C++\ZeldaMulti\Zelda-SDL\bin\Win32\Debug</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SGGEngine.lib;SDL2.lib;SDL2main.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\blanc\OneDrive - Supergoon Games\src\C++\libs\SDL2-2.0.14\lib\x86;C:\Users\blanc\OneDrive - Supergoon Games\src\C++\ZeldaMulti\Zelda-SDL\bin\Win32\Debug;C:\Users\blanc\OneDrive - Supergoon Games\src\C++\libs\SDL2_image-2.0.5\lib\x86</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SGGEngine.lib;SDL2_image.lib;SDL2.lib;SDL2main.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -128,15 +132,15 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\blanc\OneDrive - Supergoon Games\src\C++\libs\SDL2-2.0.14\include;C:\Users\blanc\OneDrive - Supergoon Games\src\C++\ZeldaMulti\Zelda-SDL\SGGEngine;C:\Users\blanc\OneDrive - Supergoon Games\src\C++\ZeldaMulti\Zelda-SDL\Zelda-SGG\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\blanc\OneDrive - Supergoon Games\src\C++\libs\SDL2-2.0.14\include;C:\Users\blanc\OneDrive - Supergoon Games\src\C++\ZeldaMulti\Zelda-SDL\SGGEngine;C:\Users\blanc\OneDrive - Supergoon Games\src\C++\ZeldaMulti\Zelda-SDL\Zelda-SGG\include;C:\Users\blanc\OneDrive - Supergoon Games\src\C++\libs\SDL2_image-2.0.5\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\blanc\OneDrive - Supergoon Games\src\C++\libs\SDL2-2.0.14\lib\x86;C:\Users\blanc\OneDrive - Supergoon Games\src\C++\ZeldaMulti\Zelda-SDL\bin\Win32\Debug</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SGGEngine.lib;SDL2.lib;SDL2main.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\blanc\OneDrive - Supergoon Games\src\C++\libs\SDL2-2.0.14\lib\x86;C:\Users\blanc\OneDrive - Supergoon Games\src\C++\ZeldaMulti\Zelda-SDL\bin\Win32\Debug;C:\Users\blanc\OneDrive - Supergoon Games\src\C++\libs\SDL2_image-2.0.5\lib\x86</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SGGEngine.lib;SDL2_image.lib;SDL2.lib;SDL2main.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -145,13 +149,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\blanc\OneDrive - Supergoon Games\src\C++\libs\SDL2-2.0.14\include;C:\Users\blanc\OneDrive - Supergoon Games\src\C++\ZeldaMulti\Zelda-SDL\SGGEngine;C:\Users\blanc\OneDrive - Supergoon Games\src\C++\ZeldaMulti\Zelda-SDL\Zelda-SGG\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\blanc\OneDrive - Supergoon Games\src\C++\libs\SDL2-2.0.14\include;C:\Users\blanc\OneDrive - Supergoon Games\src\C++\ZeldaMulti\Zelda-SDL\SGGEngine;C:\Users\blanc\OneDrive - Supergoon Games\src\C++\ZeldaMulti\Zelda-SDL\Zelda-SGG\include;C:\Users\blanc\OneDrive - Supergoon Games\src\C++\libs\SDL2_image-2.0.5\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\blanc\OneDrive - Supergoon Games\src\C++\libs\SDL2-2.0.14\lib\x86;C:\Users\blanc\OneDrive - Supergoon Games\src\C++\ZeldaMulti\Zelda-SDL\bin\Win32\Debug</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SGGEngine.lib;SDL2.lib;SDL2main.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\blanc\OneDrive - Supergoon Games\src\C++\libs\SDL2-2.0.14\lib\x86;C:\Users\blanc\OneDrive - Supergoon Games\src\C++\ZeldaMulti\Zelda-SDL\bin\Win32\Debug;C:\Users\blanc\OneDrive - Supergoon Games\src\C++\libs\SDL2_image-2.0.5\lib\x86</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SGGEngine.lib;SDL2_image.lib;SDL2.lib;SDL2main.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -162,15 +166,15 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\blanc\OneDrive - Supergoon Games\src\C++\libs\SDL2-2.0.14\include;C:\Users\blanc\OneDrive - Supergoon Games\src\C++\ZeldaMulti\Zelda-SDL\SGGEngine;C:\Users\blanc\OneDrive - Supergoon Games\src\C++\ZeldaMulti\Zelda-SDL\Zelda-SGG\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\blanc\OneDrive - Supergoon Games\src\C++\libs\SDL2-2.0.14\include;C:\Users\blanc\OneDrive - Supergoon Games\src\C++\ZeldaMulti\Zelda-SDL\SGGEngine;C:\Users\blanc\OneDrive - Supergoon Games\src\C++\ZeldaMulti\Zelda-SDL\Zelda-SGG\include;C:\Users\blanc\OneDrive - Supergoon Games\src\C++\libs\SDL2_image-2.0.5\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\blanc\OneDrive - Supergoon Games\src\C++\libs\SDL2-2.0.14\lib\x86;C:\Users\blanc\OneDrive - Supergoon Games\src\C++\ZeldaMulti\Zelda-SDL\bin\Win32\Debug</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SGGEngine.lib;SDL2.lib;SDL2main.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\blanc\OneDrive - Supergoon Games\src\C++\libs\SDL2-2.0.14\lib\x86;C:\Users\blanc\OneDrive - Supergoon Games\src\C++\ZeldaMulti\Zelda-SDL\bin\Win32\Debug;C:\Users\blanc\OneDrive - Supergoon Games\src\C++\libs\SDL2_image-2.0.5\lib\x86</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SGGEngine.lib;SDL2_image.lib;SDL2.lib;SDL2main.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

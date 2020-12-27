@@ -36,4 +36,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\graphics\Hero.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\graphics\Link_Movement.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
 </Project>

@@ -1,19 +1,23 @@
 ﻿#include "pch.h"
 #include "Game.h"
-#include <iostream>
 #include <SDL.h>
+#include <SDL_image.h>
+
 
 
 namespace SG
 {
 
-
-	Game::Game(const Point screenSize)
-		: _screenSize(screenSize), _gameWindow(nullptr), _windowSurface(nullptr), _previousClockInMs{0.0},
-		  _currentClockInMs(0),
-		  _elapsedTimeInMs(0), _lagTimeInMs(0), _fps(0)
+	Game::Game(const Point& screenSize)
+		: _screenSize(screenSize), _gameWindow(nullptr),
+		  _previousClockInMs{0.0},
+		  _currentClockInMs(0), _elapsedTimeInMs(0), _lagTimeInMs(0), _fps(0)
 	{
+		_graphics = std::make_unique<class Graphics>(_screenSize);
+		if (_instance == nullptr)
+			_instance = this;
 	}
+	std::unique_ptr<Graphics>  Game::_graphics = nullptr;
 
 	Game::~Game()
 	{
@@ -22,36 +26,35 @@ namespace SG
 		printf("Bye");
 	}
 
+
+
 	void Game::Loop()
 	{
 		if(!Startup())
 			return;
+		//_graphics->Draw();
+	}
 
+	Game* Game::GetGame()
+	{
+		return _instance;
+	}
+
+	Graphics* Game::GetGraphics()
+	{
+		return _graphics.get();
 	}
 
 
+	Game* Game::_instance = nullptr;
 
 
 	bool Game::Startup()
 	{
-
-		//Initialize SDL
 		if(!InitializeSdl())
 			return false;
-		if (!CreateGameWindow())
+		if (!_graphics->Startup())
 			return false;
-		//Get window surface
-		_windowSurface = SDL_GetWindowSurface(_gameWindow);
-
-		 //Fill the surface white
-		SDL_FillRect(_windowSurface, nullptr, SDL_MapRGB(_windowSurface->format, 0xff, 0xFF, 0xFF));
-
-		 //Update the surface
-		SDL_UpdateWindowSurface(_gameWindow);
-
-		 //Wait two seconds
-		SDL_Delay(3000);
-
 		return true;
 	}
 	bool Game::InitializeSdl()
@@ -66,14 +69,7 @@ namespace SG
 
 	}
 
-	bool Game::CreateGameWindow()
-	{
-		_gameWindow = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, _screenSize.X, _screenSize.Y, SDL_WINDOW_SHOWN);
-		if (_gameWindow)
-			return true;
-		printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
-		return false;
-	}
+
 	void Game::CalculateFrameTime()
 	{
 		//_currentClockInMs = _gameClock.getElapsedTime().asMilliseconds();

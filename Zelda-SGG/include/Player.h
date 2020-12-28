@@ -9,6 +9,10 @@
 #include "GameObject.h"
 #include "Vector3.h"
 
+namespace SG {
+	class ImageComponent;
+}
+
 class Player : public SG::GameObject
 {
 public:
@@ -16,4 +20,9 @@ public:
 	Player(SG::Vector3 location);
 	void Startup() override;
 	void Update() override;
+	void Draw(SG::SpriteBatch& spriteBatch) override;
+
+private:
+	void ComponentUpdate() override;
+	SG::ImageComponent* _imageComponent;
 };

@@ -11,10 +11,15 @@
 #else
 #define SGGENGINE_API __declspec(dllimport)
 #endif
+#include <vector>
+
 #include "Vector3.h"
 
 namespace SG
 {
+	class SpriteBatch;
+	struct Component;
+
 	class SGGENGINE_API GameObject
 	{
 	public:
@@ -30,6 +35,8 @@ namespace SG
 		 */
 		virtual void Update() = 0;
 
+		virtual void Draw(SpriteBatch& spriteBatch );
+
 		/**
 		 * \brief Returns the location of the gameobject.
 		 * \return Returns the location in a vector3.  Z is used in the draw order
@@ -37,6 +44,7 @@ namespace SG
 		Vector3 Location() const;
 	protected:
 		Vector3 _location;
+		virtual void ComponentUpdate() = 0;
 
 	};
 }

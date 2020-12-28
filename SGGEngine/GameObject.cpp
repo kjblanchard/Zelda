@@ -25,10 +25,11 @@ SG::Vector3 SG::GameObject::Location() const
 
 void SG::GameObject::CreateImageAndShow()
 {
+	auto spritebatch = SG::SpriteBatch();
 	auto temp = Game::GetGraphics();
 	auto pic =temp->LoadTexture("Hero.png");
-	temp->ThingToDraw = pic;
-	temp->Draw();
+	spritebatch.AddToSpriteBatch(pic);
+	temp->Draw(spritebatch);
 
 }
 

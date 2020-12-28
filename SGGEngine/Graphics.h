@@ -14,6 +14,7 @@
 #include <SDL_render.h>
 #include <string>
 #include "Point.h"
+#include "SpriteBatch.h"
 
 struct SDL_Surface;
 struct SDL_Window;
@@ -23,10 +24,9 @@ namespace SG
 	{
 	public:
 		Graphics(Point screenSize);
-		SDL_Texture* LoadTexture(std::string path);
+		SDL_Texture* LoadTexture(std::string fileName);
 		bool Startup();
-		void Blit(SDL_Surface* thingToBlit);
-		void Draw();
+		void Draw(SpriteBatch& spriteBatch );
 
 		SDL_Texture* ThingToDraw;
 

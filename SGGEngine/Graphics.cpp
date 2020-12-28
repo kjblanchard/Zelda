@@ -1,7 +1,8 @@
 ﻿#include "pch.h"
 #include  "Graphics.h"
 #include <SDL_image.h>
-#include "Game.h"
+
+#include "DebugHandler.h"
 
 namespace SG
 {
@@ -9,34 +10,6 @@ namespace SG
 	Graphics::Graphics(Point screenSize)
 		:_screenSize(screenSize), _windowSurface(nullptr)
 	{
-	}
-
-	SDL_Texture* Graphics::LoadTexture(std::string path)
-	{
-		auto newPath = "assets/" + path;
-		//The final texture
-		SDL_Texture* newTexture = NULL;
-
-		//Load image at specified path
-		SDL_Surface* loadedSurface = IMG_Load(newPath.c_str());
-		if (loadedSurface == NULL)
-		{
-			printf("Unable to load image %s! SDL_image Error: %s\n", newPath.c_str(), IMG_GetError());
-		}
-		else
-		{
-			//Create texture from surface pixels
-			newTexture = SDL_CreateTextureFromSurface(_renderer, loadedSurface);
-			if (newTexture == NULL)
-			{
-				printf("Unable to create texture from %s! SDL Error: %s\n", newPath.c_str(), SDL_GetError());
-			}
-
-			//Get rid of old loaded surface
-			SDL_FreeSurface(loadedSurface);
-		}
-
-		return newTexture;
 	}
 
 	bool Graphics::Startup()
@@ -47,13 +20,40 @@ namespace SG
 			return false;
 		if (!CreateRenderer())
 			return false;
+		_windowSurface = SDL_GetWindowSurface(_gameWindow);
 		return true;
 	}
 
-	void Graphics::Blit(SDL_Surface* thingToBlit)
+	void Graphics::Draw(SpriteBatch& spriteBatch)
 	{
-		auto blank = thingToBlit;
-		SDL_BlitSurface(thingToBlit, NULL, _windowSurface, NULL);
+		SDL_RenderClear(_renderer);
+		for (auto sprite : spriteBatch.GameTextures())
+		{
+			SDL_RenderCopy(_renderer, sprite, NULL, NULL);
+		}
+		SDL_RenderPresent(_renderer);
+		SDL_Delay(3000);
+	}
+
+	SDL_Texture* Graphics::LoadTexture(std::string fileName)
+	{
+		fileName.insert(0, "assets/graphics/");
+		SDL_Texture* newTexture = nullptr;
+		SDL_Surface* loadedSurface = IMG_Load(fileName.c_str());
+		if (loadedSurface)
+		{
+			newTexture = SDL_CreateTextureFromSurface(_renderer, loadedSurface);
+			if (newTexture)
+			{
+				SDL_FreeSurface(loadedSurface);
+			}
+			else
+				DebugHandler::PrintErrorMessage(ErrorCodes::SDLTextureError);
+
+		}
+		else
+			DebugHandler::PrintErrorMessage(ErrorCodes::SDLImageError);
+		return newTexture;
 	}
 
 	bool Graphics::CreateGameWindow()
@@ -65,27 +65,6 @@ namespace SG
 		return false;
 	}
 
-	void Graphics::Draw()
-	{
-		//Get window surface
-		_windowSurface = SDL_GetWindowSurface(_gameWindow);
-
-		//Fill the surface white
-		//SDL_FillRect(_windowSurface, nullptr, SDL_MapRGB(_windowSurface->format, 0xff, 0xFF, 0xFF));
-
-				//Clear screen
-		SDL_RenderClear(_renderer);
-
-		//Render texture to screen
-		SDL_RenderCopy(_renderer, ThingToDraw, NULL, NULL);
-
-		//Update screen
-		SDL_RenderPresent(_renderer);
-
-
-		//Wait two seconds
-		SDL_Delay(3000);
-	}
 
 	bool Graphics::InitializeSdlPng()
 	{
@@ -117,3 +96,5 @@ namespace SG
 		}
 	}
 }
+
+#include "Game.h"

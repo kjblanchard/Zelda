@@ -16,11 +16,13 @@ namespace SG
 {
 	enum class ComponentTypes
 	{
+		Default,
 		Image
 	};
 
 	struct SGGENGINE_API Component
 	{
+		Component();
 		virtual ~Component() = default;
 
 		ComponentTypes _componentType;

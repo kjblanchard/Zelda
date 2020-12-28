@@ -9,7 +9,7 @@ namespace SG
 {
 
 	Graphics::Graphics(Point screenSize)
-		:_screenSize(screenSize), _windowSurface(nullptr)
+		: _screenSize(screenSize), _windowSurface(nullptr), _renderer(nullptr)
 	{
 	}
 

@@ -5,5 +5,8 @@
 
 namespace SG
 {
-	
+	Component::Component()
+		:_componentType(ComponentTypes::Default)
+	{
+	}
 }

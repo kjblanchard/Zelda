@@ -24,14 +24,6 @@ SG::Vector3 SG::GameObject::Location() const
 	return _location;
 }
 
-void SG::GameObject::CreateImageAndShow()
-{
-	auto spritebatch = SG::SpriteBatch();
-	auto temp = Game::GetGraphics();
-	auto pic =temp->LoadTexture("Hero.png");
-	spritebatch.AddToSpriteBatch(pic);
-	temp->Draw(spritebatch);
 
-}
 
 

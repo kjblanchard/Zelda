@@ -35,7 +35,6 @@ namespace SG
 		 * \return Returns the location in a vector3.  Z is used in the draw order
 		 */
 		Vector3 Location() const;
-		void CreateImageAndShow();
 	protected:
 		Vector3 _location;
 

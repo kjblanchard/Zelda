@@ -5,8 +5,9 @@
 
 namespace SG
 {
-	void SpriteBatch::AddToSpriteBatch(SDL_Texture* textureToAdd)
+	void SpriteBatch::AddToSpriteBatch(Image* imageToDraw)
 	{
-		_gameTextures.push_back(textureToAdd);
+		_gameTextures.push_back(imageToDraw);
+
 	}
 }

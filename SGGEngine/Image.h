@@ -12,29 +12,29 @@
 #define SGGENGINE_API __declspec(dllimport)
 #endif
 #include <SDL_render.h>
-#include <memory>
 #include <string>
-#include "Component.h"
 #include "Point.h"
 
 namespace SG
 {
-	class Image;
-	class SpriteBatch;
-	class GameObject;
+	class Graphics;
 
-	class SGGENGINE_API ImageComponent : public Component
+	class SGGENGINE_API Image
 	{
+
+
 	public:
-		ImageComponent(const std::string& filename, const SDL_Rect& spriteSheetLocationAndSize);
-		ImageComponent(const std::string& filename, Point imageSize);
-		~ImageComponent();
+		Image();
+		Image(const std::string& filename, const SDL_Rect& spriteSheetLocationAndSize);
+		Image(const std::string& filename, Point imageSize);
+		~Image();
 
-		void Draw(SpriteBatch& spritebatch);
-
-		std::unique_ptr<Image> image;
-
+		static Graphics* _graphics;
+		SDL_Texture* _imageTexture;
+		Point Location;
+		Point Size;
+		SDL_Rect LocationAndSizeInSpriteSheet;
 	private:
-
+		SDL_Texture* GenerateImage(const std::string& filename);
 	};
 }

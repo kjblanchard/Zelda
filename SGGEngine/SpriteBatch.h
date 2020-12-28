@@ -16,15 +16,17 @@
 
 namespace SG
 {
+	class Image;
+
 	class SGGENGINE_API SpriteBatch
 	{
 	public:
-		void AddToSpriteBatch(SDL_Texture* textureToAdd);
-		std::vector<SDL_Texture*> GameTextures()
+		void AddToSpriteBatch(Image* imageToDraw);
+		std::vector<Image*> GameTextures()
 		{
 			return _gameTextures;
 		}
 	private:
-		std::vector<SDL_Texture*> _gameTextures;
+		std::vector<Image*> _gameTextures;
 	};
 }

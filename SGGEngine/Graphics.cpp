@@ -2,6 +2,7 @@
 #include  "Graphics.h"
 #include <SDL_image.h>
 #include "DebugHandler.h"
+#include "Image.h"
 #include "SpriteBatch.h"
 
 
@@ -67,9 +68,9 @@ namespace SG
 	void Graphics::Draw(SpriteBatch& spriteBatch)
 	{
 		SDL_RenderClear(_renderer);
-		for (auto sprite : spriteBatch.GameTextures())
+		for (auto* sprite : spriteBatch.GameTextures())
 		{
-			SDL_RenderCopy(_renderer, sprite, NULL, NULL);
+			SDL_RenderCopy(_renderer, sprite->_imageTexture, NULL, NULL);
 		}
 		SDL_RenderPresent(_renderer);
 		SDL_Delay(3000);

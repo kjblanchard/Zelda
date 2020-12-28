@@ -12,9 +12,7 @@ int main(int argc, char* args[])
 
 void Application::InitializeGame()
 {
-		_game = std::make_unique<SG::Game>();
-		auto go = new Player();
-		_game->Loop();
-		go->CreateImageAndShow();
+	_game = std::make_unique<SG::Game>();
+	_game->Startup();
 
 }

@@ -23,7 +23,8 @@ namespace SG
 		GenericError = 0,
 		SDLError = 1,
 		SDLImageError =2,
-		SDLTextureError = 3
+		SDLTextureError = 3,
+		WindowError = 4,
 
 	};
 

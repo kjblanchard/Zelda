@@ -31,24 +31,25 @@ namespace SG
 	public:
 		Game(const Point& screenSize = Point(640, 480));
 		~Game();
+
+		/**
+		 * \brief Used to initialize the proper components to start the game, this is ran after the constructor and prior to the loop being called.
+		 * \return Returns true if things were initialized successfully
+		 */
+		bool Startup();
 		/**
 		 * \brief Main Game loop, this is called by the main function when the program is started.
 		 */
 		void Loop();
-
 		static Game* GetGame();
-
 		static Graphics* GetGraphics();
-
 
 	private:
 		Point _screenSize;
-
 		/**
 		 * \brief Game window,  we can use a Raw pointer here, as this has built in destroy functionality that we will put in the Game destructor
 		 */
 		SDL_Window* _gameWindow;
-
 		//TODO Finish adding in the FPS calculation.
 		double _previousClockInMs;
 		double _currentClockInMs;
@@ -61,11 +62,6 @@ namespace SG
 
 	private:
 
-		/**
-		 * \brief Used to initialize the proper components to start the game, this is ran after the constructor and prior to the loop being called.
-		 * \return Returns true if things were initialized successfully
-		 */
-		bool Startup();
 		/**
 		 * \brief Used to Initialize SDL as a whole, needs to be ran at startup.
 		 */

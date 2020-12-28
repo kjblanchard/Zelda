@@ -11,29 +11,37 @@
 #else
 #define SGGENGINE_API __declspec(dllimport)
 #endif
-#include <SDL_render.h>
 #include <string>
 #include "Point.h"
-#include "SpriteBatch.h"
 
+struct SDL_Texture;
 struct SDL_Surface;
 struct SDL_Window;
+struct SDL_Renderer;
+
 namespace SG
 {
+	class SpriteBatch;
+
 	class SGGENGINE_API Graphics
 	{
 	public:
 		Graphics(Point screenSize);
-		SDL_Texture* LoadTexture(std::string fileName);
+
+
 		bool Startup();
 		void Draw(SpriteBatch& spriteBatch );
 
-		SDL_Texture* ThingToDraw;
-
+		/**
+		 * \brief Loads a surface from a file, and converts that into a texture for use in displaying things on screen
+		 * \param fileName The filename, this file should be in the assets/graphics folder
+		 * \return Returns a texture if the file is found, otherwise returns a nullptr
+		 */
+		SDL_Texture* LoadTexture(std::string fileName) const;
 	private:
 
 		bool CreateGameWindow();
-		bool InitializeSdlPng();
+		static bool InitializeSdlImg();
 		bool CreateRenderer();
 
 

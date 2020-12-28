@@ -1,23 +1,25 @@
 ﻿#include "pch.h"
 #include "Game.h"
 #include <SDL.h>
-#include <SDL_image.h>
-
+#include "DebugHandler.h"
 
 
 namespace SG
 {
+	std::unique_ptr<Graphics>  Game::_graphics = nullptr;
+	Game* Game::_instance = nullptr;
+
 
 	Game::Game(const Point& screenSize)
 		: _screenSize(screenSize), _gameWindow(nullptr),
-		  _previousClockInMs{0.0},
-		  _currentClockInMs(0), _elapsedTimeInMs(0), _lagTimeInMs(0), _fps(0)
+		_previousClockInMs{ 0.0 },
+		_currentClockInMs(0), _elapsedTimeInMs(0), _lagTimeInMs(0), _fps(0)
 	{
 		_graphics = std::make_unique<class Graphics>(_screenSize);
 		if (_instance == nullptr)
 			_instance = this;
 	}
-	std::unique_ptr<Graphics>  Game::_graphics = nullptr;
+
 
 	Game::~Game()
 	{
@@ -26,13 +28,8 @@ namespace SG
 		printf("Bye");
 	}
 
-
-
 	void Game::Loop()
 	{
-		if(!Startup())
-			return;
-		//_graphics->Draw();
 	}
 
 	Game* Game::GetGame()
@@ -45,13 +42,9 @@ namespace SG
 		return _graphics.get();
 	}
 
-
-	Game* Game::_instance = nullptr;
-
-
 	bool Game::Startup()
 	{
-		if(!InitializeSdl())
+		if (!InitializeSdl())
 			return false;
 		if (!_graphics->Startup())
 			return false;
@@ -61,10 +54,9 @@ namespace SG
 	{
 		if (SDL_Init(SDL_INIT_VIDEO) < 0)
 		{
-			printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
+			DebugHandler::PrintErrorMessage(ErrorCodes::SDLError);
 			return false;
 		}
-		printf("We gucci");
 		return true;
 
 	}

@@ -16,7 +16,7 @@
 
 namespace SG
 {
-	struct SGGENGINE_API SpriteBatch
+	class SGGENGINE_API SpriteBatch
 	{
 	public:
 		void AddToSpriteBatch(SDL_Texture* textureToAdd);

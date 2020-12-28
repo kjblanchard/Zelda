@@ -2,6 +2,7 @@
 #include "GameObject.h"
 #include "Graphics.h"
 #include "Game.h"
+#include "SpriteBatch.h"
 
 
 SG::GameObject::GameObject()

@@ -1,8 +1,9 @@
 ﻿#include "pch.h"
 #include  "Graphics.h"
 #include <SDL_image.h>
-
 #include "DebugHandler.h"
+#include "SpriteBatch.h"
+
 
 namespace SG
 {
@@ -16,11 +17,50 @@ namespace SG
 	{
 		if (!CreateGameWindow())
 			return false;
-		if (!InitializeSdlPng())
+		if (!InitializeSdlImg())
 			return false;
 		if (!CreateRenderer())
 			return false;
+		return true;
+	}
+
+	bool Graphics::CreateGameWindow()
+	{
+		_gameWindow = SDL_CreateWindow("Zelda - KJB", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, _screenSize.X, _screenSize.Y, SDL_WINDOW_SHOWN);
+		if (!_gameWindow)
+		{
+			SG::DebugHandler::PrintErrorMessage(ErrorCodes::WindowError);
+			return false;
+		}
 		_windowSurface = SDL_GetWindowSurface(_gameWindow);
+		if(!_windowSurface)
+		{
+			DebugHandler::PrintErrorMessage(ErrorCodes::SDLError);
+			return false;
+		}
+		return true;
+	}
+
+	bool Graphics::InitializeSdlImg()
+	{
+		const int imgFlags = IMG_INIT_PNG;
+		if (!(IMG_Init(imgFlags) & imgFlags))
+		{
+			DebugHandler::PrintErrorMessage(ErrorCodes::SDLImageError);
+			return false;
+		}
+		return true;
+	}
+
+	bool Graphics::CreateRenderer()
+	{
+		_renderer = SDL_CreateRenderer(_gameWindow, -1, SDL_RENDERER_ACCELERATED);
+		if (!_renderer)
+		{
+			DebugHandler::PrintErrorMessage(ErrorCodes::SDLError);
+			return false;
+		}
+		SDL_SetRenderDrawColor(_renderer, 0x00, 0x00, 0x00, 0x00);
 		return true;
 	}
 
@@ -35,66 +75,26 @@ namespace SG
 		SDL_Delay(3000);
 	}
 
-	SDL_Texture* Graphics::LoadTexture(std::string fileName)
+	SDL_Texture* Graphics::LoadTexture(std::string fileName) const
 	{
 		fileName.insert(0, "assets/graphics/");
 		SDL_Texture* newTexture = nullptr;
 		SDL_Surface* loadedSurface = IMG_Load(fileName.c_str());
-		if (loadedSurface)
+		if(!loadedSurface)
 		{
-			newTexture = SDL_CreateTextureFromSurface(_renderer, loadedSurface);
-			if (newTexture)
-			{
-				SDL_FreeSurface(loadedSurface);
-			}
-			else
-				DebugHandler::PrintErrorMessage(ErrorCodes::SDLTextureError);
-
-		}
-		else
 			DebugHandler::PrintErrorMessage(ErrorCodes::SDLImageError);
+			return newTexture;
+		}
+		newTexture = SDL_CreateTextureFromSurface(_renderer, loadedSurface);
+		if(!newTexture)
+		{
+			DebugHandler::PrintErrorMessage(ErrorCodes::SDLTextureError);
+			return newTexture;
+		}
+		SDL_FreeSurface(loadedSurface);
 		return newTexture;
 	}
 
-	bool Graphics::CreateGameWindow()
-	{
-		_gameWindow = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, _screenSize.X, _screenSize.Y, SDL_WINDOW_SHOWN);
-		if (_gameWindow)
-			return true;
-		printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
-		return false;
-	}
-
-
-	bool Graphics::InitializeSdlPng()
-	{
-		//Initialize PNG loading
-		int imgFlags = IMG_INIT_PNG;
-		if (!(IMG_Init(imgFlags) & imgFlags))
-		{
-			printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
-			return false;
-		}
-		printf("Initialized png");
-		return true;
-	}
-
-	bool Graphics::CreateRenderer()
-	{
-		//Create renderer for window
-		_renderer = SDL_CreateRenderer(_gameWindow, -1, SDL_RENDERER_ACCELERATED);
-		if (_renderer == NULL)
-		{
-			printf("Renderer could not be created! SDL Error: %s\n", SDL_GetError());
-			return false;
-		}
-		else
-		{
-			//Initialize renderer color
-			SDL_SetRenderDrawColor(_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
-			return true;
-		}
-	}
 }
 
 #include "Game.h"

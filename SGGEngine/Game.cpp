@@ -1,7 +1,10 @@
 ﻿#include "pch.h"
 #include "Game.h"
+
+#include <iostream>
 #include <SDL.h>
 #include "DebugHandler.h"
+#include "GameClock.h"
 
 
 namespace SG
@@ -11,11 +14,10 @@ namespace SG
 
 
 	Game::Game(const Point& screenSize)
-		: _screenSize(screenSize), _gameWindow(nullptr),
-		_previousClockInMs{ 0.0 },
-		_currentClockInMs(0), _elapsedTimeInMs(0), _lagTimeInMs(0), _fps(0)
+		: _screenSize(screenSize), _gameWindow(nullptr)
 	{
 		_graphics = std::make_unique<class Graphics>(_screenSize);
+		_gameClock = std::make_unique<GameClock>();
 		if (_instance == nullptr)
 			_instance = this;
 	}
@@ -28,20 +30,6 @@ namespace SG
 		printf("Bye");
 	}
 
-	void Game::Loop()
-	{
-	}
-
-	Game* Game::GetGame()
-	{
-		return _instance;
-	}
-
-	Graphics* Game::GetGraphics()
-	{
-		return _graphics.get();
-	}
-
 	bool Game::Startup()
 	{
 		if (!InitializeSdl())
@@ -50,6 +38,7 @@ namespace SG
 			return false;
 		return true;
 	}
+
 	bool Game::InitializeSdl()
 	{
 		if (SDL_Init(SDL_INIT_VIDEO) < 0)
@@ -61,39 +50,31 @@ namespace SG
 
 	}
 
-
-	void Game::CalculateFrameTime()
+	void Game::Loop()
 	{
-		//_currentClockInMs = _gameClock.getElapsedTime().asMilliseconds();
-		//_elapsedTimeInMs = _currentClockInMs - _previousClockInMs;
-		//_previousClockInMs = _currentClockInMs;
-		//_lagTimeInMs += _elapsedTimeInMs;
+		_gameClock->Tick();
+		while(_gameClock->ShouldUpdate())
+		{
+			Update(_gameClock->DeltaTime());
+			_gameClock->Update();
+			_gameClock->_countedFrames++;
+		}
+		Draw();
 	}
 
 	void Game::HandleInput()
 	{
 	}
 
-	void Game::Tick()
-	{
-		//while (_lagTimeInMs >= _updateTime)
-		//{
-		//	_fps = CalculateFps();
-		//	std::cout << _lagTimeInMs;
-		//	Update(_lagTimeInMs);
-		//	_lagTimeInMs -= _updateTime;
-		//}
-		//Draw();
-	}
-
-	float Game::CalculateFps()
-	{
-		return 0.0;
-	}
 
 	void Game::Update(const double& deltaTime)
 	{
-		printf("Updating");
+		if(_gameClock->_countedFrames>600)
+		{
+
+		}
+		int fps = (_gameClock->TotalTime() / 1000) / _gameClock->_countedFrames;
+		std::cout << std::to_string(fps) << std::endl;
 	}
 
 	void Game::Draw()

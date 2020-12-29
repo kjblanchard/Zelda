@@ -16,13 +16,18 @@ void Application::InitializeGame()
 	_game = std::make_unique<SG::Game>();
 	_game->Startup();
 
-	auto* player = new Player();
-	player->Startup();
+	while(true)
+	{
+		_game->Loop();
+	}
 
-	auto* spriteBatch = new SG::SpriteBatch();
-	player->Draw( *spriteBatch);
+	//auto* player = new Player();
+	//player->Startup();
 
-	SG::Game::GetGraphics()->Draw(*spriteBatch);
+	//auto* spriteBatch = new SG::SpriteBatch();
+	//player->Draw( *spriteBatch);
+
+	//SG::Game::GetGraphics()->Draw(*spriteBatch);
 
 
 

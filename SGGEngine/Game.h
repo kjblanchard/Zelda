@@ -20,6 +20,7 @@
 
 namespace SG
 {
+	class GameClock;
 
 
 	/**
@@ -41,8 +42,8 @@ namespace SG
 		 * \brief Main Game loop, this is called by the main function when the program is started.
 		 */
 		void Loop();
-		static Game* GetGame();
-		static Graphics* GetGraphics();
+		static Game* GetGame() { return _instance; }
+		static Graphics* GetGraphics() { return _graphics.get(); }
 
 	private:
 		Point _screenSize;
@@ -50,13 +51,7 @@ namespace SG
 		 * \brief Game window,  we can use a Raw pointer here, as this has built in destroy functionality that we will put in the Game destructor
 		 */
 		SDL_Window* _gameWindow;
-		//TODO Finish adding in the FPS calculation.
-		double _previousClockInMs;
-		double _currentClockInMs;
-		double _elapsedTimeInMs;
-		double _lagTimeInMs;
-		float _fps;
-		const double _updateTime = 1000.00 / 60.00;
+		std::unique_ptr<GameClock> _gameClock;
 		static std::unique_ptr<Graphics> _graphics;
 		static Game* _instance;
 
@@ -67,25 +62,11 @@ namespace SG
 		 */
 		static bool InitializeSdl();
 
-
-
-		/**
-		 * \brief Calculates the amount of time between this frame and the last frame and updates the Game member variables.
-		 */
-		void CalculateFrameTime();
 		/**
 		 * \brief Handles the Input for everything that needs their input handled.
 		 */
 		void HandleInput();
-		/**
-		 * \brief Runs the update function a specific number of times, based on the Update Time Variable and tries to run Draw just as often
-		 */
-		void Tick();
-		/**
-		 * \brief This is a very crude FPS counter
-		 * \return Current Fps as a float
-		 */
-		float CalculateFps();
+
 		/**
 		 * \brief This will run the update function for all game objects
 		 * \param deltaTime Milliseconds that have passed since the last frame

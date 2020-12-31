@@ -1,5 +1,6 @@
 ﻿#include "pch.h"
 #include  "DebugHandler.h"
+
 #include <SDL_image.h>
 
 namespace SG
@@ -23,6 +24,10 @@ namespace SG
 			break;
 		case ErrorCodes::WindowError:
 			printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
+			break;
+		case ErrorCodes::GameSlowdown:
+			printf("Game is currently getting worse than normal FPS, current ms delay between frames (should be 16.6667) : ");
+
 			break;
 		default: ;
 		}

@@ -11,7 +11,7 @@ namespace SG
 
 	Time Clock::GetElapsedTime() const
 	{
-		return {CurrentTime};
+		return CurrentTime;
 	}
 
 	void Clock::Tick()

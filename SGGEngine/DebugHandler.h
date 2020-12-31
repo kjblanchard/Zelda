@@ -11,8 +11,9 @@
 #else
 #define SGGENGINE_API __declspec(dllimport)
 #endif
-#include <map>
+#include <iostream>
 #include <string>
+
 
 using std::string;
 
@@ -25,6 +26,7 @@ namespace SG
 		SDLImageError =2,
 		SDLTextureError = 3,
 		WindowError = 4,
+		GameSlowdown = 5,
 
 	};
 
@@ -34,5 +36,20 @@ namespace SG
 	public:
 
 		static void PrintErrorMessage(ErrorCodes codeToPrint);
+		template <typename T>
+		static void PrintErrorMessage(ErrorCodes codeToPrint, const T& data);
+
+
 	};
+
+	template <typename T>
+	void DebugHandler::PrintErrorMessage(ErrorCodes codeToPrint, const T& data)
+	{
+		PrintErrorMessage(codeToPrint);
+		auto numberString = std::to_string(data);
+		if (!numberString.empty())
+			std::cout << data << std::endl;
+		else
+			std::cout << "Cannot convert to string / bad data passed into debugger" << std::endl;
+	}
 }

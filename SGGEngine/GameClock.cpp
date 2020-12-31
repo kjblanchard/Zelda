@@ -1,17 +1,12 @@
 ﻿#include "pch.h"
-
-
 #include  "GameClock.h"
-
-#include <SDL_timer.h>
 
 namespace SG
 {
 
-	GameClock::GameClock(const double& msPerTick): _msPerTick(msPerTick), _previousTime(), _currentTime(), _deltaTime(),
-	                                               _lagTime()
+	GameClock::GameClock(const double& msPerTick): _msPerFrame(msPerTick), _previousGameRunningTime(0.0), _currentGameRunningTime(0.0), _thisTickDeltaTime(0.0),
+	                                               _timeSinceLastUpdate(0.0)
 	{
-		_countedFrames = 0;
 	}
 
 	GameClock::~GameClock()
@@ -21,14 +16,16 @@ namespace SG
 	void GameClock::Tick()
 	{
 		_clock.Tick();
-		_currentTime = _clock.GetElapsedTime().Milliseconds();
-		_deltaTime = _currentTime - _previousTime;
-		_previousTime = _currentTime;
-		_lagTime += _deltaTime;
+		_previousGameRunningTime = _currentGameRunningTime;
+		_currentGameRunningTime = _clock.GetElapsedTime().Milliseconds();
+		_thisTickDeltaTime = _currentGameRunningTime - _previousGameRunningTime;
+		_timeSinceLastUpdate += _thisTickDeltaTime;
 	}
 
-	bool GameClock::ShouldUpdate() const
+	void GameClock::UpdateClockTimer()
 	{
-		return _lagTime > _msPerTick;
+		_timeSinceLastUpdate -= _msPerFrame;
+		if (_timeSinceLastUpdate < 0)
+			_timeSinceLastUpdate = 0;
 	}
 }

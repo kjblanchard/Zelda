@@ -1,10 +1,11 @@
 ﻿#include "pch.h"
 #include "Game.h"
-
 #include <iostream>
 #include <SDL.h>
 #include "DebugHandler.h"
 #include "GameClock.h"
+#include "Graphics.h"
+
 
 
 namespace SG
@@ -27,7 +28,6 @@ namespace SG
 	{
 		SDL_DestroyWindow(_gameWindow);
 		SDL_Quit();
-		printf("Bye");
 	}
 
 	bool Game::Startup()
@@ -53,13 +53,18 @@ namespace SG
 	void Game::Loop()
 	{
 		_gameClock->Tick();
-		while(_gameClock->ShouldUpdate())
+		if (_gameClock->ShouldUpdate())
 		{
-			Update(_gameClock->DeltaTime());
-			_gameClock->Update();
-			_gameClock->_countedFrames++;
+			if (_gameClock->GameIsLagging())
+				DebugHandler::PrintErrorMessage(ErrorCodes::GameSlowdown, _gameClock->DeltaTime());
+			while (_gameClock->ShouldUpdate())
+			{
+				HandleInput();
+				Update(_gameClock->MsPerFrame());
+				_gameClock->UpdateClockTimer();
+			}
+			Draw();
 		}
-		Draw();
 	}
 
 	void Game::HandleInput()
@@ -69,15 +74,11 @@ namespace SG
 
 	void Game::Update(const double& deltaTime)
 	{
-		if(_gameClock->_countedFrames>600)
-		{
 
-		}
-		int fps = (_gameClock->TotalTime() / 1000) / _gameClock->_countedFrames;
-		std::cout << std::to_string(fps) << std::endl;
 	}
 
 	void Game::Draw()
 	{
+
 	}
 }

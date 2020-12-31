@@ -11,15 +11,14 @@
 #else
 #define SGGENGINE_API __declspec(dllimport)
 #endif
-#include "Point.h"
 #include <memory>
 #include <SDL_video.h>
-
-#include "Graphics.h"
+#include "Point.h"
 
 
 namespace SG
 {
+	class Graphics;
 	class GameClock;
 
 

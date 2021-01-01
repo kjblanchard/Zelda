@@ -17,6 +17,7 @@ class Player : public SG::GameObject
 {
 public:
 	Player();
+	~Player();
 	Player(SG::Vector3 location);
 	void Startup() override;
 	void Update() override;

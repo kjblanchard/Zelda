@@ -1,8 +1,10 @@
 ﻿#include "Application.h"
 #include "Game.h"
 #include "GameObject.h"
-#include "Player.h"
+#include "Graphics.h"
 #include "SpriteBatch.h"
+#include "Player.h"
+
 
 int main(int argc, char* args[])
 {
@@ -15,21 +17,6 @@ void Application::InitializeGame()
 {
 	_game = std::make_unique<SG::Game>();
 	_game->Startup();
-
-	while(true)
-	{
-		_game->Loop();
-	}
-
-	//auto* player = new Player();
-	//player->Startup();
-
-	//auto* spriteBatch = new SG::SpriteBatch();
-	//player->Draw( *spriteBatch);
-
-	//SG::Game::GetGraphics()->Draw(*spriteBatch);
-
-
-
+	_game->Loop();
 
 }

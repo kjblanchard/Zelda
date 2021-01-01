@@ -7,17 +7,20 @@
 
 #pragma once
 #include <memory>
+class Player;
 
 namespace SG {
+	class SpriteBatch;
 	class Game;
 }
 
 class Application
 {
 public:
-	//TODO Make this into a better worded / thing
+
 	void InitializeGame();
 
 private:
 	std::unique_ptr<SG::Game> _game;
+
 };

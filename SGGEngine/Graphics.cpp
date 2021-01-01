@@ -73,7 +73,6 @@ namespace SG
 			SDL_RenderCopy(_renderer, sprite->_imageTexture, NULL, NULL);
 		}
 		SDL_RenderPresent(_renderer);
-		SDL_Delay(3000);
 	}
 
 	SDL_Texture* Graphics::LoadTexture(std::string fileName) const

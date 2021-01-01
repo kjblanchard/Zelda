@@ -12,6 +12,7 @@
 #define SGGENGINE_API __declspec(dllimport)
 #endif
 #include <memory>
+#include <SDL_events.h>
 #include <SDL_video.h>
 #include "Point.h"
 
@@ -51,8 +52,16 @@ namespace SG
 		 */
 		SDL_Window* _gameWindow;
 		std::unique_ptr<GameClock> _gameClock;
+
+		bool shouldQuit{};
+		SDL_Event _events{};
+
 		static std::unique_ptr<Graphics> _graphics;
 		static Game* _instance;
+
+
+		Uint8 _previousState[SDL_NUM_SCANCODES];
+		Uint8 _currentState[SDL_NUM_SCANCODES];
 
 	private:
 
@@ -60,6 +69,12 @@ namespace SG
 		 * \brief Used to Initialize SDL as a whole, needs to be ran at startup.
 		 */
 		static bool InitializeSdl();
+
+
+		/**
+		 * \brief Checks the event queue, and if there are any quit events (like from clicking the X) the game will quit.
+		 */
+		void HandleShouldQuit();
 
 		/**
 		 * \brief Handles the Input for everything that needs their input handled.

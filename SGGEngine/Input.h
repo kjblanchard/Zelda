@@ -11,24 +11,11 @@
 #else
 #define SGGENGINE_API __declspec(dllimport)
 #endif
-#include <SDL_render.h>
-#include <vector>
 
 namespace SG
 {
-	class Image;
-
-	class SGGENGINE_API SpriteBatch
+	class SGGENGINE_API Input
 	{
-	public:
-		void AddToSpriteBatch(Image* imageToDraw);
-		std::vector<Image*> GameTextures()
-		{
-			return _gameTextures;
-		}
-
-		void ClearSpriteBatch() { _gameTextures.clear(); }
-	private:
-		std::vector<Image*> _gameTextures;
+		
 	};
 }

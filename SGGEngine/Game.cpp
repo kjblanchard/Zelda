@@ -50,25 +50,52 @@ namespace SG
 
 	}
 
+	void Game::HandleShouldQuit()
+	{
+		while (SDL_PollEvent(&_events) != 0)
+		{
+			if (_events.type == SDL_QUIT)
+			{
+				shouldQuit = true;
+			}
+		}
+	}
+
 	void Game::Loop()
 	{
-		_gameClock->Tick();
-		if (_gameClock->ShouldUpdate())
+		memset(_previousState, 0, sizeof(Uint8) * SDL_NUM_SCANCODES);
+		memcpy(_currentState, SDL_GetKeyboardState(NULL), sizeof(Uint8) * SDL_NUM_SCANCODES);
+
+		while (!shouldQuit)
 		{
-			if (_gameClock->GameIsLagging())
-				DebugHandler::PrintErrorMessage(ErrorCodes::GameSlowdown, _gameClock->DeltaTime());
-			while (_gameClock->ShouldUpdate())
+			_gameClock->Tick();
+			if (_gameClock->ShouldUpdate())
 			{
-				HandleInput();
-				Update(_gameClock->MsPerFrame());
-				_gameClock->UpdateClockTimer();
+				if (_gameClock->GameIsLagging())
+					DebugHandler::PrintErrorMessage(ErrorCodes::GameSlowdown, _gameClock->DeltaTime());
+				while (_gameClock->ShouldUpdate())
+				{
+					HandleShouldQuit();
+					HandleInput();
+					Update(_gameClock->MsPerFrame());
+					_gameClock->UpdateClockTimer();
+				}
+				Draw();
 			}
-			Draw();
 		}
 	}
 
 	void Game::HandleInput()
 	{
+			memcpy(_previousState, _currentState, sizeof(Uint8) * SDL_NUM_SCANCODES);
+			memcpy(_currentState, SDL_GetKeyboardState(NULL), sizeof(Uint8) * SDL_NUM_SCANCODES);
+		if (_currentState[SDL_SCANCODE_RETURN]) {
+			printf("<RETURN> is pressed.\n");
+		}
+		else if (_previousState[SDL_SCANCODE_RETURN])
+		{
+			printf("Return was pressed. \n");
+		}
 	}
 
 

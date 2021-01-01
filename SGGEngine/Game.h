@@ -19,6 +19,7 @@
 
 namespace SG
 {
+	class Input;
 	class Graphics;
 	class GameClock;
 
@@ -59,6 +60,7 @@ namespace SG
 		static std::unique_ptr<Graphics> _graphics;
 		static Game* _instance;
 
+		Input* _input;
 
 		Uint8 _previousState[SDL_NUM_SCANCODES];
 		Uint8 _currentState[SDL_NUM_SCANCODES];
@@ -66,7 +68,7 @@ namespace SG
 	private:
 
 		/**
-		 * \brief Used to Initialize SDL as a whole, needs to be ran at startup.
+		 * \brief Used to Initialize SDL as a whole and it's subsystems, needs to be ran at startup vor video and joystick.
 		 */
 		static bool InitializeSdl();
 

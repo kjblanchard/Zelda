@@ -5,7 +5,7 @@
 #include "DebugHandler.h"
 #include "GameClock.h"
 #include "Graphics.h"
-
+#include "Input.h"
 
 
 namespace SG
@@ -19,6 +19,7 @@ namespace SG
 	{
 		_graphics = std::make_unique<class Graphics>(_screenSize);
 		_gameClock = std::make_unique<GameClock>();
+		_input = new Input();
 		if (_instance == nullptr)
 			_instance = this;
 	}
@@ -36,12 +37,13 @@ namespace SG
 			return false;
 		if (!_graphics->Startup())
 			return false;
+		_input->Startup();
 		return true;
 	}
 
 	bool Game::InitializeSdl()
 	{
-		if (SDL_Init(SDL_INIT_VIDEO) < 0)
+		if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK) < 0)
 		{
 			DebugHandler::PrintErrorMessage(ErrorCodes::SDLError);
 			return false;
@@ -63,8 +65,7 @@ namespace SG
 
 	void Game::Loop()
 	{
-		memset(_previousState, 0, sizeof(Uint8) * SDL_NUM_SCANCODES);
-		memcpy(_currentState, SDL_GetKeyboardState(NULL), sizeof(Uint8) * SDL_NUM_SCANCODES);
+
 
 		while (!shouldQuit)
 		{
@@ -87,20 +88,18 @@ namespace SG
 
 	void Game::HandleInput()
 	{
-			memcpy(_previousState, _currentState, sizeof(Uint8) * SDL_NUM_SCANCODES);
-			memcpy(_currentState, SDL_GetKeyboardState(NULL), sizeof(Uint8) * SDL_NUM_SCANCODES);
-		if (_currentState[SDL_SCANCODE_RETURN]) {
-			printf("<RETURN> is pressed.\n");
-		}
-		else if (_previousState[SDL_SCANCODE_RETURN])
-		{
-			printf("Return was pressed. \n");
-		}
+		_input->UpdateKeyboards();
 	}
 
 
 	void Game::Update(const double& deltaTime)
 	{
+		if (Input::KeyJustPressed(SDL_SCANCODE_RETURN))
+			printf("Key just pressed\n");
+		if (Input::KeyJustReleased(SDL_SCANCODE_RETURN))
+			printf("Key just released\n");
+		if (Input::IsKeyDown(SDL_SCANCODE_RETURN))
+			printf("Key down\n");
 
 	}
 

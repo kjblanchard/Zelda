@@ -24,9 +24,14 @@ namespace SG
 		void UpdateKeyboards();
 
 		static bool IsKeyDown(SDL_Scancode key);
+		static bool IsKeyDown(SDL_Scancode keys[]);
 		static bool IsKeyHeldDown(SDL_Scancode key);
+		static bool IsKeyHeldDown(SDL_Scancode keys[]);
 		static bool KeyJustPressed(SDL_Scancode key);
+		static bool KeyJustPressed(SDL_Scancode keys[]);
 		static bool KeyJustReleased(SDL_Scancode key);
+		static bool KeyJustReleased(SDL_Scancode keys[]);
+
 
 	private:
 		static Uint8 _previousKeyboardState[SDL_NUM_SCANCODES];

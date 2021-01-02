@@ -65,6 +65,7 @@ namespace SG
 
 	void Game::Loop()
 	{
+		_playerController = new PlayerController;
 
 
 		while (!shouldQuit)
@@ -94,12 +95,15 @@ namespace SG
 
 	void Game::Update(const double& deltaTime)
 	{
-		if (Input::KeyJustPressed(SDL_SCANCODE_RETURN))
+
+
+		if (_playerController->IsButtonPressed(ControllerButtons::A))
 			printf("Key just pressed\n");
-		if (Input::KeyJustReleased(SDL_SCANCODE_RETURN))
+		if (_playerController->IsButtonReleased(ControllerButtons::A))
 			printf("Key just released\n");
-		if (Input::IsKeyDown(SDL_SCANCODE_RETURN))
-			printf("Key down\n");
+		if (_playerController->IsButtonHeld(ControllerButtons::A))
+			printf("Key held\n");
+
 
 	}
 

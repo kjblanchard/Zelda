@@ -14,6 +14,8 @@
 #include <memory>
 #include <SDL_events.h>
 #include <SDL_video.h>
+
+#include "PlayerController.h"
 #include "Point.h"
 
 
@@ -92,5 +94,7 @@ namespace SG
 		 * \brief This will run the draw function for all game objects.
 		 */
 		void Draw();
+
+		PlayerController* _playerController;
 	};
 };

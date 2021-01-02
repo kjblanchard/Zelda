@@ -32,18 +32,59 @@ namespace SG
 		return _currentKeyboardState[key];
 	}
 
+	bool Input::IsKeyDown(SDL_Scancode keys[])
+	{
+		for (int i = 0; i < 2; ++i)
+		{
+			if (IsKeyDown(keys[i]))
+				return true;
+		}
+		return false;
+	}
+
 	bool Input::IsKeyHeldDown(SDL_Scancode key)
 	{
 		return _previousKeyboardState[key] && _currentKeyboardState[key];
+	}
+	bool Input::IsKeyHeldDown(SDL_Scancode keys[])
+	{
+		for (int i = 0; i < 2; ++i)
+		{
+			if (IsKeyHeldDown(keys[i]))
+				return true;
+		}
+		return false;
 	}
 
 	bool Input::KeyJustPressed(const SDL_Scancode key)
 	{
 		return _currentKeyboardState[key] && !_previousKeyboardState[key];
 	}
+	bool Input::KeyJustPressed(SDL_Scancode keys[])
+	{
+		for (int i = 0; i < 2; ++i)
+		{
+			if (KeyJustPressed(keys[i]))
+				return true;
+		}
+		return false;
+	}
 
 	bool Input::KeyJustReleased(const SDL_Scancode key)
 	{
 		return !_currentKeyboardState[key] && _previousKeyboardState[key];
 	}
+
+	bool Input::KeyJustReleased(SDL_Scancode keys[])
+	{
+		for (int i = 0; i < 2; ++i)
+		{
+			if (KeyJustReleased(keys[i]))
+				return true;
+		}
+		return false;
+	}
+
+
+
 }

@@ -78,7 +78,7 @@ namespace SG
 		/**
 		 * \brief Checks the event queue, and if there are any quit events (like from clicking the X) the game will quit.
 		 */
-		void HandleShouldQuit();
+		bool HandleEvents();
 
 		/**
 		 * \brief Handles the Input for everything that needs their input handled.

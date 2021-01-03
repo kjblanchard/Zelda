@@ -34,7 +34,13 @@ namespace SG
 			_controllerMapping.reset(_newMapping);
 		}
 
+		void UpdateControlType(bool isUsingGamepad)
+		{
+			_isUsingGamePad = isUsingGamepad;
+		}
+
 	private:
 		std::unique_ptr<ControllerMapping> _controllerMapping;
+		bool _isUsingGamePad;
 	};
 }

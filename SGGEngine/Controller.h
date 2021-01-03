@@ -59,5 +59,6 @@ namespace SG
 		SDL_Scancode SelectButton[2]{ SDL_SCANCODE_TAB };
 
 
+
 	};
 }

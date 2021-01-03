@@ -43,7 +43,7 @@ namespace SG
 
 	bool Game::InitializeSdl()
 	{
-		if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK) < 0)
+		if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_GAMECONTROLLER) < 0)
 		{
 			DebugHandler::PrintErrorMessage(ErrorCodes::SDLError);
 			return false;
@@ -52,15 +52,56 @@ namespace SG
 
 	}
 
-	void Game::HandleShouldQuit()
+	bool Game::HandleEvents()
 	{
-		while (SDL_PollEvent(&_events) != 0)
+		Input::UpdateJoysticks();
+		SDL_Event event;
+		while (SDL_PollEvent(&event) != 0)
 		{
-			if (_events.type == SDL_QUIT)
-			{
+			switch (event.type) {
+			case SDL_QUIT:
 				shouldQuit = true;
+				return false;
+
+				// This happens when a device is added
+				// A future improvement is to cope with new controllers being plugged in
+				// when the game is running
+			case SDL_CONTROLLERDEVICEADDED:
+				std::cout << "DEVICEADDED cdevice.which = " << event.cdevice.which << std::endl;
+				break;
+
+				// If a controller button is pressed
+			case SDL_CONTROLLERBUTTONDOWN:
+				// Cycle through the controllers
+				for (int i = 0; i < _input->numGamepads; i++) {
+					// Looking for the button that was pressed
+					if (event.cbutton.which == SDL_JoystickInstanceID(SDL_GameControllerGetJoystick(_input->connectedControllers[i]))) {
+						// So the relevant state can be updated
+						_input->controllerInputs[i].buttons[event.cbutton.button] = true;
+					}
+				}
+				break;
+
+				// Do the same for releasing a button
+			case SDL_CONTROLLERBUTTONUP:
+				for (int i = 0; i < _input->numGamepads; i++) {
+					if (event.cbutton.which == SDL_JoystickInstanceID(SDL_GameControllerGetJoystick(_input->connectedControllers[i]))) {
+						_input->controllerInputs[i].buttons[event.cbutton.button] = false;
+					}
+				}
+				break;
+
+				// And something similar for axis motion
+			case SDL_CONTROLLERAXISMOTION:
+				for (int i = 0; i < _input->numGamepads; i++) {
+					if (event.cbutton.which == SDL_JoystickInstanceID(SDL_GameControllerGetJoystick(_input->connectedControllers[i]))) {
+						_input->controllerInputs[i].axis[event.caxis.axis] = event.caxis.value;
+					}
+				}
+				break;
 			}
 		}
+		return true;
 	}
 
 	void Game::Loop()
@@ -77,7 +118,7 @@ namespace SG
 					DebugHandler::PrintErrorMessage(ErrorCodes::GameSlowdown, _gameClock->DeltaTime());
 				while (_gameClock->ShouldUpdate())
 				{
-					HandleShouldQuit();
+					HandleEvents();
 					HandleInput();
 					Update(_gameClock->MsPerFrame());
 					_gameClock->UpdateClockTimer();
@@ -103,7 +144,8 @@ namespace SG
 			printf("Key just released\n");
 		if (_playerController->IsButtonHeld(ControllerButtons::A))
 			printf("Key held\n");
-
+		if (Input::KeyJustPressed(0, SDL_CONTROLLER_BUTTON_A))
+			printf("JoystickButtonPress");
 
 	}
 

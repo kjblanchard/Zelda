@@ -144,8 +144,8 @@ namespace SG
 			printf("Key just released\n");
 		if (_playerController->IsButtonHeld(ControllerButtons::A))
 			printf("Key held\n");
-		if (Input::KeyJustPressed(0, SDL_CONTROLLER_BUTTON_A))
-			printf("JoystickButtonPress");
+		//if (Input::KeyJustPressed(0, SDL_CONTROLLER_BUTTON_A))
+		//	printf("JoystickButtonPress");
 
 	}
 

@@ -13,6 +13,7 @@
 #endif
 #include <SDL_scancode.h>
 #include <map>
+#include <SDL_gamecontroller.h>
 
 namespace SG
 {
@@ -31,6 +32,22 @@ namespace SG
 		Select = 10
 	};
 
+	template <typename T>
+	class SGGENGINE_API KeyMapping
+	{
+	public:
+		T UpButton;
+		T RightButton;
+		T DownButton;
+		T LeftButton;
+		T YButton;
+		T BButton;
+		T AButton;
+		T XButton;
+		T StartButton;
+		T SelectButton;
+	};
+
 	class SGGENGINE_API Controller
 	{
 	public:
@@ -40,24 +57,8 @@ namespace SG
 		virtual bool IsButtonHeld(ControllerButtons controllerButton) = 0;
 	protected:
 
-
-	};
-
-	class SGGENGINE_API ControllerMapping
-	{
-	public:
-
-		SDL_Scancode UpButton[2]{ SDL_SCANCODE_UP };
-		SDL_Scancode RightButton[2]{ SDL_SCANCODE_RIGHT };
-		SDL_Scancode DownButton[2]{ SDL_SCANCODE_DOWN };
-		SDL_Scancode LeftButton[2]{ SDL_SCANCODE_LEFT };
-		SDL_Scancode YButton[2]{SDL_SCANCODE_1};
-		SDL_Scancode BButton[2]{ SDL_SCANCODE_X };
-		SDL_Scancode AButton[2]{ SDL_SCANCODE_SPACE };
-		SDL_Scancode XButton[2]{ SDL_SCANCODE_2 };
-		SDL_Scancode StartButton[2]{ SDL_SCANCODE_RETURN };
-		SDL_Scancode SelectButton[2]{ SDL_SCANCODE_TAB };
-
+		static const KeyMapping<SDL_Scancode>* DefaultKeyboardMap;
+		static const KeyMapping<SDL_GameControllerButton>* DefaultJoystickMap;
 
 
 	};

@@ -23,15 +23,18 @@ namespace SG
 	public:
 		PlayerController()
 		{
-			_controllerMapping = std::make_unique<ControllerMapping>();
 		}
 		bool IsButtonPressed(ControllerButtons controllerButton) override;
 		bool IsButtonHeld(ControllerButtons controllerButton) override;
 		bool IsButtonReleased(ControllerButtons controllerButton) override;
 
-		void UpdateControllerMapping(ControllerMapping* _newMapping)
+		void UpdateControllerMapping(KeyMapping<SDL_Scancode> newKeyboardMap)
 		{
-			_controllerMapping.reset(_newMapping);
+			_keyboardMapping = newKeyboardMap;
+		}
+		void UpdateControllerMapping(KeyMapping<SDL_GameControllerButton> newJoystickMap)
+		{
+			_joystickMapping = newJoystickMap;
 		}
 
 		void UpdateControlType(bool isUsingGamepad)
@@ -39,8 +42,15 @@ namespace SG
 			_isUsingGamePad = isUsingGamepad;
 		}
 
+		void UpdatePlayerNum(uint8_t playerNum)
+		{
+			_playerNum = playerNum;
+		}
+
 	private:
-		std::unique_ptr<ControllerMapping> _controllerMapping;
-		bool _isUsingGamePad;
+		KeyMapping<SDL_Scancode> _keyboardMapping{*DefaultKeyboardMap};
+		KeyMapping<SDL_GameControllerButton> _joystickMapping{*DefaultJoystickMap};
+		bool _isUsingGamePad{false};
+		uint8_t _playerNum{ 0 };
 	};
 }

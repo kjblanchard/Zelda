@@ -134,7 +134,7 @@ namespace SG
 
 	bool Input::KeyJustPressed(int controllerNum, SDL_GameControllerButton button)
 	{
-		if (controllerNum < 0 || controllerNum > numGamepads) return false;
+		if ( numGamepads == 0 || controllerNum < 0 || controllerNum > numGamepads) return false;
 
 		return controllerInputs[controllerNum].buttons[button] && !lastControllerInputs[controllerNum].buttons[button];
 		//return controllerInputs[controllerNum].buttons[button];

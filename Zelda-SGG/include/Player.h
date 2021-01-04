@@ -7,6 +7,7 @@
 
 #pragma once
 #include "GameObject.h"
+#include "InputComponent.h"
 #include "Vector3.h"
 
 namespace SG {
@@ -18,6 +19,7 @@ class Player : public SG::GameObject
 public:
 	Player();
 	~Player();
+
 	Player(SG::Vector3 location);
 	void Startup() override;
 	void Update() override;
@@ -26,4 +28,5 @@ public:
 private:
 	void ComponentUpdate() override;
 	SG::ImageComponent* _imageComponent;
+	SG::InputComponent* _inputComponent;
 };

@@ -17,6 +17,8 @@ void Application::InitializeGame()
 {
 	_game = std::make_unique<SG::Game>();
 	_game->Startup();
+	auto* const player = new Player();
+	_game->_gameObjectList.push_back(player);
 	_game->Loop();
 
 }

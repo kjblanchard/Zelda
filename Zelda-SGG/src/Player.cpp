@@ -1,11 +1,14 @@
 ﻿#include "Player.h"
 #include "ImageComponent.h"
+#include "PlayerController.h"
 #include "Point.h"
 
 Player::Player()
-	:GameObject()
+	: GameObject(), _imageComponent(nullptr), _inputComponent(nullptr)
 {
 	printf("aliv");
+	auto* controller = new SG::PlayerController();
+	_inputComponent = new SG::InputComponent(controller);
 }
 
 Player::~Player()
@@ -25,6 +28,10 @@ void Player::Startup()
 
 void Player::Update()
 {
+	if(_inputComponent)
+	{
+
+	}
 }
 
 void Player::Draw(SG::SpriteBatch& spriteBatch)

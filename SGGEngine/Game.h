@@ -13,11 +13,14 @@
 #endif
 #include <memory>
 #include <SDL_video.h>
+#include <vector>
+
 #include "Point.h"
 
 
 namespace SG
 {
+	class GameObject;
 	class Input;
 	class Graphics;
 	class GameClock;
@@ -44,6 +47,8 @@ namespace SG
 		void Loop();
 		static Game* GetGame() { return _instance; }
 		static Graphics* GetGraphics() { return _graphics.get(); }
+
+		std::vector<GameObject*> _gameObjectList;
 
 	private:
 		Point _screenSize;

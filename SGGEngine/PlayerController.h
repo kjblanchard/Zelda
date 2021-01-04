@@ -18,7 +18,7 @@
 
 namespace SG
 {
-	class SGGENGINE_API PlayerController : Controller
+	class SGGENGINE_API PlayerController : public Controller
 	{
 	public:
 		PlayerController()

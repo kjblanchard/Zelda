@@ -4,6 +4,7 @@
 #include <SDL.h>
 #include "DebugHandler.h"
 #include "GameClock.h"
+#include "GameObject.h"
 #include "Graphics.h"
 #include "Input.h"
 
@@ -99,7 +100,13 @@ namespace SG
 
 	void Game::Update(const double& deltaTime)
 	{
-
+		if(!_gameObjectList.empty())
+		{
+			for (auto && gameObject : _gameObjectList)
+			{
+				gameObject->Update();
+			}
+		}
 	}
 
 	void Game::Draw()

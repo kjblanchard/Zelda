@@ -12,10 +12,7 @@
 #define SGGENGINE_API __declspec(dllimport)
 #endif
 #include <memory>
-#include <SDL_events.h>
 #include <SDL_video.h>
-
-#include "PlayerController.h"
 #include "Point.h"
 
 
@@ -57,15 +54,10 @@ namespace SG
 		std::unique_ptr<GameClock> _gameClock;
 
 		bool shouldQuit{};
-		SDL_Event _events{};
-
 		static std::unique_ptr<Graphics> _graphics;
 		static Game* _instance;
+		std::unique_ptr<Input> _input;
 
-		Input* _input;
-
-		Uint8 _previousState[SDL_NUM_SCANCODES];
-		Uint8 _currentState[SDL_NUM_SCANCODES];
 
 	private:
 
@@ -95,6 +87,5 @@ namespace SG
 		 */
 		void Draw();
 
-		PlayerController* _playerController;
 	};
 };

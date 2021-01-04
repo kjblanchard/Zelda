@@ -60,6 +60,5 @@ namespace SG
 		static const KeyMapping<SDL_Scancode>* DefaultKeyboardMap;
 		static const KeyMapping<SDL_GameControllerButton>* DefaultJoystickMap;
 
-
 	};
 }

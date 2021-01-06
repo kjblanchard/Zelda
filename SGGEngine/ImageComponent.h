@@ -16,6 +16,7 @@
 #include <string>
 #include "Component.h"
 #include "Point.h"
+#include "Vector3.h"
 
 namespace SG
 {
@@ -30,9 +31,12 @@ namespace SG
 		ImageComponent(const std::string& filename, Point imageSize);
 		~ImageComponent();
 
+		void Update(Vector3 location);
+
 		void Draw(SpriteBatch& spritebatch);
 
 		std::unique_ptr<Image> image;
+		SG::Vector3 _location;
 
 	private:
 

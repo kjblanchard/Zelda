@@ -7,6 +7,7 @@
 #include "GameObject.h"
 #include "Graphics.h"
 #include "Input.h"
+#include "SpriteBatch.h"
 
 
 namespace SG
@@ -111,6 +112,14 @@ namespace SG
 
 	void Game::Draw()
 	{
-
+		if(!_gameObjectList.empty())
+		{
+			auto spriteBatch = SpriteBatch();
+			for (auto && gameObject : _gameObjectList)
+			{
+				gameObject->Draw(spriteBatch);
+			}
+			_graphics->Draw(spriteBatch);
+		}
 	}
 }

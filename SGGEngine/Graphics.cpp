@@ -70,7 +70,10 @@ namespace SG
 		SDL_RenderClear(_renderer);
 		for (auto* sprite : spriteBatch.GameTextures())
 		{
-			SDL_RenderCopy(_renderer, sprite->_imageTexture, NULL, NULL);
+			if(sprite->isWholeTexture)
+				SDL_RenderCopy(_renderer, sprite->_imageTexture, NULL, &sprite->LocationAndSizeOnRenderer);
+			else
+				SDL_RenderCopy(_renderer, sprite->_imageTexture, &sprite->LocationAndSizeInSpriteSheet, &sprite->LocationAndSizeOnRenderer);
 		}
 		SDL_RenderPresent(_renderer);
 	}

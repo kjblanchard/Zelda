@@ -14,6 +14,7 @@
 #include <SDL_render.h>
 #include <string>
 #include "Point.h"
+#include "Vector3.h"
 
 namespace SG
 {
@@ -31,9 +32,12 @@ namespace SG
 
 		static Graphics* _graphics;
 		SDL_Texture* _imageTexture;
-		Point Location;
+		Vector3 Location;
 		Point Size;
 		SDL_Rect LocationAndSizeInSpriteSheet;
+		SDL_Rect LocationAndSizeOnRenderer;
+		void UpdateDestRect(Vector3 location);
+		bool isWholeTexture = false;
 	private:
 		SDL_Texture* GenerateImage(const std::string& filename);
 	};

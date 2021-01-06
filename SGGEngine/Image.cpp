@@ -25,6 +25,9 @@ namespace SG
 		:Size(imageSize)
 	{
 		_imageTexture = GenerateImage(filename);
+		isWholeTexture = true;
+		LocationAndSizeOnRenderer.h = Size.X;
+		LocationAndSizeOnRenderer.w = Size.Y;
 
 	}
 
@@ -32,6 +35,13 @@ namespace SG
 	Image::~Image()
 	{
 		SDL_DestroyTexture(_imageTexture);
+	}
+
+	void Image::UpdateDestRect(Vector3 location)
+	{
+		Location = location;
+		LocationAndSizeOnRenderer.x = Location.X;
+		LocationAndSizeOnRenderer.y = Location.Y;
 	}
 
 	SDL_Texture* Image::GenerateImage(const std::string& filename)

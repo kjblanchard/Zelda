@@ -30,8 +30,10 @@ void Player::Update()
 {
 	if(_inputComponent)
 	{
-
+		if (_inputComponent->Controller->IsButtonPressed(SG::ControllerButtons::A))
+			printf("button pressed chump");
 	}
+	ComponentUpdate();
 }
 
 void Player::Draw(SG::SpriteBatch& spriteBatch)
@@ -43,4 +45,5 @@ void Player::Draw(SG::SpriteBatch& spriteBatch)
 
 void Player::ComponentUpdate()
 {
+	_imageComponent->Update(_location);
 }

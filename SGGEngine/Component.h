@@ -25,6 +25,7 @@ namespace SG
 		Component();
 		virtual ~Component() = default;
 
+
 		ComponentTypes _componentType;
 	};
 }

@@ -19,6 +19,12 @@ namespace SG
 	{
 	}
 
+	void ImageComponent::Update(Vector3 location)
+	{
+		_location = location;
+		image->UpdateDestRect(_location);
+	}
+
 	void ImageComponent::Draw(SpriteBatch& spritebatch)
 	{
 		spritebatch.AddToSpriteBatch(image.get());

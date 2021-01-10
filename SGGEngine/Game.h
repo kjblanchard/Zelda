@@ -48,7 +48,15 @@ namespace SG
 		static Game* GetGame() { return _instance; }
 		static Graphics* GetGraphics() { return _graphics.get(); }
 
-		std::vector<GameObject*> _gameObjectList;
+		/**
+		 * \brief This will take in a smart pointer to any game object and run the Startup function on it, and then place it into the actual gameobject list
+		 * \param gameObject The object that is to be spawned, that is likely created somewhere else in the game that needs to be started and added to the game
+		 */
+		static void AddToGameObjectList(std::unique_ptr<GameObject> gameObject);
+
+
+
+
 
 	private:
 		Point _screenSize;
@@ -63,6 +71,9 @@ namespace SG
 		static Game* _instance;
 		std::unique_ptr<Input> _input;
 
+		static std::vector<std::unique_ptr<GameObject>> _gameObjectList;
+		static std::vector<std::unique_ptr<GameObject>> _gameObjectStartupList;
+		static void GameObjectStartup();
 
 	private:
 

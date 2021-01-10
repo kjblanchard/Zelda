@@ -2,8 +2,8 @@
 #include "Game.h"
 #include "GameObject.h"
 #include "Graphics.h"
-#include "SpriteBatch.h"
 #include "Player.h"
+#include "SpriteBatch.h"
 
 
 int main(int argc, char* args[])
@@ -17,9 +17,7 @@ void Application::InitializeGame()
 {
 	_game = std::make_unique<SG::Game>();
 	_game->Startup();
-	auto* const player = new Player(SG::Vector3(32));
-	player->Startup();
-	_game->_gameObjectList.push_back(player);
+	SG::Game::AddToGameObjectList(std::make_unique<Player>(SG::Vector3(32)));
 	_game->Loop();
 
 }

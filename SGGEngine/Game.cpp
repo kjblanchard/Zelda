@@ -15,6 +15,10 @@ namespace SG
 	//statics
 	std::unique_ptr<Graphics>  Game::_graphics = nullptr;
 	Game* Game::_instance = nullptr;
+	std::vector<std::unique_ptr<GameObject>> Game::_gameObjectList;
+	std::vector<std::unique_ptr<GameObject>> Game::_gameObjectStartupList;
+
+
 
 
 	Game::Game(const Point& screenSize)
@@ -67,6 +71,7 @@ namespace SG
 					DebugHandler::PrintErrorMessage(ErrorCodes::GameSlowdown, _gameClock->DeltaTime());
 				while (_gameClock->ShouldUpdate())
 				{
+					GameObjectStartup();
 					HandleInput();
 					Update(_gameClock->MsPerFrame());
 					_gameClock->UpdateClockTimer();
@@ -75,6 +80,30 @@ namespace SG
 			}
 		}
 	}
+
+	void Game::AddToGameObjectList(std::unique_ptr<GameObject> gameObject)
+	{
+		_gameObjectStartupList.push_back(std::move(gameObject));
+
+	}
+
+	void Game::GameObjectStartup()
+	{
+		if (!_gameObjectStartupList.empty())
+		{
+			for (auto&& gameObjectStartupList : _gameObjectStartupList)
+			{
+				gameObjectStartupList->Startup();
+
+			}
+			for (auto&& gameObject : _gameObjectStartupList)
+			{
+				_gameObjectList.push_back(std::move(gameObject));
+			}
+		}
+		_gameObjectStartupList.clear();
+	}
+
 
 	bool Game::HandleEvents()
 	{

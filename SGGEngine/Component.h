@@ -17,7 +17,8 @@ namespace SG
 	enum class ComponentTypes
 	{
 		Default,
-		Image
+		Image,
+		Input
 	};
 
 	struct SGGENGINE_API Component

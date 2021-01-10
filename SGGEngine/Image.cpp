@@ -10,9 +10,8 @@ namespace SG
 {
 	Graphics* Image::_graphics = nullptr;
 
-	Image::Image()
+	Image::Image(): _imageTexture(nullptr), LocationAndSizeInSpriteSheet(), LocationAndSizeOnRenderer()
 	{
-
 	}
 
 	Image::Image(const std::string& filename, const SDL_Rect& spriteSheetLocationAndSize): _imageTexture(nullptr), LocationAndSizeInSpriteSheet()

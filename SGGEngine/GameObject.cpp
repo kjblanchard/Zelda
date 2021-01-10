@@ -1,11 +1,12 @@
 ﻿#include "pch.h"
 #include "GameObject.h"
 
+#include "Game.h"
+
 
 SG::GameObject::GameObject()
 	:_location{ Vector3() }
 {
-
 }
 
 

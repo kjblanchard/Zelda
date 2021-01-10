@@ -6,33 +6,27 @@
 Player::Player()
 	: GameObject(), _imageComponent(nullptr), _inputComponent(nullptr)
 {
-	printf("aliv");
-	auto* controller = new SG::PlayerController();
-	_inputComponent = new SG::InputComponent(controller);
+
 }
 
 Player::~Player()
-{
-	printf("ded");
-}
+= default;
 
 Player::Player(SG::Vector3 location)
-	: GameObject(location)
+	: Player()
 {
+	_location = location;
 }
 
 void Player::Startup()
 {
 	_imageComponent = new SG::ImageComponent("hero.png", SG::Point{32,32});
+	auto* controller = new SG::PlayerController();
+	_inputComponent = new SG::InputComponent(controller);
 }
 
 void Player::Update()
 {
-	if(_inputComponent)
-	{
-		if (_inputComponent->Controller->IsButtonPressed(SG::ControllerButtons::A))
-			printf("button pressed chump");
-	}
 	ComponentUpdate();
 }
 

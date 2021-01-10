@@ -19,7 +19,10 @@ namespace SG
 	class SGGENGINE_API InputComponent
 	{
 	public:
+		InputComponent() = default;
 		InputComponent(Controller* controller);
+		void TakeControl(Controller* controllerToUse);
+
 		Controller* Controller;
 	};
 }

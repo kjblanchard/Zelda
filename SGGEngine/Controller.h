@@ -29,7 +29,8 @@ namespace SG
 		A = 7,
 		X = 8,
 		Start = 9,
-		Select = 10
+		Select = 10,
+		END = 11
 	};
 
 	template <typename T>

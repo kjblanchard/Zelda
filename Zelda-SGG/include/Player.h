@@ -8,6 +8,7 @@
 #pragma once
 #include "GameObject.h"
 #include "InputComponent.h"
+#include <memory>
 #include "Vector3.h"
 
 namespace SG {
@@ -27,6 +28,8 @@ public:
 
 private:
 	void ComponentUpdate() override;
-	SG::ImageComponent* _imageComponent;
-	SG::InputComponent* _inputComponent;
+
+	void HandleInput();
+	std::unique_ptr<SG::ImageComponent> _imageComponent;
+	std::unique_ptr<SG::InputComponent> _inputComponent;
 };

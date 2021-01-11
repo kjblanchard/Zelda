@@ -196,6 +196,8 @@
     <ClInclude Include="Point.h" />
     <ClInclude Include="SpriteBatch.h" />
     <ClInclude Include="Clock.h" />
+    <ClInclude Include="State.h" />
+    <ClInclude Include="StateMachine.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="Vector3.h" />
   </ItemGroup>
@@ -222,6 +224,8 @@
     <ClCompile Include="Point.cpp" />
     <ClCompile Include="SpriteBatch.cpp" />
     <ClCompile Include="Clock.cpp" />
+    <ClCompile Include="State.cpp" />
+    <ClCompile Include="StateMachine.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="Vector3.cpp" />
   </ItemGroup>

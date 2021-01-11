@@ -8,11 +8,11 @@ namespace SG
 
 	void InputComponent::TakeControl(SG::Controller* controllerToUse)
 	{
-		Controller = controllerToUse;
+		CurrentController = controllerToUse;
 	}
 
 	InputComponent::InputComponent(SG::Controller* controller)
 	{
-		Controller = controller;
+		CurrentController = controller;
 	}
 }

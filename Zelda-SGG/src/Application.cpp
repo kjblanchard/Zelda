@@ -4,6 +4,7 @@
 #include "Graphics.h"
 #include "Player.h"
 #include "SpriteBatch.h"
+#include "Input.h"
 
 
 int main(int argc, char* args[])

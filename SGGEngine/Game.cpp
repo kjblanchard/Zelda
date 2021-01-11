@@ -102,6 +102,8 @@ namespace SG
 			}
 		}
 		_gameObjectStartupList.clear();
+
+
 	}
 
 

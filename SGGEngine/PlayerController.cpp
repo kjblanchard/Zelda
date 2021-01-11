@@ -7,6 +7,10 @@
 
 namespace SG
 {
+	PlayerController::PlayerController(int num)
+	{
+		_playerNum = num;
+	}
 	bool PlayerController::IsButtonPressed(ControllerButtons controllerButton)
 	{
 		switch (controllerButton) {

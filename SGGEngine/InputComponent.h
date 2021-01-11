@@ -23,6 +23,6 @@ namespace SG
 		InputComponent(Controller* controller);
 		void TakeControl(Controller* controllerToUse);
 
-		Controller* Controller;
+		Controller* CurrentController;
 	};
 }

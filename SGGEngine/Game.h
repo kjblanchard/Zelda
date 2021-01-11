@@ -54,8 +54,13 @@ namespace SG
 		 */
 		static void AddToGameObjectList(std::unique_ptr<GameObject> gameObject);
 
+		//TODO This is for testing and should be removed and figured out a better way
+		static GameObject* RetrieveGameObject(int whichToGet)
+		{
+			return _gameObjectList.at(whichToGet).get();
+		};
 
-
+		static void GameObjectStartup();
 
 
 	private:
@@ -73,7 +78,6 @@ namespace SG
 
 		static std::vector<std::unique_ptr<GameObject>> _gameObjectList;
 		static std::vector<std::unique_ptr<GameObject>> _gameObjectStartupList;
-		static void GameObjectStartup();
 
 	private:
 

@@ -16,6 +16,9 @@
 #include <SDL_scancode.h>
 #include <SDL_stdinc.h>
 #include <vector>
+#include "PlayerController.h"
+
+
 
 namespace SG
 {
@@ -32,6 +35,11 @@ namespace SG
 		static bool KeyJustPressed(int controllerNum, SDL_GameControllerButton button);
 		static bool KeyJustReleased(SDL_Scancode key);
 		static bool KeyJustReleased(int controllerNum, SDL_GameControllerButton button);
+
+		static PlayerController* GetPlayerController(int controllerToGet);
+		static std::vector<std::unique_ptr<SG::PlayerController>> PlayerControllers;
+
+
 		void Startup();
 		/**
 		 * \brief Handles Joystick events, this assigns them to the Joystick states for reference by the player controllers

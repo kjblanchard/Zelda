@@ -12,6 +12,7 @@ namespace SG
 	std::vector<GamePad> Input::_lastControllerInputs;
 	Uint8 Input::_currentKeyboardState[SDL_NUM_SCANCODES];
 	Uint8 Input::_previousKeyboardState[SDL_NUM_SCANCODES];
+	std::vector<std::unique_ptr<SG::PlayerController>> Input::PlayerControllers;
 
 
 
@@ -23,6 +24,11 @@ namespace SG
 		CountPluggedInControllers();
 		AddPluggedInControllersToVector();
 		InitializeJoystickVectors();
+
+		for (size_t i = 0; i < 4; i++)
+		{
+			PlayerControllers.push_back(std::make_unique<PlayerController>(i));
+		}
 	}
 
 	void Input::HandleJoystickEvent(const SDL_Event& event)
@@ -174,6 +180,13 @@ namespace SG
 
 		return !_controllerInputs[controllerNum].buttons[button] && _lastControllerInputs[controllerNum].buttons[button];
 	}
+
+	PlayerController* Input::GetPlayerController(int controllerToGet)
+	{
+		return PlayerControllers.at(controllerToGet).get();
+	}
+
+
 
 
 

@@ -2,6 +2,7 @@
 #include "ImageComponent.h"
 #include "PlayerController.h"
 #include "Point.h"
+#include <Input.h>
 
 Player::Player()
 	: GameObject(), _imageComponent(nullptr), _inputComponent(nullptr)
@@ -20,7 +21,9 @@ Player::Player(SG::Vector3 location)
 
 void Player::Startup()
 {
-	auto* controller = new SG::PlayerController();
+
+	//TODO Remove this later, this is just for ease of use until I get levels Implemented
+	auto controller = SG::Input::GetPlayerController(0);
 
 	_imageComponent = std::make_unique<SG::ImageComponent>("hero.png", SG::Point{32,32});
 	_inputComponent = std::make_unique<SG::InputComponent>(controller);
@@ -48,25 +51,25 @@ void Player::HandleInput()
 {
 	if(_inputComponent)
 	{
-		if(_inputComponent->Controller)
+		if(_inputComponent->CurrentController)
 		{
 			SG::ControllerButtons button = SG::ControllerButtons::Up;
-			if (_inputComponent->Controller->IsButtonPressed(button) || _inputComponent->Controller->IsButtonHeld(button))
+			if (_inputComponent->CurrentController->IsButtonPressed(button) || _inputComponent->CurrentController->IsButtonHeld(button))
 			{
 				_location.Y--;
 			}
 			button = SG::ControllerButtons::Down;
-			if (_inputComponent->Controller->IsButtonPressed(button) || _inputComponent->Controller->IsButtonHeld(button))
+			if (_inputComponent->CurrentController->IsButtonPressed(button) || _inputComponent->CurrentController->IsButtonHeld(button))
 			{
 				_location.Y++;
 			}
 			button = SG::ControllerButtons::Left;
-			if (_inputComponent->Controller->IsButtonPressed(button) || _inputComponent->Controller->IsButtonHeld(button))
+			if (_inputComponent->CurrentController->IsButtonPressed(button) || _inputComponent->CurrentController->IsButtonHeld(button))
 			{
 				_location.X--;
 			}
 			button = SG::ControllerButtons::Right;
-			if (_inputComponent->Controller->IsButtonPressed(button) || _inputComponent->Controller->IsButtonHeld(button))
+			if (_inputComponent->CurrentController->IsButtonPressed(button) || _inputComponent->CurrentController->IsButtonHeld(button))
 			{
 				_location.X++;
 			}

@@ -24,6 +24,7 @@ namespace SG
 		PlayerController()
 		{
 		}
+		PlayerController(int num);
 		bool IsButtonPressed(ControllerButtons controllerButton) override;
 		bool IsButtonHeld(ControllerButtons controllerButton) override;
 		bool IsButtonReleased(ControllerButtons controllerButton) override;

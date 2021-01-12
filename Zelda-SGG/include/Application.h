@@ -6,11 +6,13 @@
 
 #pragma once
 #include <memory>
+
+class ZeldaWorld;
 class Player;
 
 namespace SG {
 	class SpriteBatch;
-	class Game;
+	class World;
 }
 
 class Application
@@ -20,6 +22,6 @@ public:
 	void InitializeGame();
 
 private:
-	std::unique_ptr<SG::Game> _game;
+	std::unique_ptr<ZeldaWorld> _game;
 
 };

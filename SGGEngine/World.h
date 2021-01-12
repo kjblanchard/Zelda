@@ -29,23 +29,23 @@ namespace SG
 	/**
 	 * \brief This class is used to perform the main game loop, and initialize the proper components needed to initialize the game.  Also currently has a FPS counter in it.
 	 */
-	class SGGENGINE_API Game
+	class SGGENGINE_API World
 	{
 
 	public:
-		Game(const Point& screenSize = Point(640, 480));
-		~Game();
+		World(const Point& screenSize = Point(640, 480));
+		~World();
 
 		/**
 		 * \brief Used to initialize the proper components to start the game, this is ran after the constructor and prior to the loop being called.
 		 * \return Returns true if things were initialized successfully
 		 */
-		bool Startup();
+		bool SetupWorldComponents();
 		/**
 		 * \brief Main Game loop, this is called by the main function when the program is started.
 		 */
 		void Loop();
-		static Game* GetGame() { return _instance; }
+		static World* GetGame() { return _instance; }
 		static Graphics* GetGraphics() { return _graphics.get(); }
 
 		/**
@@ -73,7 +73,7 @@ namespace SG
 
 		bool shouldQuit{};
 		static std::unique_ptr<Graphics> _graphics;
-		static Game* _instance;
+		static World* _instance;
 		std::unique_ptr<Input> _input;
 
 		static std::vector<std::unique_ptr<GameObject>> _gameObjectList;
@@ -97,15 +97,17 @@ namespace SG
 		 */
 		void HandleInput();
 
+		virtual void Startup() = 0;
+
 		/**
 		 * \brief This will run the update function for all game objects
 		 * \param deltaTime Milliseconds that have passed since the last frame
 		 */
-		void Update(const double& deltaTime);
+		virtual void Update(const double& deltaTime) = 0;
 		/**
 		 * \brief This will run the draw function for all game objects.
 		 */
-		void Draw();
+		 void Draw();
 
 	};
 };

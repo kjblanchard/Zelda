@@ -1,10 +1,11 @@
 ﻿#include "Application.h"
-#include "Game.h"
+#include "World.h"
 #include "GameObject.h"
 #include "Graphics.h"
 #include "Player.h"
 #include "SpriteBatch.h"
 #include "Input.h"
+#include "../ZeldaWorld.h"
 
 
 int main(int argc, char* args[])
@@ -16,9 +17,8 @@ int main(int argc, char* args[])
 
 void Application::InitializeGame()
 {
-	_game = std::make_unique<SG::Game>();
-	_game->Startup();
-	SG::Game::AddToGameObjectList(std::make_unique<Player>(SG::Vector3(32)));
+	_game = std::make_unique<ZeldaWorld>();
+	_game->SetupWorldComponents();
 	_game->Loop();
 
 }

@@ -19,14 +19,18 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DebugRoomLevel.cpp" />
     <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\Application.cpp" />
     <ClCompile Include="Statics.cpp" />
+    <ClCompile Include="ZeldaWorld.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DebugRoomLevel.h" />
     <ClInclude Include="include\Application.h" />
     <ClInclude Include="include\Player.h" />
     <ClInclude Include="Statics.h" />
+    <ClInclude Include="ZeldaWorld.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SGGEngine\SGGEngine.vcxproj">

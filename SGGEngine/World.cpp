@@ -1,5 +1,5 @@
 ﻿#include "pch.h"
-#include "Game.h"
+#include "World.h"
 #include <iostream>
 #include <SDL.h>
 #include "DebugHandler.h"
@@ -13,15 +13,13 @@
 namespace SG
 {
 	//statics
-	std::unique_ptr<Graphics>  Game::_graphics = nullptr;
-	Game* Game::_instance = nullptr;
-	std::vector<std::unique_ptr<GameObject>> Game::_gameObjectList;
-	std::vector<std::unique_ptr<GameObject>> Game::_gameObjectStartupList;
+	std::unique_ptr<Graphics>  World::_graphics = nullptr;
+	World* World::_instance = nullptr;
+	std::vector<std::unique_ptr<GameObject>> World::_gameObjectList;
+	std::vector<std::unique_ptr<GameObject>> World::_gameObjectStartupList;
 
 
-
-
-	Game::Game(const Point& screenSize)
+	World::World(const Point& screenSize)
 		: _screenSize(screenSize), _gameWindow(nullptr), _gameClock{std::make_unique<GameClock>()},_input{std::make_unique<Input>()}
 	{
 		_graphics = std::make_unique<class Graphics>(_screenSize);
@@ -30,13 +28,13 @@ namespace SG
 	}
 
 
-	Game::~Game()
+	World::~World()
 	{
 		SDL_DestroyWindow(_gameWindow);
 		SDL_Quit();
 	}
 
-	bool Game::Startup()
+	bool World::SetupWorldComponents()
 	{
 
 
@@ -48,7 +46,7 @@ namespace SG
 		return true;
 	}
 
-	bool Game::InitializeSdl()
+	bool World::InitializeSdl()
 	{
 		if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_GAMECONTROLLER) < 0)
 		{
@@ -60,8 +58,9 @@ namespace SG
 	}
 
 
-	void Game::Loop()
+	void World::Loop()
 	{
+		Startup();
 		while (!shouldQuit)
 		{
 			_gameClock->Tick();
@@ -81,13 +80,13 @@ namespace SG
 		}
 	}
 
-	void Game::AddToGameObjectList(std::unique_ptr<GameObject> gameObject)
+	void World::AddToGameObjectList(std::unique_ptr<GameObject> gameObject)
 	{
 		_gameObjectStartupList.push_back(std::move(gameObject));
 
 	}
 
-	void Game::GameObjectStartup()
+	void World::GameObjectStartup()
 	{
 		if (!_gameObjectStartupList.empty())
 		{
@@ -107,7 +106,7 @@ namespace SG
 	}
 
 
-	bool Game::HandleEvents()
+	bool World::HandleEvents()
 	{
 		SDL_Event event;
 		while (SDL_PollEvent(&event) != 0)
@@ -122,7 +121,7 @@ namespace SG
 		return true;
 	}
 
-	void Game::HandleInput()
+	void World::HandleInput()
 	{
 		Input::UpdatePreviousJoystickState();
 		HandleEvents();
@@ -130,18 +129,7 @@ namespace SG
 	}
 
 
-	void Game::Update(const double& deltaTime)
-	{
-		if(!_gameObjectList.empty())
-		{
-			for (auto && gameObject : _gameObjectList)
-			{
-				gameObject->Update();
-			}
-		}
-	}
-
-	void Game::Draw()
+	void World::Draw()
 	{
 		if(!_gameObjectList.empty())
 		{

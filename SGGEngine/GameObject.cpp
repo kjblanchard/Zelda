@@ -1,7 +1,7 @@
 ﻿#include "pch.h"
 #include "GameObject.h"
 
-#include "Game.h"
+#include "World.h"
 
 
 SG::GameObject::GameObject()

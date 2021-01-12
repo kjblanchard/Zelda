@@ -3,7 +3,7 @@
 
 #include <utility>
 
-#include "Game.h"
+#include "World.h"
 #include "Graphics.h"
 
 namespace SG
@@ -46,7 +46,7 @@ namespace SG
 	SDL_Texture* Image::GenerateImage(const std::string& filename)
 	{
 		if (!_graphics)
-			_graphics = Game::GetGraphics();
+			_graphics = World::GetGraphics();
 		return _graphics->LoadTexture(filename);
 	}
 }

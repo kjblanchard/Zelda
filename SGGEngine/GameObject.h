@@ -25,7 +25,7 @@ namespace SG
 	public:
 		GameObject();
 		GameObject(Vector3 location);
-		virtual ~GameObject();
+		virtual ~GameObject() = default;
 		/**
 		 * \brief This function is called ONCE when the object is first instantiated, this happens after the constructor and should contain the heavy lifting not needed in the Constructor
 		 */

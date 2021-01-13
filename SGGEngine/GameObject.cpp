@@ -1,8 +1,6 @@
 ﻿#include "pch.h"
 #include "GameObject.h"
 
-#include "World.h"
-
 
 SG::GameObject::GameObject()
 	:_location{ Vector3() }
@@ -14,8 +12,6 @@ SG::GameObject::GameObject(Vector3 location)
 	:_location(location)
 {
 }
-
-SG::GameObject::~GameObject() = default;
 
 
 void SG::GameObject::Draw(SpriteBatch& spriteBatch)

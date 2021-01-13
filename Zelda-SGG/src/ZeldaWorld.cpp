@@ -1,6 +1,8 @@
 ﻿#include "ZeldaWorld.h"
-
+#include "GameObjectList.h"
 #include "DebugRoomLevel.h"
+#include "SpriteBatch.h"
+#include "Graphics.h"
 
 int main(int argc, char* args[])
 {
@@ -19,4 +21,18 @@ void ZeldaWorld::Startup()
 void ZeldaWorld::Update(const double& deltaTime)
 {
 	_levelStateMachine.Update(deltaTime);
+}
+
+void ZeldaWorld::Draw()
+{
+
+	if (!SG::GameObjectList::_gameObjectList.empty())
+	{
+		auto spriteBatch = SG::SpriteBatch();
+		for (auto&& gameObject : SG::GameObjectList::_gameObjectList)
+		{
+			gameObject->Draw(spriteBatch);
+		}
+		_graphics->Draw(spriteBatch);
+	}
 }

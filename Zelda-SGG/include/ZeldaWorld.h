@@ -6,8 +6,8 @@
 ////////////////////////////////////////////////////////////
 
 #pragma once
-#include "StateMachine.h"
 #include "World.h"
+#include "StateMachine.h"
 
 enum class ZeldaLevels
 {
@@ -21,5 +21,6 @@ public:
 
 	void Startup() override;
 	void Update(const double& deltaTime) override;
+	void Draw() override;
 
 };

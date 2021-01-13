@@ -7,6 +7,8 @@
 
 namespace SG
 {
+	class SpriteBatch;
+
 	class SGGENGINE_API State
 	{
 
@@ -14,6 +16,7 @@ namespace SG
 		virtual ~State() = default;
 		virtual void Startup() = 0;
 		virtual void Update(const double& deltaTime) = 0;
+		virtual void Draw(SpriteBatch& spriteBatch) = 0;
 		virtual void End() = 0 ;
 
 	protected:

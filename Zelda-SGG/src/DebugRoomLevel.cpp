@@ -17,8 +17,12 @@ void DebugRoomLevel::Update(const double& deltaTime)
 	if (gameObject)
 	{
 		gameObject->Update(deltaTime);
-
 	}
+}
+
+void DebugRoomLevel::Draw(SG::SpriteBatch& spriteBatch)
+{
+
 }
 
 void DebugRoomLevel::End()

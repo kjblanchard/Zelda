@@ -69,7 +69,7 @@ namespace SG
 					DebugHandler::PrintErrorMessage(ErrorCodes::GameSlowdown, _gameClock->DeltaTime());
 				while (_gameClock->ShouldUpdate())
 				{
-					_gameObjectList->GameObjectStartup();
+					GameObjectList::GameObjectStartup();
 					HandleInput();
 					Update(_gameClock->MsPerFrame());
 					_gameClock->UpdateClockTimer();
@@ -105,14 +105,6 @@ namespace SG
 
 	void World::Draw()
 	{
-		if(!_gameObjectList->_gameObjectList.empty())
-		{
-			auto spriteBatch = SpriteBatch();
-			for (auto && gameObject : _gameObjectList->_gameObjectList)
-			{
-				gameObject->Draw(spriteBatch);
-			}
-			_graphics->Draw(spriteBatch);
-		}
+
 	}
 }

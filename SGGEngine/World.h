@@ -13,8 +13,6 @@
 #endif
 #include <memory>
 #include <SDL_video.h>
-#include <vector>
-
 #include "Point.h"
 
 
@@ -52,7 +50,7 @@ namespace SG
 
 
 
-	private:
+	protected:
 		Point _screenSize;
 		/**
 		 * \brief Game window,  we can use a Raw pointer here, as this has built in destroy functionality that we will put in the Game destructor
@@ -65,7 +63,6 @@ namespace SG
 		static World* _instance;
 		std::unique_ptr<Input> _input;
 
-		GameObjectList* _gameObjectList;
 
 
 	private:
@@ -96,7 +93,7 @@ namespace SG
 		/**
 		 * \brief This will run the draw function for all game objects.
 		 */
-		 void Draw();
+		virtual void Draw() = 0;
 
 	};
 

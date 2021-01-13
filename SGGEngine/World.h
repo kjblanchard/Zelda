@@ -34,7 +34,7 @@ namespace SG
 
 	public:
 		World(const Point& screenSize = Point(640, 480));
-		~World();
+		virtual ~World();
 
 		/**
 		 * \brief Used to initialize the proper components to start the game, this is ran after the constructor and prior to the loop being called.
@@ -110,4 +110,5 @@ namespace SG
 		 void Draw();
 
 	};
+
 };

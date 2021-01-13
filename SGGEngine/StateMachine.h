@@ -16,12 +16,15 @@ namespace SG
 	class StateMachine
 	{
 	public:
+
 		virtual ~StateMachine() = default;
 
 		void AddStateToGameStateList(T enumKey, std::unique_ptr<SG::State> state);
 		void ChangeState(T stateToChangeTo);
+		void Update(const double& deltaTime) const;
+		const State& CurrentState() const;
+		const State& PreviousState() const;
 
-		void Update(const double& deltaTime);
 
 	private:
 		std::map<T, std::unique_ptr<SG::State>> _gameStates;
@@ -51,9 +54,21 @@ namespace SG
 	}
 
 	template <typename T>
-	void StateMachine<T>::Update(const double& deltaTime)
+	void StateMachine<T>::Update(const double& deltaTime) const
 	{
 		if(_currentState)
-			_currentState->Update();
+			_currentState->Update(deltaTime);
+	}
+
+	template <typename T>
+	const State& StateMachine<T>::CurrentState() const
+	{
+		return *_currentState;
+	}
+
+	template <typename T>
+	const State& StateMachine<T>::PreviousState() const
+	{
+		return *_previousState;
 	}
 }

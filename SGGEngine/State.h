@@ -13,7 +13,7 @@ namespace SG
 	public:
 		virtual ~State() = default;
 		virtual void Startup() = 0;
-		virtual void Update() = 0;
+		virtual void Update(const double& deltaTime) = 0;
 		virtual void End() = 0 ;
 
 	protected:

@@ -23,7 +23,7 @@ public:
 
 	Player(SG::Vector3 location);
 	void Startup() override;
-	void Update() override;
+	void Update(const double& deltaTime) override;
 	void Draw(SG::SpriteBatch& spriteBatch) override;
 
 private:

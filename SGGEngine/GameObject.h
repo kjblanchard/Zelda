@@ -33,7 +33,7 @@ namespace SG
 		/**
 		 * \brief This is to be called by the game loop once per frame.
 		 */
-		virtual void Update() = 0;
+		virtual void Update(const double& deltaTime) = 0;
 
 		virtual void Draw(SpriteBatch& spriteBatch );
 

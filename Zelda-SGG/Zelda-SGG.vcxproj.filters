@@ -15,36 +15,30 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Application.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Statics.cpp">
+    <ClCompile Include="src\ZeldaWorld.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZeldaWorld.cpp">
+    <ClCompile Include="src\Statics.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DebugRoomLevel.cpp">
+    <ClCompile Include="src\DebugRoomLevel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\Application.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Statics.h">
+    <ClInclude Include="include\ZeldaWorld.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ZeldaWorld.h">
+    <ClInclude Include="include\Statics.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DebugRoomLevel.h">
+    <ClInclude Include="include\DebugRoomLevel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

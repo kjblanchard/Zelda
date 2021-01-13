@@ -6,13 +6,20 @@
 ////////////////////////////////////////////////////////////
 
 #pragma once
-#include "State.h"
+#include "StateMachine.h"
+#include "World.h"
 
-class DebugRoomLevel : public SG::State
+enum class ZeldaLevels
+{
+	DebugRoom = 0
+};
+
+class ZeldaWorld : public SG::World
 {
 public:
-	~DebugRoomLevel() = default;
+	SG::StateMachine<ZeldaLevels> _levelStateMachine;
+
 	void Startup() override;
-	void Update() override;
-	void End() override;
+	void Update(const double& deltaTime) override;
+
 };

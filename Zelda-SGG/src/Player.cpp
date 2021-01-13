@@ -29,7 +29,7 @@ void Player::Startup()
 	_inputComponent = std::make_unique<SG::InputComponent>(controller);
 }
 
-void Player::Update()
+void Player::Update(const double& deltaTime)
 {
 	HandleInput();
 	ComponentUpdate();

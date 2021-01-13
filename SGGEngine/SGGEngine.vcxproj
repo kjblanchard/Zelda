@@ -183,6 +183,7 @@
     <ClInclude Include="Controller.h" />
     <ClInclude Include="DebugHandler.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="GameObjectList.h" />
     <ClInclude Include="World.h" />
     <ClInclude Include="GameClock.h" />
     <ClInclude Include="GameObject.h" />
@@ -206,6 +207,7 @@
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="DebugHandler.cpp" />
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="GameObjectList.cpp" />
     <ClCompile Include="World.cpp" />
     <ClCompile Include="GameClock.cpp" />
     <ClCompile Include="GameObject.cpp" />

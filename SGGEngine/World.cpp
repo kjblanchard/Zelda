@@ -4,7 +4,7 @@
 #include <SDL.h>
 #include "DebugHandler.h"
 #include "GameClock.h"
-#include "GameObject.h"
+#include "GameObjectList.h"
 #include "Graphics.h"
 #include "Input.h"
 #include "SpriteBatch.h"
@@ -15,8 +15,7 @@ namespace SG
 	//statics
 	std::unique_ptr<Graphics>  World::_graphics = nullptr;
 	World* World::_instance = nullptr;
-	std::vector<std::unique_ptr<GameObject>> World::_gameObjectList;
-	std::vector<std::unique_ptr<GameObject>> World::_gameObjectStartupList;
+
 
 
 	World::World(const Point& screenSize)
@@ -70,7 +69,7 @@ namespace SG
 					DebugHandler::PrintErrorMessage(ErrorCodes::GameSlowdown, _gameClock->DeltaTime());
 				while (_gameClock->ShouldUpdate())
 				{
-					GameObjectStartup();
+					_gameObjectList->GameObjectStartup();
 					HandleInput();
 					Update(_gameClock->MsPerFrame());
 					_gameClock->UpdateClockTimer();
@@ -78,31 +77,6 @@ namespace SG
 				Draw();
 			}
 		}
-	}
-
-	void World::AddToGameObjectList(std::unique_ptr<GameObject> gameObject)
-	{
-		_gameObjectStartupList.push_back(std::move(gameObject));
-
-	}
-
-	void World::GameObjectStartup()
-	{
-		if (!_gameObjectStartupList.empty())
-		{
-			for (auto&& gameObjectStartupList : _gameObjectStartupList)
-			{
-				gameObjectStartupList->Startup();
-
-			}
-			for (auto&& gameObject : _gameObjectStartupList)
-			{
-				_gameObjectList.push_back(std::move(gameObject));
-			}
-		}
-		_gameObjectStartupList.clear();
-
-
 	}
 
 
@@ -131,10 +105,10 @@ namespace SG
 
 	void World::Draw()
 	{
-		if(!_gameObjectList.empty())
+		if(!_gameObjectList->_gameObjectList.empty())
 		{
 			auto spriteBatch = SpriteBatch();
-			for (auto && gameObject : _gameObjectList)
+			for (auto && gameObject : _gameObjectList->_gameObjectList)
 			{
 				gameObject->Draw(spriteBatch);
 			}

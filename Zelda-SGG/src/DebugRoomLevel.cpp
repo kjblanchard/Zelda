@@ -13,8 +13,8 @@ void DebugRoomLevel::Startup()
 
 void DebugRoomLevel::Update(const double& deltaTime)
 {
-	auto gameObject = SG::GameObjectList::RetrieveGameObject(0);
-	if (gameObject)
+	SG::GameObjectList::GameObjectStartup();
+	for (auto&& gameObject : SG::GameObjectList::_gameObjectList)
 	{
 		gameObject->Update(deltaTime);
 	}

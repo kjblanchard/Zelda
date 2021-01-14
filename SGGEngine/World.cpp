@@ -69,7 +69,6 @@ namespace SG
 					DebugHandler::PrintErrorMessage(ErrorCodes::GameSlowdown, _gameClock->DeltaTime());
 				while (_gameClock->ShouldUpdate())
 				{
-					GameObjectList::GameObjectStartup();
 					HandleInput();
 					Update(_gameClock->MsPerFrame());
 					_gameClock->UpdateClockTimer();

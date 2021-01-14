@@ -32,10 +32,6 @@ namespace SG
 		static void AddToGameObjectList(std::unique_ptr<GameObject> gameObject);
 
 		//TODO This is for testing and should be removed and figured out a better way
-		static GameObject* RetrieveGameObject(int whichToGet)
-		{
-			return _gameObjectList.at(whichToGet).get();
-		};
 
 		static void GameObjectStartup();
 	};

@@ -22,6 +22,7 @@ namespace SG
 		void AddStateToGameStateList(T enumKey, std::unique_ptr<SG::State> state);
 		void ChangeState(T stateToChangeTo);
 		void Update(const double& deltaTime) const;
+		void Draw(SpriteBatch& spritebatch);
 		const State& CurrentState() const;
 		const State& PreviousState() const;
 
@@ -58,6 +59,12 @@ namespace SG
 	{
 		if(_currentState)
 			_currentState->Update(deltaTime);
+	}
+
+	template <typename T>
+	void StateMachine<T>::Draw(SpriteBatch& spritebatch)
+	{
+		_currentState->Draw(spritebatch);
 	}
 
 	template <typename T>

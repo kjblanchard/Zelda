@@ -22,7 +22,10 @@ void DebugRoomLevel::Update(const double& deltaTime)
 
 void DebugRoomLevel::Draw(SG::SpriteBatch& spriteBatch)
 {
-
+	for (auto&& gameObject : SG::GameObjectList::_gameObjectList)
+	{
+		gameObject->Draw(spriteBatch);
+	}
 }
 
 void DebugRoomLevel::End()

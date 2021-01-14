@@ -33,10 +33,10 @@ namespace SG
  * \brief This will take in a smart pointer to any game object and run the Startup function on it, and then place it into the actual gameobject list
  * \param gameObject The object that is to be spawned, that is likely created somewhere else in the game that needs to be started and added to the game
  */
-		static void AddToGameObjectList(std::unique_ptr<GameObject> gameObject);
+		void AddToGameObjectList(std::unique_ptr<GameObject> gameObject);
 
 		//TODO This is for testing and should be removed and figured out a better way
 
-		static void GameObjectStartup();
+		void GameObjectStartup();
 	};
 }

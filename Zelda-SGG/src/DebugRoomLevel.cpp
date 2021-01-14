@@ -1,19 +1,18 @@
 ﻿#include "DebugRoomLevel.h"
 #include "Player.h"
 #include "Vector3.h"
-#include "World.h"
 #include "GameObjectList.h"
 
 void DebugRoomLevel::Startup()
 {
-	SG::GameObjectList::AddToGameObjectList(std::make_unique<Player>(SG::Vector3(32)));
+	LevelGameObjectList.AddToGameObjectList(std::make_unique<Player>(SG::Vector3(32)));
 	printf("Startup");
 
 }
 
 void DebugRoomLevel::Update(const double& deltaTime)
 {
-	SG::GameObjectList::GameObjectStartup();
+	LevelGameObjectList.GameObjectStartup();
 	for (auto&& gameObject : SG::GameObjectList::_gameObjectList)
 	{
 		gameObject->Update(deltaTime);

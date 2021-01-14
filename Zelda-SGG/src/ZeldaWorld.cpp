@@ -25,12 +25,7 @@ void ZeldaWorld::Update(const double& deltaTime)
 
 void ZeldaWorld::Draw()
 {
-
-
-	if (!SG::GameObjectList::_gameObjectList.empty())
-	{
-		auto spriteBatch = SG::SpriteBatch();
-		_levelStateMachine.Draw(spriteBatch);
-		_graphics->Draw(spriteBatch);
-	}
+	auto spriteBatch = SG::SpriteBatch();
+	_levelStateMachine.Draw(spriteBatch);
+	_graphics->Draw(spriteBatch);
 }

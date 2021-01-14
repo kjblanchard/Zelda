@@ -11,23 +11,25 @@
 #else
 #define SGGENGINE_API __declspec(dllimport)
 #endif
+#include <memory>
+
+#include "GameObject.h"
 
 namespace SG
 {
-	enum class ComponentTypes
+	class ImageComponent;
+
+	class SGGENGINE_API Tile : public GameObject
 	{
-		Default,
-		Image,
-		Input
-	};
+	public:
+		Tile();
+		Tile(Vector3 location);
+		~Tile();
 
-	struct SGGENGINE_API Component
-	{
-		Component();
-		virtual ~Component() = default;
+		void Startup() override;
+		void Draw(SpriteBatch& spriteBatch) override;
 
-		virtual void Startup();
+		std::unique_ptr<ImageComponent> _imageComponent;
 
-		ComponentTypes _componentType;
 	};
 }

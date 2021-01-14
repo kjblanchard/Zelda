@@ -9,4 +9,8 @@ namespace SG
 		:_componentType(ComponentTypes::Default)
 	{
 	}
+
+	void Component::Startup()
+	{
+	}
 }

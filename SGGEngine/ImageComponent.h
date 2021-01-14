@@ -31,6 +31,7 @@ namespace SG
 		ImageComponent(const std::string& filename, Point imageSize);
 		~ImageComponent();
 
+		void SetLocation(Vector3 location);
 		void Update(Vector3 location);
 
 		void Draw(SpriteBatch& spritebatch);

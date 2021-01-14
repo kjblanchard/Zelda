@@ -16,8 +16,11 @@ namespace SG
 
 	Image::Image(const std::string& filename, const SDL_Rect& spriteSheetLocationAndSize): _imageTexture(nullptr), LocationAndSizeInSpriteSheet()
 	{
-		_imageTexture = GenerateImage(filename);
+		Size.X = LocationAndSizeOnRenderer.h = spriteSheetLocationAndSize.h;
+		Size.Y = LocationAndSizeOnRenderer.w = spriteSheetLocationAndSize.w;
 		LocationAndSizeInSpriteSheet = spriteSheetLocationAndSize;
+		_imageTexture = GenerateImage(filename);
+
 	}
 
 	Image::Image(const std::string& filename, Point imageSize)

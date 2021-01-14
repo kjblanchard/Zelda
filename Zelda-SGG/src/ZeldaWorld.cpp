@@ -28,4 +28,5 @@ void ZeldaWorld::Draw()
 	auto spriteBatch = SG::SpriteBatch();
 	_levelStateMachine.Draw(spriteBatch);
 	_graphics->Draw(spriteBatch);
+
 }

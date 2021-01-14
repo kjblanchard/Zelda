@@ -6,6 +6,18 @@ namespace SG
 	std::vector<std::unique_ptr<GameObject>> GameObjectList::_gameObjectList;
 	std::vector<std::unique_ptr<GameObject>> GameObjectList::_gameObjectStartupList;
 
+	void GameObjectList::Startup()
+	{
+	}
+
+	void GameObjectList::Update(const double& deltaTime)
+	{
+	}
+
+	void GameObjectList::Draw(SpriteBatch& spriteBatch)
+	{
+	}
+
 	void GameObjectList::AddToGameObjectList(std::unique_ptr<GameObject> gameObject)
 	{
 		_gameObjectStartupList.push_back(std::move(gameObject));

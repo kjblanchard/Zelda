@@ -29,11 +29,11 @@ namespace SG
 		/**
 		 * \brief This function is called ONCE when the object is first instantiated, this happens after the constructor and should contain the heavy lifting not needed in the Constructor
 		 */
-		virtual void Startup() = 0;
+		virtual void Startup();
 		/**
 		 * \brief This is to be called by the game loop once per frame.
 		 */
-		virtual void Update(const double& deltaTime) = 0;
+		virtual void Update(const double& deltaTime);
 
 		virtual void Draw(SpriteBatch& spriteBatch );
 
@@ -44,7 +44,7 @@ namespace SG
 		Vector3 Location() const;
 	protected:
 		Vector3 _location;
-		virtual void ComponentUpdate() = 0;
+		virtual void ComponentUpdate();
 
 	};
 }

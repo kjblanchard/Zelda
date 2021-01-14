@@ -13,6 +13,18 @@ SG::GameObject::GameObject(Vector3 location)
 {
 }
 
+void SG::GameObject::Startup()
+{
+}
+
+void SG::GameObject::Update(const double& deltaTime)
+{
+}
+
+void SG::GameObject::ComponentUpdate()
+{
+}
+
 
 void SG::GameObject::Draw(SpriteBatch& spriteBatch)
 {

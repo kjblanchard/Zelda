@@ -6,10 +6,10 @@
 ////////////////////////////////////////////////////////////
 
 #pragma once
+#include "GameObjectList.h"
 #include "State.h"
 
 namespace SG {
-	class GameObjectList;
 }
 
 class DebugRoomLevel : public SG::State
@@ -20,5 +20,7 @@ public:
 	void Update(const double& deltaTime) override;
 	void Draw(SG::SpriteBatch& spriteBatch) override;
 	void End() override;
+
+	SG::GameObjectList LevelGameObjectList;
 
 };

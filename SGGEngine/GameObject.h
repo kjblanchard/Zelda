@@ -39,6 +39,8 @@ namespace SG
 
 		virtual void Reset();
 
+		bool ShouldUpdate() const;
+
 		/**
 		 * \brief Returns the location of the gameobject.
 		 * \return Returns the location in a vector3.  Z is used in the draw order
@@ -46,6 +48,7 @@ namespace SG
 		Vector3 Location() const;
 	protected:
 		Vector3 _location;
+		bool _shouldUpdate = true;
 		virtual void ComponentUpdate();
 
 	};

@@ -12,7 +12,8 @@ namespace SG
 		GameObjectStartup();
 		for (auto* gameObject : _gameObjectList)
 		{
-			gameObject->Update(deltaTime);
+			if(gameObject->ShouldUpdate())
+				gameObject->Update(deltaTime);
 		}
 	}
 
@@ -20,7 +21,8 @@ namespace SG
 	{
 		for (auto* gameObject : _gameObjectList)
 		{
-			gameObject->Draw(spriteBatch);
+			if(gameObject->ShouldUpdate())
+				gameObject->Draw(spriteBatch);
 		}
 	}
 

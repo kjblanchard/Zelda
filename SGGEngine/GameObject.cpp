@@ -34,6 +34,11 @@ void SG::GameObject::Reset()
 {
 }
 
+bool SG::GameObject::ShouldUpdate() const
+{
+	return _shouldUpdate;
+}
+
 SG::Vector3 SG::GameObject::Location() const
 {
 	return _location;

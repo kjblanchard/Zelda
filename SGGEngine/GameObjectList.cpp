@@ -3,24 +3,45 @@
 
 namespace SG
 {
-	std::vector<std::unique_ptr<GameObject>> GameObjectList::_gameObjectList;
-	std::vector<std::unique_ptr<GameObject>> GameObjectList::_gameObjectStartupList;
-
 	void GameObjectList::Startup()
 	{
 	}
 
 	void GameObjectList::Update(const double& deltaTime)
 	{
+		GameObjectStartup();
+		for (auto* gameObject : _gameObjectList)
+		{
+			gameObject->Update(deltaTime);
+		}
 	}
 
 	void GameObjectList::Draw(SpriteBatch& spriteBatch)
 	{
+		for (auto* gameObject : _gameObjectList)
+		{
+			gameObject->Draw(spriteBatch);
+		}
 	}
 
-	void GameObjectList::AddToGameObjectList(std::unique_ptr<GameObject> gameObject)
+	void GameObjectList::Reset()
 	{
-		_gameObjectStartupList.push_back(std::move(gameObject));
+		for (auto* gameObject : _gameObjectList)
+		{
+			delete gameObject;
+		}
+		_gameObjectList.clear();
+
+		for (auto* gameObject : _gameObjectStartupList)
+		{
+			delete gameObject;
+		}
+		_gameObjectList.clear();
+	}
+
+	void GameObjectList::AddToGameObjectList(GameObject* gameObject)
+	{
+		_gameObjectStartupList.push_back((gameObject));
 
 	}
 
@@ -28,18 +49,15 @@ namespace SG
 	{
 		if (!_gameObjectStartupList.empty())
 		{
-			for (auto&& gameObjectStartupList : _gameObjectStartupList)
+			for (auto* gameObject : _gameObjectStartupList)
 			{
-				gameObjectStartupList->Startup();
+				gameObject->Startup();
+				_gameObjectList.push_back(gameObject);
 
 			}
-			for (auto&& gameObject : _gameObjectStartupList)
-			{
-				_gameObjectList.push_back(std::move(gameObject));
-			}
-		}
 		_gameObjectStartupList.clear();
 
+		}
 
 	}
 }

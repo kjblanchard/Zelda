@@ -30,6 +30,10 @@ void SG::GameObject::Draw(SpriteBatch& spriteBatch)
 {
 }
 
+void SG::GameObject::Reset()
+{
+}
+
 SG::Vector3 SG::GameObject::Location() const
 {
 	return _location;

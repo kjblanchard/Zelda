@@ -37,6 +37,8 @@ namespace SG
 
 		virtual void Draw(SpriteBatch& spriteBatch );
 
+		virtual void Reset();
+
 		/**
 		 * \brief Returns the location of the gameobject.
 		 * \return Returns the location in a vector3.  Z is used in the draw order

@@ -5,28 +5,20 @@
 
 void DebugRoomLevel::Startup()
 {
-	LevelGameObjectList.AddToGameObjectList(std::make_unique<Player>(SG::Vector3(32)));
-	printf("Startup");
-
+	_levelGameObjectList.AddToGameObjectList(new Player(SG::Vector3(32)));
 }
 
 void DebugRoomLevel::Update(const double& deltaTime)
 {
-	LevelGameObjectList.GameObjectStartup();
-	for (auto&& gameObject : SG::GameObjectList::_gameObjectList)
-	{
-		gameObject->Update(deltaTime);
-	}
+	_levelGameObjectList.Update(deltaTime);
 }
 
 void DebugRoomLevel::Draw(SG::SpriteBatch& spriteBatch)
 {
-	for (auto&& gameObject : SG::GameObjectList::_gameObjectList)
-	{
-		gameObject->Draw(spriteBatch);
-	}
+	_levelGameObjectList.Draw(spriteBatch);
 }
 
 void DebugRoomLevel::End()
 {
+	_levelGameObjectList.Reset();
 }

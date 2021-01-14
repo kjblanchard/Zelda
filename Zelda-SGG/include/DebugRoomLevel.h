@@ -21,6 +21,8 @@ public:
 	void Draw(SG::SpriteBatch& spriteBatch) override;
 	void End() override;
 
-	SG::GameObjectList LevelGameObjectList;
+private:
+
+	SG::GameObjectList _levelGameObjectList;
 
 };

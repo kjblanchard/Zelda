@@ -11,7 +11,8 @@ Player::Player()
 }
 
 Player::~Player()
-= default;
+{
+}
 
 Player::Player(SG::Vector3 location)
 	: Player()

@@ -5,13 +5,15 @@
 
 namespace SG
 {
+
 	Tile::Tile() : GameObject(),_imageComponent(nullptr)
 	{
 	}
 
-	Tile::Tile(Vector3 location) : Tile()
+	Tile::Tile(TileTypes tileType, Vector3 location) : Tile()
 	{
 		_location = location;
+		TypeOfTile = tileType;
 	}
 
 	Tile::~Tile()
@@ -20,8 +22,9 @@ namespace SG
 
 	void Tile::Startup()
 	{
-		auto spritesheetrect = SDL_Rect{ 32,0,32,32 };
-		_imageComponent = std::make_unique<SG::ImageComponent>("tileset.png",spritesheetrect );
+		auto spritesheetLocation = TileTypesToSpriteLocation.at(TypeOfTile);
+		auto spritesheetrect = SDL_Rect{ spritesheetLocation.X * TileSize.X,spritesheetLocation.Y * TileSize.Y ,TileSize.X,TileSize.Y };
+		_imageComponent = std::make_unique<SG::ImageComponent>(AssetName,spritesheetrect );
 		_imageComponent->SetLocation(Location());
 	}
 

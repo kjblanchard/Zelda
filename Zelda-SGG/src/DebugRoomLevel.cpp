@@ -6,11 +6,19 @@
 
 void DebugRoomLevel::Startup()
 {
-	_levelGameObjectList.AddToGameObjectList(new SG::Tile(SG::Vector3(0)));
-	_levelGameObjectList.AddToGameObjectList(new SG::Tile(SG::Vector3(64)));
-	_levelGameObjectList.AddToGameObjectList(new SG::Tile(SG::Vector3(128)));
+	for (int i = 0; i < TileMap.size(); ++i)
+	{
+		auto yLocation = i*32;
+
+		for (int j = 0; j < TileMap[i].size(); ++j)
+		{
+			auto xLocation = j*32;
+			_levelGameObjectList.AddToGameObjectList(SpawnTileByType(TileMap[i][j], SG::Vector3(xLocation, yLocation)));
+		}
+	}
 
 	_levelGameObjectList.AddToGameObjectList(new Player(SG::Vector3(32.0)));
+
 
 }
 
@@ -27,4 +35,10 @@ void DebugRoomLevel::Draw(SG::SpriteBatch& spriteBatch)
 void DebugRoomLevel::End()
 {
 	_levelGameObjectList.Reset();
+}
+
+SG::Tile* DebugRoomLevel::SpawnTileByType(int tileNum, SG::Vector3 location)
+{
+	auto val = static_cast<SG::TileTypes>(tileNum);
+	return new SG::Tile(val, location);
 }

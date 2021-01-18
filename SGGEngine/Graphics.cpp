@@ -8,7 +8,6 @@
 
 namespace SG
 {
-	SDL_Renderer* Graphics::_renderer;
 
 	Graphics::Graphics(Point screenSize)
 		: _screenSize(screenSize), _windowSurface(nullptr)
@@ -29,7 +28,7 @@ namespace SG
 
 	Spritesheet* Graphics::LoadFromSpriteSheet(SpriteSheetEnum spriteSheetToLoad)
 	{
-		auto lookup = _spriteSheetMap.at(spriteSheetToLoad);
+		auto* lookup = _spriteSheetMap.at(spriteSheetToLoad);
 		if(lookup)
 		{
 
@@ -118,10 +117,5 @@ namespace SG
 		return newTexture;
 	}
 
-	//SDL_Texture* Graphics::LoadTexture(std::string fileName) const
-	//{
-	//}
-
 }
 
-#include "World.h"

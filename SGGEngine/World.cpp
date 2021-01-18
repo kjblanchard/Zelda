@@ -8,6 +8,7 @@
 #include "Graphics.h"
 #include "Input.h"
 #include "SpriteBatch.h"
+#include "SDL_mixer.h"
 
 
 namespace SG
@@ -41,6 +42,17 @@ namespace SG
 			return false;
 		if (!_graphics->Startup())
 			return false;
+		//Initialize SDL_mixer
+		if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+		{
+			printf("SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError());
+		}
+		auto gMusic = Mix_LoadMUS("assets/sound/Overworld.ogg");
+		if (gMusic == NULL)
+		{
+			printf("Failed to load beat music! SDL_mixer Error: %s\n", Mix_GetError());
+		}
+		Mix_PlayMusic(gMusic, -1);
 		_input->Startup();
 		return true;
 	}

@@ -5,14 +5,16 @@
 
 namespace SG
 {
-	ImageComponent::ImageComponent(const std::string& filename, const SDL_Rect& spriteSheetLocationAndSize)
+
+
+	ImageComponent::ImageComponent(SpriteSheetEnum spriteSheetToLoad, const SDL_Rect& spriteSheetLocationAndSize)
 	{
-		image = std::make_unique<Image>(filename, spriteSheetLocationAndSize);
+		image = std::make_unique<Image>(spriteSheetToLoad, spriteSheetLocationAndSize);
 	}
 
-	ImageComponent::ImageComponent(const std::string& filename, Point imageSize)
+	ImageComponent::ImageComponent(SpriteSheetEnum spriteSheetToLoad, Point imageSize)
 	{
-		image = std::make_unique<Image>(filename, imageSize);
+		image = std::make_unique<Image>(spriteSheetToLoad, imageSize);
 	}
 
 	ImageComponent::~ImageComponent()

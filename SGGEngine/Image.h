@@ -12,12 +12,12 @@
 #define SGGENGINE_API __declspec(dllimport)
 #endif
 #include <SDL_render.h>
-#include <string>
 #include "Point.h"
 #include "Vector3.h"
 
 namespace SG
 {
+	enum class SpriteSheetEnum;
 	class Spritesheet;
 	class Graphics;
 
@@ -27,8 +27,8 @@ namespace SG
 
 	public:
 		Image();
-		Image(const std::string& filename, const SDL_Rect& spriteSheetLocationAndSize);
-		Image(const std::string& filename, Point imageSize);
+		Image(SpriteSheetEnum spriteSheetToLoad, const SDL_Rect& spriteSheetLocationAndSize);
+		Image(SpriteSheetEnum spriteSheetToLoad, Point imageSize);
 		~Image();
 
 		static Graphics* _graphics;
@@ -41,6 +41,6 @@ namespace SG
 		void UpdateDestRect(Vector3 location);
 		bool isWholeTexture = false;
 	private:
-		SG::Spritesheet* GenerateImage(const std::string& filename);
+		SG::Spritesheet* GenerateImage(SpriteSheetEnum spriteSheetToLoad);
 	};
 }

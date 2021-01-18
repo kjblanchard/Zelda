@@ -1,7 +1,5 @@
 ﻿#include "pch.h"
 #include  "Image.h"
-
-#include <utility>
 #include "Spritesheet.h"
 #include "World.h"
 #include "Graphics.h"
@@ -14,25 +12,22 @@ namespace SG
 	{
 	}
 
-	Image::Image(const std::string& filename, const SDL_Rect& spriteSheetLocationAndSize): _imageTexture(nullptr), LocationAndSizeInSpriteSheet()
+	Image::Image(SpriteSheetEnum spriteSheetToLoad, const SDL_Rect& spriteSheetLocationAndSize): _imageTexture(nullptr), LocationAndSizeInSpriteSheet()
 	{
 		Size.X = LocationAndSizeOnRenderer.h = spriteSheetLocationAndSize.h;
 		Size.Y = LocationAndSizeOnRenderer.w = spriteSheetLocationAndSize.w;
 		LocationAndSizeInSpriteSheet = spriteSheetLocationAndSize;
-		_spriteSheet = GenerateImage(filename);
+		_spriteSheet = GenerateImage(spriteSheetToLoad);
 		_imageTexture = _spriteSheet->SpriteSheetTexture;
-
 	}
 
-	Image::Image(const std::string& filename, Point imageSize)
-		:Size(imageSize)
+	Image::Image(SpriteSheetEnum spriteSheetToLoad, Point imageSize) : Size(imageSize)
 	{
-		_spriteSheet = GenerateImage(filename);
+		_spriteSheet = GenerateImage(spriteSheetToLoad);
 		_imageTexture = _spriteSheet->SpriteSheetTexture;
 		isWholeTexture = true;
 		LocationAndSizeOnRenderer.h = Size.X;
 		LocationAndSizeOnRenderer.w = Size.Y;
-
 	}
 
 
@@ -48,10 +43,11 @@ namespace SG
 		LocationAndSizeOnRenderer.y = Location.Y;
 	}
 
-	Spritesheet* Image::GenerateImage(const std::string& filename)
+	SG::Spritesheet* Image::GenerateImage(SpriteSheetEnum spriteSheetToLoad)
 	{
 		if (!_graphics)
 			_graphics = World::GetGraphics();
-		return _graphics->LoadFromSpriteSheet(SpriteSheetEnum::TileSet);
+		return _graphics->LoadFromSpriteSheet(spriteSheetToLoad);
 	}
+
 }

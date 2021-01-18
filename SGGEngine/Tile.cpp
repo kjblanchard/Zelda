@@ -24,7 +24,7 @@ namespace SG
 	{
 		auto spritesheetLocation = TileTypesToSpriteLocation.at(TypeOfTile);
 		auto spritesheetrect = SDL_Rect{ spritesheetLocation.X * TileSize.X,spritesheetLocation.Y * TileSize.Y ,TileSize.X,TileSize.Y };
-		_imageComponent = std::make_unique<SG::ImageComponent>(AssetName,spritesheetrect );
+		_imageComponent = std::make_unique<SG::ImageComponent>(SpriteSheetEnum::TileSet,spritesheetrect );
 		_imageComponent->SetLocation(Location());
 	}
 

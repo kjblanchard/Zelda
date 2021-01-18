@@ -39,9 +39,9 @@ namespace SG
 		 * \param fileName The filename, this file should be in the assets/graphics folder
 		 * \return Returns a texture if the file is found, otherwise returns a nullptr
 		 */
-		static SDL_Texture* LoadTexture(std::string fileName);
+		SDL_Texture* LoadTexture(std::string fileName);
 
-		static Spritesheet* LoadFromSpriteSheet(SpriteSheetEnum spriteSheetToLoad);
+		Spritesheet* LoadFromSpriteSheet(SpriteSheetEnum spriteSheetToLoad);
 	private:
 
 		bool CreateGameWindow();
@@ -58,7 +58,7 @@ namespace SG
 		Point _screenSize;
 		SDL_Window* _gameWindow{};
 		SDL_Surface* _windowSurface;
-		static SDL_Renderer* _renderer;
+		SDL_Renderer* _renderer;
 
 	};
 }

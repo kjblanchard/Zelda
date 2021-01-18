@@ -13,10 +13,10 @@
 #endif
 #include <SDL_render.h>
 #include <memory>
-#include <string>
 #include "Component.h"
 #include "Point.h"
 #include "Vector3.h"
+#include "Spritesheet.h"
 
 namespace SG
 {
@@ -27,8 +27,8 @@ namespace SG
 	class SGGENGINE_API ImageComponent : public Component
 	{
 	public:
-		ImageComponent(const std::string& filename, const SDL_Rect& spriteSheetLocationAndSize);
-		ImageComponent(const std::string& filename, Point imageSize);
+		ImageComponent(SpriteSheetEnum spriteSheetToLoad, const SDL_Rect& spriteSheetLocationAndSize);
+		ImageComponent(SpriteSheetEnum spriteSheetToLoad, Point imageSize);
 		~ImageComponent();
 
 		void SetLocation(Vector3 location);

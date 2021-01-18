@@ -13,9 +13,6 @@
 #endif
 #include <map>
 #include <memory>
-#include <string>
-
-
 #include "GameObject.h"
 #include "Point.h"
 
@@ -48,7 +45,6 @@ namespace SG
 		TileTypes TypeOfTile;
 
 		inline static Point TileSize{ 32,32 };
-		inline const static std::string AssetName{ "tileset.png" };
 
 		inline static std::map<TileTypes, SG::Point> TileTypesToSpriteLocation =
 		{
@@ -60,7 +56,6 @@ namespace SG
 			{TileTypes::Rock5,Point(5,14)},
 			{TileTypes::Ground,Point(1,0)}
 		};
-
 
 		std::unique_ptr<ImageComponent> _imageComponent;
 

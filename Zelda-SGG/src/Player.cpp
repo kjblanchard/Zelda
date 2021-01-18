@@ -3,6 +3,8 @@
 #include "PlayerController.h"
 #include "Point.h"
 #include <Input.h>
+#include "InputComponent.h"
+
 
 Player::Player()
 	: GameObject(), _imageComponent(nullptr), _inputComponent(nullptr)
@@ -26,7 +28,7 @@ void Player::Startup()
 	//TODO Remove this later, this is just for ease of use until I get levels Implemented
 	auto controller = SG::Input::GetPlayerController(0);
 
-	_imageComponent = std::make_unique<SG::ImageComponent>("hero.png", SG::Point{32,32});
+	_imageComponent = std::make_unique<SG::ImageComponent>(SG::SpriteSheetEnum::Link, SG::Point{32,32});
 	_inputComponent = std::make_unique<SG::InputComponent>(controller);
 }
 

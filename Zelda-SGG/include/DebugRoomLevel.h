@@ -7,7 +7,6 @@
 
 #pragma once
 #include "GameObjectList.h"
-#include "Point.h"
 #include "State.h"
 
 namespace SG {

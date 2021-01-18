@@ -27,7 +27,9 @@ namespace SG
 			break;
 		case ErrorCodes::GameSlowdown:
 			printf("Game is currently getting worse than normal FPS, current ms delay between frames (should be 16.6667) : ");
-
+			break;
+		case ErrorCodes::SDLSpriteSheetError:
+			printf("You probably entered in the wrong spritesheet name, or forgot to add it to tne enum with its proper filename in graphics");
 			break;
 		default: ;
 		}

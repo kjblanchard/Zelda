@@ -11,8 +11,10 @@
 #else
 #define SGGENGINE_API __declspec(dllimport)
 #endif
+#include <map>
 #include <string>
 #include "Point.h"
+#include "Spritesheet.h"
 
 struct SDL_Texture;
 struct SDL_Surface;
@@ -37,19 +39,26 @@ namespace SG
 		 * \param fileName The filename, this file should be in the assets/graphics folder
 		 * \return Returns a texture if the file is found, otherwise returns a nullptr
 		 */
-		SDL_Texture* LoadTexture(std::string fileName) const;
+		static SDL_Texture* LoadTexture(std::string fileName);
+
+		static Spritesheet* LoadFromSpriteSheet(SpriteSheetEnum spriteSheetToLoad);
 	private:
 
 		bool CreateGameWindow();
 		static bool InitializeSdlImg();
 		bool CreateRenderer();
 
+		inline static std::map<SpriteSheetEnum, Spritesheet*> _spriteSheetMap =
+			{
+			{SpriteSheetEnum::Link,new Spritesheet("hero.png")},
+			{SpriteSheetEnum::TileSet, new Spritesheet("tileset.png")}
+			};
 
 	private:
 		Point _screenSize;
 		SDL_Window* _gameWindow{};
 		SDL_Surface* _windowSurface;
-		SDL_Renderer* _renderer;
+		static SDL_Renderer* _renderer;
 
 	};
 }

@@ -18,6 +18,7 @@
 
 namespace SG
 {
+	class Spritesheet;
 	class Graphics;
 
 	class SGGENGINE_API Image
@@ -32,6 +33,7 @@ namespace SG
 
 		static Graphics* _graphics;
 		SDL_Texture* _imageTexture;
+		Spritesheet* _spriteSheet;
 		Vector3 Location;
 		Point Size;
 		SDL_Rect LocationAndSizeInSpriteSheet;
@@ -39,6 +41,6 @@ namespace SG
 		void UpdateDestRect(Vector3 location);
 		bool isWholeTexture = false;
 	private:
-		SDL_Texture* GenerateImage(const std::string& filename);
+		SG::Spritesheet* GenerateImage(const std::string& filename);
 	};
 }

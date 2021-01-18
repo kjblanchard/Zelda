@@ -8,9 +8,10 @@
 
 namespace SG
 {
+	SDL_Renderer* Graphics::_renderer;
 
 	Graphics::Graphics(Point screenSize)
-		: _screenSize(screenSize), _windowSurface(nullptr), _renderer(nullptr)
+		: _screenSize(screenSize), _windowSurface(nullptr)
 	{
 	}
 
@@ -23,6 +24,25 @@ namespace SG
 		if (!CreateRenderer())
 			return false;
 		return true;
+	}
+
+
+	Spritesheet* Graphics::LoadFromSpriteSheet(SpriteSheetEnum spriteSheetToLoad)
+	{
+		auto lookup = _spriteSheetMap.at(spriteSheetToLoad);
+		if(lookup)
+		{
+
+			if (!lookup->IsLoaded)
+			{
+				lookup->SpriteSheetTexture =  LoadTexture(lookup->FileName);
+				lookup->IsLoaded = true;
+				return lookup;
+			}
+			return lookup;
+		}
+		DebugHandler::PrintErrorMessage(ErrorCodes::SDLSpriteSheetError);
+		return nullptr;
 	}
 
 	bool Graphics::CreateGameWindow()
@@ -78,7 +98,7 @@ namespace SG
 		SDL_RenderPresent(_renderer);
 	}
 
-	SDL_Texture* Graphics::LoadTexture(std::string fileName) const
+	struct SDL_Texture* Graphics::LoadTexture(std::string fileName)
 	{
 		fileName.insert(0, "assets/graphics/");
 		SDL_Texture* newTexture = nullptr;
@@ -97,6 +117,10 @@ namespace SG
 		SDL_FreeSurface(loadedSurface);
 		return newTexture;
 	}
+
+	//SDL_Texture* Graphics::LoadTexture(std::string fileName) const
+	//{
+	//}
 
 }
 

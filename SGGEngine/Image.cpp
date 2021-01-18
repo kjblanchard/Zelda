@@ -2,7 +2,7 @@
 #include  "Image.h"
 
 #include <utility>
-
+#include "Spritesheet.h"
 #include "World.h"
 #include "Graphics.h"
 
@@ -19,14 +19,16 @@ namespace SG
 		Size.X = LocationAndSizeOnRenderer.h = spriteSheetLocationAndSize.h;
 		Size.Y = LocationAndSizeOnRenderer.w = spriteSheetLocationAndSize.w;
 		LocationAndSizeInSpriteSheet = spriteSheetLocationAndSize;
-		_imageTexture = GenerateImage(filename);
+		_spriteSheet = GenerateImage(filename);
+		_imageTexture = _spriteSheet->SpriteSheetTexture;
 
 	}
 
 	Image::Image(const std::string& filename, Point imageSize)
 		:Size(imageSize)
 	{
-		_imageTexture = GenerateImage(filename);
+		_spriteSheet = GenerateImage(filename);
+		_imageTexture = _spriteSheet->SpriteSheetTexture;
 		isWholeTexture = true;
 		LocationAndSizeOnRenderer.h = Size.X;
 		LocationAndSizeOnRenderer.w = Size.Y;
@@ -46,10 +48,10 @@ namespace SG
 		LocationAndSizeOnRenderer.y = Location.Y;
 	}
 
-	SDL_Texture* Image::GenerateImage(const std::string& filename)
+	Spritesheet* Image::GenerateImage(const std::string& filename)
 	{
 		if (!_graphics)
 			_graphics = World::GetGraphics();
-		return _graphics->LoadTexture(filename);
+		return _graphics->LoadFromSpriteSheet(SpriteSheetEnum::TileSet);
 	}
 }

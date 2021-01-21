@@ -13,8 +13,8 @@
 #endif
 #include <map>
 #include <string>
-#include "Point.h"
 #include "Spritesheet.h"
+#include "data/Point.h"
 
 struct SDL_Texture;
 struct SDL_Surface;

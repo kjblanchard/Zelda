@@ -14,7 +14,7 @@
 #include <map>
 #include <memory>
 #include "GameObject.h"
-#include "Point.h"
+#include "data/Point.h"
 
 namespace SG
 {

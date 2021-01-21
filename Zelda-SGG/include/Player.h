@@ -8,7 +8,6 @@
 #pragma once
 #include "GameObject.h"
 #include <memory>
-#include "Vector3.h"
 
 namespace SG {
 	class ImageComponent;

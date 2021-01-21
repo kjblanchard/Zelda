@@ -13,7 +13,7 @@
 #endif
 #include <memory>
 #include <SDL_video.h>
-#include "Point.h"
+#include "data/Point.h"
 
 
 namespace SG

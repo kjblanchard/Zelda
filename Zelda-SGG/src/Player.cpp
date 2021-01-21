@@ -1,9 +1,11 @@
 ﻿#include "Player.h"
-#include "ImageComponent.h"
 #include "PlayerController.h"
-#include "Point.h"
 #include <Input.h>
-#include "InputComponent.h"
+#include "components/ImageComponent.h"
+#include "components/InputComponent.h"
+#include "Spritesheet.h"
+#include "data/Point.h"
+#include "data/Vector3.h"
 
 
 Player::Player()

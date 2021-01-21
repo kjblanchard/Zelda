@@ -1,6 +1,6 @@
 ﻿#include "pch.h"
 #include "Controller.h"
-#include  "InputComponent.h"
+#include "components/InputComponent.h"
 
 namespace SG
 {

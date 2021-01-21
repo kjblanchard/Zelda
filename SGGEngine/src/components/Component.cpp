@@ -1,7 +1,6 @@
 ﻿#include "pch.h"
 
-
-#include  "Component.h"
+#include "components/Component.h"
 
 namespace SG
 {

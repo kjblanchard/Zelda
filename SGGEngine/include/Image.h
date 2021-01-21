@@ -12,8 +12,8 @@
 #define SGGENGINE_API __declspec(dllimport)
 #endif
 #include <SDL_render.h>
-#include "Point.h"
-#include "Vector3.h"
+#include "data/Point.h"
+#include "data/Vector3.h"
 
 namespace SG
 {

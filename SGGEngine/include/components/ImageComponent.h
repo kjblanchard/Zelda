@@ -14,9 +14,8 @@
 #include <SDL_render.h>
 #include <memory>
 #include "Component.h"
-#include "Point.h"
-#include "Vector3.h"
 #include "Spritesheet.h"
+#include "data/Point.h"
 
 namespace SG
 {

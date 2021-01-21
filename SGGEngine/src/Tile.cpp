@@ -1,7 +1,10 @@
 ﻿#include "pch.h"
 #include  "Tile.h"
 
-#include "ImageComponent.h"
+#include <SDL_rect.h>
+#include "components/ImageComponent.h"
+#include "Spritesheet.h"
+
 
 namespace SG
 {

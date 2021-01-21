@@ -30,9 +30,30 @@ namespace SG
 	public:
 		Graphics(Point screenSize);
 
-
+		/**
+		 * \brief This initializes some of the SDL components, and returns true if successful
+		 * \return Returns true if everything was initialized properly
+		 */
 		bool Startup();
+
+		/**
+		 * \brief Clears render, and draws everything in the spritebatch
+		 * \param spriteBatch Passed in from the level most likely of everything that needs to be drawn
+		 */
 		void Draw(SpriteBatch& spriteBatch );
+
+		/**
+		 * \brief Searches the Map for the specified enum, if it has already been loaded, return the pointer to it.  If it hasn't been loaded yet, load it and then return it
+		 * \param spriteSheetToLoad The Enum for the spritesheet to load
+		 * \return Returns the pointer to the spritesheet
+		 */
+		Spritesheet* LoadFromSpriteSheet(SpriteSheetEnum spriteSheetToLoad);
+
+	private:
+
+		bool CreateGameWindow();
+		static bool InitializeSdlImg();
+		bool CreateRenderer();
 
 		/**
 		 * \brief Loads a surface from a file, and converts that into a texture for use in displaying things on screen
@@ -40,21 +61,14 @@ namespace SG
 		 * \return Returns a texture if the file is found, otherwise returns a nullptr
 		 */
 		SDL_Texture* LoadTexture(std::string fileName);
-
-		Spritesheet* LoadFromSpriteSheet(SpriteSheetEnum spriteSheetToLoad);
 	private:
-
-		bool CreateGameWindow();
-		static bool InitializeSdlImg();
-		bool CreateRenderer();
 
 		inline static std::map<SpriteSheetEnum, Spritesheet*> _spriteSheetMap =
-			{
-			{SpriteSheetEnum::Link,new Spritesheet("hero.png")},
-			{SpriteSheetEnum::TileSet, new Spritesheet("tileset.png")}
-			};
+		{
+		{SpriteSheetEnum::Link,new Spritesheet("hero.png")},
+		{SpriteSheetEnum::TileSet, new Spritesheet("tileset.png")}
+		};
 
-	private:
 		Point _screenSize;
 		SDL_Window* _gameWindow{};
 		SDL_Surface* _windowSurface;

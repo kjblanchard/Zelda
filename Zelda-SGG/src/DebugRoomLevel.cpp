@@ -19,9 +19,6 @@ void DebugRoomLevel::Startup()
 
 	_levelGameObjectList.AddToGameObjectList(new Player(SG::Vector3(32.0)));
 
-
-
-
 }
 
 void DebugRoomLevel::Update(const double& deltaTime)

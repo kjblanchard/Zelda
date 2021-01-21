@@ -28,7 +28,6 @@ public:
 
 private:
 	void ComponentUpdate() override;
-
 	void HandleInput();
 	std::unique_ptr<SG::ImageComponent> _imageComponent;
 	std::unique_ptr<SG::InputComponent> _inputComponent;

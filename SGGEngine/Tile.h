@@ -43,9 +43,7 @@ namespace SG
 		void Draw(SpriteBatch& spriteBatch) override;
 
 		TileTypes TypeOfTile;
-
 		inline static Point TileSize{ 32,32 };
-
 		inline static std::map<TileTypes, SG::Point> TileTypesToSpriteLocation =
 		{
 			{TileTypes::Default,Point(5,0)},
@@ -57,6 +55,7 @@ namespace SG
 			{TileTypes::Ground,Point(1,0)}
 		};
 
+	private:
 		std::unique_ptr<ImageComponent> _imageComponent;
 
 	};

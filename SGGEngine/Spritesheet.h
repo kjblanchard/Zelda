@@ -13,6 +13,7 @@
 #endif
 #include <SDL_render.h>
 #include <string>
+#include <memory>
 
 namespace SG
 {
@@ -28,6 +29,11 @@ namespace SG
 	{
 	public:
 		Spritesheet(std::string fileName);
+		~Spritesheet()
+		{
+			SDL_DestroyTexture(SpriteSheetTexture);
+		}
+
 		SDL_Texture* SpriteSheetTexture = nullptr;
 		const std::string FileName;
 		bool IsLoaded = false;

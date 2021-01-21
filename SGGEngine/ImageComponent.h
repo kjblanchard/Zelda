@@ -31,15 +31,18 @@ namespace SG
 		ImageComponent(SpriteSheetEnum spriteSheetToLoad, Point imageSize);
 		~ImageComponent();
 
-		void SetLocation(Vector3 location);
 		void Update(Vector3 location);
+		void Draw(SpriteBatch& spritebatch) const;
+		/**
+		 * \brief Updates the held image's location in the world
+		 * \param location The new location of the Image
+		 */
+		void SetLocation(Vector3 location);
 
-		void Draw(SpriteBatch& spritebatch);
-
-		std::unique_ptr<Image> image;
-		SG::Vector3 _location;
 
 	private:
+		std::unique_ptr<Image> image;
+		SG::Vector3 _location;
 
 	};
 }

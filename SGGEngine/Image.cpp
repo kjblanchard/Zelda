@@ -8,42 +8,34 @@ namespace SG
 {
 	Graphics* Image::_graphics = nullptr;
 
-	Image::Image(): _imageTexture(nullptr), LocationAndSizeInSpriteSheet(), LocationAndSizeOnRenderer()
+	Image::Image(): SpriteSheet(nullptr), LocationAndSizeInSpriteSheet(), LocationAndSizeOnRenderer()
 	{
 	}
 
-	Image::Image(SpriteSheetEnum spriteSheetToLoad, const SDL_Rect& spriteSheetLocationAndSize): _imageTexture(nullptr), LocationAndSizeInSpriteSheet()
+	Image::Image(SpriteSheetEnum spriteSheetToLoad, const SDL_Rect& spriteSheetLocationAndSize): LocationAndSizeInSpriteSheet()
 	{
 		Size.X = LocationAndSizeOnRenderer.h = spriteSheetLocationAndSize.h;
 		Size.Y = LocationAndSizeOnRenderer.w = spriteSheetLocationAndSize.w;
 		LocationAndSizeInSpriteSheet = spriteSheetLocationAndSize;
-		_spriteSheet = GenerateImage(spriteSheetToLoad);
-		_imageTexture = _spriteSheet->SpriteSheetTexture;
+		SpriteSheet = GenerateImage(spriteSheetToLoad);
 	}
 
-	Image::Image(SpriteSheetEnum spriteSheetToLoad, Point imageSize) : Size(imageSize)
+	Image::Image(SpriteSheetEnum spriteSheetToLoad, Point imageSize) : Size(imageSize), LocationAndSizeInSpriteSheet()
 	{
-		_spriteSheet = GenerateImage(spriteSheetToLoad);
-		_imageTexture = _spriteSheet->SpriteSheetTexture;
-		isWholeTexture = true;
+		SpriteSheet = GenerateImage(spriteSheetToLoad);
+		ImageIsWholeTexture = true;
 		LocationAndSizeOnRenderer.h = Size.X;
 		LocationAndSizeOnRenderer.w = Size.Y;
 	}
 
-
-	Image::~Image()
-	{
-		SDL_DestroyTexture(_imageTexture);
-	}
-
-	void Image::UpdateDestRect(Vector3 location)
+	void Image::UpdateDestRectLocation(Vector3 location)
 	{
 		Location = location;
 		LocationAndSizeOnRenderer.x = Location.X;
 		LocationAndSizeOnRenderer.y = Location.Y;
 	}
 
-	SG::Spritesheet* Image::GenerateImage(SpriteSheetEnum spriteSheetToLoad)
+	Spritesheet* Image::GenerateImage(SpriteSheetEnum spriteSheetToLoad)
 	{
 		if (!_graphics)
 			_graphics = World::GetGraphics();

@@ -25,6 +25,8 @@ public:
 
 private:
 
+	SG::Tile* SpawnTileByType(int tileNum, SG::Vector3 location);
+
 	std::vector<std::vector<int>> TileMap
 	{
 		{1,1,1,1,1,1,1,6,6,1,1,1,1,1,1,1},
@@ -40,7 +42,6 @@ private:
 		{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 	};
 
-	SG::Tile* SpawnTileByType(int tileNum, SG::Vector3 location);
 	SG::GameObjectList _levelGameObjectList;
 
 };

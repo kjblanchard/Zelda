@@ -29,18 +29,15 @@ namespace SG
 		Image();
 		Image(SpriteSheetEnum spriteSheetToLoad, const SDL_Rect& spriteSheetLocationAndSize);
 		Image(SpriteSheetEnum spriteSheetToLoad, Point imageSize);
-		~Image();
-
-		static Graphics* _graphics;
-		SDL_Texture* _imageTexture;
-		Spritesheet* _spriteSheet;
+		void UpdateDestRectLocation(Vector3 location);
+		Spritesheet* SpriteSheet;
 		Vector3 Location;
 		Point Size;
 		SDL_Rect LocationAndSizeInSpriteSheet;
 		SDL_Rect LocationAndSizeOnRenderer;
-		void UpdateDestRect(Vector3 location);
-		bool isWholeTexture = false;
+		bool ImageIsWholeTexture = false;
 	private:
-		SG::Spritesheet* GenerateImage(SpriteSheetEnum spriteSheetToLoad);
+		static Spritesheet* GenerateImage(SpriteSheetEnum spriteSheetToLoad);
+		static Graphics* _graphics;
 	};
 }

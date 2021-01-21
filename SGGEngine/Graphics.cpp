@@ -25,6 +25,18 @@ namespace SG
 		return true;
 	}
 
+	void Graphics::Draw(SpriteBatch& spriteBatch)
+	{
+		SDL_RenderClear(_renderer);
+		for (auto* sprite : spriteBatch.GameTextures())
+		{
+			if (sprite->ImageIsWholeTexture)
+				SDL_RenderCopy(_renderer, sprite->SpriteSheet->SpriteSheetTexture, NULL, &sprite->LocationAndSizeOnRenderer);
+			else
+				SDL_RenderCopy(_renderer, sprite->SpriteSheet->SpriteSheetTexture, &sprite->LocationAndSizeInSpriteSheet, &sprite->LocationAndSizeOnRenderer);
+		}
+		SDL_RenderPresent(_renderer);
+	}
 
 	Spritesheet* Graphics::LoadFromSpriteSheet(SpriteSheetEnum spriteSheetToLoad)
 	{
@@ -82,19 +94,6 @@ namespace SG
 		}
 		SDL_SetRenderDrawColor(_renderer, 0x00, 0x00, 0x00, 0x00);
 		return true;
-	}
-
-	void Graphics::Draw(SpriteBatch& spriteBatch)
-	{
-		SDL_RenderClear(_renderer);
-		for (auto* sprite : spriteBatch.GameTextures())
-		{
-			if(sprite->isWholeTexture)
-				SDL_RenderCopy(_renderer, sprite->_imageTexture, NULL, &sprite->LocationAndSizeOnRenderer);
-			else
-				SDL_RenderCopy(_renderer, sprite->_imageTexture, &sprite->LocationAndSizeInSpriteSheet, &sprite->LocationAndSizeOnRenderer);
-		}
-		SDL_RenderPresent(_renderer);
 	}
 
 	struct SDL_Texture* Graphics::LoadTexture(std::string fileName)

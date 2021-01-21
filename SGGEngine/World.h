@@ -18,6 +18,7 @@
 
 namespace SG
 {
+	class Sound;
 	class GameObjectList;
 	class GameObject;
 	class Input;
@@ -49,6 +50,7 @@ namespace SG
 
 
 
+		static Sound* _sound;
 
 	protected:
 		Point _screenSize;
@@ -72,6 +74,7 @@ namespace SG
 		 */
 		static bool InitializeSdl();
 
+		bool InitializeSdlMixer();
 
 		/**
 		 * \brief Checks the event queue, and if there are any quit events (like from clicking the X) the game will quit.

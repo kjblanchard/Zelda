@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "Vector3.h"
 #include "GameObjectList.h"
+#include "Sound.h"
 #include "Tile.h"
 
 void DebugRoomLevel::Startup()
@@ -18,6 +19,8 @@ void DebugRoomLevel::Startup()
 	}
 
 	_levelGameObjectList.AddToGameObjectList(new Player(SG::Vector3(32.0)));
+
+	SG::Sound::PlayMusic(SG::MusicToPlay::Overworld);
 
 }
 

@@ -2,6 +2,7 @@
 #include  "DebugHandler.h"
 
 #include <SDL_image.h>
+#include <SDL_mixer.h>
 
 namespace SG
 {
@@ -30,6 +31,9 @@ namespace SG
 			break;
 		case ErrorCodes::SDLSpriteSheetError:
 			printf("You probably entered in the wrong spritesheet name, or forgot to add it to tne enum with its proper filename in graphics");
+			break;
+		case ErrorCodes::SDLMixerError:
+			printf("SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError());
 			break;
 		default: ;
 		}

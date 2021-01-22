@@ -46,19 +46,13 @@ namespace SG
 			return false;
 		if (!InitializeSdlMixer())
 			return false;
-		//auto gMusic = Mix_LoadMUS("assets/sound/Overworld.ogg");
-		//if (gMusic == NULL)
-		//{
-		//	printf("Failed to load beat music! SDL_mixer Error: %s\n", Mix_GetError());
-		//}
-		//Mix_PlayMusic(gMusic, -1);
 		_input->Startup();
 		return true;
 	}
 
 	bool World::InitializeSdl()
 	{
-		if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_GAMECONTROLLER) < 0)
+		if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_GAMECONTROLLER | SDL_INIT_TIMER) < 0)
 		{
 			DebugHandler::PrintErrorMessage(ErrorCodes::SDLError);
 			return false;
@@ -67,7 +61,7 @@ namespace SG
 
 	}
 
-	bool World::InitializeSdlMixer()
+	bool World::InitializeSdlMixer() const
 	{
 		if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
 		{

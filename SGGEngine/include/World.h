@@ -74,7 +74,7 @@ namespace SG
 		 */
 		static bool InitializeSdl();
 
-		bool InitializeSdlMixer();
+		bool InitializeSdlMixer() const;
 
 		/**
 		 * \brief Checks the event queue, and if there are any quit events (like from clicking the X) the game will quit.

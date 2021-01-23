@@ -22,7 +22,7 @@ namespace SG
 			if (CurrentPlayingMusicFile.ShouldIntroLoop)
 			{
 				Mix_PlayMusic(CurrentPlayingMixMusic, -1);
-				CurrentMusicTimer = SDL_AddTimer(CurrentPlayingMusicFile.IntroLoopTimeEnd * 1000, callback, nullptr);
+				CurrentMusicTimer = SDL_AddTimer(CurrentPlayingMusicFile.IntroLoopTimeEnd * 1000, ContinuouslyLoopMusic, nullptr);
 			}
 			else
 				Mix_PlayMusic(CurrentPlayingMixMusic, -1);

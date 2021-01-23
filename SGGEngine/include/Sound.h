@@ -45,10 +45,10 @@ namespace SG
 		static Mix_Music* CurrentPlayingMixMusic;
 		static MusicFile CurrentPlayingMusicFile;
 
-		static Uint32 callback(Uint32 interval, void* param)
+		static Uint32 ContinuouslyLoopMusic(Uint32 interval, void* param)
 		{
 			Mix_SetMusicPosition(CurrentPlayingMusicFile.IntroLoopTimeBegin);
-			auto timer = SDL_AddTimer((CurrentPlayingMusicFile.IntroLoopTimeEnd - CurrentPlayingMusicFile.IntroLoopTimeBegin + 0.05) * 1000, callback, nullptr);
+			auto timer = SDL_AddTimer((CurrentPlayingMusicFile.IntroLoopTimeEnd - CurrentPlayingMusicFile.IntroLoopTimeBegin + 0.05) * 1000, ContinuouslyLoopMusic, nullptr);
 			return 0;
 		}
 		static SDL_TimerID CurrentMusicTimer;

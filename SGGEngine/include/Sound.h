@@ -12,6 +12,7 @@
 #define SGGENGINE_API __declspec(dllimport)
 #endif
 #include <map>
+#include <SDL_timer.h>
 #include <string>
 #include "SDL_mixer.h"
 
@@ -28,7 +29,8 @@ namespace SG
 	{
 		std::string FileLocation;
 		bool ShouldIntroLoop;
-		unsigned int IntroLoopTimeBegin;
+		double IntroLoopTimeBegin;
+		double IntroLoopTimeEnd;
 	};
 
 	class SGGENGINE_API Sound
@@ -36,22 +38,19 @@ namespace SG
 	public:
 		inline static std::map<MusicToPlay, MusicFile> MusicToLoadedMusicDict =
 		{
-			{MusicToPlay::Overworld, MusicFile{"assets/sound/Overworld",true,6170}   }
+			{MusicToPlay::Overworld, MusicFile{"assets/sound/Overworld.ogg",true,6.719, 51.418 }   }
 		};
 
 		static void PlayMusic(MusicToPlay musicToPlayEnum);
-		static Mix_Music* CurrentPlayingIntroMusic;
 		static Mix_Music* CurrentPlayingMixMusic;
 		static MusicFile CurrentPlayingMusicFile;
 
 		static Uint32 callback(Uint32 interval, void* param)
 		{
-			auto loopFilename = CurrentPlayingMusicFile.FileLocation + "Loop.ogg";
-			CurrentPlayingMixMusic = Mix_LoadMUS(loopFilename.c_str());
-			Mix_PlayMusic(CurrentPlayingMixMusic, -1);
+			Mix_SetMusicPosition(CurrentPlayingMusicFile.IntroLoopTimeBegin);
+			auto timer = SDL_AddTimer((CurrentPlayingMusicFile.IntroLoopTimeEnd - CurrentPlayingMusicFile.IntroLoopTimeBegin + 0.05) * 1000, callback, nullptr);
 			return 0;
 		}
-
-		static void PlayMusicAfterWaitTime(MusicFile musicToPlay);
+		static SDL_TimerID CurrentMusicTimer;
 	};
 }

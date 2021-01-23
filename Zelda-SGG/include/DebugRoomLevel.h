@@ -8,6 +8,7 @@
 #pragma once
 #include "GameObjectList.h"
 #include "State.h"
+#include "TileMap.h"
 
 namespace SG {
 	class Tile;
@@ -26,22 +27,7 @@ public:
 private:
 
 	SG::Tile* SpawnTileByType(int tileNum, SG::Vector3 location);
-
-	std::vector<std::vector<int>> TileMap
-	{
-		{1,1,1,1,1,1,1,6,6,1,1,1,1,1,1,1},
-		{1,1,1,1,0,1,4,6,6,1,1,1,1,1,1,1},
-		{1,1,1,4,6,6,6,6,6,1,1,1,1,1,1,1},
-		{1,1,4,6,6,6,6,6,6,1,1,1,1,1,1,1},
-		{1,4,6,6,6,6,6,6,6,5,1,1,1,1,1,1},
-		{6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6},
-		{2,3,6,6,6,6,6,6,6,6,6,6,6,6,2,2},
-		{1,1,6,6,6,6,6,6,6,6,6,6,6,6,1,1},
-		{1,1,6,6,6,6,6,6,6,6,6,6,6,6,1,1},
-		{1,1,2,2,2,2,2,2,2,2,2,2,2,2,1,1},
-		{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
-	};
-
+	std::unique_ptr<SG::TileMap> TileMap;
 	SG::GameObjectList _levelGameObjectList;
 
 };

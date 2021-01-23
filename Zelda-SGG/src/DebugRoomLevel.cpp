@@ -3,18 +3,24 @@
 #include "GameObjectList.h"
 #include "Sound.h"
 #include "Tile.h"
+#include "TileMapFactory.h"
 
 void DebugRoomLevel::Startup()
 {
-	for (int i = 0; i < TileMap.size(); ++i)
-	{
-		auto yLocation = i*32;
+	TileMap.reset(SG::TileMapFactory::ConvertJsonFileToTileMap("overworld.json"));
 
-		for (int j = 0; j < TileMap[i].size(); ++j)
+	int currentX = 0;
+	int currentY = 0;
+	for (int i = 0; i < TileMap->JsonMapData.size(); ++i)
+	{
+		auto yLocation = currentY * 32;
+		auto xLocation = currentX * 32;
+		if(++currentX >= TileMap->WidthOfMap)
 		{
-			auto xLocation = j*32;
-			_levelGameObjectList.AddToGameObjectList(SpawnTileByType(TileMap[i][j], SG::Vector3(xLocation, yLocation)));
+			currentX = 0;
+			currentY++;
 		}
+			_levelGameObjectList.AddToGameObjectList(SpawnTileByType(TileMap->JsonMapData[i], SG::Vector3(xLocation, yLocation)));
 	}
 
 	_levelGameObjectList.AddToGameObjectList(new Player(SG::Vector3(32.0)));

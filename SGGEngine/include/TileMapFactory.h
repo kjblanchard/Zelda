@@ -12,10 +12,29 @@
 #define SGGENGINE_API __declspec(dllimport)
 #endif
 
+#include "external/json.hpp"
+
+
 namespace SG
 {
+	class TileMap;
+
 	class SGGENGINE_API TileMapFactory
 	{
-		
+public:
+		static std::string readFile;
+		static nlohmann::json jsonFile;
+
+		static TileMap* ConvertJsonFileToTileMap(std::string mapName);
+
+	private:
+
+		inline static const std::string Layers = "layers";
+		inline static const std::string Width = "width";
+		inline static const std::string Data = "data";
+		inline static const std::string Height = "height";
+
+
 	};
+
 }

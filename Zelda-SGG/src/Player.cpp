@@ -4,6 +4,7 @@
 #include "components/ImageComponent.h"
 #include "components/InputComponent.h"
 #include "Spritesheet.h"
+#include "TileMapFactory.h"
 #include "data/Point.h"
 #include "data/Vector3.h"
 

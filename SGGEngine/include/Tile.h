@@ -23,13 +23,13 @@ namespace SG
 
 	enum class TileTypes
 	{
-		Default = 0,
-		Rock1 = 1,
-		Rock2 = 2,
-		Rock3 = 3,
-		Rock4 = 4,
-		Rock5 = 5,
-		Ground = 6,
+		Default = 5,
+		Rock1 = 116,
+		Rock2 = 115,
+		Rock3 = 114,
+		Rock4 = 117,
+		Rock5 = 118,
+		Ground = 2,
 	};
 
 	class SGGENGINE_API Tile : public GameObject

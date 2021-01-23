@@ -205,7 +205,8 @@
     <ClInclude Include="include\StateMachine.h" />
     <ClInclude Include="include\Time.h" />
     <ClInclude Include="include\data\Vector3.h" />
-    <ClInclude Include="TileMapFactory.h" />
+    <ClInclude Include="include\TileMapFactory.h" />
+    <ClInclude Include="include\TileMap.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\components\Component.cpp" />
@@ -238,7 +239,8 @@
     <ClCompile Include="src\StateMachine.cpp" />
     <ClCompile Include="src\Time.cpp" />
     <ClCompile Include="src\data\Vector3.cpp" />
-    <ClCompile Include="TileMapFactory.cpp" />
+    <ClCompile Include="src\TileMapFactory.cpp" />
+    <ClCompile Include="src\TileMap.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

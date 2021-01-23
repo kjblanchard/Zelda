@@ -48,7 +48,7 @@ namespace SG
 		static Uint32 ContinuouslyLoopMusic(Uint32 interval, void* param)
 		{
 			Mix_SetMusicPosition(CurrentPlayingMusicFile.IntroLoopTimeBegin);
-			auto timer = SDL_AddTimer((CurrentPlayingMusicFile.IntroLoopTimeEnd - CurrentPlayingMusicFile.IntroLoopTimeBegin + 0.05) * 1000, ContinuouslyLoopMusic, nullptr);
+			auto timer = SDL_AddTimer((CurrentPlayingMusicFile.IntroLoopTimeEnd - CurrentPlayingMusicFile.IntroLoopTimeBegin + 0.01) * 1000, ContinuouslyLoopMusic, nullptr);
 			return 0;
 		}
 		static SDL_TimerID CurrentMusicTimer;

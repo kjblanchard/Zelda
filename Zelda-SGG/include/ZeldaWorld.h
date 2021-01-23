@@ -17,6 +17,7 @@ enum class ZeldaLevels
 class ZeldaWorld : public SG::World
 {
 public:
+	ZeldaWorld();
 	SG::StateMachine<ZeldaLevels> _levelStateMachine;
 
 	void Startup() override;

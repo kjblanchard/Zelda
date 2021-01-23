@@ -3,6 +3,7 @@
 #include "DebugRoomLevel.h"
 #include "SpriteBatch.h"
 #include "Graphics.h"
+#include "Statics.h"
 
 int main(int argc, char* args[])
 {
@@ -10,6 +11,11 @@ int main(int argc, char* args[])
 	zeldaWorld->SetupWorldComponents();
 	zeldaWorld->Loop();
 	return 1;
+}
+
+ZeldaWorld::ZeldaWorld()
+	:World(SG::Point(Statics::ScreenWidth,Statics::ScreenHeight))
+{
 }
 
 void ZeldaWorld::Startup()

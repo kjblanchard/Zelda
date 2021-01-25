@@ -15,6 +15,8 @@
 #include "external/json.hpp"
 
 
+class Player;
+
 namespace SG
 {
 	class TileMap;
@@ -26,6 +28,11 @@ public:
 		static nlohmann::json jsonFile;
 
 		static TileMap* ConvertJsonFileToTileMap(std::string mapName);
+
+		static nlohmann::json& ReturnLevelJson()
+		{
+			return jsonFile;
+		}
 
 	private:
 

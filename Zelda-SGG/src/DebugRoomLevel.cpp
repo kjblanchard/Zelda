@@ -1,6 +1,7 @@
 ﻿#include "DebugRoomLevel.h"
 #include "Player.h"
 #include "GameObjectList.h"
+#include "Input.h"
 #include "Sound.h"
 #include "Tile.h"
 #include "TileMapFactory.h"
@@ -23,8 +24,7 @@ void DebugRoomLevel::Startup()
 			_levelGameObjectList.AddToGameObjectList(SpawnTileByType(TileMap->JsonMapData[i], SG::Vector3(xLocation, yLocation)));
 	}
 
-	_levelGameObjectList.AddToGameObjectList(new Player(SG::Vector3(32.0)));
-
+	_levelGameObjectList.AddToGameObjectList(CreatePlayerFromJson());
 	SG::Sound::PlayMusic(SG::MusicToPlay::Overworld);
 
 }
@@ -42,6 +42,29 @@ void DebugRoomLevel::Draw(SG::SpriteBatch& spriteBatch)
 void DebugRoomLevel::End()
 {
 	_levelGameObjectList.Reset();
+}
+
+Player* DebugRoomLevel::CreatePlayerFromJson()
+{
+	Player* startPlayer = nullptr;
+	auto jsonFile = SG::TileMapFactory::ReturnLevelJson();
+	if (jsonFile != nullptr)
+	{
+		if (jsonFile.contains("layers"))
+		{
+			auto jsonLayers = jsonFile["layers"];
+			if (jsonLayers[1].contains("objects"))
+			{
+				auto jsonObjects = jsonLayers[1]["objects"][0];
+				auto spawnX = jsonObjects["x"];
+				auto spawnY = jsonObjects["y"];
+				startPlayer = new Player(SG::Vector3(spawnX, spawnY), SG::Input::GetPlayerController(0));
+				return startPlayer;
+			}
+
+		}
+	}
+	return startPlayer;
 }
 
 SG::Tile* DebugRoomLevel::SpawnTileByType(int tileNum, SG::Vector3 location)

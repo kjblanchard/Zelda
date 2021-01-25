@@ -25,14 +25,15 @@ Player::Player(SG::Vector3 location)
 	_location = location;
 }
 
+Player::Player(SG::Vector3 location, SG::Controller* controller)
+	:Player(location)
+{
+	_inputComponent = std::make_unique<SG::InputComponent>(controller);
+}
+
 void Player::Startup()
 {
-
-	//TODO Remove this later, this is just for ease of use until I get levels Implemented
-	auto controller = SG::Input::GetPlayerController(0);
-
 	_imageComponent = std::make_unique<SG::ImageComponent>(SG::SpriteSheetEnum::Link, SG::Point{32,32});
-	_inputComponent = std::make_unique<SG::InputComponent>(controller);
 }
 
 void Player::Update(const double& deltaTime)

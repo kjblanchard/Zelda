@@ -2,12 +2,14 @@
 #include <string>
 #include <istream>
 #include <fstream>
+#include "GameObject.h"
 #include "TileMap.h"
 
 #include  "TileMapFactory.h"
 
 namespace SG
 {
+	//statics
 	std::string TileMapFactory::readFile;
 	nlohmann::json TileMapFactory::jsonFile;
 
@@ -40,4 +42,6 @@ namespace SG
 		return tilemap;
 
 	}
+
+
 }

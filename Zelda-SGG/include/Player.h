@@ -10,6 +10,8 @@
 #include <memory>
 
 namespace SG {
+	class Controller;
+	class PlayerController;
 	class ImageComponent;
 	class InputComponent;
 }
@@ -21,6 +23,7 @@ public:
 	virtual ~Player();
 
 	Player(SG::Vector3 location);
+	Player(SG::Vector3 location, SG::Controller* controller);
 	void Startup() override;
 	void Update(const double& deltaTime) override;
 	void Draw(SG::SpriteBatch& spriteBatch) override;

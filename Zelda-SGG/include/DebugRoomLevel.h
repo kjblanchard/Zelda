@@ -10,6 +10,8 @@
 #include "State.h"
 #include "TileMap.h"
 
+class Player;
+
 namespace SG {
 	class Tile;
 	enum class TileTypes;
@@ -23,6 +25,8 @@ public:
 	void Update(const double& deltaTime) override;
 	void Draw(SG::SpriteBatch& spriteBatch) override;
 	void End() override;
+
+	Player* CreatePlayerFromJson();
 
 private:
 

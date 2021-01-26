@@ -17,11 +17,11 @@ namespace SG
 	struct SGGENGINE_API Vector3
 	{
 		Vector3();
-		Vector3(float xy);
-		Vector3(float x, float y, float z = 0);
+		Vector3(int xy);
+		Vector3(int x, int y, int z = 0);
 
-		float X;
-		float Y;
-		float Z;
+		int X;
+		int Y;
+		int Z;
 	};
 }

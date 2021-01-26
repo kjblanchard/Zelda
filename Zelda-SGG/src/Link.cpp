@@ -1,6 +1,5 @@
-﻿#include "Player.h"
+﻿#include "Link.h"
 #include "PlayerController.h"
-#include <Input.h>
 #include "components/ImageComponent.h"
 #include "components/InputComponent.h"
 #include "Spritesheet.h"
@@ -8,52 +7,52 @@
 #include "data/Vector3.h"
 
 
-Player::Player()
+Link::Link()
 	: GameObject(), _imageComponent(nullptr), _inputComponent(nullptr)
 {
 
 }
 
-Player::~Player()
+Link::~Link()
 {
 }
 
-Player::Player(SG::Vector3 location)
-	: Player()
+Link::Link(SG::Vector3 location)
+	: Link()
 {
 	_location = location;
 }
 
-Player::Player(SG::Vector3 location, SG::Controller* controller)
-	:Player(location)
+Link::Link(SG::Vector3 location, SG::Controller* controller)
+	:Link(location)
 {
 	_inputComponent = std::make_unique<SG::InputComponent>(controller);
 }
 
-void Player::Startup()
+void Link::Startup()
 {
 	_imageComponent = std::make_unique<SG::ImageComponent>(SG::SpriteSheetEnum::Link, SG::Point{32,32});
 }
 
-void Player::Update(const double& deltaTime)
+void Link::Update(const double& deltaTime)
 {
 	HandleInput();
 	ComponentUpdate();
 }
 
-void Player::Draw(SG::SpriteBatch& spriteBatch)
+void Link::Draw(SG::SpriteBatch& spriteBatch)
 {
 	_imageComponent->Draw(spriteBatch);
 
 }
 
 
-void Player::ComponentUpdate()
+void Link::ComponentUpdate()
 {
 	_imageComponent->Update(_location);
 }
 
-void Player::HandleInput()
+void Link::HandleInput()
 {
 	if(_inputComponent)
 	{

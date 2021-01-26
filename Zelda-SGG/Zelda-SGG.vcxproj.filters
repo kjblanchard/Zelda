@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\ZeldaWorld.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -27,11 +24,14 @@
     <ClCompile Include="src\DebugRoomLevel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Link.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ZeldaTiled.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\Player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\ZeldaWorld.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -39,6 +39,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\DebugRoomLevel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Link.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ZeldaTiled.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

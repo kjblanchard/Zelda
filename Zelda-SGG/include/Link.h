@@ -16,14 +16,14 @@ namespace SG {
 	class InputComponent;
 }
 
-class Player : public SG::GameObject
+class Link : public SG::GameObject
 {
 public:
-	Player();
-	virtual ~Player();
+	Link();
+	virtual ~Link();
 
-	Player(SG::Vector3 location);
-	Player(SG::Vector3 location, SG::Controller* controller);
+	Link(SG::Vector3 location);
+	Link(SG::Vector3 location, SG::Controller* controller);
 	void Startup() override;
 	void Update(const double& deltaTime) override;
 	void Draw(SG::SpriteBatch& spriteBatch) override;

@@ -1,8 +1,5 @@
 ﻿#include "pch.h"
-
-
 #include  "TileMap.h"
-
 #include "Tiled.h"
 
 namespace SG

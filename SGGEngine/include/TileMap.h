@@ -24,10 +24,7 @@ namespace SG
 		nlohmann::basic_json<> JsonMapData = nullptr;
 		int WidthOfMap = 0;
 		int HeightOfMap = 0;
-
 		static TileMap* GenerateTileMap(std::string mapName);
-
-
 
 	private:
 		inline static const std::string Layers = "layers";

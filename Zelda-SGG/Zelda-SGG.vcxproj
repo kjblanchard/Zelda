@@ -20,15 +20,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\DebugRoomLevel.cpp" />
-    <ClCompile Include="src\Player.cpp" />
+    <ClCompile Include="src\Link.cpp" />
     <ClCompile Include="src\Statics.cpp" />
     <ClCompile Include="src\ZeldaWorld.cpp" />
+    <ClCompile Include="src\ZeldaTiled.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\DebugRoomLevel.h" />
-    <ClInclude Include="include\Player.h" />
+    <ClInclude Include="include\Link.h" />
     <ClInclude Include="include\Statics.h" />
     <ClInclude Include="include\ZeldaWorld.h" />
+    <ClInclude Include="include\ZeldaTiled.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SGGEngine\SGGEngine.vcxproj">

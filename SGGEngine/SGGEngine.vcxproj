@@ -187,7 +187,6 @@
     <ClInclude Include="include\GameObjectList.h" />
     <ClInclude Include="include\Sound.h" />
     <ClInclude Include="include\Spritesheet.h" />
-    <ClInclude Include="include\Tile.h" />
     <ClInclude Include="include\World.h" />
     <ClInclude Include="include\GameClock.h" />
     <ClInclude Include="include\GameObject.h" />
@@ -207,6 +206,7 @@
     <ClInclude Include="include\data\Vector3.h" />
     <ClInclude Include="include\TileMap.h" />
     <ClInclude Include="include\Tiled.h" />
+    <ClInclude Include="include\Tile.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\components\Component.cpp" />
@@ -216,7 +216,6 @@
     <ClCompile Include="src\GameObjectList.cpp" />
     <ClCompile Include="src\Sound.cpp" />
     <ClCompile Include="src\Spritesheet.cpp" />
-    <ClCompile Include="src\Tile.cpp" />
     <ClCompile Include="src\World.cpp" />
     <ClCompile Include="src\GameClock.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
@@ -241,6 +240,7 @@
     <ClCompile Include="src\data\Vector3.cpp" />
     <ClCompile Include="src\TileMap.cpp" />
     <ClCompile Include="src\Tiled.cpp" />
+    <ClCompile Include="src\Tile.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

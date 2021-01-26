@@ -8,12 +8,12 @@
 #pragma once
 #include "GameObjectList.h"
 #include "State.h"
+#include "Tile.h"
 #include "TileMap.h"
 
-class Player;
+class Link;
 
 namespace SG {
-	class Tile;
 	enum class TileTypes;
 }
 
@@ -26,12 +26,7 @@ public:
 	void Draw(SG::SpriteBatch& spriteBatch) override;
 	void End() override;
 
-	Player* CreatePlayerFromJson();
-
 private:
-
-	SG::Tile* SpawnTileByType(int tileNum, SG::Vector3 location);
 	std::unique_ptr<SG::TileMap> TileMap;
 	SG::GameObjectList _levelGameObjectList;
-
 };

@@ -16,13 +16,22 @@
 
 namespace SG
 {
+	class GameObject;
+
 	class SGGENGINE_API Tiled
 	{
 	public:
 
-		static std::string CurrentTiledString;
-		static nlohmann::json CurrentTiledJson;
+		static nlohmann::json CurrentTiledJson()
+		{
+			return _currentTiledJson;
+		}
 
 		static const nlohmann::json& GenerateJsonFromTileMapFile(std::string fileName);
+
+	protected:
+		static nlohmann::json _currentTiledJson;
+		static std::string _currentTiledString;
+
 	};
 }

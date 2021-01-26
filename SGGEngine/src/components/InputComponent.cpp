@@ -4,15 +4,14 @@
 
 namespace SG
 {
-
+	InputComponent::InputComponent(Controller* controller, GameObject* gameObject) : Component(gameObject,SGComponentTypes::Input),CurrentController(controller)
+	{
+	}
 
 	void InputComponent::TakeControl(SG::Controller* controllerToUse)
 	{
 		CurrentController = controllerToUse;
 	}
 
-	InputComponent::InputComponent(SG::Controller* controller): Component(nullptr,SGComponentTypes::Input)
-	{
-		CurrentController = controller;
-	}
+
 }

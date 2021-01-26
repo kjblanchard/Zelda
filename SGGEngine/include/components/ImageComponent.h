@@ -26,8 +26,8 @@ namespace SG
 	class SGGENGINE_API ImageComponent : public Component
 	{
 	public:
-		ImageComponent(SpriteSheetEnum spriteSheetToLoad, const SDL_Rect& spriteSheetLocationAndSize);
-		ImageComponent(SpriteSheetEnum spriteSheetToLoad, Point imageSize);
+		ImageComponent(SpriteSheetEnum spriteSheetToLoad, const SDL_Rect& spriteSheetLocationAndSize, GameObject* gameObject = nullptr);
+		ImageComponent(SpriteSheetEnum spriteSheetToLoad, Point imageSize, GameObject* gameObject = nullptr);
 		~ImageComponent();
 
 		void Update(Vector3 location);

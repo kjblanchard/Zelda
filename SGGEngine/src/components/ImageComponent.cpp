@@ -7,14 +7,13 @@
 namespace SG
 {
 
-
-	ImageComponent::ImageComponent(SpriteSheetEnum spriteSheetToLoad, const SDL_Rect& spriteSheetLocationAndSize):
-		Component(nullptr,SGComponentTypes::Image)
+	ImageComponent::ImageComponent(SpriteSheetEnum spriteSheetToLoad, const SDL_Rect& spriteSheetLocationAndSize,
+		GameObject* gameObject) : Component(gameObject,SGComponentTypes::Image)
 	{
 		image = std::make_unique<Image>(spriteSheetToLoad, spriteSheetLocationAndSize);
 	}
 
-	ImageComponent::ImageComponent(SpriteSheetEnum spriteSheetToLoad, Point imageSize): Component(nullptr,SGComponentTypes::Image)
+	ImageComponent::ImageComponent(SpriteSheetEnum spriteSheetToLoad, Point imageSize, GameObject* gameObject) : Component(gameObject,SGComponentTypes::Image)
 	{
 		image = std::make_unique<Image>(spriteSheetToLoad, imageSize);
 	}

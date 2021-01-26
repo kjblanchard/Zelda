@@ -26,12 +26,12 @@ Link::Link(SG::Vector3 location)
 Link::Link(SG::Vector3 location, SG::Controller* controller)
 	:Link(location)
 {
-	_inputComponent = std::make_unique<SG::InputComponent>(controller);
+	_inputComponent = std::make_unique<SG::InputComponent>(controller, this);
 }
 
 void Link::Startup()
 {
-	_imageComponent = std::make_unique<SG::ImageComponent>(SG::SpriteSheetEnum::Link, SG::Point{32,32});
+	_imageComponent = std::make_unique<SG::ImageComponent>(SG::SpriteSheetEnum::Link, SG::Point{32,32}, this);
 }
 
 void Link::Update(const double& deltaTime)
@@ -67,6 +67,7 @@ void Link::HandleInput()
 			if (_inputComponent->CurrentController->IsButtonPressed(button) || _inputComponent->CurrentController->IsButtonHeld(button))
 			{
 				_location.Y++;
+
 			}
 			button = SG::ControllerButtons::Left;
 			if (_inputComponent->CurrentController->IsButtonPressed(button) || _inputComponent->CurrentController->IsButtonHeld(button))

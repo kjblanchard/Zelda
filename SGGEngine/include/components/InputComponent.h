@@ -20,7 +20,7 @@ namespace SG
 	class SGGENGINE_API InputComponent : Component
 	{
 	public:
-		InputComponent(Controller* controller);
+		InputComponent(Controller* controller, GameObject* gameObject = nullptr);
 
 		void TakeControl(Controller* controllerToUse);
 

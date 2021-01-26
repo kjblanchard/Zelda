@@ -5,6 +5,8 @@
 //
 ////////////////////////////////////////////////////////////
 #pragma once
+#pragma warning(push)
+#pragma warning(disable : 4244)
 #ifdef SGGENGINE_EXPORTS
 #define SGGENGINE_API __declspec(dllexport)
 #else
@@ -27,9 +29,9 @@ namespace SG
 	struct MusicFile
 	{
 		std::string FileLocation;
-		bool ShouldIntroLoop;
-		double IntroLoopTimeBegin;
-		double IntroLoopTimeEnd;
+		bool ShouldIntroLoop = false;
+		double IntroLoopTimeBegin = 0.0;
+		double IntroLoopTimeEnd = 0.0;
 	};
 
 	class SGGENGINE_API Sound
@@ -47,9 +49,12 @@ namespace SG
 		static Uint32 ContinuouslyLoopMusic(Uint32 interval, void* param)
 		{
 			Mix_SetMusicPosition(CurrentPlayingMusicFile.IntroLoopTimeBegin);
+
 			auto timer = SDL_AddTimer((CurrentPlayingMusicFile.IntroLoopTimeEnd - CurrentPlayingMusicFile.IntroLoopTimeBegin + 0.01) * 1000, ContinuouslyLoopMusic, nullptr);
 			return 0;
 		}
 		static SDL_TimerID CurrentMusicTimer;
 	};
 }
+
+#pragma warning(pop)

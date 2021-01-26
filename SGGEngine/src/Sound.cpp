@@ -1,6 +1,8 @@
-﻿#include "pch.h"
+﻿
+#include "pch.h"
 
-
+#pragma warning(push)
+#pragma warning(disable : 4244)
 #include  "Sound.h"
 
 #include <future>
@@ -32,3 +34,5 @@ namespace SG
 	}
 
 }
+
+#pragma warning(pop)

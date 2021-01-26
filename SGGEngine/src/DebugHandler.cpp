@@ -1,4 +1,7 @@
-﻿#include "pch.h"
+﻿
+#include "pch.h"
+#pragma warning(push)
+#pragma warning(disable : 26819)
 #include  "DebugHandler.h"
 
 #include <SDL_image.h>
@@ -35,8 +38,10 @@ namespace SG
 		case ErrorCodes::SDLMixerError:
 			printf("SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError());
 			break;
-		default: ;
+		default: break;
 		}
 	}
 
 }
+
+#pragma warning(pop)

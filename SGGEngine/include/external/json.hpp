@@ -1,3 +1,6 @@
+
+
+
 /*
     __ _____ _____ _____
  __|  |   __|     |   | |  JSON for Modern C++
@@ -26,6 +29,8 @@ LIABILITY, WHETHER IN AN ACTION OF  CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE  OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+#pragma warning(push)
+#pragma warning(disable : 26819)
 
 #ifndef INCLUDE_NLOHMANN_JSON_HPP_
 #define INCLUDE_NLOHMANN_JSON_HPP_
@@ -33,6 +38,7 @@ SOFTWARE.
 #define NLOHMANN_JSON_VERSION_MAJOR 3
 #define NLOHMANN_JSON_VERSION_MINOR 9
 #define NLOHMANN_JSON_VERSION_PATCH 1
+
 
 #include <algorithm> // all_of, find, for_each
 #include <cstddef> // nullptr_t, ptrdiff_t, size_t
@@ -25445,3 +25451,5 @@ inline nlohmann::json::json_pointer operator "" _json_pointer(const char* s, std
 
 
 #endif  // INCLUDE_NLOHMANN_JSON_HPP_
+
+#pragma warning(pop)

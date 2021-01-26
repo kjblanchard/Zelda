@@ -1,5 +1,6 @@
 ﻿#include "pch.h"
-
+#pragma warning(push)
+#pragma warning(disable : 26812)
 
 #include  "Controller.h"
 
@@ -34,3 +35,5 @@ namespace SG
 	};
 
 }
+
+#pragma warning(pop)

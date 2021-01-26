@@ -8,7 +8,7 @@ void ZeldaTiled::CreateTileMapGameObjects(const SG::TileMap& tileMap, SG::GameOb
 {
 	int currentX = 0;
 	int currentY = 0;
-	for (int i = 0; i < tileMap.JsonMapData.size(); ++i)
+	for (unsigned int i = 0; i < tileMap.JsonMapData.size(); ++i)
 	{
 		auto yLocation = currentY * 32;
 		auto xLocation = currentX * 32;

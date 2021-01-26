@@ -41,7 +41,7 @@ namespace SG
 	};
 
 	template <typename T>
-	Tile<T>::Tile() : GameObject(), _imageComponent(nullptr)
+	Tile<T>::Tile() : GameObject(), TypeOfTile(), _imageComponent(nullptr)
 	{
 	}
 

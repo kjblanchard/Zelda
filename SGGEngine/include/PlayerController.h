@@ -4,8 +4,9 @@
 // Copyright (C) 2020-2021 - Kevin Blanchard
 //
 ////////////////////////////////////////////////////////////
-
 #pragma once
+#pragma warning(push)
+#pragma warning(disable : 26812)
 #ifdef SGGENGINE_EXPORTS
 #define SGGENGINE_API __declspec(dllexport)
 #else
@@ -56,3 +57,4 @@ namespace SG
 		uint8_t _playerNum{ 0 };
 	};
 }
+#pragma warning(pop)

@@ -13,6 +13,8 @@
 #endif
 #include <vector>
 
+
+#include "components/Component.h"
 #include "data/Vector3.h"
 
 
@@ -42,6 +44,10 @@ namespace SG
 
 		bool ShouldUpdate() const;
 
+		template <typename TcomponentEnum, typename TcomponentType >
+		TcomponentType& GetComponent(TcomponentEnum componentType);
+
+
 		/**
 		 * \brief Returns the location of the gameobject.
 		 * \return Returns the location in a vector3.  Z is used in the draw order
@@ -52,5 +58,21 @@ namespace SG
 		bool _shouldUpdate = true;
 		virtual void ComponentUpdate();
 
+		std::vector<Component*> _components;
+
 	};
+
+	template <typename Tenum, typename TcomponentType>
+	TcomponentType& GameObject::GetComponent(Tenum componentType)
+	{
+		for (auto && component : _components)
+		{
+			if(component->ComponentType() == componentType)
+			{
+				return static_cast<TcomponentType>(component);
+			}
+		}
+		return nullptr;
+
+	}
 }

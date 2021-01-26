@@ -11,16 +11,17 @@
 #else
 #define SGGENGINE_API __declspec(dllimport)
 #endif
+#include "Component.h"
 
 namespace SG
 {
 	class Controller;
 
-	class SGGENGINE_API InputComponent
+	class SGGENGINE_API InputComponent : Component
 	{
 	public:
-		InputComponent() = default;
 		InputComponent(Controller* controller);
+
 		void TakeControl(Controller* controllerToUse);
 
 		Controller* CurrentController;

@@ -4,8 +4,12 @@
 
 namespace SG
 {
-	Component::Component()
-		:_componentType(ComponentTypes::Default)
+
+	Component::Component(GameObject* gameObject): _gameObject(gameObject), _componentType(SGComponentTypes::Default)
+	{
+	}
+
+	Component::Component(GameObject* gameObject, SGComponentTypes componentType): _gameObject(gameObject), _componentType(componentType)
 	{
 	}
 

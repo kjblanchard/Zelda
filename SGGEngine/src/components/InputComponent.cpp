@@ -11,7 +11,7 @@ namespace SG
 		CurrentController = controllerToUse;
 	}
 
-	InputComponent::InputComponent(SG::Controller* controller)
+	InputComponent::InputComponent(SG::Controller* controller): Component(nullptr,SGComponentTypes::Input)
 	{
 		CurrentController = controller;
 	}

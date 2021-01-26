@@ -14,7 +14,9 @@
 
 namespace SG
 {
-	enum class ComponentTypes
+	class GameObject;
+
+	enum class SGComponentTypes
 	{
 		Default,
 		Image,
@@ -23,11 +25,19 @@ namespace SG
 
 	struct SGGENGINE_API Component
 	{
-		Component();
-		virtual ~Component() = default;
+		Component(GameObject* gameObject);
+		Component(GameObject* gameObject, SGComponentTypes componentType);
 
+		virtual ~Component() = default;
 		virtual void Startup();
 
-		ComponentTypes _componentType;
+		SGComponentTypes ComponentType() const
+		{
+			return _componentType;
+		}
+
+	protected:
+		GameObject* _gameObject;
+		SGComponentTypes _componentType;
 	};
 }

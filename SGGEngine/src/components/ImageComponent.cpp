@@ -8,12 +8,13 @@ namespace SG
 {
 
 
-	ImageComponent::ImageComponent(SpriteSheetEnum spriteSheetToLoad, const SDL_Rect& spriteSheetLocationAndSize)
+	ImageComponent::ImageComponent(SpriteSheetEnum spriteSheetToLoad, const SDL_Rect& spriteSheetLocationAndSize):
+		Component(nullptr,SGComponentTypes::Image)
 	{
 		image = std::make_unique<Image>(spriteSheetToLoad, spriteSheetLocationAndSize);
 	}
 
-	ImageComponent::ImageComponent(SpriteSheetEnum spriteSheetToLoad, Point imageSize)
+	ImageComponent::ImageComponent(SpriteSheetEnum spriteSheetToLoad, Point imageSize): Component(nullptr,SGComponentTypes::Image)
 	{
 		image = std::make_unique<Image>(spriteSheetToLoad, imageSize);
 	}

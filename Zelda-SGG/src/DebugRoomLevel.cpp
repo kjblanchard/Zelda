@@ -4,11 +4,11 @@
 #include "Input.h"
 #include "Sound.h"
 #include "Tile.h"
-#include "TileMapFactory.h"
+#include "Tiled.h"
 
 void DebugRoomLevel::Startup()
 {
-	TileMap.reset(SG::TileMapFactory::ConvertJsonFileToTileMap("overworld.json"));
+	TileMap.reset(SG::TileMap::GenerateTileMap("overworld.json"));
 
 	int currentX = 0;
 	int currentY = 0;
@@ -47,7 +47,7 @@ void DebugRoomLevel::End()
 Player* DebugRoomLevel::CreatePlayerFromJson()
 {
 	Player* startPlayer = nullptr;
-	auto jsonFile = SG::TileMapFactory::ReturnLevelJson();
+	auto jsonFile = SG::Tiled::CurrentTiledJson;
 	if (jsonFile != nullptr)
 	{
 		if (jsonFile.contains("layers"))

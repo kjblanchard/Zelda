@@ -93,10 +93,10 @@
     <ClInclude Include="include\external\json.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\TileMapFactory.h">
+    <ClInclude Include="include\TileMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\TileMap.h">
+    <ClInclude Include="include\Tiled.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -176,10 +176,10 @@
     <ClCompile Include="src\data\Vector3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\TileMapFactory.cpp">
+    <ClCompile Include="src\TileMap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\TileMap.cpp">
+    <ClCompile Include="src\Tiled.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

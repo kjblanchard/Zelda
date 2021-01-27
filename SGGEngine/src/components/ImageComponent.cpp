@@ -1,7 +1,6 @@
 ﻿#include "pch.h"
 #include "Image.h"
 #include "components/ImageComponent.h"
-
 #include "SpriteBatch.h"
 
 namespace SG

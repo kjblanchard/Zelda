@@ -17,6 +17,9 @@ namespace SG {
 	class TileMap;
 }
 
+/// <summary>
+/// These are the tyle numbers exported from tiled, and need to match the enum for spawning tiles correctly.
+/// </summary>
 enum class ZeldaTileTypes
 {
 	Default = 5,
@@ -34,9 +37,15 @@ class ZeldaTiled : SG::Tiled
 public:
 
 	static void CreateTileMapGameObjects(const SG::TileMap& tileMap, SG::GameObjectList& gameObjectList);
-	static SG::Tile<ZeldaTileTypes>* SpawnTileMapTileByZeldaTileType(int tileNum, SG::Vector3 location);
 	static void CreateObjectsFromJson(SG::GameObjectList& gameObjectList);
 
+private:
+
+	static SG::Tile<ZeldaTileTypes>* SpawnTileMapTileByZeldaTileType(int tileNum, SG::Vector3 location);
+
+	/// <summary>
+	/// Maps the specific x and y location in the tile so that it can be found
+	/// </summary>
 	inline static std::map<ZeldaTileTypes, SG::Point> TileTypesToSpriteLocation =
 	{
 		{ZeldaTileTypes::Default, SG::Point(5,0)},

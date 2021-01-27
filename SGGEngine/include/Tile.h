@@ -24,7 +24,6 @@ namespace SG
 	class Tile : public GameObject
 	{
 	public:
-		Tile();
 		Tile(T tileType, Vector3 location, const Point& locationInSpriteSheet);
 		~Tile();
 
@@ -41,16 +40,9 @@ namespace SG
 	};
 
 	template <typename T>
-	Tile<T>::Tile() : GameObject(), TypeOfTile(), _imageComponent(nullptr)
-	{
-	}
-
-	template <typename T>
-	Tile<T>::Tile(T tileType, Vector3 location, const Point& locationInSpriteSheet) : Tile()
+	Tile<T>::Tile(T tileType, Vector3 location, const Point& locationInSpriteSheet) : TypeOfTile(tileType), LocationInSpriteSheet(locationInSpriteSheet),_imageComponent(nullptr)
 	{
 		_location = location;
-		TypeOfTile = tileType;
-		LocationInSpriteSheet = locationInSpriteSheet;
 	}
 
 	template <typename T>
@@ -70,7 +62,6 @@ namespace SG
 	void Tile<T>::Draw(SpriteBatch& spriteBatch)
 	{
 		_imageComponent->Draw(spriteBatch);
-
 	}
 
 }

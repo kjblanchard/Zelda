@@ -35,7 +35,7 @@ public:
 
 	static void CreateTileMapGameObjects(const SG::TileMap& tileMap, SG::GameObjectList& gameObjectList);
 	static SG::Tile<ZeldaTileTypes>* SpawnTileMapTileByZeldaTileType(int tileNum, SG::Vector3 location);
-	static Link* CreatePlayerFromJson();
+	static void CreateObjectsFromJson(SG::GameObjectList& gameObjectList);
 
 	inline static std::map<ZeldaTileTypes, SG::Point> TileTypesToSpriteLocation =
 	{

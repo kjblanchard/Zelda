@@ -8,7 +8,7 @@ void DebugRoomLevel::Startup()
 {
 	TileMap.reset(SG::TileMap::GenerateTileMap("overworld.json"));
 	ZeldaTiled::CreateTileMapGameObjects(*TileMap, _levelGameObjectList);
-	_levelGameObjectList.AddToGameObjectList( ZeldaTiled::CreatePlayerFromJson());
+    ZeldaTiled::CreateObjectsFromJson(_levelGameObjectList);
 	SG::Sound::PlayMusic(SG::MusicToPlay::Overworld);
 }
 

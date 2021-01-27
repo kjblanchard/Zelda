@@ -28,10 +28,8 @@ SG::Tile<ZeldaTileTypes>* ZeldaTiled::SpawnTileMapTileByZeldaTileType(int tileNu
 	return new SG::Tile<ZeldaTileTypes>(tileType, location, point);
 }
 
-Link* ZeldaTiled::CreatePlayerFromJson()
+void ZeldaTiled::CreateObjectsFromJson(SG::GameObjectList& gameObjectList)
 {
-
-	Link* startPlayer = nullptr;
 	auto jsonFile = _currentTiledJson;
 	if (jsonFile != nullptr)
 	{
@@ -43,11 +41,9 @@ Link* ZeldaTiled::CreatePlayerFromJson()
 				auto jsonObjects = jsonLayers[1]["objects"][0];
 				auto spawnX = jsonObjects["x"];
 				auto spawnY = jsonObjects["y"];
-				startPlayer = new Link(SG::Vector3(spawnX, spawnY), SG::Input::GetPlayerController(0));
-				return startPlayer;
+				gameObjectList.AddToGameObjectList(new Link(SG::Vector3(spawnX, spawnY), SG::Input::GetPlayerController(0)));
 			}
 		}
 	}
-	return startPlayer;
 }
 

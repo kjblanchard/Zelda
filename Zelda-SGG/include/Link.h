@@ -19,11 +19,11 @@ namespace SG {
 class Link : public SG::GameObject
 {
 public:
-	Link();
-	virtual ~Link();
 
 	Link(SG::Vector3 location);
 	Link(SG::Vector3 location, SG::Controller* controller);
+	virtual ~Link();
+
 	void Startup() override;
 	void Update(const double& deltaTime) override;
 	void Draw(SG::SpriteBatch& spriteBatch) override;
@@ -31,6 +31,11 @@ public:
 private:
 	void ComponentUpdate() override;
 	void HandleInput();
+
+/// <summary>
+/// Components
+/// </summary>
+private:
 	std::unique_ptr<SG::ImageComponent> _imageComponent;
 	std::unique_ptr<SG::InputComponent> _inputComponent;
 };

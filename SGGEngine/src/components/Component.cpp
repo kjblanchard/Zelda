@@ -1,7 +1,5 @@
 ﻿#include "pch.h"
-
 #include "components/Component.h"
-
 #include "GameObject.h"
 
 namespace SG

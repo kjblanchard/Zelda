@@ -1,7 +1,4 @@
 ﻿#include "Link.h"
-
-#include <iostream>
-
 #include "PlayerController.h"
 #include "components/ImageComponent.h"
 #include "components/InputComponent.h"
@@ -10,20 +7,9 @@
 #include "data/Vector3.h"
 
 
-Link::Link()
-	: GameObject(), _imageComponent(nullptr), _inputComponent(nullptr)
-{
-
-}
-
-Link::~Link()
-{
-}
-
 Link::Link(SG::Vector3 location)
-	: Link()
+	: GameObject(location), _imageComponent(nullptr),_inputComponent(nullptr)
 {
-	_location = location;
 }
 
 Link::Link(SG::Vector3 location, SG::Controller* controller)
@@ -31,6 +17,11 @@ Link::Link(SG::Vector3 location, SG::Controller* controller)
 {
 	_inputComponent = std::make_unique<SG::InputComponent>(controller, this);
 }
+
+Link::~Link()
+{
+}
+
 
 void Link::Startup()
 {

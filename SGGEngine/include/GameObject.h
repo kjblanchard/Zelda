@@ -44,9 +44,10 @@ namespace SG
 
 		bool ShouldUpdate() const;
 
-		template <typename TcomponentEnum, typename TcomponentType >
-		TcomponentType& GetComponent(TcomponentEnum componentType);
+		template <typename T >
+		T* GetComponent();
 
+		void AddComponent(Component* component);
 
 		/**
 		 * \brief Returns the location of the gameobject.
@@ -57,22 +58,20 @@ namespace SG
 		Vector3 _location;
 		bool _shouldUpdate = true;
 		virtual void ComponentUpdate();
-
 		std::vector<Component*> _components;
 
 	};
 
-	template <typename Tenum, typename TcomponentType>
-	TcomponentType& GameObject::GetComponent(Tenum componentType)
+	template <typename T>
+	T* GameObject::GetComponent()
 	{
-		for (auto && component : _components)
+		for (auto*  component : _components)
 		{
-			if(component->ComponentType() == componentType)
-			{
-				return static_cast<TcomponentType>(component);
-			}
+			auto result = dynamic_cast<T*> (component);
+			if (result)
+				return result;
 		}
 		return nullptr;
-
 	}
+
 }

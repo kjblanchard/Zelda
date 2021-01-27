@@ -25,16 +25,13 @@ namespace SG
 
 	struct SGGENGINE_API Component
 	{
+
 		Component(GameObject* gameObject);
 		Component(GameObject* gameObject, SGComponentTypes componentType);
 
 		virtual ~Component() = default;
 		virtual void Startup();
 
-		SGComponentTypes ComponentType() const
-		{
-			return _componentType;
-		}
 
 	protected:
 		GameObject* _gameObject;

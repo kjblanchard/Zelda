@@ -25,6 +25,11 @@ void SG::GameObject::ComponentUpdate()
 {
 }
 
+void SG::GameObject::AddComponent(Component* component)
+{
+	_components.push_back(component);
+}
+
 
 void SG::GameObject::Draw(SpriteBatch& spriteBatch)
 {

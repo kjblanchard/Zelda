@@ -6,7 +6,6 @@
 
 namespace SG
 {
-
 	ImageComponent::ImageComponent(SpriteSheetEnum spriteSheetToLoad, const SDL_Rect& spriteSheetLocationAndSize,
 		GameObject* gameObject) : Component(gameObject,SGComponentTypes::Image)
 	{

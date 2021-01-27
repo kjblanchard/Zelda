@@ -1,4 +1,7 @@
 ﻿#include "Link.h"
+
+#include <iostream>
+
 #include "PlayerController.h"
 #include "components/ImageComponent.h"
 #include "components/InputComponent.h"
@@ -79,6 +82,7 @@ void Link::HandleInput()
 			{
 				_location.X++;
 			}
+
 
 		}
 	}

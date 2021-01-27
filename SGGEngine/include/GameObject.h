@@ -54,12 +54,13 @@ namespace SG
 		 * \return Returns the location in a vector3.  Z is used in the draw order
 		 */
 		Vector3 Location() const;
+
 	protected:
+
 		Vector3 _location;
 		bool _shouldUpdate = true;
 		virtual void ComponentUpdate();
 		std::vector<Component*> _components;
-
 	};
 
 	template <typename T>

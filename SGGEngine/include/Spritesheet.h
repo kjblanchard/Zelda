@@ -22,6 +22,7 @@ namespace SG
 		Default = 0,
 		TileSet = 1,
 		Link = 2,
+		LinkWalking = 3
 
 	};
 

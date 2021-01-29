@@ -10,6 +10,7 @@
 #include <memory>
 
 namespace SG {
+	class AnimationComponent;
 	class Controller;
 	class PlayerController;
 	class ImageComponent;
@@ -36,6 +37,8 @@ private:
 /// Components
 /// </summary>
 private:
-	std::unique_ptr<SG::ImageComponent> _imageComponent;
+	//std::unique_ptr<SG::ImageComponent> _imageComponent;
+
+	SG::AnimationComponent* _animationComponent;
 	std::unique_ptr<SG::InputComponent> _inputComponent;
 };

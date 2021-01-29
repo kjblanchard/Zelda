@@ -20,7 +20,8 @@ namespace SG
 	{
 		Default,
 		Image,
-		Input
+		Input,
+		Animation
 	};
 
 	struct SGGENGINE_API Component

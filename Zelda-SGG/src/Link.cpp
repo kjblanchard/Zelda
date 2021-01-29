@@ -3,12 +3,13 @@
 #include "components/ImageComponent.h"
 #include "components/InputComponent.h"
 #include "Spritesheet.h"
+#include "../../SGGEngine/src/components/AnimationComponent.h"
 #include "data/Point.h"
 #include "data/Vector3.h"
 
 
 Link::Link(SG::Vector3 location)
-	: GameObject(location), _imageComponent(nullptr),_inputComponent(nullptr)
+	: GameObject(location), _animationComponent(nullptr),_inputComponent(nullptr)
 {
 }
 
@@ -25,25 +26,29 @@ Link::~Link()
 
 void Link::Startup()
 {
-	_imageComponent = std::make_unique<SG::ImageComponent>(SG::SpriteSheetEnum::Link, SG::Point{32,32}, this);
+	//_imageComponent = std::make_unique<SG::ImageComponent>(SG::SpriteSheetEnum::Link, SG::Point{32,32}, this);
+	_animationComponent = new SG::AnimationComponent(this);
+	_animationComponent->Startup();
 }
 
 void Link::Update(const double& deltaTime)
 {
 	HandleInput();
 	ComponentUpdate();
+	_animationComponent->Update(deltaTime);
 }
 
 void Link::Draw(SG::SpriteBatch& spriteBatch)
 {
-	_imageComponent->Draw(spriteBatch);
+	//_imageComponent->Draw(spriteBatch);
+	_animationComponent->Draw(spriteBatch);
 
 }
 
 
 void Link::ComponentUpdate()
 {
-	_imageComponent->Update(_location);
+	//_imageComponent->Update(_location);
 }
 
 void Link::HandleInput()

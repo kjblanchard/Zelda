@@ -38,8 +38,8 @@ namespace SG
 		 */
 		void SetLocation(Vector3 location);
 
-	private:
 		std::unique_ptr<Image> image;
+	private:
 		SG::Vector3 _location;
 
 	};

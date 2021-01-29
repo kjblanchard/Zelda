@@ -66,7 +66,8 @@ namespace SG
 		inline static std::map<SpriteSheetEnum, Spritesheet*> _spriteSheetMap =
 		{
 		{SpriteSheetEnum::Link,new Spritesheet("hero.png")},
-		{SpriteSheetEnum::TileSet, new Spritesheet("tileset.png")}
+		{SpriteSheetEnum::TileSet, new Spritesheet("tileset.png")},
+		{SpriteSheetEnum::LinkWalking,new Spritesheet("Link_Movement.png")}
 		};
 
 		Point _screenSize;

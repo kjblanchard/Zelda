@@ -1,7 +1,6 @@
 ﻿#include "pch.h"
 #include "Image.h"
-
-#include  "AnimationComponent.h"
+#include "components/AnimationComponent.h"
 
 #include "GameObject.h"
 

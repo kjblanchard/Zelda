@@ -34,9 +34,9 @@ namespace SG
 			{Point(1,1),160.0},
 
 		};
-		double CurrentAnimationTime = 0;
 
 		Spritesheet* SpriteSheet = World::GetGraphics()->LoadFromSpriteSheet(SpriteSheetEnum::LinkWalking);
+		double CurrentAnimationTime = 0;
 
 		Point Update(const double& deltaTime);
 

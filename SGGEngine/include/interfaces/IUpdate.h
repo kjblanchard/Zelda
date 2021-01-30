@@ -11,24 +11,27 @@
 #else
 #define SGGENGINE_API __declspec(dllimport)
 #endif
-#include "../../Animation.h"
-#include "components/ImageComponent.h"
 
 namespace SG
 {
-	class SGGENGINE_API AnimationComponent : Component
+	class SpriteBatch;
+
+	class SGGENGINE_API IUpdate
 	{
-
 	public:
+		virtual ~IUpdate() = default;
+	private:
+		virtual void Startup()
+		{
 
-		AnimationComponent(GameObject* gameObject);
+		}
 
-		void Startup() override;
-		void Update(const double& deltaTime);
-		void Draw(SpriteBatch& spriteBatch);
+		virtual void Update(const double& deltaTime)
+		{
+		}
 
-		ImageComponent* _imageComponent;
-		int _currentFrameInAnimation = 0;
-		Animation _currentAnimation;
+		virtual void Draw(SpriteBatch& spriteBatch)
+		{
+		}
 	};
 }

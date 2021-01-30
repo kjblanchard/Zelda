@@ -179,13 +179,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Animation.h" />
+    <ClInclude Include="include\animation\Animation.h" />
+    <ClInclude Include="include\animation\AnimationController.h" />
     <ClInclude Include="include\components\Component.h" />
     <ClInclude Include="include\Controller.h" />
     <ClInclude Include="include\DebugHandler.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="include\external\json.hpp" />
     <ClInclude Include="include\GameObjectList.h" />
+    <ClInclude Include="include\interfaces\IUpdate.h" />
     <ClInclude Include="include\Sound.h" />
     <ClInclude Include="include\Spritesheet.h" />
     <ClInclude Include="include\World.h" />
@@ -208,10 +210,12 @@
     <ClInclude Include="include\TileMap.h" />
     <ClInclude Include="include\Tiled.h" />
     <ClInclude Include="include\Tile.h" />
-    <ClInclude Include="src\components\AnimationComponent.h" />
+    <ClInclude Include="include\components\AnimationComponent.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="src\interfaces\IUpdate.cpp" />
+    <ClCompile Include="src\animation\Animation.cpp" />
+    <ClCompile Include="src\animation\AnimationController.cpp" />
     <ClCompile Include="src\components\AnimationComponent.cpp" />
     <ClCompile Include="src\components\Component.cpp" />
     <ClCompile Include="src\Controller.cpp" />

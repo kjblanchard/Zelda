@@ -1,10 +1,7 @@
 ﻿#include "Link.h"
 #include "PlayerController.h"
-#include "components/ImageComponent.h"
 #include "components/InputComponent.h"
-#include "Spritesheet.h"
-#include "../../SGGEngine/src/components/AnimationComponent.h"
-#include "data/Point.h"
+#include "components/AnimationComponent.h"
 #include "data/Vector3.h"
 
 

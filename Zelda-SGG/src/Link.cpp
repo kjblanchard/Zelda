@@ -23,8 +23,7 @@ Link::~Link()
 
 void Link::Startup()
 {
-	//_imageComponent = std::make_unique<SG::ImageComponent>(SG::SpriteSheetEnum::Link, SG::Point{32,32}, this);
-	_animationComponent = new SG::AnimationComponent(this);
+	_animationComponent = new SG::AnimationComponent<LinkAnimations>(this);
 	_animationComponent->Startup();
 }
 
@@ -37,7 +36,6 @@ void Link::Update(const double& deltaTime)
 
 void Link::Draw(SG::SpriteBatch& spriteBatch)
 {
-	//_imageComponent->Draw(spriteBatch);
 	_animationComponent->Draw(spriteBatch);
 
 }
@@ -45,7 +43,6 @@ void Link::Draw(SG::SpriteBatch& spriteBatch)
 
 void Link::ComponentUpdate()
 {
-	//_imageComponent->Update(_location);
 }
 
 void Link::HandleInput()

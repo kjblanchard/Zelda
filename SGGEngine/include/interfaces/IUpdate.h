@@ -20,7 +20,7 @@ namespace SG
 	{
 	public:
 		virtual ~IUpdate() = default;
-	private:
+
 		virtual void Startup()
 		{
 

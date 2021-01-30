@@ -23,22 +23,17 @@
 namespace SG
 {
 
-	class SGGENGINE_API Animation
+	template <typename T>
+	struct Animation
 	{
 	public:
-
+		T AnimationEnumType;
+		static std::vector < std::pair<Point, int>> LocationAndLengthOfAnimation;
+		Spritesheet* SpriteSheet = nullptr;
 		int CurrentFrameInAnimation = 0;
-		std::vector < std::pair<Point, double>> LocationAndLengthOfAnimation =
-		{
-			{Point(0,1),160.0},
-			{Point(1,1),160.0},
-
-		};
-
-		Spritesheet* SpriteSheet = World::GetGraphics()->LoadFromSpriteSheet(SpriteSheetEnum::LinkWalking);
 		double CurrentAnimationTime = 0;
-
-		Point Update(const double& deltaTime);
+		Point CurrentFrame = SG::Point(0,0);
+		static std::vector<int> FrameCallbacks;
 
 	};
 }

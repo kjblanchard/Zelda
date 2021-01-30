@@ -16,6 +16,7 @@
 #include "Component.h"
 #include "Spritesheet.h"
 #include "data/Point.h"
+#include "data/Vector3.h"
 
 namespace SG
 {

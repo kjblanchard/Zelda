@@ -9,8 +9,11 @@
 #include "GameObject.h"
 #include <memory>
 
+#include "components/AnimationComponent.h"
+
+enum class LinkAnimations;
+
 namespace SG {
-	class AnimationComponent;
 	class Controller;
 	class PlayerController;
 	class ImageComponent;
@@ -39,6 +42,6 @@ private:
 private:
 	//std::unique_ptr<SG::ImageComponent> _imageComponent;
 
-	SG::AnimationComponent* _animationComponent;
+	SG::AnimationComponent<LinkAnimations>* _animationComponent;
 	std::unique_ptr<SG::InputComponent> _inputComponent;
 };

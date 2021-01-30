@@ -28,15 +28,5 @@ class LinkAnimationController : public SG::AnimationController<LinkAnimations>
 	void Draw(SG::SpriteBatch& spriteBatch) override;
 	void ChangeAnimation(LinkAnimations animationEnum) override;
 
-	inline static std::vector<SG::Animation> Animations
-	{
-
-	};
-
-
-
-
-
-
 
 };

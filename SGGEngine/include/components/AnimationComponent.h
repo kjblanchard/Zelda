@@ -12,11 +12,13 @@
 #define SGGENGINE_API __declspec(dllimport)
 #endif
 #include "animation/Animation.h"
+#include "animation/AnimationController.h"
 #include "components/ImageComponent.h"
 
 namespace SG
 {
-	class SGGENGINE_API AnimationComponent : Component
+	template <typename T>
+	class AnimationComponent :  Component
 	{
 
 	public:
@@ -26,9 +28,28 @@ namespace SG
 		void Startup() override;
 		void Update(const double& deltaTime);
 		void Draw(SpriteBatch& spriteBatch);
-
-		ImageComponent* _imageComponent;
-		int _currentFrameInAnimation = 0;
-		Animation _currentAnimation;
+		AnimationController<T> AnimationController;
 	};
+
+	template <typename T>
+	AnimationComponent<T>::AnimationComponent(GameObject* gameObject) : Component(gameObject, SGComponentTypes::Animation)
+	{
+	}
+
+	template <typename T>
+	void AnimationComponent<T>::Startup()
+	{
+	}
+
+	template <typename T>
+	void AnimationComponent<T>::Update(const double& deltaTime)
+	{
+		AnimationController.Update(deltaTime);
+	}
+
+	template <typename T>
+	void AnimationComponent<T>::Draw(SpriteBatch& spriteBatch)
+	{
+		AnimationController.Draw(spriteBatch);
+	}
 }

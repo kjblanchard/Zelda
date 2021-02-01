@@ -22,13 +22,16 @@ namespace SG
 	{
 
 	public:
-
+		AnimationComponent() = default;
 		AnimationComponent(GameObject* gameObject);
 
 		void Startup() override;
 		void Update(const double& deltaTime);
 		void Draw(SpriteBatch& spriteBatch);
-		AnimationController<T> AnimationController;
+		T AnimationController;
+		void ChangeAnimation(int whatToChangeTo);
+
+		bool IsAnimPlaying;
 	};
 
 	template <typename T>
@@ -44,12 +47,20 @@ namespace SG
 	template <typename T>
 	void AnimationComponent<T>::Update(const double& deltaTime)
 	{
-		AnimationController.Update(deltaTime);
+		if(IsAnimPlaying)
+			AnimationController.Update(deltaTime);
 	}
 
 	template <typename T>
 	void AnimationComponent<T>::Draw(SpriteBatch& spriteBatch)
 	{
 		AnimationController.Draw(spriteBatch);
+	}
+
+	template <typename T>
+	void AnimationComponent<T>::ChangeAnimation(int whatToChangeTo)
+	{
+
+		AnimationController.ChangeAnimation(whatToChangeTo);
 	}
 }

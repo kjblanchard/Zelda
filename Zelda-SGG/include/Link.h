@@ -11,6 +11,7 @@
 
 #include "components/AnimationComponent.h"
 
+class LinkAnimationController;
 enum class LinkAnimations;
 
 namespace SG {
@@ -42,6 +43,6 @@ private:
 private:
 	//std::unique_ptr<SG::ImageComponent> _imageComponent;
 
-	SG::AnimationComponent<LinkAnimations>* _animationComponent;
+	SG::AnimationComponent<LinkAnimationController>* _animationComponent;
 	std::unique_ptr<SG::InputComponent> _inputComponent;
 };

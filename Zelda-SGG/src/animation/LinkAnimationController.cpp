@@ -5,58 +5,21 @@
 #include "Image.h"
 
 
-std::vector<SG::Animation<LinkAnimations>> SG::AnimationController<LinkAnimations>::Animations;
-std::vector < std::pair<SG::Point, int>> SG::Animation<LinkAnimations>::LocationAndLengthOfAnimation;
+std::vector<SG::Animation> SG::AnimationController::Animations;
+//std::vector < std::pair<SG::Point, int>> SG::Animation::LocationAndLengthOfAnimation;
+
+
 
 void LinkAnimationController::Startup()
 {
 	if(!staticsInitialized)
 	{
-
-	Animations = {
-	SG::Animation<LinkAnimations>
-	{
-		LinkAnimations::Idle,
-		SG::World::GetGraphics()->LoadFromSpriteSheet(SG::SpriteSheetEnum::LinkWalking)
-	},
-	SG::Animation<LinkAnimations>{
-					LinkAnimations::WalkUp,
-		SG::World::GetGraphics()->LoadFromSpriteSheet(SG::SpriteSheetEnum::LinkWalking)
-	},
-	SG::Animation<LinkAnimations>{
-								LinkAnimations::WalkRight,
-		SG::World::GetGraphics()->LoadFromSpriteSheet(SG::SpriteSheetEnum::LinkWalking)
-	},
-	SG::Animation<LinkAnimations>{
-			LinkAnimations::WalkDown,
-		SG::World::GetGraphics()->LoadFromSpriteSheet(SG::SpriteSheetEnum::LinkWalking)
-	},
-	SG::Animation<LinkAnimations>{
-						LinkAnimations::WalkLeft,
-		SG::World::GetGraphics()->LoadFromSpriteSheet(SG::SpriteSheetEnum::LinkWalking)
-	}
-
-	};
-	Animations[1].LocationAndLengthOfAnimation =
-	{
-		{SG::Point(0,0), 10},
-		{SG::Point(1,0), 10 }
-	};
-	Animations[2].LocationAndLengthOfAnimation =
-	{
-		{SG::Point(0,3), 10},
-		{SG::Point(1,3), 10 }
-	};
-	Animations[3].LocationAndLengthOfAnimation =
-	{
-		{SG::Point(0,1), 10},
-		{SG::Point(1,1), 10 }
-	};
-	Animations[4].LocationAndLengthOfAnimation =
-	{
-		{SG::Point(0,2), 10},
-		{SG::Point(1,2), 10 }
-	};
+		Animations = {
+			{LinkWalkUp() },
+			{LinkWalkRight()},
+			{LinkWalkDown()},
+			{LinkWalkLeft()}
+		};
 	staticsInitialized = true;
 	}
 
@@ -70,21 +33,39 @@ void LinkAnimationController::Update(const double& deltaTime)
 	TimeOnCurrentFrame += deltaTime;
 	if (TimeOnCurrentFrame >= FrameTime)
 	{
-		auto desiredFrame = CurrentFrame + 1;
-		if (desiredFrame >= CurrentAnimation.LocationAndLengthOfAnimation.size()) {
-			CurrentFrame = 0;
+		auto desiredFrame = CurrentFrameInAnimation + 1;
+
+		if(desiredFrame < CurrentTotalAnimationFrames)
+		{
+			CurrentFrameInAnimation++;
+			if(desiredFrame > CurrentAnimation.LocationAndLengthOfAnimation[CurrentFrameOnThisSprite].second)
+			{
+			desiredFrame = CurrentFrameOnThisSprite + 1;
+				if (desiredFrame >= CurrentAnimation.LocationAndLengthOfAnimation.size())
+				{
+					CurrentFrameOnThisSprite = 0;
+					CurrentFrameInAnimation = 0;
+				}
+				else
+				{
+					++CurrentFrameOnThisSprite;
+					CurrentFrameInAnimation = 0;
+				}
+			}
+
 		}
 		else
 		{
-			++CurrentFrame;
+		CurrentFrameInAnimation = 0;
 		}
+
 		TimeOnCurrentFrame = 0;
 	}
 }
 
 void LinkAnimationController::Draw(SG::SpriteBatch& spriteBatch)
 {
-	auto spritesheetpoint = CurrentAnimation.LocationAndLengthOfAnimation[CurrentFrame].first;
+	auto spritesheetpoint = CurrentAnimation.LocationAndLengthOfAnimation[CurrentFrameOnThisSprite].first;
 	spritesheetpoint.X *= 32;
 	spritesheetpoint.Y *= 32;
 	ImageComponent->image->LocationAndSizeInSpriteSheet.x = spritesheetpoint.X;
@@ -92,6 +73,19 @@ void LinkAnimationController::Draw(SG::SpriteBatch& spriteBatch)
 	ImageComponent->Draw(spriteBatch);
 }
 
-void LinkAnimationController::ChangeAnimation(LinkAnimations animationEnum)
+void LinkAnimationController::ChangeAnimation(int animationEnum)
 {
+	for (auto animation : Animations)
+	{
+		if(animation.AnimationEnumType == animationEnum)
+		{
+			CurrentAnimation = animation;
+			int totalAnimationFrames = 0;
+			for (auto locationAndLengthOfAnimation : animation.LocationAndLengthOfAnimation)
+			{
+				totalAnimationFrames += locationAndLengthOfAnimation.second;
+			}
+			CurrentTotalAnimationFrames = totalAnimationFrames;
+		}
+	}
 }

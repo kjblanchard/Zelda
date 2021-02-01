@@ -23,12 +23,11 @@
 namespace SG
 {
 
-	template <typename T>
 	struct Animation
 	{
 	public:
-		T AnimationEnumType;
-		static std::vector < std::pair<Point, int>> LocationAndLengthOfAnimation;
+		int AnimationEnumType;
+		std::vector < std::pair<Point, int>> LocationAndLengthOfAnimation;
 		Spritesheet* SpriteSheet = nullptr;
 		int CurrentFrameInAnimation = 0;
 		double CurrentAnimationTime = 0;

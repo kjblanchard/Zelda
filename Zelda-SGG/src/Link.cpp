@@ -1,5 +1,6 @@
 ﻿#include "Link.h"
 #include "PlayerController.h"
+#include "animation/LinkAnimationController.h"
 #include "components/InputComponent.h"
 #include "components/AnimationComponent.h"
 #include "data/Vector3.h"
@@ -23,8 +24,14 @@ Link::~Link()
 
 void Link::Startup()
 {
-	_animationComponent = new SG::AnimationComponent<LinkAnimations>(this);
-	_animationComponent->Startup();
+	_animationComponent = new SG::AnimationComponent<LinkAnimationController>(this);
+
+	auto temp = new LinkAnimationController(this);
+	temp->Startup();
+	_animationComponent->AnimationController = *temp;
+
+
+	_animationComponent->ChangeAnimation((int)LinkAnimations::WalkUp);
 }
 
 void Link::Update(const double& deltaTime)
@@ -32,6 +39,7 @@ void Link::Update(const double& deltaTime)
 	HandleInput();
 	ComponentUpdate();
 	_animationComponent->Update(deltaTime);
+	_animationComponent->AnimationController.ImageComponent->SetLocation(Location());
 }
 
 void Link::Draw(SG::SpriteBatch& spriteBatch)
@@ -47,6 +55,7 @@ void Link::ComponentUpdate()
 
 void Link::HandleInput()
 {
+	_animationComponent->IsAnimPlaying = false;
 	if(_inputComponent)
 	{
 		if(_inputComponent->CurrentController)
@@ -54,23 +63,36 @@ void Link::HandleInput()
 			SG::ControllerButtons button = SG::ControllerButtons::Up;
 			if (_inputComponent->CurrentController->IsButtonPressed(button) || _inputComponent->CurrentController->IsButtonHeld(button))
 			{
-				_location.Y--;
+				_animationComponent->IsAnimPlaying = true;
+				_location.Y -=2;
+				_animationComponent->ChangeAnimation((int)LinkAnimations::WalkUp);
 			}
 			button = SG::ControllerButtons::Down;
-			if (_inputComponent->CurrentController->IsButtonPressed(button) || _inputComponent->CurrentController->IsButtonHeld(button))
+			 if (_inputComponent->CurrentController->IsButtonPressed(button) || _inputComponent->CurrentController->IsButtonHeld(button))
 			{
-				_location.Y++;
+				 _animationComponent->IsAnimPlaying = true;
+				_location.Y+=2;
+				_animationComponent->ChangeAnimation((int)LinkAnimations::WalkDown);
+
 
 			}
 			button = SG::ControllerButtons::Left;
 			if (_inputComponent->CurrentController->IsButtonPressed(button) || _inputComponent->CurrentController->IsButtonHeld(button))
 			{
-				_location.X--;
+				_animationComponent->IsAnimPlaying = true;
+
+				_location.X-=2;
+				_animationComponent->ChangeAnimation((int)LinkAnimations::WalkLeft);
+
 			}
 			button = SG::ControllerButtons::Right;
 			if (_inputComponent->CurrentController->IsButtonPressed(button) || _inputComponent->CurrentController->IsButtonHeld(button))
 			{
-				_location.X++;
+				_animationComponent->IsAnimPlaying = true;
+
+				_location.X+=2;
+				_animationComponent->ChangeAnimation((int)LinkAnimations::WalkRight);
+
 			}
 
 

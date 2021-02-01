@@ -19,7 +19,6 @@ namespace SG
 	class ImageComponent;
 	class GameObject;
 
-	template <typename T>
 	class AnimationController : public IUpdate
 	{
 	public:
@@ -27,25 +26,26 @@ namespace SG
 		virtual ~AnimationController() = default;
 		GameObject* GameObject;
 
-		virtual void ChangeAnimation(T animationEnum);
+		virtual void ChangeAnimation(int animationEnum)
+		{
+		}
 
 
 		inline const static double FrameTime = 1000.00 / 60;
 
-		static std::vector<SG::Animation<T>> Animations;
+		static std::vector<SG::Animation> Animations;
 
-		Animation<T> CurrentAnimation;
+		Animation CurrentAnimation;
 
-		int CurrentFrame = 0;
+		int CurrentFrameOnThisSprite = 0;
+		int CurrentFrameInAnimation = 0;
+		int CurrentTotalAnimationFrames = 0;
 		double TimeOnCurrentFrame = 0.0;
 
 		bool staticsInitialized = false;
 		ImageComponent* ImageComponent;
 
+
 	};
 
-	template <typename T>
-	void AnimationController<T>::ChangeAnimation(T animationEnum)
-	{
-	}
 }

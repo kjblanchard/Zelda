@@ -28,7 +28,8 @@ namespace SG
 		WindowError = 4,
 		GameSlowdown = 5,
 		SDLSpriteSheetError = 6,
-		SDLMixerError = 7
+		SDLMixerError = 7,
+		AnimationError = 8
 
 	};
 

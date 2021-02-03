@@ -35,6 +35,12 @@ namespace SG
 		LocationAndSizeOnRenderer.y = Location.Y;
 	}
 
+	void Image::UpdateSourceRectLocationInSpriteSheet(const Point& locationOnSpriteSheet)
+	{
+		LocationAndSizeInSpriteSheet.x = locationOnSpriteSheet.X;
+		LocationAndSizeInSpriteSheet.y = locationOnSpriteSheet.Y;
+	}
+
 	Spritesheet* Image::GenerateImage(SpriteSheetEnum spriteSheetToLoad)
 	{
 		if (!_graphics)

@@ -38,6 +38,8 @@ namespace SG
 		case ErrorCodes::SDLMixerError:
 			printf("SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError());
 			break;
+		case ErrorCodes::AnimationError:
+			printf("Somehow there isn't a valid animation, probably forgot some boilerplate in the enum, etc");
 		default: break;
 		}
 	}

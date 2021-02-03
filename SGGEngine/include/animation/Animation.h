@@ -23,16 +23,44 @@
 namespace SG
 {
 
-	struct Animation
+	template <typename T>
+	class Animation
 	{
 	public:
-		int AnimationEnumType;
+		virtual ~Animation();
+		T AnimationEnumType;
 		std::vector < std::pair<Point, int>> LocationAndLengthOfAnimation;
 		Spritesheet* SpriteSheet = nullptr;
-		int CurrentFrameInAnimation = 0;
-		double CurrentAnimationTime = 0;
-		Point CurrentFrame = SG::Point(0,0);
-		static std::vector<int> FrameCallbacks;
 
+		int TotalAnimationFrames() const { return LocationAndLengthOfAnimation.size(); }
+		const Point DrawLocation(int currentFrame)
+		{
+
+			return LocationAndLengthOfAnimation[currentFrame].first * 32;
+		}
+
+		virtual void Startup();
+		virtual void FrameChangeCallBacks();
+		virtual void End();
 	};
+
+	template <typename T>
+	Animation<T>::~Animation()
+	{
+	}
+
+	template <typename T>
+	void Animation<T>::Startup()
+	{
+	}
+
+	template <typename T>
+	void Animation<T>::FrameChangeCallBacks()
+	{
+	}
+
+	template <typename T>
+	void Animation<T>::End()
+	{
+	}
 }

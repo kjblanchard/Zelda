@@ -24,14 +24,14 @@ Link::~Link()
 
 void Link::Startup()
 {
-	_animationComponent = new SG::AnimationComponent<LinkAnimationController>(this);
+	_animationComponent = new SG::AnimationComponent<LinkAnimationController, LinkAnimations>(this);
 
 	auto temp = new LinkAnimationController(this);
 	temp->Startup();
 	_animationComponent->AnimationController = *temp;
 
 
-	_animationComponent->ChangeAnimation((int)LinkAnimations::WalkUp);
+	_animationComponent->ChangeAnimation(LinkAnimations::WalkUp);
 }
 
 void Link::Update(const double& deltaTime)
@@ -64,15 +64,15 @@ void Link::HandleInput()
 			if (_inputComponent->CurrentController->IsButtonPressed(button) || _inputComponent->CurrentController->IsButtonHeld(button))
 			{
 				_animationComponent->IsAnimPlaying = true;
-				_location.Y -=2;
-				_animationComponent->ChangeAnimation((int)LinkAnimations::WalkUp);
+				_location.Y -=3;
+				_animationComponent->ChangeAnimation(LinkAnimations::WalkUp);
 			}
 			button = SG::ControllerButtons::Down;
 			 if (_inputComponent->CurrentController->IsButtonPressed(button) || _inputComponent->CurrentController->IsButtonHeld(button))
 			{
 				 _animationComponent->IsAnimPlaying = true;
-				_location.Y+=2;
-				_animationComponent->ChangeAnimation((int)LinkAnimations::WalkDown);
+				_location.Y+=3;
+				_animationComponent->ChangeAnimation(LinkAnimations::WalkDown);
 
 
 			}
@@ -81,8 +81,8 @@ void Link::HandleInput()
 			{
 				_animationComponent->IsAnimPlaying = true;
 
-				_location.X-=2;
-				_animationComponent->ChangeAnimation((int)LinkAnimations::WalkLeft);
+				_location.X-=3;
+				_animationComponent->ChangeAnimation((LinkAnimations::WalkLeft));
 
 			}
 			button = SG::ControllerButtons::Right;
@@ -90,8 +90,8 @@ void Link::HandleInput()
 			{
 				_animationComponent->IsAnimPlaying = true;
 
-				_location.X+=2;
-				_animationComponent->ChangeAnimation((int)LinkAnimations::WalkRight);
+				_location.X+=3;
+				_animationComponent->ChangeAnimation(LinkAnimations::WalkRight);
 
 			}
 

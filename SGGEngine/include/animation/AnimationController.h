@@ -13,29 +13,50 @@
 #endif
 #include "Animation.h"
 #include "interfaces/IUpdate.h"
+#include "DebugHandler.h"
 
 namespace SG
 {
 	class ImageComponent;
 	class GameObject;
 
+	template<typename T>
 	class AnimationController : public IUpdate
 	{
 	public:
-		AnimationController(GameObject* gameObject = nullptr) : GameObject(gameObject) {  }
+		AnimationController(GameObject* gameObject = nullptr) : GameObject(gameObject), CurrentAnimation(nullptr) {  }
 		virtual ~AnimationController() = default;
 		GameObject* GameObject;
 
-		virtual void ChangeAnimation(int animationEnum)
+		void ChangeAnimation(T animationEnum)
 		{
+			if (CurrentAnimation != nullptr)
+			{
+				if(CurrentAnimation->AnimationEnumType == animationEnum)
+					return;
+				CurrentAnimation->End();
+			}
+
+			for (int i = 0; i < Animations.size(); ++i)
+			{
+				if (Animations[i].AnimationEnumType == animationEnum)
+				{
+					CurrentAnimation = &Animations[i];
+					break;
+				}
+			}
+			if (CurrentAnimation)
+				CurrentAnimation->Startup();
+			else
+				DebugHandler::PrintErrorMessage(ErrorCodes::AnimationError);
 		}
 
 
 		inline const static double FrameTime = 1000.00 / 60;
 
-		static std::vector<SG::Animation> Animations;
+		static std::vector<Animation<T>> Animations;
 
-		Animation CurrentAnimation;
+		Animation<T>* CurrentAnimation = nullptr;
 
 		int CurrentFrameOnThisSprite = 0;
 		int CurrentFrameInAnimation = 0;
@@ -44,7 +65,6 @@ namespace SG
 
 		bool staticsInitialized = false;
 		ImageComponent* ImageComponent;
-
 
 	};
 

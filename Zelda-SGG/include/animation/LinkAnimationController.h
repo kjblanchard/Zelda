@@ -19,78 +19,79 @@ enum class LinkAnimations
 	WalkLeft = 5
 };
 
-class LinkWalkUp : public SG::Animation
+class LinkWalkUp : public SG::Animation<LinkAnimations>
 {
 public:
+
 	LinkWalkUp()
 	{
-		AnimationEnumType = (int)LinkAnimations::WalkUp;
+		AnimationEnumType = LinkAnimations::WalkUp;
 		SpriteSheet = SG::World::GetGraphics()->LoadFromSpriteSheet(SG::SpriteSheetEnum::LinkWalking);
 		LocationAndLengthOfAnimation =
 		{
-			{SG::Point(0,0), 10},
-			{SG::Point(1,0), 10 }
+			{SG::Point(0,0), 7},
+			{SG::Point(1,0), 7 }
 		};
 	}
+
 };
-class LinkWalkRight : public SG::Animation
+class LinkWalkRight : public SG::Animation<LinkAnimations>
 {
 public:
 
 	LinkWalkRight()
 	{
-		AnimationEnumType = (int)LinkAnimations::WalkRight;
+		AnimationEnumType = LinkAnimations::WalkRight;
 		SpriteSheet = SG::World::GetGraphics()->LoadFromSpriteSheet(SG::SpriteSheetEnum::LinkWalking);
 		LocationAndLengthOfAnimation =
 		{
-			{SG::Point(0,3), 10},
-			{SG::Point(1,3), 10 }
+			{SG::Point(0,3), 7},
+			{SG::Point(1,3), 7 }
 		};
 	}
 };
-class LinkWalkDown : public SG::Animation
+class LinkWalkDown : public SG::Animation<LinkAnimations>
 {
 public:
 
 	LinkWalkDown()
 	{
-		AnimationEnumType = (int)LinkAnimations::WalkDown;
+		AnimationEnumType = LinkAnimations::WalkDown;
 		SpriteSheet = SG::World::GetGraphics()->LoadFromSpriteSheet(SG::SpriteSheetEnum::LinkWalking);
 		LocationAndLengthOfAnimation =
 		{
-			{SG::Point(0,1), 10},
-			{SG::Point(1,1), 10 }
+			{SG::Point(0,1), 7},
+			{SG::Point(1,1), 7 }
 		};
 	}
 };
-class LinkWalkLeft :public  SG::Animation
+class LinkWalkLeft :public  SG::Animation<LinkAnimations>
 {
 public:
 
 	LinkWalkLeft()
 	{
-		AnimationEnumType = (int)LinkAnimations::WalkLeft;
+		AnimationEnumType = LinkAnimations::WalkLeft;
 		SpriteSheet = SG::World::GetGraphics()->LoadFromSpriteSheet(SG::SpriteSheetEnum::LinkWalking);
 		LocationAndLengthOfAnimation =
 		{
-			{SG::Point(0,2), 10},
-			{SG::Point(1,2), 10 }
+			{SG::Point(0,2), 7},
+			{SG::Point(1,2), 7 }
 		};
 	}
 };
 
 
 
-class LinkAnimationController : public SG::AnimationController
+class LinkAnimationController : public SG::AnimationController<LinkAnimations>
 {
 public:
-	LinkAnimationController() = default;
+	LinkAnimationController() = default ;
 	LinkAnimationController(SG::GameObject* gameObject) : AnimationController(gameObject) {}
 
 	void Startup() override;
 	void Update(const double& deltaTime) override;
 	void Draw(SG::SpriteBatch& spriteBatch) override;
-	void ChangeAnimation(int animationEnum) override;
 
 
 };

@@ -1,12 +1,11 @@
 ﻿#include "animation/LinkAnimationController.h"
-
+#include "Image.h"
 #include "SpriteBatch.h"
 #include "components/ImageComponent.h"
-#include "Image.h"
 
 
-std::vector<SG::Animation> SG::AnimationController::Animations;
-//std::vector < std::pair<SG::Point, int>> SG::Animation::LocationAndLengthOfAnimation;
+//statics
+std::vector<SG::Animation<LinkAnimations>> SG::AnimationController<LinkAnimations>::Animations;
 
 
 
@@ -34,58 +33,36 @@ void LinkAnimationController::Update(const double& deltaTime)
 	if (TimeOnCurrentFrame >= FrameTime)
 	{
 		auto desiredFrame = CurrentFrameInAnimation + 1;
-
-		if(desiredFrame < CurrentTotalAnimationFrames)
+		CurrentFrameInAnimation++;
+		if (desiredFrame > CurrentAnimation->LocationAndLengthOfAnimation[CurrentFrameOnThisSprite].second)
 		{
-			CurrentFrameInAnimation++;
-			if(desiredFrame > CurrentAnimation.LocationAndLengthOfAnimation[CurrentFrameOnThisSprite].second)
-			{
 			desiredFrame = CurrentFrameOnThisSprite + 1;
-				if (desiredFrame >= CurrentAnimation.LocationAndLengthOfAnimation.size())
-				{
-					CurrentFrameOnThisSprite = 0;
-					CurrentFrameInAnimation = 0;
-				}
-				else
-				{
-					++CurrentFrameOnThisSprite;
-					CurrentFrameInAnimation = 0;
-				}
+			if (desiredFrame >= CurrentAnimation->TotalAnimationFrames())
+			{
+				CurrentFrameOnThisSprite = 0;
+				CurrentFrameInAnimation = 0;
 			}
-
+			else
+			{
+				++CurrentFrameOnThisSprite;
+				CurrentFrameInAnimation = 0;
+			}
 		}
-		else
-		{
-		CurrentFrameInAnimation = 0;
-		}
 
-		TimeOnCurrentFrame = 0;
 	}
+	else
+	{
+		CurrentFrameInAnimation = 0;
+	}
+
+	TimeOnCurrentFrame = 0;
 }
 
 void LinkAnimationController::Draw(SG::SpriteBatch& spriteBatch)
 {
-	auto spritesheetpoint = CurrentAnimation.LocationAndLengthOfAnimation[CurrentFrameOnThisSprite].first;
-	spritesheetpoint.X *= 32;
-	spritesheetpoint.Y *= 32;
-	ImageComponent->image->LocationAndSizeInSpriteSheet.x = spritesheetpoint.X;
-	ImageComponent->image->LocationAndSizeInSpriteSheet.y = spritesheetpoint.Y;
+	//auto spritesheetpoint = CurrentAnimation->LocationAndLengthOfAnimation[CurrentFrameOnThisSprite].first;
+	//ImageComponent->image->LocationAndSizeInSpriteSheet.x = spritesheetpoint.X *= 32;
+	//ImageComponent->image->LocationAndSizeInSpriteSheet.y = spritesheetpoint.Y *=32;
+	ImageComponent->image->UpdateSourceRectLocationInSpriteSheet(CurrentAnimation->DrawLocation(CurrentFrameOnThisSprite));
 	ImageComponent->Draw(spriteBatch);
-}
-
-void LinkAnimationController::ChangeAnimation(int animationEnum)
-{
-	for (auto animation : Animations)
-	{
-		if(animation.AnimationEnumType == animationEnum)
-		{
-			CurrentAnimation = animation;
-			int totalAnimationFrames = 0;
-			for (auto locationAndLengthOfAnimation : animation.LocationAndLengthOfAnimation)
-			{
-				totalAnimationFrames += locationAndLengthOfAnimation.second;
-			}
-			CurrentTotalAnimationFrames = totalAnimationFrames;
-		}
-	}
 }

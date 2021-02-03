@@ -33,6 +33,10 @@ namespace SG
 		{
 
 		}
+		Point operator * (int mult)
+		{
+			return Point(X * mult, Y * mult);
+		}
 		int X;
 		int Y;
 	};

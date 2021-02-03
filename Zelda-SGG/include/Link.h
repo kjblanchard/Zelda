@@ -43,6 +43,6 @@ private:
 private:
 	//std::unique_ptr<SG::ImageComponent> _imageComponent;
 
-	SG::AnimationComponent<LinkAnimationController>* _animationComponent;
+	SG::AnimationComponent<LinkAnimationController, LinkAnimations>* _animationComponent;
 	std::unique_ptr<SG::InputComponent> _inputComponent;
 };

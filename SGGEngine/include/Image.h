@@ -30,6 +30,7 @@ namespace SG
 		Image(SpriteSheetEnum spriteSheetToLoad, const SDL_Rect& spriteSheetLocationAndSize);
 		Image(SpriteSheetEnum spriteSheetToLoad, Point imageSize);
 		void UpdateDestRectLocation(Vector3 location);
+		void UpdateSourceRectLocationInSpriteSheet(const Point& locationOnSpriteSheet);
 		Spritesheet* SpriteSheet;
 		Vector3 Location;
 		Point Size;

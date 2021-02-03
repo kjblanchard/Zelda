@@ -17,7 +17,7 @@
 
 namespace SG
 {
-	template <typename T>
+	template <typename T, typename F>
 	class AnimationComponent :  Component
 	{
 
@@ -29,36 +29,39 @@ namespace SG
 		void Update(const double& deltaTime);
 		void Draw(SpriteBatch& spriteBatch);
 		T AnimationController;
-		void ChangeAnimation(int whatToChangeTo);
+		void ChangeAnimation(F whatToChangeTo);
 
 		bool IsAnimPlaying;
 	};
 
-	template <typename T>
-	AnimationComponent<T>::AnimationComponent(GameObject* gameObject) : Component(gameObject, SGComponentTypes::Animation)
+	template <typename T, typename F>
+	AnimationComponent<T, F>::AnimationComponent(GameObject* gameObject) : Component(gameObject, SGComponentTypes::Animation)
+	{
+	}
+	template <typename T, typename F>
+
+	void AnimationComponent<T, F>::Startup()
 	{
 	}
 
-	template <typename T>
-	void AnimationComponent<T>::Startup()
-	{
-	}
+	template <typename T, typename F>
 
-	template <typename T>
-	void AnimationComponent<T>::Update(const double& deltaTime)
+	void AnimationComponent<T, F>::Update(const double& deltaTime)
 	{
 		if(IsAnimPlaying)
 			AnimationController.Update(deltaTime);
 	}
 
-	template <typename T>
-	void AnimationComponent<T>::Draw(SpriteBatch& spriteBatch)
+	template <typename T, typename F>
+
+	void AnimationComponent<T, F>::Draw(SpriteBatch& spriteBatch)
 	{
 		AnimationController.Draw(spriteBatch);
 	}
 
-	template <typename T>
-	void AnimationComponent<T>::ChangeAnimation(int whatToChangeTo)
+	template <typename T, typename F>
+
+	void AnimationComponent<T, F>::ChangeAnimation(F whatToChangeTo)
 	{
 
 		AnimationController.ChangeAnimation(whatToChangeTo);

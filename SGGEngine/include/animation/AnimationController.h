@@ -28,28 +28,7 @@ namespace SG
 		virtual ~AnimationController() = default;
 		GameObject* GameObject;
 
-		void ChangeAnimation(T animationEnum)
-		{
-			if (CurrentAnimation != nullptr)
-			{
-				if(CurrentAnimation->AnimationEnumType == animationEnum)
-					return;
-				CurrentAnimation->End();
-			}
-
-			for (int i = 0; i < Animations.size(); ++i)
-			{
-				if (Animations[i].AnimationEnumType == animationEnum)
-				{
-					CurrentAnimation = &Animations[i];
-					break;
-				}
-			}
-			if (CurrentAnimation)
-				CurrentAnimation->Startup();
-			else
-				DebugHandler::PrintErrorMessage(ErrorCodes::AnimationError);
-		}
+		virtual void ChangeAnimation(T animationEnum);
 
 
 		inline const static double FrameTime = 1000.00 / 60;
@@ -68,4 +47,25 @@ namespace SG
 
 	};
 
+	template <typename T>
+	void AnimationController<T>::ChangeAnimation(T animationEnum)
+	{
+		if (CurrentAnimation != nullptr)
+		{
+			if (CurrentAnimation->AnimationEnumType == animationEnum)
+				return;
+		}
+
+		for (int i = 0; i < Animations.size(); ++i)
+		{
+			if (Animations[i].AnimationEnumType == animationEnum)
+			{
+				CurrentAnimation = &Animations[i];
+				break;
+			}
+		}
+
+		if (CurrentAnimation == nullptr)
+			DebugHandler::PrintErrorMessage(ErrorCodes::AnimationError);
+	}
 }

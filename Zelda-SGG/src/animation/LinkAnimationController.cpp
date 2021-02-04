@@ -60,9 +60,6 @@ void LinkAnimationController::Update(const double& deltaTime)
 
 void LinkAnimationController::Draw(SG::SpriteBatch& spriteBatch)
 {
-	//auto spritesheetpoint = CurrentAnimation->LocationAndLengthOfAnimation[CurrentFrameOnThisSprite].first;
-	//ImageComponent->image->LocationAndSizeInSpriteSheet.x = spritesheetpoint.X *= 32;
-	//ImageComponent->image->LocationAndSizeInSpriteSheet.y = spritesheetpoint.Y *=32;
 	ImageComponent->image->UpdateSourceRectLocationInSpriteSheet(CurrentAnimation->DrawLocation(CurrentFrameOnThisSprite));
 	ImageComponent->Draw(spriteBatch);
 }

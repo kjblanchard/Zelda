@@ -17,7 +17,6 @@
 
 #include "Graphics.h"
 #include "Spritesheet.h"
-#include "World.h"
 #include "data/Point.h"
 
 namespace SG
@@ -39,9 +38,6 @@ namespace SG
 			return LocationAndLengthOfAnimation[currentFrame].first * 32;
 		}
 
-		virtual void Startup();
-		virtual void FrameChangeCallBacks();
-		virtual void End();
 	};
 
 	template <typename T>
@@ -49,18 +45,5 @@ namespace SG
 	{
 	}
 
-	template <typename T>
-	void Animation<T>::Startup()
-	{
-	}
 
-	template <typename T>
-	void Animation<T>::FrameChangeCallBacks()
-	{
-	}
-
-	template <typename T>
-	void Animation<T>::End()
-	{
-	}
 }

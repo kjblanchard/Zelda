@@ -20,7 +20,7 @@ namespace SG
 	class ImageComponent;
 	class GameObject;
 
-	template<typename T>
+	template<class T>
 	class AnimationController : public IUpdate
 	{
 	public:
@@ -45,6 +45,8 @@ namespace SG
 		bool staticsInitialized = false;
 		ImageComponent* ImageComponent;
 
+		void Update(const double& deltaTime) override;
+
 	};
 
 	template <typename T>
@@ -67,5 +69,36 @@ namespace SG
 
 		if (CurrentAnimation == nullptr)
 			DebugHandler::PrintErrorMessage(ErrorCodes::AnimationError);
+	}
+
+	template <class T>
+	void AnimationController<T>::Update(const double& deltaTime)
+	{
+		TimeOnCurrentFrame += deltaTime;
+		if (TimeOnCurrentFrame >= FrameTime)
+		{
+			auto desiredFrame = CurrentFrameInAnimation + 1;
+			CurrentFrameInAnimation++;
+			if (desiredFrame > CurrentAnimation->LocationAndLengthOfAnimation[CurrentFrameOnThisSprite].second)
+			{
+				desiredFrame = CurrentFrameOnThisSprite + 1;
+				if (desiredFrame >= CurrentAnimation->TotalAnimationFrames())
+				{
+					CurrentFrameOnThisSprite = 0;
+					CurrentFrameInAnimation = 0;
+				}
+				else
+				{
+					++CurrentFrameOnThisSprite;
+					CurrentFrameInAnimation = 0;
+				}
+			}
+		}
+		else
+		{
+			CurrentFrameInAnimation = 0;
+		}
+
+		TimeOnCurrentFrame = 0;
 	}
 }

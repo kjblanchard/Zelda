@@ -59,7 +59,7 @@ namespace SG
 
 		Vector3 _location;
 		bool _shouldUpdate = true;
-		virtual void ComponentUpdate();
+		virtual void ComponentUpdate(const double& deltaTime);
 		std::vector<Component*> _components;
 	};
 

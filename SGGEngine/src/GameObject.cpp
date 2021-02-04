@@ -21,9 +21,7 @@ void SG::GameObject::Update(const double& deltaTime)
 {
 }
 
-void SG::GameObject::ComponentUpdate()
-{
-}
+
 
 void SG::GameObject::AddComponent(Component* component)
 {
@@ -47,6 +45,10 @@ bool SG::GameObject::ShouldUpdate() const
 SG::Vector3 SG::GameObject::Location() const
 {
 	return _location;
+}
+
+void SG::GameObject::ComponentUpdate(const double& deltaTime)
+{
 }
 
 

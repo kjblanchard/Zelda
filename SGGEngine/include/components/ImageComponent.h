@@ -37,8 +37,8 @@ namespace SG
 		 * \brief Updates the held image's location in the world
 		 * \param location The new location of the Image
 		 */
-		void SetLocation(Vector3 location);
-
+		void UpdateSpriteSheetLocation(const Point& locationInSpriteSheet) const;
+		void UpdateSpriteDestinationInWorld(const Vector3& worldLocation);
 		std::unique_ptr<Image> image;
 	private:
 		SG::Vector3 _location;

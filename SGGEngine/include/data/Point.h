@@ -24,7 +24,7 @@ namespace SG
 		{
 
 		}
-		Point(int xy): X(0), Y(0)
+		Point(int xy): X(xy), Y(xy)
 		{
 		}
 

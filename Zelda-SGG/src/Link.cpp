@@ -12,9 +12,11 @@ Link::Link(SG::Vector3 location)
 }
 
 Link::Link(SG::Vector3 location, SG::Controller* controller)
-	:Link(location)
+	: Link(location)
 {
 	_inputComponent = std::make_unique<SG::InputComponent>(controller, this);
+	_animationComponent = std::make_unique<SG::AnimationComponent<LinkAnimationController, LinkAnimations>>(this);
+	_animationComponent->AnimationController = new LinkAnimationController(this);
 }
 
 Link::~Link()
@@ -24,22 +26,14 @@ Link::~Link()
 
 void Link::Startup()
 {
-	_animationComponent = new SG::AnimationComponent<LinkAnimationController, LinkAnimations>(this);
-
-	auto temp = new LinkAnimationController(this);
-	temp->Startup();
-	_animationComponent->AnimationController = *temp;
-
-
-	_animationComponent->ChangeAnimation(LinkAnimations::WalkUp);
+	_animationComponent->Startup();
+	_animationComponent->ChangeAnimation(LinkAnimations::WalkDown);
 }
 
 void Link::Update(const double& deltaTime)
 {
 	HandleInput();
-	ComponentUpdate();
-	_animationComponent->Update(deltaTime);
-	_animationComponent->AnimationController.ImageComponent->SetLocation(Location());
+	ComponentUpdate(deltaTime);
 }
 
 void Link::Draw(SG::SpriteBatch& spriteBatch)
@@ -48,10 +42,11 @@ void Link::Draw(SG::SpriteBatch& spriteBatch)
 
 }
 
-
-void Link::ComponentUpdate()
+void Link::ComponentUpdate(const double& deltaTime)
 {
+	_animationComponent->Update(deltaTime);
 }
+
 
 void Link::HandleInput()
 {

@@ -23,7 +23,7 @@ namespace SG
 
 	void ImageComponent::Update(Vector3 location)
 	{
-		SetLocation(location);
+		UpdateSpriteDestinationInWorld(location);
 	}
 
 	void ImageComponent::Draw(SpriteBatch& spritebatch) const
@@ -32,12 +32,24 @@ namespace SG
 			spritebatch.AddToSpriteBatch(image.get());
 	}
 
-	void ImageComponent::SetLocation(Vector3 location)
+
+
+	void ImageComponent::UpdateSpriteSheetLocation(const Point& locationInSpriteSheet) const
 	{
-		_location = location;
-		if (image)
+		if(image)
 		{
-			image->UpdateDestRectLocation(_location);
+			image->LocationAndSizeInSpriteSheet.x = locationInSpriteSheet.X;
+			image->LocationAndSizeInSpriteSheet.y = locationInSpriteSheet.Y;
+		}
+	}
+
+	void ImageComponent::UpdateSpriteDestinationInWorld(const Vector3& worldLocation)
+	{
+		if(image)
+		{
+			image->Location = worldLocation;
+			image->LocationAndSizeOnRenderer.x = worldLocation.X;
+			image->LocationAndSizeOnRenderer.y = worldLocation.Y;
 		}
 	}
 }

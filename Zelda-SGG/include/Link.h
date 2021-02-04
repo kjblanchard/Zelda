@@ -34,15 +34,13 @@ public:
 	void Draw(SG::SpriteBatch& spriteBatch) override;
 
 private:
-	void ComponentUpdate() override;
+	void ComponentUpdate(const double& deltaTime) override;
 	void HandleInput();
 
-/// <summary>
-/// Components
-/// </summary>
-private:
-	//std::unique_ptr<SG::ImageComponent> _imageComponent;
-
-	SG::AnimationComponent<LinkAnimationController, LinkAnimations>* _animationComponent;
+	/// <summary>
+	/// Components
+	/// </summary>
+	///
+	std::unique_ptr<SG::AnimationComponent<LinkAnimationController, LinkAnimations>> _animationComponent;
 	std::unique_ptr<SG::InputComponent> _inputComponent;
 };

@@ -1,6 +1,7 @@
 ﻿#include "animation/LinkAnimationController.h"
 #include "Image.h"
 #include "SpriteBatch.h"
+#include "Statics.h"
 #include "components/ImageComponent.h"
 
 
@@ -8,10 +9,9 @@
 std::vector<SG::Animation<LinkAnimations>> SG::AnimationController<LinkAnimations>::Animations;
 
 
-
-void LinkAnimationController::Startup()
+LinkAnimationController::LinkAnimationController(SG::GameObject* gameObject) : AnimationController(gameObject)
 {
-	if(!staticsInitialized)
+	if (!staticsInitialized)
 	{
 		Animations = {
 			{LinkWalkUp() },
@@ -19,47 +19,20 @@ void LinkAnimationController::Startup()
 			{LinkWalkDown()},
 			{LinkWalkLeft()}
 		};
-	staticsInitialized = true;
+		staticsInitialized = true;
 	}
+}
 
-	const auto sdlRect = SDL_Rect{ 0,0,32,32 };
+void LinkAnimationController::Startup()
+{
+
+	const auto sdlRect = SDL_Rect{ 0,0,Statics::TileSize.X, Statics::TileSize.Y };
 	ImageComponent = new SG::ImageComponent(SG::SpriteSheetEnum::LinkWalking,sdlRect, GameObject);
 	ImageComponent->image->ImageIsWholeTexture = false;
 }
 
-void LinkAnimationController::Update(const double& deltaTime)
-{
-	TimeOnCurrentFrame += deltaTime;
-	if (TimeOnCurrentFrame >= FrameTime)
-	{
-		auto desiredFrame = CurrentFrameInAnimation + 1;
-		CurrentFrameInAnimation++;
-		if (desiredFrame > CurrentAnimation->LocationAndLengthOfAnimation[CurrentFrameOnThisSprite].second)
-		{
-			desiredFrame = CurrentFrameOnThisSprite + 1;
-			if (desiredFrame >= CurrentAnimation->TotalAnimationFrames())
-			{
-				CurrentFrameOnThisSprite = 0;
-				CurrentFrameInAnimation = 0;
-			}
-			else
-			{
-				++CurrentFrameOnThisSprite;
-				CurrentFrameInAnimation = 0;
-			}
-		}
-
-	}
-	else
-	{
-		CurrentFrameInAnimation = 0;
-	}
-
-	TimeOnCurrentFrame = 0;
-}
-
 void LinkAnimationController::Draw(SG::SpriteBatch& spriteBatch)
 {
-	ImageComponent->image->UpdateSourceRectLocationInSpriteSheet(CurrentAnimation->DrawLocation(CurrentFrameOnThisSprite));
+	ImageComponent->UpdateSpriteSheetLocation(CurrentAnimation->DrawLocation(CurrentFrameOnThisSprite));
 	ImageComponent->Draw(spriteBatch);
 }

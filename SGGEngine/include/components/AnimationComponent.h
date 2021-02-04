@@ -11,52 +11,63 @@
 #else
 #define SGGENGINE_API __declspec(dllimport)
 #endif
-#include "animation/Animation.h"
-#include "animation/AnimationController.h"
+#include "GameObject.h"
 #include "components/ImageComponent.h"
 
 namespace SG
 {
-	template <typename T, typename F>
+	template <class T, class F>
 	class AnimationComponent :  Component
 	{
 
 	public:
-		AnimationComponent() = default;
 		AnimationComponent(GameObject* gameObject);
-
+		~AnimationComponent();
 		void Startup() override;
 		void Update(const double& deltaTime);
 		void Draw(SpriteBatch& spriteBatch);
-		T AnimationController;
+		T* AnimationController;
 		void ChangeAnimation(F whatToChangeTo);
 
 		bool IsAnimPlaying;
 	};
 
-	template <typename T, typename F>
-	AnimationComponent<T, F>::AnimationComponent(GameObject* gameObject) : Component(gameObject, SGComponentTypes::Animation)
+	template <class T, class F>
+	AnimationComponent<T, F>::AnimationComponent(GameObject* gameObject) :
+		Component(gameObject, SGComponentTypes::Animation), AnimationController(nullptr), IsAnimPlaying(false)
 	{
 	}
+
+	template <class T, class F>
+	AnimationComponent<T, F>::~AnimationComponent()
+	{
+		delete AnimationController;
+	}
+
 	template <typename T, typename F>
 
 	void AnimationComponent<T, F>::Startup()
 	{
+		AnimationController->Startup();
 	}
 
 	template <typename T, typename F>
 
 	void AnimationComponent<T, F>::Update(const double& deltaTime)
 	{
-		if(IsAnimPlaying)
-			AnimationController.Update(deltaTime);
+		if (IsAnimPlaying)
+			AnimationController->Update(deltaTime);
+		if (_gameObject)
+		{
+			AnimationController->ImageComponent->UpdateSpriteDestinationInWorld(_gameObject->Location());
+		}
 	}
 
 	template <typename T, typename F>
 
 	void AnimationComponent<T, F>::Draw(SpriteBatch& spriteBatch)
 	{
-		AnimationController.Draw(spriteBatch);
+		AnimationController->Draw(spriteBatch);
 	}
 
 	template <typename T, typename F>
@@ -64,6 +75,7 @@ namespace SG
 	void AnimationComponent<T, F>::ChangeAnimation(F whatToChangeTo)
 	{
 
-		AnimationController.ChangeAnimation(whatToChangeTo);
+		AnimationController->ChangeAnimation(whatToChangeTo);
 	}
+
 }

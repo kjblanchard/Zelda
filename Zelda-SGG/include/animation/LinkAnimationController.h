@@ -87,11 +87,9 @@ public:
 class LinkAnimationController : public SG::AnimationController<LinkAnimations>
 {
 public:
-	LinkAnimationController() = default ;
-	LinkAnimationController(SG::GameObject* gameObject) : AnimationController(gameObject) {}
+	explicit LinkAnimationController(SG::GameObject* gameObject);
 
 	void Startup() override;
-	void Update(const double& deltaTime) override;
 	void Draw(SG::SpriteBatch& spriteBatch) override;
 
 

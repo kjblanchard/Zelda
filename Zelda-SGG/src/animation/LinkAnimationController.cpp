@@ -27,12 +27,12 @@ void LinkAnimationController::Startup()
 {
 
 	const auto sdlRect = SDL_Rect{ 0,0,Statics::TileSize.X, Statics::TileSize.Y };
-	ImageComponent = new SG::ImageComponent(SG::SpriteSheetEnum::LinkWalking,sdlRect, GameObject);
-	ImageComponent->image->ImageIsWholeTexture = false;
+	_imageComponent = new SG::ImageComponent(SG::SpriteSheetEnum::LinkWalking,sdlRect, _gameObject);
+	_imageComponent->image->ImageIsWholeTexture = false;
 }
 
 void LinkAnimationController::Draw(SG::SpriteBatch& spriteBatch)
 {
-	ImageComponent->UpdateSpriteSheetLocation(CurrentAnimation->DrawLocation(CurrentFrameOnThisSprite));
-	ImageComponent->Draw(spriteBatch);
+	_imageComponent->UpdateSpriteSheetLocation(_currentAnimation->DrawLocation(_currentFrameOnThisSprite));
+	_imageComponent->Draw(spriteBatch);
 }

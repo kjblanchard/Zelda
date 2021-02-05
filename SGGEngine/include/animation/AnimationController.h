@@ -14,6 +14,9 @@
 #include "Animation.h"
 #include "interfaces/IUpdate.h"
 #include "DebugHandler.h"
+#include "GameObject.h"
+#include "components/ImageComponent.h"
+#include "data/Vector3.h"
 
 namespace SG
 {
@@ -24,37 +27,40 @@ namespace SG
 	class AnimationController : public IUpdate
 	{
 	public:
-		AnimationController(GameObject* gameObject = nullptr) : GameObject(gameObject), CurrentAnimation(nullptr) {  }
+		AnimationController(GameObject* gameObject = nullptr) : _gameObject(gameObject), _currentAnimation(nullptr),
+		                                                        _imageComponent(nullptr)
+		{
+		}
 		virtual ~AnimationController() = default;
-		GameObject* GameObject;
-
-		virtual void ChangeAnimation(T animationEnum);
-
-
-		inline const static double FrameTime = 1000.00 / 60;
-
-		static std::vector<Animation<T>> Animations;
-
-		Animation<T>* CurrentAnimation = nullptr;
-
-		int CurrentFrameOnThisSprite = 0;
-		int CurrentFrameInAnimation = 0;
-		int CurrentTotalAnimationFrames = 0;
-		double TimeOnCurrentFrame = 0.0;
-
-		bool staticsInitialized = false;
-		ImageComponent* ImageComponent;
 
 		void Update(const double& deltaTime) override;
+		virtual void ChangeAnimation(T animationEnum);
+		void UpdateSpriteLocation(SG::Vector3 location);
+
+	protected:
+		inline const static double FrameTime = 1000.00 / 60;
+		static std::vector<Animation<T>> Animations;
+
+		GameObject* _gameObject;
+		Animation<T>* _currentAnimation = nullptr;
+		int _currentFrameOnThisSprite = 0;
+		int _currentFrameInAnimation = 0;
+		int _currentTotalAnimationFrames = 0;
+		double _timeOnCurrentFrame = 0.0;
+		bool staticsInitialized = false;
+		ImageComponent* _imageComponent;
 
 	};
+
+
+
 
 	template <typename T>
 	void AnimationController<T>::ChangeAnimation(T animationEnum)
 	{
-		if (CurrentAnimation != nullptr)
+		if (_currentAnimation != nullptr)
 		{
-			if (CurrentAnimation->AnimationEnumType == animationEnum)
+			if (_currentAnimation->AnimationEnumType == animationEnum)
 				return;
 		}
 
@@ -62,43 +68,49 @@ namespace SG
 		{
 			if (Animations[i].AnimationEnumType == animationEnum)
 			{
-				CurrentAnimation = &Animations[i];
+				_currentAnimation = &Animations[i];
 				break;
 			}
 		}
 
-		if (CurrentAnimation == nullptr)
+		if (_currentAnimation == nullptr)
 			DebugHandler::PrintErrorMessage(ErrorCodes::AnimationError);
 	}
 
 	template <class T>
 	void AnimationController<T>::Update(const double& deltaTime)
 	{
-		TimeOnCurrentFrame += deltaTime;
-		if (TimeOnCurrentFrame >= FrameTime)
+		_timeOnCurrentFrame += deltaTime;
+		if (_timeOnCurrentFrame >= FrameTime)
 		{
-			auto desiredFrame = CurrentFrameInAnimation + 1;
-			CurrentFrameInAnimation++;
-			if (desiredFrame > CurrentAnimation->LocationAndLengthOfAnimation[CurrentFrameOnThisSprite].second)
+			auto desiredFrame = _currentFrameInAnimation + 1;
+			_currentFrameInAnimation++;
+			if (desiredFrame > _currentAnimation->LocationAndLengthOfAnimation[_currentFrameOnThisSprite].second)
 			{
-				desiredFrame = CurrentFrameOnThisSprite + 1;
-				if (desiredFrame >= CurrentAnimation->TotalAnimationFrames())
+				desiredFrame = _currentFrameOnThisSprite + 1;
+				if (desiredFrame >= _currentAnimation->TotalAnimationFrames())
 				{
-					CurrentFrameOnThisSprite = 0;
-					CurrentFrameInAnimation = 0;
+					_currentFrameOnThisSprite = 0;
+					_currentFrameInAnimation = 0;
 				}
 				else
 				{
-					++CurrentFrameOnThisSprite;
-					CurrentFrameInAnimation = 0;
+					++_currentFrameOnThisSprite;
+					_currentFrameInAnimation = 0;
 				}
 			}
 		}
 		else
 		{
-			CurrentFrameInAnimation = 0;
+			_currentFrameInAnimation = 0;
 		}
 
-		TimeOnCurrentFrame = 0;
+		_timeOnCurrentFrame = 0;
+	}
+
+	template <class T>
+	void AnimationController<T>::UpdateSpriteLocation(SG::Vector3 location)
+	{
+		_imageComponent->UpdateSpriteDestinationInWorld(location);
 	}
 }

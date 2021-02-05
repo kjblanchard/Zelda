@@ -16,8 +16,6 @@ Link::Link(SG::Vector3 location, SG::Controller* controller)
 {
 	_inputComponent = std::make_unique<SG::InputComponent>(controller, this);
 	_animationComponent = std::make_unique<SG::AnimationComponent<LinkAnimationController, LinkAnimations>>(this, new LinkAnimationController(this));
-	//_animationComponent->_animationController = new LinkAnimationController(this);
-	//_animationComponent->Me(new LinkAnimationController(this));
 }
 
 Link::~Link()

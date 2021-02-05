@@ -28,7 +28,6 @@ namespace SG
 		void Update(const double& deltaTime);
 		void Draw(SpriteBatch& spriteBatch);
 		void ChangeAnimation(F whatToChangeTo);
-
 		bool IsAnimPlaying;
 
 	private:
@@ -37,7 +36,7 @@ namespace SG
 	};
 
 	template <class T, class F>
-	AnimationComponent<T, F>::AnimationComponent(GameObject* gameObject, T* animController) : Component(gameObject, SGComponentTypes::Animation), _animationController(animController), IsAnimPlaying(false)
+	AnimationComponent<T, F>::AnimationComponent(GameObject* gameObject, T* animController) : Component(gameObject, SGComponentTypes::Animation), IsAnimPlaying(false), _animationController(animController)
 	{
 	}
 

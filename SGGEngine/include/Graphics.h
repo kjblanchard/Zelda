@@ -75,5 +75,6 @@ namespace SG
 		SDL_Surface* _windowSurface;
 		SDL_Renderer* _renderer;
 
+
 	};
 }

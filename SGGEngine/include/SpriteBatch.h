@@ -22,13 +22,20 @@ namespace SG
 	{
 	public:
 		void AddToSpriteBatch(Image* imageToDraw);
-		std::vector<Image*> GameTextures()
+		void AddToSpriteBatch(SDL_Rect* debugBoxToDraw);
+		std::vector<Image*> GameTextures() const
 		{
 			return _gameTextures;
 		}
+		std::vector<SDL_Rect*> DebugBoxes() const
+		{
+			return _debugBoxes;
+		}
+
 
 		void ClearSpriteBatch() { _gameTextures.clear(); }
 	private:
 		std::vector<Image*> _gameTextures;
+		std::vector<SDL_Rect*> _debugBoxes;
 	};
 }

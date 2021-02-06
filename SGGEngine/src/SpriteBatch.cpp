@@ -10,4 +10,9 @@ namespace SG
 		_gameTextures.push_back(imageToDraw);
 
 	}
+
+	void SpriteBatch::AddToSpriteBatch(SDL_Rect* debugBoxToDraw)
+	{
+		_debugBoxes.push_back(debugBoxToDraw);
+	}
 }

@@ -51,6 +51,7 @@ namespace SG
 
 
 		static Sound* _sound;
+		inline static bool _isCollisionDebug = true;
 
 	protected:
 		Point _screenSize;
@@ -65,6 +66,7 @@ namespace SG
 		static World* _instance;
 		std::unique_ptr<Input> _input;
 
+		//TODO figure out how to handle the debug mode for collision
 
 
 	private:

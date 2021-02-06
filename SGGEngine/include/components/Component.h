@@ -21,7 +21,8 @@ namespace SG
 		Default,
 		Image,
 		Input,
-		Animation
+		Animation,
+		BoxCollider
 	};
 
 	struct SGGENGINE_API Component

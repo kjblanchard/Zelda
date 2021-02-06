@@ -6,6 +6,7 @@
 ////////////////////////////////////////////////////////////
 
 #pragma once
+#include "SolidTile.h"
 #include "Tile.h"
 #include "Tiled.h"
 #include "data/Point.h"
@@ -29,6 +30,7 @@ enum class ZeldaTileTypes
 	Rock4 = 117,
 	Rock5 = 118,
 	Ground = 2,
+	Tree = 3,
 };
 
 
@@ -42,6 +44,7 @@ public:
 private:
 
 	static SG::Tile<ZeldaTileTypes>* SpawnTileMapTileByZeldaTileType(int tileNum, SG::Vector3 location);
+	static SG::SolidTile<ZeldaTileTypes>* SpawnTileMapSolidTileByZeldaTileType(int tileNum, SG::Vector3 location);
 
 	/// <summary>
 	/// Maps the specific x and y location in the tile so that it can be found
@@ -54,6 +57,7 @@ private:
 		{ZeldaTileTypes::Rock3, SG::Point(1,14)},
 		{ZeldaTileTypes::Rock4, SG::Point(4,14)},
 		{ZeldaTileTypes::Rock5, SG::Point(5,14)},
-		{ZeldaTileTypes::Ground, SG::Point(1,0)}
+		{ZeldaTileTypes::Ground, SG::Point(1,0)},
+		{ZeldaTileTypes::Tree, SG::Point{2,0}}
 	};
 };

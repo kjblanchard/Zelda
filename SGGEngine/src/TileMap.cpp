@@ -28,8 +28,10 @@ namespace SG
 			if (jsonLayers[0].contains(Data))
 			{
 				tilemap->JsonMapData = jsonLayers[0][Data];
+				tilemap->JsonSolidLayer = jsonLayers[1][Data];
 
 			}
+
 		}
 		return tilemap;
 	}

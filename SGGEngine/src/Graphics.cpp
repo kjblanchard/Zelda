@@ -4,6 +4,7 @@
 #include "DebugHandler.h"
 #include "Image.h"
 #include "SpriteBatch.h"
+#include "World.h"
 
 
 namespace SG
@@ -34,6 +35,12 @@ namespace SG
 				SDL_RenderCopy(_renderer, sprite->SpriteSheet->SpriteSheetTexture, NULL, &sprite->LocationAndSizeOnRenderer);
 			else
 				SDL_RenderCopy(_renderer, sprite->SpriteSheet->SpriteSheetTexture, &sprite->LocationAndSizeInSpriteSheet, &sprite->LocationAndSizeOnRenderer);
+		}
+		SDL_SetRenderDrawColor(_renderer, 255, 0, 0,255 );
+
+		for (auto debugBox : spriteBatch.DebugBoxes())
+		{
+			SDL_RenderDrawRect(_renderer, debugBox);
 		}
 		SDL_RenderPresent(_renderer);
 	}

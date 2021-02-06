@@ -17,7 +17,7 @@ namespace SG
 {
 	class SGGENGINE_API Collision
 	{
-
+	public:
 		static bool DoShapesIntersect(const SDL_Rect& rectA, const SDL_Rect& rectB);
 
 		static SDL_Rect& ShapeIntersectionArea(const SDL_Rect& rectA, const SDL_Rect& rectB);

@@ -3,6 +3,7 @@
 #include "animation/LinkAnimationController.h"
 #include "components/InputComponent.h"
 #include "components/AnimationComponent.h"
+#include "components/BoxColliderComponent.h"
 #include "data/Vector3.h"
 
 
@@ -16,6 +17,7 @@ Link::Link(SG::Vector3 location, SG::Controller* controller)
 {
 	_inputComponent = std::make_unique<SG::InputComponent>(controller, this);
 	_animationComponent = std::make_unique<SG::AnimationComponent<LinkAnimationController, LinkAnimations>>(this, new LinkAnimationController(this));
+	_boxColliderComponent = std::make_unique<SG::BoxColliderComponent>(this);
 }
 
 Link::~Link()
@@ -27,6 +29,7 @@ void Link::Startup()
 {
 	_animationComponent->Startup();
 	_animationComponent->ChangeAnimation(LinkAnimations::WalkDown);
+	_boxColliderComponent->Startup();
 }
 
 void Link::Update(const double& deltaTime)
@@ -38,12 +41,14 @@ void Link::Update(const double& deltaTime)
 void Link::Draw(SG::SpriteBatch& spriteBatch)
 {
 	_animationComponent->Draw(spriteBatch);
+	_boxColliderComponent->Draw(spriteBatch);
 
 }
 
 void Link::ComponentUpdate(const double& deltaTime)
 {
 	_animationComponent->Update(deltaTime);
+	_boxColliderComponent->Update(deltaTime);
 }
 
 

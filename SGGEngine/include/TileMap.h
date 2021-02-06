@@ -22,6 +22,7 @@ namespace SG
 		TileMap() = default;
 		~TileMap();
 		nlohmann::basic_json<> JsonMapData = nullptr;
+		nlohmann::basic_json<> JsonSolidLayer = nullptr;
 		int WidthOfMap = 0;
 		int HeightOfMap = 0;
 		static TileMap* GenerateTileMap(std::string mapName);

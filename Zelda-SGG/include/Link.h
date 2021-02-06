@@ -15,6 +15,7 @@ class LinkAnimationController;
 enum class LinkAnimations;
 
 namespace SG {
+	class BoxColliderComponent;
 	class Controller;
 	class PlayerController;
 	class ImageComponent;
@@ -43,4 +44,5 @@ private:
 	///
 	std::unique_ptr<SG::AnimationComponent<LinkAnimationController, LinkAnimations>> _animationComponent;
 	std::unique_ptr<SG::InputComponent> _inputComponent;
+	std::unique_ptr<SG::BoxColliderComponent> _boxColliderComponent;
 };

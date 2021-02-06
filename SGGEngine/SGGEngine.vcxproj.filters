@@ -111,6 +111,12 @@
     <ClInclude Include="include\interfaces\IUpdate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\collision\Collision.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BoxCollider.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -204,6 +210,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\interfaces\IUpdate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\collision\Collision.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BoxCollider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

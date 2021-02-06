@@ -179,6 +179,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BoxCollider.h" />
+    <ClInclude Include="include\collision\Collision.h" />
     <ClInclude Include="include\animation\Animation.h" />
     <ClInclude Include="include\animation\AnimationController.h" />
     <ClInclude Include="include\components\Component.h" />
@@ -213,6 +215,8 @@
     <ClInclude Include="include\components\AnimationComponent.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BoxCollider.cpp" />
+    <ClCompile Include="src\collision\Collision.cpp" />
     <ClCompile Include="src\interfaces\IUpdate.cpp" />
     <ClCompile Include="src\animation\Animation.cpp" />
     <ClCompile Include="src\animation\AnimationController.cpp" />

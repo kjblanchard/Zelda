@@ -4,6 +4,8 @@
 #include "Sound.h"
 #include "ZeldaTiled.h"
 
+SG::GameObjectList DebugRoomLevel::_levelGameObjectList;
+
 void DebugRoomLevel::Startup()
 {
 	TileMap.reset(SG::TileMap::GenerateTileMap("overworld.json"));

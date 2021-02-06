@@ -15,7 +15,7 @@ namespace SG
 
 	void BoxColliderComponent::Startup()
 	{
-		ColliderBox = SDL_Rect{ 0,0,32,32 };
+		ColliderBox = SDL_Rect{ _gameObject->Location().X,_gameObject->Location().Y,32,32 };
 	}
 
 	void BoxColliderComponent::Update(const double& deltaTime)
@@ -33,5 +33,10 @@ namespace SG
 	bool BoxColliderComponent::IsCollision(const SDL_Rect& otherCollider)
 	{
 		return Collision::DoShapesIntersect(ColliderBox, otherCollider);
+	}
+
+	bool BoxColliderComponent::IsCollision(const SDL_Rect& potentialMoveRect, const SDL_Rect& otherCollider)
+	{
+		return Collision::DoShapesIntersect(potentialMoveRect, otherCollider);
 	}
 }

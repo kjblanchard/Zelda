@@ -32,7 +32,7 @@ namespace SG
 	};
 
 	template <typename T>
-	SolidTile<T>::SolidTile(T tileType, Vector3 location, const Point& locationInSpriteSheet)
+	SolidTile<T>::SolidTile(T tileType, Vector3 location, const Point& locationInSpriteSheet) : GameObject(location)
 	{
 		tile = new Tile<T>(tileType, location, locationInSpriteSheet);
 	}

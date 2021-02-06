@@ -30,6 +30,7 @@ namespace SG
 		void Draw(SpriteBatch& spriteBatch) override;
 
 		virtual bool IsCollision(const SDL_Rect& otherCollider);
+		virtual bool IsCollision(const SDL_Rect& potentialMoveRect, const SDL_Rect& otherCollider);
 
 		SDL_Rect ColliderBox;
 

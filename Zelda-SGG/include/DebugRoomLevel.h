@@ -26,7 +26,8 @@ public:
 	void Draw(SG::SpriteBatch& spriteBatch) override;
 	void End() override;
 
+	//TODO this is temporary
+	static SG::GameObjectList _levelGameObjectList;
 private:
 	std::unique_ptr<SG::TileMap> TileMap;
-	SG::GameObjectList _levelGameObjectList;
 };

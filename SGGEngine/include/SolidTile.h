@@ -40,7 +40,9 @@ namespace SG
 	template <typename T>
 	void SolidTile<T>::Startup()
 	{
-		_boxColliderComponent = std::make_unique<BoxColliderComponent>(this);
+		auto boxColliderBox = SDL_Rect{ 0,0,32,32};
+
+		_boxColliderComponent = std::make_unique<BoxColliderComponent>(this, boxColliderBox);
 		tile->Startup();
 		_boxColliderComponent->Startup();
 		_boxColliderComponent->ColliderBox.x = tile->Location().X;

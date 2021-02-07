@@ -2,12 +2,15 @@
 
 #include "DebugRoomLevel.h"
 #include "PlayerController.h"
+#include "ZeldaWorld.h"
 #include "animation/LinkAnimationController.h"
+#include "collision/Collision.h"
 #include "components/InputComponent.h"
 #include "components/AnimationComponent.h"
 #include "components/BoxColliderComponent.h"
 #include "data/Vector3.h"
 #include "components/Component.h"
+#include "interfaces/ILevel.h"
 
 
 Link::Link(SG::Vector3 location)
@@ -20,7 +23,8 @@ Link::Link(SG::Vector3 location, SG::Controller* controller)
 {
 	_inputComponent = std::make_unique<SG::InputComponent>(controller, this);
 	_animationComponent = std::make_unique<SG::AnimationComponent<LinkAnimationController, LinkAnimations>>(this, new LinkAnimationController(this));
-	_boxColliderComponent = std::make_unique<SG::BoxColliderComponent>(this);
+	auto boxColliderBox = SDL_Rect{ 0,0,24,64 };
+	_boxColliderComponent = std::make_unique<SG::BoxColliderComponent>(this,boxColliderBox);
 }
 
 Link::~Link()
@@ -50,21 +54,12 @@ void Link::Draw(SG::SpriteBatch& spriteBatch)
 
 bool Link::CheckForCollisions(SDL_Rect& potentialMove)
 {
-	for (auto levelGameObjectList : DebugRoomLevel::_levelGameObjectList._gameObjectList)
-	{
-		auto component = levelGameObjectList->GetComponent<SG::BoxColliderComponent>();
-		if (component)
-		{
-			if (_boxColliderComponent->IsCollision(potentialMove, component->ColliderBox))
-			{
-				if ((levelGameObjectList->Location().X != Location().X) && (levelGameObjectList->Location().Y != Location().Y))
-				{
-					printf("collision");
-					return true;
+	auto* worldLevel = dynamic_cast<SG::ILevel*>(ZeldaWorld::_levelStateMachine.CurrentState());
 
-				}
-			}
-		}
+	if(worldLevel)
+	{
+		if (worldLevel->IsThereACollision(potentialMove, SG::GameObjectTypes::SolidTile))
+			return true;
 	}
 	return false;
 }
@@ -84,53 +79,90 @@ void Link::HandleInput()
 
 		if(_inputComponent->CurrentController)
 		{
-			auto potentialMove = _boxColliderComponent->ColliderBox;
+			auto potentialMoveSpeed = SG::Point(0, 0);
 
-			SG::ControllerButtons button = SG::ControllerButtons::Up;
-			if (_inputComponent->CurrentController->IsButtonPressed(button) || _inputComponent->CurrentController->IsButtonHeld(button))
+			if (_inputComponent->CurrentController->IsButtonPressed(SG::ControllerButtons::Up) || _inputComponent->CurrentController->IsButtonHeld(SG::ControllerButtons::Up))
 			{
 				_animationComponent->IsAnimPlaying = true;
 				_animationComponent->ChangeAnimation(LinkAnimations::WalkUp);
-				potentialMove.y -= 3;
-					//_location.Y -= 3;
+				potentialMoveSpeed.Y -= 7;
 
 
 			}
-			button = SG::ControllerButtons::Down;
-			 if (_inputComponent->CurrentController->IsButtonPressed(button) || _inputComponent->CurrentController->IsButtonHeld(button))
+			 if (_inputComponent->CurrentController->IsButtonPressed(SG::ControllerButtons::Down) || _inputComponent->CurrentController->IsButtonHeld(SG::ControllerButtons::Down))
 			{
 				 _animationComponent->IsAnimPlaying = true;
 				_animationComponent->ChangeAnimation(LinkAnimations::WalkDown);
-				potentialMove.y += 3;
-					//_location.Y += 3;
+				potentialMoveSpeed.Y += 7;
 
 
 
 			}
-			button = SG::ControllerButtons::Left;
-			if (_inputComponent->CurrentController->IsButtonPressed(button) || _inputComponent->CurrentController->IsButtonHeld(button))
+			 if (_inputComponent->CurrentController->IsButtonPressed(SG::ControllerButtons::Left) || _inputComponent->CurrentController->IsButtonHeld(SG::ControllerButtons::Left))
 			{
 				_animationComponent->IsAnimPlaying = true;
 				_animationComponent->ChangeAnimation((LinkAnimations::WalkLeft));
-				potentialMove.x -= 3;
-				//_location.X -= 3;
+				potentialMoveSpeed.X -= 7;
 
 
 			}
-			button = SG::ControllerButtons::Right;
-			if (_inputComponent->CurrentController->IsButtonPressed(button) || _inputComponent->CurrentController->IsButtonHeld(button))
+			 if (_inputComponent->CurrentController->IsButtonPressed(SG::ControllerButtons::Right) || _inputComponent->CurrentController->IsButtonHeld(SG::ControllerButtons::Right))
 			{
 				_animationComponent->IsAnimPlaying = true;
 				_animationComponent->ChangeAnimation(LinkAnimations::WalkRight);
-				potentialMove.x += 3;
+				potentialMoveSpeed.X += 7;
 
-					//_location.X += 3;
 
 			}
-			if(!CheckForCollisions(potentialMove))
+
+			////if(!CheckForCollisions(SDL_Rect()))
+			auto bbox = _boxColliderComponent->ColliderBox;
+			bbox.x += potentialMoveSpeed.X;
+			bbox.y += potentialMoveSpeed.Y;
+			if (!CheckForCollisions(bbox))
 			{
-				_location.X = potentialMove.x;
-				_location.Y = potentialMove.y;
+				_location.X += potentialMoveSpeed.X;
+				_location.Y += potentialMoveSpeed.Y;
+			}
+			else
+			{
+				auto* worldLevel = dynamic_cast<SG::ILevel*>(ZeldaWorld::_levelStateMachine.CurrentState());
+
+				if (worldLevel)
+				{
+					auto go = worldLevel->ReturnFurstCollisionGameObject(bbox, SG::GameObjectTypes::SolidTile);
+					auto collisionArea = SG::Collision::ShapeIntersectionArea(bbox, go.GetComponent<SG::BoxColliderComponent>()->ColliderBox);
+
+					if(collisionArea.w < collisionArea.h)
+					{
+						if(collisionArea.x > bbox.x)
+						{
+							printf("right collision");
+							_location.X += potentialMoveSpeed.X -= collisionArea.w;
+						}
+						else
+						{
+							printf("left collision");
+							_location.X += potentialMoveSpeed.X += collisionArea.w;
+						}
+					}
+					else
+					{
+						if(collisionArea.y > bbox.y)
+						{
+							printf("bottom collision");
+							_location.Y += potentialMoveSpeed.Y -= collisionArea.h;
+						}
+						else
+						{
+							printf("top collision");
+							_location.Y += potentialMoveSpeed.Y += collisionArea.h;
+
+						}
+					}
+					//_location.X += potentialMoveSpeed.X - collisionArea.w;
+					//_location.Y += potentialMoveSpeed.Y - collisionArea.h;
+				}
 			}
 		}
 	}

@@ -10,6 +10,7 @@
 #include "State.h"
 #include "Tile.h"
 #include "TileMap.h"
+#include "interfaces/ILevel.h"
 
 class Link;
 
@@ -17,7 +18,7 @@ namespace SG {
 	enum class TileTypes;
 }
 
-class DebugRoomLevel : public SG::State
+class DebugRoomLevel : public SG::State, public SG::ILevel
 {
 public:
 	~DebugRoomLevel() = default;
@@ -26,8 +27,6 @@ public:
 	void Draw(SG::SpriteBatch& spriteBatch) override;
 	void End() override;
 
-	//TODO this is temporary
-	static SG::GameObjectList _levelGameObjectList;
 private:
 	std::unique_ptr<SG::TileMap> TileMap;
 };

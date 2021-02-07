@@ -39,7 +39,8 @@ class ZeldaTiled : SG::Tiled
 public:
 
 	static void CreateTileMapGameObjects(const SG::TileMap& tileMap, SG::GameObjectList& gameObjectList);
-	static void CreateObjectsFromJson(SG::GameObjectList& gameObjectList);
+	static void CreateSolidTileMapGameObjects(const SG::TileMap& tileMap, SG::GameObjectList& gameObjectList);
+	static void CreatePlayersFromJson(SG::GameObjectList& gameObjectList);
 
 private:
 

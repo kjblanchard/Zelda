@@ -179,6 +179,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\interfaces\ILevel.h" />
     <ClInclude Include="include\components\BoxColliderComponent.h" />
     <ClInclude Include="include\collision\Collision.h" />
     <ClInclude Include="include\animation\Animation.h" />
@@ -216,6 +217,7 @@
     <ClInclude Include="include\SolidTile.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\interfaces\ILevel.cpp" />
     <ClCompile Include="src\SolidTile.cpp" />
     <ClCompile Include="src\components\BoxColliderComponent.cpp" />
     <ClCompile Include="src\collision\Collision.cpp" />

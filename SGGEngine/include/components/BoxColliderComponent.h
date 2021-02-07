@@ -13,6 +13,8 @@
 #endif
 #include <SDL_rect.h>
 
+
+#include "GameObject.h"
 #include "components/Component.h"
 #include "interfaces/IUpdate.h"
 
@@ -23,7 +25,12 @@ namespace SG
 	class SGGENGINE_API BoxColliderComponent : public Component, public IUpdate
 	{
 	public:
-		BoxColliderComponent(GameObject* _gameObject);
+		BoxColliderComponent(GameObject* _gameObject, SDL_Rect offsetAndSize);
+
+		int GetOwnerId() const
+		{
+			return _gameObject->Id;
+		}
 
 		void Startup() override;
 		void Update(const double& deltaTime) override;
@@ -32,7 +39,16 @@ namespace SG
 		virtual bool IsCollision(const SDL_Rect& otherCollider);
 		virtual bool IsCollision(const SDL_Rect& potentialMoveRect, const SDL_Rect& otherCollider);
 
+		
 		SDL_Rect ColliderBox;
+
+	private:
+		int xOffset = 0;
+		int yOffset = 0;
+
+		int xSizeOffset = 0;
+		int ySizeOffset = 0;
+
 
 	};
 }

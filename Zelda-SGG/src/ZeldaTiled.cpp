@@ -20,6 +20,13 @@ void ZeldaTiled::CreateTileMapGameObjects(const SG::TileMap& tileMap, SG::GameOb
 		}
 		gameObjectList.AddToGameObjectList(SpawnTileMapTileByZeldaTileType(tileMap.JsonMapData[i], SG::Vector3(xLocation, yLocation)));
 	}
+
+}
+
+void ZeldaTiled::CreateSolidTileMapGameObjects(const SG::TileMap& tileMap, SG::GameObjectList& gameObjectList)
+{
+	int currentX = 0;
+	int currentY = 0;
 	currentX = 0;
 	currentY = 0;
 	for (unsigned int i = 0; i < tileMap.JsonSolidLayer.size(); ++i)
@@ -38,7 +45,6 @@ void ZeldaTiled::CreateTileMapGameObjects(const SG::TileMap& tileMap, SG::GameOb
 }
 
 
-
 SG::Tile<ZeldaTileTypes>* ZeldaTiled::SpawnTileMapTileByZeldaTileType(int tileNum, SG::Vector3 location)
 {
 	const auto tileType = static_cast<ZeldaTileTypes>(tileNum);
@@ -53,7 +59,7 @@ SG::SolidTile<ZeldaTileTypes>* ZeldaTiled::SpawnTileMapSolidTileByZeldaTileType(
 	return new SG::SolidTile<ZeldaTileTypes>(tileType, location, point);
 }
 
-void ZeldaTiled::CreateObjectsFromJson(SG::GameObjectList& gameObjectList)
+void ZeldaTiled::CreatePlayersFromJson(SG::GameObjectList& gameObjectList)
 {
 	auto jsonFile = _currentTiledJson;
 	if (jsonFile != nullptr)

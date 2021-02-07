@@ -5,12 +5,16 @@
 SG::GameObject::GameObject()
 	:_location{ Vector3() }
 {
+	++GameObjectCount;
+	Id = GameObjectCount;
 }
 
 
-SG::GameObject::GameObject(Vector3 location)
-	:_location(location)
+SG::GameObject::GameObject(Vector3 location, GameObjectTypes gameObjectType)
+	:GameObjectType(gameObjectType), _location(location)
 {
+	++GameObjectCount;
+	Id = GameObjectCount;
 }
 
 void SG::GameObject::Startup()

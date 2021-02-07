@@ -23,7 +23,7 @@ namespace SG
 		void ChangeState(T stateToChangeTo);
 		void Update(const double& deltaTime) const;
 		void Draw(SpriteBatch& spritebatch);
-		const State& CurrentState() const;
+		State* CurrentState();
 		const State& PreviousState() const;
 
 
@@ -68,9 +68,9 @@ namespace SG
 	}
 
 	template <typename T>
-	const State& StateMachine<T>::CurrentState() const
+	State* StateMachine<T>::CurrentState()
 	{
-		return *_currentState;
+		return _currentState;
 	}
 
 	template <typename T>

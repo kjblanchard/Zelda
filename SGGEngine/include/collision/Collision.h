@@ -15,6 +15,14 @@
 
 namespace SG
 {
+	enum class Directions
+	{
+		Up,
+		Right,
+		Down,
+		Left
+	};
+
 	class SGGENGINE_API Collision
 	{
 	public:

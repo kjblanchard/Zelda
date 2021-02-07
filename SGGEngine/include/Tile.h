@@ -40,9 +40,8 @@ namespace SG
 	};
 
 	template <typename T>
-	Tile<T>::Tile(T tileType, Vector3 location, const Point& locationInSpriteSheet) : TypeOfTile(tileType), LocationInSpriteSheet(locationInSpriteSheet),_imageComponent(nullptr)
+	Tile<T>::Tile(T tileType, Vector3 location, const Point& locationInSpriteSheet) : GameObject(location,GameObjectTypes::Tile), TypeOfTile(tileType), LocationInSpriteSheet(locationInSpriteSheet),_imageComponent(nullptr)
 	{
-		_location = location;
 	}
 
 	template <typename T>

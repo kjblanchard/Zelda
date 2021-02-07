@@ -5,6 +5,8 @@
 #include "Graphics.h"
 #include "Statics.h"
 
+SG::StateMachine<ZeldaLevels>ZeldaWorld::_levelStateMachine;
+
 int main(int argc, char* args[])
 {
 	auto zeldaWorld = std::make_unique<ZeldaWorld>();

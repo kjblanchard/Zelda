@@ -23,7 +23,7 @@ Link::Link(SG::Vector3 location, SG::Controller* controller)
 {
 	_inputComponent = std::make_unique<SG::InputComponent>(controller, this);
 	_animationComponent = std::make_unique<SG::AnimationComponent<LinkAnimationController, LinkAnimations>>(this, new LinkAnimationController(this));
-	auto boxColliderBox = SDL_Rect{ 0,0,24,64 };
+	auto boxColliderBox = SDL_Rect{ 0,0,24,24 };
 	_boxColliderComponent = std::make_unique<SG::BoxColliderComponent>(this,boxColliderBox);
 }
 
@@ -85,32 +85,32 @@ void Link::HandleInput()
 			{
 				_animationComponent->IsAnimPlaying = true;
 				_animationComponent->ChangeAnimation(LinkAnimations::WalkUp);
-				potentialMoveSpeed.Y -= 7;
+				potentialMoveSpeed.Y -= 3;
 
 
 			}
-			 if (_inputComponent->CurrentController->IsButtonPressed(SG::ControllerButtons::Down) || _inputComponent->CurrentController->IsButtonHeld(SG::ControllerButtons::Down))
+			else if (_inputComponent->CurrentController->IsButtonPressed(SG::ControllerButtons::Down) || _inputComponent->CurrentController->IsButtonHeld(SG::ControllerButtons::Down))
 			{
 				 _animationComponent->IsAnimPlaying = true;
 				_animationComponent->ChangeAnimation(LinkAnimations::WalkDown);
-				potentialMoveSpeed.Y += 7;
+				potentialMoveSpeed.Y += 3;
 
 
 
 			}
-			 if (_inputComponent->CurrentController->IsButtonPressed(SG::ControllerButtons::Left) || _inputComponent->CurrentController->IsButtonHeld(SG::ControllerButtons::Left))
+			else if (_inputComponent->CurrentController->IsButtonPressed(SG::ControllerButtons::Left) || _inputComponent->CurrentController->IsButtonHeld(SG::ControllerButtons::Left))
 			{
 				_animationComponent->IsAnimPlaying = true;
 				_animationComponent->ChangeAnimation((LinkAnimations::WalkLeft));
-				potentialMoveSpeed.X -= 7;
+				potentialMoveSpeed.X -= 3;
 
 
 			}
-			 if (_inputComponent->CurrentController->IsButtonPressed(SG::ControllerButtons::Right) || _inputComponent->CurrentController->IsButtonHeld(SG::ControllerButtons::Right))
+			else if (_inputComponent->CurrentController->IsButtonPressed(SG::ControllerButtons::Right) || _inputComponent->CurrentController->IsButtonHeld(SG::ControllerButtons::Right))
 			{
 				_animationComponent->IsAnimPlaying = true;
 				_animationComponent->ChangeAnimation(LinkAnimations::WalkRight);
-				potentialMoveSpeed.X += 7;
+				potentialMoveSpeed.X += 3;
 
 
 			}

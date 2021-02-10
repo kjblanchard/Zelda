@@ -179,6 +179,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="GameLevel.h" />
     <ClInclude Include="include\interfaces\ILevel.h" />
     <ClInclude Include="include\components\BoxColliderComponent.h" />
     <ClInclude Include="include\collision\Collision.h" />
@@ -201,6 +202,7 @@
     <ClInclude Include="include\components\ImageComponent.h" />
     <ClInclude Include="include\Input.h" />
     <ClInclude Include="include\components\InputComponent.h" />
+    <ClInclude Include="Level.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="include\PlayerController.h" />
     <ClInclude Include="include\data\Point.h" />
@@ -217,6 +219,8 @@
     <ClInclude Include="include\SolidTile.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="GameLevel.cpp" />
+    <ClCompile Include="Level.cpp" />
     <ClCompile Include="src\interfaces\ILevel.cpp" />
     <ClCompile Include="src\SolidTile.cpp" />
     <ClCompile Include="src\components\BoxColliderComponent.cpp" />

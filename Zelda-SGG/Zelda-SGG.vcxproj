@@ -25,6 +25,7 @@
     <ClCompile Include="src\Statics.cpp" />
     <ClCompile Include="src\ZeldaWorld.cpp" />
     <ClCompile Include="src\ZeldaTiled.cpp" />
+    <ClCompile Include="src\ZeldaLevel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\DebugRoomLevel.h" />
@@ -33,6 +34,7 @@
     <ClInclude Include="include\ZeldaWorld.h" />
     <ClInclude Include="include\ZeldaTiled.h" />
     <ClInclude Include="include\animation\LinkAnimationController.h" />
+    <ClInclude Include="include\ZeldaLevel.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SGGEngine\SGGEngine.vcxproj">

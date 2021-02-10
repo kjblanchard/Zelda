@@ -4,8 +4,8 @@
 #include "SpriteBatch.h"
 #include "Graphics.h"
 #include "Statics.h"
+#include "ZeldaLevel.h"
 
-SG::StateMachine<ZeldaLevels>ZeldaWorld::_levelStateMachine;
 
 int main(int argc, char* args[])
 {
@@ -22,19 +22,19 @@ ZeldaWorld::ZeldaWorld()
 
 void ZeldaWorld::Startup()
 {
-	_levelStateMachine.AddStateToGameStateList(ZeldaLevels::DebugRoom, std::make_unique<DebugRoomLevel>());
-	_levelStateMachine.ChangeState(ZeldaLevels::DebugRoom);
+	_zeldaLevel.Startup();
+	_zeldaLevel.ChangeLevel(ZeldaLevels::DebugRoom);
 }
 
 void ZeldaWorld::Update(const double& deltaTime)
 {
-	_levelStateMachine.Update(deltaTime);
+	_zeldaLevel.Update(deltaTime);
 }
 
 void ZeldaWorld::Draw()
 {
 	auto spriteBatch = SG::SpriteBatch();
-	_levelStateMachine.Draw(spriteBatch);
+	_zeldaLevel.Draw(spriteBatch);
 	_graphics->Draw(spriteBatch);
 
 }

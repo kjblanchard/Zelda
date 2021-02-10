@@ -7,7 +7,8 @@
 
 #pragma once
 #include "World.h"
-#include "StateMachine.h"
+#include "ZeldaLevel.h"
+
 
 enum class ZeldaLevels
 {
@@ -18,10 +19,11 @@ class ZeldaWorld : public SG::World
 {
 public:
 	ZeldaWorld();
-	static SG::StateMachine<ZeldaLevels> _levelStateMachine;
 
 	void Startup() override;
 	void Update(const double& deltaTime) override;
 	void Draw() override;
+
+	ZeldaLevel _zeldaLevel;
 
 };

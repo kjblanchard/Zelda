@@ -54,7 +54,7 @@ void Link::Draw(SG::SpriteBatch& spriteBatch)
 
 bool Link::CheckForCollisions(SDL_Rect& potentialMove)
 {
-	auto* worldLevel = dynamic_cast<SG::ILevel*>(ZeldaWorld::_levelStateMachine.CurrentState());
+	auto worldLevel = dynamic_cast<SG::ILevel*>(ZeldaLevel::GetLevel()->LevelStateMachine.CurrentState());
 
 	if(worldLevel)
 	{
@@ -126,7 +126,7 @@ void Link::HandleInput()
 			}
 			else
 			{
-				auto* worldLevel = dynamic_cast<SG::ILevel*>(ZeldaWorld::_levelStateMachine.CurrentState());
+				auto* worldLevel = dynamic_cast<SG::ILevel*>(ZeldaLevel::GetLevel()->LevelStateMachine.CurrentState());
 
 				if (worldLevel)
 				{

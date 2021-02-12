@@ -120,9 +120,6 @@
     <ClInclude Include="include\SolidTile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\interfaces\ILevel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GameLevel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -231,9 +228,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\SolidTile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\interfaces\ILevel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GameLevel.cpp">

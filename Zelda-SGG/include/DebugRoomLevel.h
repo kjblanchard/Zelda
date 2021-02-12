@@ -10,7 +10,8 @@
 #include "State.h"
 #include "Tile.h"
 #include "TileMap.h"
-#include "interfaces/ILevel.h"
+#include "../../SGGEngine/GameLevel.h"
+
 
 class Link;
 
@@ -18,7 +19,7 @@ namespace SG {
 	enum class TileTypes;
 }
 
-class DebugRoomLevel : public SG::State, public SG::ILevel
+class DebugRoomLevel : public SG::State, public SG::GameLevel
 {
 public:
 	~DebugRoomLevel() = default;

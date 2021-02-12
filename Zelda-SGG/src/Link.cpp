@@ -10,7 +10,8 @@
 #include "components/BoxColliderComponent.h"
 #include "data/Vector3.h"
 #include "components/Component.h"
-#include "interfaces/ILevel.h"
+#include "../../SGGEngine/GameLevel.h"
+
 
 
 Link::Link(SG::Vector3 location)
@@ -54,7 +55,7 @@ void Link::Draw(SG::SpriteBatch& spriteBatch)
 
 bool Link::CheckForCollisions(SDL_Rect& potentialMove)
 {
-	auto worldLevel = dynamic_cast<SG::ILevel*>(ZeldaLevel::GetLevel()->LevelStateMachine.CurrentState());
+	auto worldLevel = dynamic_cast<SG::GameLevel*>(ZeldaLevel::GetLevel()->LevelStateMachine.CurrentState());
 
 	if(worldLevel)
 	{
@@ -126,11 +127,11 @@ void Link::HandleInput()
 			}
 			else
 			{
-				auto* worldLevel = dynamic_cast<SG::ILevel*>(ZeldaLevel::GetLevel()->LevelStateMachine.CurrentState());
+				auto* worldLevel = dynamic_cast<SG::GameLevel*>(ZeldaLevel::GetLevel()->LevelStateMachine.CurrentState());
 
 				if (worldLevel)
 				{
-					auto go = worldLevel->ReturnFurstCollisionGameObject(bbox, SG::GameObjectTypes::SolidTile);
+					auto go = worldLevel->ReturnFirstCollisionGameObject(bbox, SG::GameObjectTypes::SolidTile);
 					auto collisionArea = SG::Collision::ShapeIntersectionArea(bbox, go.GetComponent<SG::BoxColliderComponent>()->ColliderBox);
 
 					if(collisionArea.w < collisionArea.h)

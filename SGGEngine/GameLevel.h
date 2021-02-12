@@ -24,23 +24,24 @@ namespace SG
 
 	class SGGENGINE_API GameLevel : State
 	{
+	public:
 
-		
 
 		bool IsThereACollision(SDL_Rect& boxColliderToCheck, GameObjectTypes listToSearch = GameObjectTypes::Default);
 
-		const GameObject& ReturnFurstCollisionGameObject(SDL_Rect& gameObjectChecking, GameObjectTypes listToSearch = GameObjectTypes::Default);
+		const GameObject& ReturnFirstCollisionGameObject(SDL_Rect& gameObjectChecking, GameObjectTypes listToSearch = GameObjectTypes::Default);
 
+		protected:
 
-		GameObjectList* TotalGameObjectList;
-		GameObjectList* TileLayerList;
-		GameObjectList* SolidLayerList;
-		GameObjectList* EnemiesLayerList;
-		GameObjectList* PlayerLayerList;
+		GameObjectList* TotalGameObjectList = new GameObjectList;
+		GameObjectList* TileLayerList = new GameObjectList;
+		GameObjectList* SolidLayerList = new GameObjectList;
+		GameObjectList* EnemiesLayerList = new GameObjectList;
+		GameObjectList* PlayerLayerList = new GameObjectList;
 
-	private:
 		bool CheckForCollisions(SDL_Rect& rect, GameObjectList& gameObjectList);
 
-		const GameObject& ReturnFirstCollisionObject(SDL_Rect& boxColliderToCheck, GameObjectList& gameObjectList);
+		const GameObject& ReturnFirstCollisionObjectInList(SDL_Rect& boxColliderToCheck, GameObjectList& gameObjectList);
+	private:
 	};
 }

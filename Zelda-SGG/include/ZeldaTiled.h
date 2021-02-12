@@ -6,16 +6,17 @@
 ////////////////////////////////////////////////////////////
 
 #pragma once
-#include "SolidTile.h"
-#include "Tile.h"
-#include "Tiled.h"
 #include "data/Point.h"
+#include "tilemap/Tile.h"
+#include "tilemap/Tiled.h"
+#include "tilemap/SolidTile.h"
+#include "tilemap/TileMap.h"
+
 
 class Link;
 
 namespace SG {
 	class GameObjectList;
-	class TileMap;
 }
 
 /// <summary>

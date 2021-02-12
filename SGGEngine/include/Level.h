@@ -11,82 +11,73 @@
 #else
 #define SGGENGINE_API __declspec(dllimport)
 #endif
-
-#include "state/StateMachine.h"
 #include "interfaces/IUpdate.h"
-#include <SDL_rect.h>
-
-#include "GameObjectList.h"
+#include "state/StateMachine.h"
 
 namespace SG
 {
+	class GameLevel;
+
 	template <typename T>
-	class  Level :IUpdate
+	class Level : public IUpdate
 	{
 	public:
 
 		Level()
 		{
-			if (_instance == nullptr)
+			if(_instance == nullptr)
 			{
 				_instance = this;
 			}
 		}
+		inline static Level* _instance;
+		StateMachine<T> LevelStateMachine;
 
-		static Level* GetLevel()
-		{
-			return _instance;
-		}
 
 		void Startup() override;
 		void Update(const double& deltaTime) override;
 		void Draw(SpriteBatch& spriteBatch) override;
-		bool CheckForCollisionInLevel(SDL_Rect& boxColliderToCheck, GameObjectTypes listToSearch = GameObjectTypes::Default);
-		void ChangeLevel(T levelToChangeTo);
-		void AddLevelToLevelsList(T levelTypeToAdd, State* theActualState);
+		static  Level* GetLevel()
+		{
+			return _instance;
+		}
 
+		GameLevel* GetCurrentGameLevel()
+		{
+			return dynamic_cast<SG::GameLevel*>(LevelStateMachine.CurrentState());
+		}
 
-
-	private:
-		inline static Level* _instance = nullptr;
-		StateMachine<T> _levelStateMachine;
-
+		void ChangeLevel(T gameLevelToChangeTo);
+		virtual void AddAllGameLevels() = 0;
 	};
-
 
 	template <typename T>
 	void Level<T>::Startup()
 	{
-		//startup statemachine and generate states.
+		AddAllGameLevels();
 	}
 
 	template <typename T>
 	void Level<T>::Update(const double& deltaTime)
 	{
-		_levelStateMachine.Update(deltaTime);
+		if(LevelStateMachine.CurrentState())
+		{
+			LevelStateMachine.CurrentState()->Update(deltaTime);
+		}
 	}
 
 	template <typename T>
 	void Level<T>::Draw(SpriteBatch& spriteBatch)
 	{
-		_levelStateMachine.Draw(spriteBatch);
+		if(LevelStateMachine.CurrentState())
+		{
+			LevelStateMachine.Draw(spriteBatch);
+		}
 	}
 
 	template <typename T>
-	bool Level<T>::CheckForCollisionInLevel(SDL_Rect& boxColliderToCheck, GameObjectTypes listToSearch)
+	void Level<T>::ChangeLevel(T gameLevelToChangeTo)
 	{
-		return false;
-	}
-
-	template <typename T>
-	void Level<T>::ChangeLevel(T levelToChangeTo)
-	{
-		_levelStateMachine.ChangeState(levelToChangeTo);
-	}
-
-	template <typename T>
-	void Level<T>::AddLevelToLevelsList(T levelTypeToAdd, State* theActualState)
-	{
-		_levelStateMachine.AddStateToGameStateList(levelTypeToAdd, theActualState);
+		LevelStateMachine.ChangeState(gameLevelToChangeTo);
 	}
 }

@@ -6,7 +6,7 @@
 ////////////////////////////////////////////////////////////
 
 #pragma once
-#include "../../SGGEngine/Level.h"
+#include "Level.h"
 
 
 enum class ZeldaLevels;

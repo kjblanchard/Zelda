@@ -14,18 +14,22 @@
 #include <SDL_rect.h>
 
 
+#include "GameObjectList.h"
 #include "GameObject.h"
-#include "State.h"
+#include "state/State.h"
 
 namespace SG
 {
 	class GameObject;
-	class GameObjectList;
 
-	class SGGENGINE_API GameLevel : State
+	class SGGENGINE_API GameLevel : public State
 	{
 	public:
 
+		~GameLevel()
+		{
+
+		}
 
 		bool IsThereACollision(SDL_Rect& boxColliderToCheck, GameObjectTypes listToSearch = GameObjectTypes::Default);
 

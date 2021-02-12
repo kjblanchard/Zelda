@@ -6,11 +6,10 @@
 ////////////////////////////////////////////////////////////
 
 #pragma once
+#include "GameLevel.h"
 #include "GameObjectList.h"
-#include "State.h"
-#include "Tile.h"
-#include "TileMap.h"
-#include "../../SGGEngine/GameLevel.h"
+#include "ZeldaTiled.h"
+#include "state/State.h"
 
 
 class Link;
@@ -19,7 +18,7 @@ namespace SG {
 	enum class TileTypes;
 }
 
-class DebugRoomLevel : public SG::State, public SG::GameLevel
+class DebugRoomLevel : public SG::GameLevel
 {
 public:
 	~DebugRoomLevel() = default;

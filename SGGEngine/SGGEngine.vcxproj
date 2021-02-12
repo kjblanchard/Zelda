@@ -179,7 +179,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="GameLevel.h" />
+    <ClInclude Include="include\data\Directions.h" />
+    <ClInclude Include="include\GameLevel.h" />
     <ClInclude Include="include\components\BoxColliderComponent.h" />
     <ClInclude Include="include\collision\Collision.h" />
     <ClInclude Include="include\animation\Animation.h" />
@@ -201,26 +202,27 @@
     <ClInclude Include="include\components\ImageComponent.h" />
     <ClInclude Include="include\Input.h" />
     <ClInclude Include="include\components\InputComponent.h" />
-    <ClInclude Include="Level.h" />
+    <ClInclude Include="include\Level.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="include\PlayerController.h" />
     <ClInclude Include="include\data\Point.h" />
     <ClInclude Include="include\SpriteBatch.h" />
     <ClInclude Include="include\Clock.h" />
-    <ClInclude Include="include\State.h" />
-    <ClInclude Include="include\StateMachine.h" />
+    <ClInclude Include="include\state\State.h" />
+    <ClInclude Include="include\state\StateMachine.h" />
     <ClInclude Include="include\Time.h" />
     <ClInclude Include="include\data\Vector3.h" />
-    <ClInclude Include="include\TileMap.h" />
-    <ClInclude Include="include\Tiled.h" />
-    <ClInclude Include="include\Tile.h" />
+    <ClInclude Include="include\tilemap\TileMap.h" />
+    <ClInclude Include="include\tilemap\Tiled.h" />
+    <ClInclude Include="include\tilemap\Tile.h" />
     <ClInclude Include="include\components\AnimationComponent.h" />
-    <ClInclude Include="include\SolidTile.h" />
+    <ClInclude Include="include\tilemap\SolidTile.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GameLevel.cpp" />
-    <ClCompile Include="Level.cpp" />
-    <ClCompile Include="src\SolidTile.cpp" />
+    <ClCompile Include="src\data\Directions.cpp" />
+    <ClCompile Include="src\GameLevel.cpp" />
+    <ClCompile Include="src\Level.cpp" />
+    <ClCompile Include="src\tilemap\SolidTile.cpp" />
     <ClCompile Include="src\components\BoxColliderComponent.cpp" />
     <ClCompile Include="src\collision\Collision.cpp" />
     <ClCompile Include="src\interfaces\IUpdate.cpp" />
@@ -256,9 +258,9 @@
     <ClCompile Include="src\StateMachine.cpp" />
     <ClCompile Include="src\Time.cpp" />
     <ClCompile Include="src\data\Vector3.cpp" />
-    <ClCompile Include="src\TileMap.cpp" />
-    <ClCompile Include="src\Tiled.cpp" />
-    <ClCompile Include="src\Tile.cpp" />
+    <ClCompile Include="src\tilemap\TileMap.cpp" />
+    <ClCompile Include="src\tilemap\Tiled.cpp" />
+    <ClCompile Include="src\tilemap\Tile.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

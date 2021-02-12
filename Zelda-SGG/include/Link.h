@@ -34,8 +34,6 @@ public:
 	void Update(const double& deltaTime) override;
 	void Draw(SG::SpriteBatch& spriteBatch) override;
 
-	bool CheckForCollisions(SDL_Rect& potentialMove);
-
 private:
 	void ComponentUpdate(const double& deltaTime) override;
 	void HandleInput();

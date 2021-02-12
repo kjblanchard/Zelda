@@ -3,6 +3,7 @@
 #include "GameObjectList.h"
 #include "Sound.h"
 #include "ZeldaTiled.h"
+#include "tilemap/TileMap.h"
 
 
 void DebugRoomLevel::Startup()

@@ -1,9 +1,8 @@
 ﻿#include "ZeldaTiled.h"
-#include "TileMap.h"
 #include "GameObjectList.h"
 #include "Input.h"
 #include "Link.h"
-#include "SolidTile.h"
+
 
 void ZeldaTiled::CreateTileMapGameObjects(const SG::TileMap& tileMap, SG::GameObjectList& gameObjectList)
 {

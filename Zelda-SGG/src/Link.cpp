@@ -10,7 +10,6 @@
 #include "components/BoxColliderComponent.h"
 #include "data/Vector3.h"
 #include "components/Component.h"
-#include "../../SGGEngine/GameLevel.h"
 
 
 
@@ -53,18 +52,6 @@ void Link::Draw(SG::SpriteBatch& spriteBatch)
 
 }
 
-bool Link::CheckForCollisions(SDL_Rect& potentialMove)
-{
-	auto worldLevel = dynamic_cast<SG::GameLevel*>(ZeldaLevel::GetLevel()->LevelStateMachine.CurrentState());
-
-	if(worldLevel)
-	{
-		if (worldLevel->IsThereACollision(potentialMove, SG::GameObjectTypes::SolidTile))
-			return true;
-	}
-	return false;
-}
-
 void Link::ComponentUpdate(const double& deltaTime)
 {
 	_animationComponent->Update(deltaTime);
@@ -88,15 +75,12 @@ void Link::HandleInput()
 				_animationComponent->ChangeAnimation(LinkAnimations::WalkUp);
 				potentialMoveSpeed.Y -= 3;
 
-
 			}
 			else if (_inputComponent->CurrentController->IsButtonPressed(SG::ControllerButtons::Down) || _inputComponent->CurrentController->IsButtonHeld(SG::ControllerButtons::Down))
 			{
 				 _animationComponent->IsAnimPlaying = true;
 				_animationComponent->ChangeAnimation(LinkAnimations::WalkDown);
 				potentialMoveSpeed.Y += 3;
-
-
 
 			}
 			else if (_inputComponent->CurrentController->IsButtonPressed(SG::ControllerButtons::Left) || _inputComponent->CurrentController->IsButtonHeld(SG::ControllerButtons::Left))
@@ -105,7 +89,6 @@ void Link::HandleInput()
 				_animationComponent->ChangeAnimation((LinkAnimations::WalkLeft));
 				potentialMoveSpeed.X -= 3;
 
-
 			}
 			else if (_inputComponent->CurrentController->IsButtonPressed(SG::ControllerButtons::Right) || _inputComponent->CurrentController->IsButtonHeld(SG::ControllerButtons::Right))
 			{
@@ -113,56 +96,44 @@ void Link::HandleInput()
 				_animationComponent->ChangeAnimation(LinkAnimations::WalkRight);
 				potentialMoveSpeed.X += 3;
 
-
 			}
 
-			////if(!CheckForCollisions(SDL_Rect()))
 			auto bbox = _boxColliderComponent->ColliderBox;
 			bbox.x += potentialMoveSpeed.X;
 			bbox.y += potentialMoveSpeed.Y;
-			if (!CheckForCollisions(bbox))
+				auto* worldLevel = ZeldaLevel::GetLevel()->GetCurrentGameLevel();
+			if(!worldLevel->IsThereACollision(bbox,SG::GameObjectTypes::SolidTile))
 			{
 				_location.X += potentialMoveSpeed.X;
 				_location.Y += potentialMoveSpeed.Y;
 			}
 			else
 			{
-				auto* worldLevel = dynamic_cast<SG::GameLevel*>(ZeldaLevel::GetLevel()->LevelStateMachine.CurrentState());
-
 				if (worldLevel)
 				{
-					auto go = worldLevel->ReturnFirstCollisionGameObject(bbox, SG::GameObjectTypes::SolidTile);
-					auto collisionArea = SG::Collision::ShapeIntersectionArea(bbox, go.GetComponent<SG::BoxColliderComponent>()->ColliderBox);
+					auto gameObject = worldLevel->ReturnFirstCollisionGameObject(bbox, SG::GameObjectTypes::SolidTile);
+					if (gameObject.Id)
+					{
+						const auto gameObjectColliderbox = gameObject.GetComponent<SG::BoxColliderComponent>()->ColliderBox;
 
-					if(collisionArea.w < collisionArea.h)
-					{
-						if(collisionArea.x > bbox.x)
+						const auto collisionArea = SG::Collision::ShapeIntersectionArea(&bbox, &gameObjectColliderbox);
+						switch (SG::Collision::CalculateIntersectionDirection(collisionArea, bbox))
 						{
-							printf("right collision");
-							_location.X += potentialMoveSpeed.X -= collisionArea.w;
-						}
-						else
-						{
-							printf("left collision");
-							_location.X += potentialMoveSpeed.X += collisionArea.w;
-						}
-					}
-					else
-					{
-						if(collisionArea.y > bbox.y)
-						{
-							printf("bottom collision");
-							_location.Y += potentialMoveSpeed.Y -= collisionArea.h;
-						}
-						else
-						{
-							printf("top collision");
+						case SG::Directions::Up:
 							_location.Y += potentialMoveSpeed.Y += collisionArea.h;
-
+							break;
+						case SG::Directions::Right:
+							_location.X += potentialMoveSpeed.X -= collisionArea.w;
+							break;
+						case SG::Directions::Down:
+							_location.Y += potentialMoveSpeed.Y -= collisionArea.h;
+							break;
+						case SG::Directions::Left:
+							_location.X += potentialMoveSpeed.X += collisionArea.w;
+							break;
 						}
 					}
-					//_location.X += potentialMoveSpeed.X - collisionArea.w;
-					//_location.Y += potentialMoveSpeed.Y - collisionArea.h;
+
 				}
 			}
 		}

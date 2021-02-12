@@ -4,7 +4,7 @@
 
 void ZeldaLevel::AddAllGameLevels()
 {
-	LevelStateMachine.AddStateToGameStateList(ZeldaLevels::DebugRoom, std::make_unique<DebugRoomLevel>());
+	LevelStateMachine.AddStateToGameStateList(ZeldaLevels::DebugRoom,  std::make_unique<DebugRoomLevel>());
 }
 
 

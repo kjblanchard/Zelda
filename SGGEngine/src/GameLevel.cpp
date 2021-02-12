@@ -2,7 +2,7 @@
 
 #include "GameObjectList.h"
 #include  "GameLevel.h"
-
+#include "tilemap/TileMap.h"
 #include "components/BoxColliderComponent.h"
 
 namespace SG

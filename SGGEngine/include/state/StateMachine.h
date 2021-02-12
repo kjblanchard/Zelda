@@ -19,7 +19,7 @@ namespace SG
 
 		virtual ~StateMachine() = default;
 
-		void AddStateToGameStateList(T enumKey, State* state);
+		void AddStateToGameStateList(T enumKey, std::unique_ptr<SG::State> state);
 		void ChangeState(T stateToChangeTo);
 		void Update(const double& deltaTime) const;
 		void Draw(SpriteBatch& spritebatch);
@@ -35,9 +35,8 @@ namespace SG
 	};
 
 	template <typename T>
-	void StateMachine<T>::AddStateToGameStateList(T enumKey, State* state)
+	void StateMachine<T>::AddStateToGameStateList(T enumKey, std::unique_ptr<SG::State> state)
 	{
-		auto nub
 		_gameStates.insert({ enumKey,std::move(state )});
 	}
 

@@ -1,37 +1,34 @@
 ﻿#include "pch.h"
 
 #include "collision/Collision.h"
-#include <algorithm>
 
 namespace SG
 {
-	bool Collision::DoShapesIntersect(const SDL_Rect& rectA, const SDL_Rect& rectB)
+
+	bool Collision::DoShapesIntersect(const SDL_Rect* rectA, const SDL_Rect* rectB)
 	{
-		if (rectA.x < rectB.x + rectB.w &&
-			rectA.x + rectA.w > rectB.x &&
-			rectA.y < rectB.y + rectB.h &&
-			rectA.y + rectA.h > rectB.y)
-		{
-			return true;
-		}
-		return false;
+		auto overlap = SDL_Rect();
+		return SDL_IntersectRect(rectA, rectB, &overlap);
 	}
 
-	SDL_Rect& Collision::ShapeIntersectionArea(const SDL_Rect& rectA, const SDL_Rect& rectB)
+	SDL_Rect& Collision::ShapeIntersectionArea(const SDL_Rect* rectA, const SDL_Rect* rectB)
 	{
-
-		if (!DoShapesIntersect(rectA, rectB))
-		{
-			auto newRect = SDL_Rect{ 0,0,0,0 };
-			return newRect;
-		}
-
-			int xmin = (std::max)(rectA.x, rectB.x);
-			int xmax = (std::min)(rectA.x+rectA.w, rectB.x + rectB.w);
-			int ymin = (std::max)(rectA.y, rectB.y);
-			int ymax = (std::min)(rectA.y+rectA.h, rectB.y+rectB.h);
-			auto newRect = SDL_Rect{ xmin,ymin,xmax - xmin,ymax - ymin };
-			return newRect;
-		}
+		auto overlap = SDL_Rect();
+		SDL_IntersectRect(rectA, rectB, &overlap);
+		return overlap;
 
 	}
+
+	Directions Collision::CalculateIntersectionDirection(const SDL_Rect& intersectionAreaRect, const SDL_Rect& yourCollisionBox)
+	{
+		if (intersectionAreaRect.w < intersectionAreaRect.h)
+		{
+			if (intersectionAreaRect.x > yourCollisionBox.x)
+				return Directions::Right;
+			return Directions::Left;
+		}
+		if (intersectionAreaRect.y > yourCollisionBox.y)
+			return Directions::Down;
+		return Directions::Up;
+	}
+}

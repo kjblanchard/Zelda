@@ -11,27 +11,16 @@
 #else
 #define SGGENGINE_API __declspec(dllimport)
 #endif
-#include <external/json.hpp>
-
 
 namespace SG
 {
-	class GameObject;
-
-	class SGGENGINE_API Tiled
+	enum class Directions
 	{
-	public:
-
-		static nlohmann::json CurrentTiledJson()
-		{
-			return _currentTiledJson;
-		}
-
-		static const nlohmann::json& GenerateJsonFromTileMapFile(std::string fileName);
-
-	protected:
-		static nlohmann::json _currentTiledJson;
-		static std::string _currentTiledString;
-
+		Up,
+		Right,
+		Down,
+		Left
 	};
+	
+
 }

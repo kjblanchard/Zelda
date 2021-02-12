@@ -11,12 +11,11 @@
 #else
 #define SGGENGINE_API __declspec(dllimport)
 #endif
+#include  "Tile.h"
 #include "components/BoxColliderComponent.h"
-#include "tilemap/Tile.h"
 
 namespace SG
 {
-
 
 	template <typename T>
 	class  SolidTile : public GameObject
@@ -28,6 +27,7 @@ namespace SG
 		void Draw(SpriteBatch& spriteBatch) override;
 
 		std::unique_ptr<SG::BoxColliderComponent> _boxColliderComponent;
+
 		Tile<T>* tile;
 	};
 
@@ -40,35 +40,24 @@ namespace SG
 	template <typename T>
 	void SolidTile<T>::Startup()
 	{
-		auto x = 0;
-		auto y = 0;
-		auto w = 32;
-		auto h = 32;
+		auto boxColliderBox = SDL_Rect{ 0,0,32,32};
 
-		auto boxColliderBox = SDL_Rect{ x,y,w,h };
 		_boxColliderComponent = std::make_unique<BoxColliderComponent>(this, boxColliderBox);
 		tile->Startup();
-
-			_boxColliderComponent->Startup();
-			//_boxColliderComponent[i]->ColliderBox.x = tile->Location().X;
-			//_boxColliderComponent[i]->ColliderBox.y = tile->Location().Y;
-		}
-
+		_boxColliderComponent->Startup();
+		_boxColliderComponent->ColliderBox.x = tile->Location().X;
+		_boxColliderComponent->ColliderBox.y = tile->Location().Y;
+	}
 
 	template <typename T>
 	void SolidTile<T>::Update(const double& deltaTime)
 	{
-
-			_boxColliderComponent->Update(deltaTime);
 	}
 
 	template <typename T>
 	void SolidTile<T>::Draw(SpriteBatch& spriteBatch)
 	{
 		tile->Draw(spriteBatch);
-
-
-			_boxColliderComponent->Draw(spriteBatch);
-
+		_boxColliderComponent->Draw(spriteBatch);
 	}
 }

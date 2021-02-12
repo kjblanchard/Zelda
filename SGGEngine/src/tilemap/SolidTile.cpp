@@ -1,4 +1,9 @@
 ﻿#include "pch.h"
 
 
-#include "tilemap/SolidTile.h"
+#include  "SolidTile.h"
+
+namespace SG
+{
+	
+}

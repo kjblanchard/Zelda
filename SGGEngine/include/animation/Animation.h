@@ -27,7 +27,7 @@ namespace SG
 	{
 	public:
 		virtual ~Animation();
-		T AnimationEnumType;
+		T AnimationEnumType {};
 		std::vector < std::pair<Point, int>> LocationAndLengthOfAnimation;
 		Spritesheet* SpriteSheet = nullptr;
 

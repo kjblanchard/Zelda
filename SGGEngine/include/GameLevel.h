@@ -12,24 +12,20 @@
 #define SGGENGINE_API __declspec(dllimport)
 #endif
 #include <SDL_rect.h>
-
-
-#include "GameObjectList.h"
+#include <memory>
 #include "GameObject.h"
 #include "state/State.h"
 
 namespace SG
 {
 	class GameObject;
+	class GameObjectList;
 
 	class SGGENGINE_API GameLevel : public State
 	{
 	public:
-
-		~GameLevel()
-		{
-
-		}
+		GameLevel();
+		~GameLevel();
 
 		bool IsThereACollision(SDL_Rect& boxColliderToCheck, GameObjectTypes listToSearch = GameObjectTypes::Default);
 
@@ -37,11 +33,11 @@ namespace SG
 
 		protected:
 
-		GameObjectList* TotalGameObjectList = new GameObjectList;
-		GameObjectList* TileLayerList = new GameObjectList;
-		GameObjectList* SolidLayerList = new GameObjectList;
-		GameObjectList* EnemiesLayerList = new GameObjectList;
-		GameObjectList* PlayerLayerList = new GameObjectList;
+		std::unique_ptr<GameObjectList> TotalGameObjectList;
+		std::unique_ptr<GameObjectList>  TileLayerList;
+		std::unique_ptr<GameObjectList>  SolidLayerList;
+		std::unique_ptr<GameObjectList>  EnemiesLayerList;
+		std::unique_ptr<GameObjectList>  PlayerLayerList;
 
 		bool CheckForCollisions(SDL_Rect& rect, GameObjectList& gameObjectList);
 

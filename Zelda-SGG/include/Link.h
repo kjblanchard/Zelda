@@ -8,7 +8,6 @@
 #pragma once
 #include "GameObject.h"
 #include <memory>
-
 #include "components/AnimationComponent.h"
 
 class LinkAnimationController;

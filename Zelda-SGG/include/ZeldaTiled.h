@@ -19,9 +19,10 @@ namespace SG {
 	class GameObjectList;
 }
 
-/// <summary>
-/// These are the tyle numbers exported from tiled, and need to match the enum for spawning tiles correctly.
-/// </summary>
+
+/**
+ * \brief These are the tile numbers exported from tiled, and need to match the enum for spawning tiles correctly.
+ */
 enum class ZeldaTileTypes
 {
 	Default = 5,
@@ -48,9 +49,10 @@ private:
 	static SG::Tile<ZeldaTileTypes>* SpawnTileMapTileByZeldaTileType(int tileNum, SG::Vector3 location);
 	static SG::SolidTile<ZeldaTileTypes>* SpawnTileMapSolidTileByZeldaTileType(int tileNum, SG::Vector3 location);
 
-	/// <summary>
-	/// Maps the specific x and y location in the tile so that it can be found
-	/// </summary>
+
+	/**
+	 * \brief Maps the specific x and y location in the tile so that it can be found in the spritesheet
+	 */
 	inline static std::map<ZeldaTileTypes, SG::Point> TileTypesToSpriteLocation =
 	{
 		{ZeldaTileTypes::Default, SG::Point(5,0)},

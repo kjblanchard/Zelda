@@ -1,6 +1,5 @@
 ﻿#include "pch.h"
 #include "tilemap/Tiled.h"
-
 #include <fstream>
 
 namespace SG

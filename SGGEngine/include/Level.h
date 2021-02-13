@@ -11,6 +11,7 @@
 #else
 #define SGGENGINE_API __declspec(dllimport)
 #endif
+
 #include "interfaces/IUpdate.h"
 #include "state/StateMachine.h"
 
@@ -25,22 +26,18 @@ namespace SG
 
 		Level()
 		{
-			if(_instance == nullptr)
-			{
+			if (!_instance)
 				_instance = this;
-			}
 		}
-		inline static Level* _instance;
-		StateMachine<T> LevelStateMachine;
 
-
-		void Startup() override;
-		void Update(const double& deltaTime) override;
-		void Draw(SpriteBatch& spriteBatch) override;
 		static  Level* GetLevel()
 		{
 			return _instance;
 		}
+
+		void Startup() override;
+		void Update(const double& deltaTime) override;
+		void Draw(SpriteBatch& spriteBatch) override;
 
 		GameLevel* GetCurrentGameLevel()
 		{
@@ -48,7 +45,11 @@ namespace SG
 		}
 
 		void ChangeLevel(T gameLevelToChangeTo);
+
+	protected:
+		inline static Level* _instance;
 		virtual void AddAllGameLevels() = 0;
+		StateMachine<T> LevelStateMachine;
 	};
 
 	template <typename T>
@@ -60,19 +61,14 @@ namespace SG
 	template <typename T>
 	void Level<T>::Update(const double& deltaTime)
 	{
-		if(LevelStateMachine.CurrentState())
-		{
-			LevelStateMachine.CurrentState()->Update(deltaTime);
-		}
+			LevelStateMachine.Update(deltaTime);
+
 	}
 
 	template <typename T>
 	void Level<T>::Draw(SpriteBatch& spriteBatch)
 	{
-		if(LevelStateMachine.CurrentState())
-		{
 			LevelStateMachine.Draw(spriteBatch);
-		}
 	}
 
 	template <typename T>

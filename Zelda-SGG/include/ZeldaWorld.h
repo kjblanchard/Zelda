@@ -24,6 +24,8 @@ public:
 	void Update(const double& deltaTime) override;
 	void Draw() override;
 
-	ZeldaLevel _zeldaLevel;
+private:
+
+	std::unique_ptr<ZeldaLevel>_zeldaLevel;
 
 };

@@ -15,6 +15,7 @@ class ZeldaLevel : public SG::Level<ZeldaLevels>
 {
 public:
 	ZeldaLevel() : Level() {}
+	~ZeldaLevel() = default;
 	void AddAllGameLevels() override;
 
 };

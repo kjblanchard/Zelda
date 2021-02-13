@@ -15,17 +15,28 @@
 
 namespace SG
 {
+	/**
+	 * \brief This class is used to send back the full tilemap of the level.  It uses the Tiled class to generate the json data, and this parses through it to create the size and shape of it
+	 */
 	class SGGENGINE_API TileMap
 	{
 	public:
 
 		TileMap() = default;
-		~TileMap();
+		~TileMap() = default;
+
+		/**
+		 * \brief This is the main way to generate a tilemap, it is loaded from tiled and processed into a tilemap.
+		 * \param mapName String of the file name that should be loaded via tiled
+		 * \return The tilemap with the map data
+		 */
+		static TileMap* GenerateTileMap(std::string mapName);
+
 		nlohmann::basic_json<> JsonMapData = nullptr;
 		nlohmann::basic_json<> JsonSolidLayer = nullptr;
+
 		int WidthOfMap = 0;
 		int HeightOfMap = 0;
-		static TileMap* GenerateTileMap(std::string mapName);
 
 	private:
 		inline static const std::string Layers = "layers";

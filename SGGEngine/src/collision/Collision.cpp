@@ -7,11 +7,10 @@ namespace SG
 
 	bool Collision::DoShapesIntersect(const SDL_Rect* rectA, const SDL_Rect* rectB)
 	{
-		auto overlap = SDL_Rect();
-		return SDL_IntersectRect(rectA, rectB, &overlap);
+		return SDL_HasIntersection(rectA, rectB);
 	}
 
-	SDL_Rect& Collision::ShapeIntersectionArea(const SDL_Rect* rectA, const SDL_Rect* rectB)
+	const SDL_Rect& Collision::ShapeIntersectionArea(const SDL_Rect* rectA, const SDL_Rect* rectB)
 	{
 		auto overlap = SDL_Rect();
 		SDL_IntersectRect(rectA, rectB, &overlap);

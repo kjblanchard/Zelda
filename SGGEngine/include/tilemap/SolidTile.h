@@ -26,15 +26,15 @@ namespace SG
 		void Update(const double& deltaTime) override;
 		void Draw(SpriteBatch& spriteBatch) override;
 
+	private:
 		std::unique_ptr<SG::BoxColliderComponent> _boxColliderComponent;
-
-		Tile<T>* tile;
+		std::unique_ptr <Tile<T>> _tile;
 	};
 
 	template <typename T>
 	SolidTile<T>::SolidTile(T tileType, Vector3 location, const Point& locationInSpriteSheet) : GameObject(location)
 	{
-		tile = new Tile<T>(tileType, location, locationInSpriteSheet);
+		_tile = std::make_unique<Tile<T>>(tileType, location, locationInSpriteSheet);
 	}
 
 	template <typename T>
@@ -43,10 +43,8 @@ namespace SG
 		auto boxColliderBox = SDL_Rect{ 0,0,32,32};
 
 		_boxColliderComponent = std::make_unique<BoxColliderComponent>(this, boxColliderBox);
-		tile->Startup();
+		_tile->Startup();
 		_boxColliderComponent->Startup();
-		_boxColliderComponent->ColliderBox.x = tile->Location().X;
-		_boxColliderComponent->ColliderBox.y = tile->Location().Y;
 	}
 
 	template <typename T>
@@ -57,7 +55,7 @@ namespace SG
 	template <typename T>
 	void SolidTile<T>::Draw(SpriteBatch& spriteBatch)
 	{
-		tile->Draw(spriteBatch);
+		_tile->Draw(spriteBatch);
 		_boxColliderComponent->Draw(spriteBatch);
 	}
 }

@@ -1,13 +1,9 @@
 ﻿#include "pch.h"
 #include "tilemap/TileMap.h"
-
 #include "tilemap/Tiled.h"
 
 namespace SG
 {
-	TileMap::~TileMap()
-	{
-	}
 
 	TileMap* TileMap::GenerateTileMap(std::string mapName)
 	{
@@ -32,7 +28,6 @@ namespace SG
 				tilemap->JsonSolidLayer = jsonLayers[1][Data];
 
 			}
-
 		}
 		return tilemap;
 	}

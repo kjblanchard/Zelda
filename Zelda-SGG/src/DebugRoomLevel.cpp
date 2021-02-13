@@ -3,7 +3,6 @@
 #include "GameObjectList.h"
 #include "Sound.h"
 #include "ZeldaTiled.h"
-#include "tilemap/TileMap.h"
 
 
 void DebugRoomLevel::Startup()
@@ -33,6 +32,5 @@ void DebugRoomLevel::Draw(SG::SpriteBatch& spriteBatch)
 
 void DebugRoomLevel::End()
 {
-	//TotalGameObjectList.Reset();
 }
 

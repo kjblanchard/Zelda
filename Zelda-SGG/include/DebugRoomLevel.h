@@ -7,9 +7,8 @@
 
 #pragma once
 #include "GameLevel.h"
-#include "GameObjectList.h"
-#include "ZeldaTiled.h"
-#include "state/State.h"
+#include "tilemap/TileMap.h"
+
 
 
 class Link;

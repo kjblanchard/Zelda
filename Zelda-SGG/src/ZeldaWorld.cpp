@@ -22,19 +22,20 @@ ZeldaWorld::ZeldaWorld()
 
 void ZeldaWorld::Startup()
 {
-	_zeldaLevel.Startup();
-	_zeldaLevel.ChangeLevel(ZeldaLevels::DebugRoom);
+	_zeldaLevel = std::make_unique<ZeldaLevel>();
+	_zeldaLevel->Startup();
+	_zeldaLevel->ChangeLevel(ZeldaLevels::DebugRoom);
 }
 
 void ZeldaWorld::Update(const double& deltaTime)
 {
-	_zeldaLevel.Update(deltaTime);
+	_zeldaLevel->Update(deltaTime);
 }
 
 void ZeldaWorld::Draw()
 {
 	auto spriteBatch = SG::SpriteBatch();
-	_zeldaLevel.Draw(spriteBatch);
+	_zeldaLevel->Draw(spriteBatch);
 	_graphics->Draw(spriteBatch);
 
 }

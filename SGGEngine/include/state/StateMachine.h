@@ -23,8 +23,17 @@ namespace SG
 		void ChangeState(T stateToChangeTo);
 		void Update(const double& deltaTime) const;
 		void Draw(SpriteBatch& spritebatch);
-		State* CurrentState();
-		const State& PreviousState() const;
+
+		 State* CurrentState()
+		{
+			return _currentState;
+
+		}
+
+		const State* PreviousState() const
+		{
+			return _previousState;
+		}
 
 
 	private:
@@ -67,15 +76,9 @@ namespace SG
 		_currentState->Draw(spritebatch);
 	}
 
-	template <typename T>
-	State* StateMachine<T>::CurrentState()
-	{
-		return _currentState;
-	}
-
-	template <typename T>
-	const State& StateMachine<T>::PreviousState() const
-	{
-		return *_previousState;
-	}
+	//template <typename T>
+	//const State& StateMachine<T>::PreviousState() const
+	//{
+	//	return *_previousState;
+	//}
 }

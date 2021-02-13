@@ -7,6 +7,19 @@
 
 namespace SG
 {
+	GameLevel::GameLevel() : TotalGameObjectList(std::make_unique<GameObjectList>()), TileLayerList(std::make_unique<GameObjectList>()), SolidLayerList(std::make_unique<GameObjectList>()), EnemiesLayerList(std::make_unique<GameObjectList>()), PlayerLayerList(std::make_unique<GameObjectList>())
+	{
+	}
+
+	GameLevel::~GameLevel()
+	{
+		TotalGameObjectList->Reset();
+		TileLayerList->Reset();
+		SolidLayerList->Reset();
+		EnemiesLayerList->Reset();
+		PlayerLayerList->Reset();
+	}
+
 	bool GameLevel::IsThereACollision(SDL_Rect& boxColliderToCheck, GameObjectTypes listToSearch)
 	{
 		switch (listToSearch)

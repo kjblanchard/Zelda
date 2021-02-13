@@ -21,6 +21,6 @@ namespace SG
 		Down,
 		Left
 	};
-	
+
 
 }

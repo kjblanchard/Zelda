@@ -9,7 +9,9 @@
 #include "components/AnimationComponent.h"
 #include "components/BoxColliderComponent.h"
 #include "data/Vector3.h"
-
+#include "states/Link/LinkMovingState.h"
+#include "states/Link/LinkSpawningState.h"
+#include "states/Link/LinkStates.h"
 
 
 Link::Link(SG::Vector3 location)
@@ -34,6 +36,7 @@ Link::~Link()
 void Link::Startup()
 {
 	_animationComponent->Startup();
+	GenerateStates();
 	_animationComponent->ChangeAnimation(LinkAnimations::WalkDown);
 	_boxColliderComponent->Startup();
 }
@@ -137,4 +140,10 @@ void Link::HandleInput()
 			}
 		}
 	}
+}
+
+void Link::GenerateStates()
+{
+	_linkStateMachine->AddStateToGameStateList(LinkStates::Spawning, std::make_unique<LinkSpawningState>());
+	_linkStateMachine->AddStateToGameStateList(LinkStates::Moving, std::make_unique<LinkMovingState>());
 }

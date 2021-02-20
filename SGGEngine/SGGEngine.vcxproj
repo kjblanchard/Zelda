@@ -254,8 +254,8 @@
     <ClCompile Include="src\data\Point.cpp" />
     <ClCompile Include="src\SpriteBatch.cpp" />
     <ClCompile Include="src\Clock.cpp" />
-    <ClCompile Include="src\State.cpp" />
-    <ClCompile Include="src\StateMachine.cpp" />
+    <ClCompile Include="src\state\State.cpp" />
+    <ClCompile Include="src\state\StateMachine.cpp" />
     <ClCompile Include="src\Time.cpp" />
     <ClCompile Include="src\data\Vector3.cpp" />
     <ClCompile Include="src\tilemap\TileMap.cpp" />

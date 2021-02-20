@@ -9,7 +9,9 @@
 #include "GameObject.h"
 #include <memory>
 #include "components/AnimationComponent.h"
+#include "state/StateMachine.h"
 
+enum class LinkStates;
 class LinkAnimationController;
 enum class LinkAnimations;
 
@@ -37,7 +39,10 @@ private:
 	void ComponentUpdate(const double& deltaTime) override;
 	void HandleInput();
 
-	/// <summary>
+	void GenerateStates();
+	SG::StateMachine<LinkStates>* _linkStateMachine = new SG::StateMachine<LinkStates>;
+
+		/// <summary>
 	/// Components
 	/// </summary>
 	///

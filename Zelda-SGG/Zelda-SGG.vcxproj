@@ -19,6 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\states\Link\LinkMovingState.cpp" />
+    <ClCompile Include="src\states\Link\LinkSpawningState.cpp" />
+    <ClCompile Include="src\states\Link\LinkStates.cpp" />
     <ClCompile Include="src\animation\LinkAnimationController.cpp" />
     <ClCompile Include="src\DebugRoomLevel.cpp" />
     <ClCompile Include="src\Link.cpp" />
@@ -35,6 +38,9 @@
     <ClInclude Include="include\ZeldaTiled.h" />
     <ClInclude Include="include\animation\LinkAnimationController.h" />
     <ClInclude Include="include\ZeldaLevel.h" />
+    <ClInclude Include="include\states\Link\LinkStates.h" />
+    <ClInclude Include="include\states\Link\LinkMovingState.h" />
+    <ClInclude Include="include\states\Link\LinkSpawningState.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SGGEngine\SGGEngine.vcxproj">

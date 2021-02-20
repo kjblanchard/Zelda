@@ -9,6 +9,9 @@ namespace SG
 {
 	class SpriteBatch;
 
+	/// <summary>
+	/// This abstract class has 4 functions that must be implemented, Startup Update Draw and End
+	/// </summary>
 	class SGGENGINE_API State
 	{
 

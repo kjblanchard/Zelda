@@ -51,7 +51,7 @@
     <ClCompile Include="src\animation\LinkAnimations\LinkWalkingAnimation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\animation\LinkAnimations\LinkAttackingState.cpp">
+    <ClCompile Include="src\animation\LinkAnimations\LinkAttackingAnimation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -86,13 +86,13 @@
     <ClInclude Include="include\states\Link\LinkSpawningState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\animation\LinkAnimations.h">
+    <ClInclude Include="include\animation\LinkAnimations\LinkAnimations.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\animation\LinkWalkingAnimation.h">
+    <ClInclude Include="include\animation\LinkAnimations\LinkAttackingAnimation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\animation\LinkAttackingState.h">
+    <ClInclude Include="include\animation\LinkAnimations\LinkWalkingAnimation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

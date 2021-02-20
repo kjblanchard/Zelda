@@ -6,10 +6,10 @@
 ////////////////////////////////////////////////////////////
 
 #pragma once
-#include "LinkAnimations.h"
 #include "World.h"
 #include "animation/AnimationController.h"
 #include "animation/Animation.h"
+#include "LinkAnimations/LinkAnimations.h"
 
 
 class LinkAnimationController : public SG::AnimationController<LinkAnimations>

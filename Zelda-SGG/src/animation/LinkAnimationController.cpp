@@ -2,7 +2,8 @@
 #include "Image.h"
 #include "SpriteBatch.h"
 #include "Statics.h"
-#include "animation/LinkWalkingAnimation.h"
+#include "animation/LinkAnimations/LinkAttackingAnimation.h"
+#include "animation/LinkAnimations/LinkWalkingAnimation.h"
 #include "components/ImageComponent.h"
 
 
@@ -18,7 +19,12 @@ LinkAnimationController::LinkAnimationController(SG::GameObject* gameObject) : A
 			{LinkWalkUp() },
 			{LinkWalkRight()},
 			{LinkWalkDown()},
-			{LinkWalkLeft()}
+			{LinkWalkLeft()},
+			{LinkAttackUp() },
+			{LinkAttackRight()},
+			{LinkAttackDown()},
+			{LinkAttackLeft()},
+
 		};
 		staticsInitialized = true;
 	}

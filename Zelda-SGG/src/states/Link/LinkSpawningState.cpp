@@ -1,6 +1,6 @@
 ﻿#include "states/Link/LinkSpawningState.h"
-#include "Link.h"
-#include "animation/LinkAnimationController.h"
+#include "characters/Link.h"
+#include "animation/LinkAnimations/LinkAnimationController.h"
 #include "components/BoxColliderComponent.h"
 #include "states/Link/LinkStates.h"
 

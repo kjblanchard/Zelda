@@ -1,4 +1,4 @@
-﻿#include "animation/LinkAnimationController.h"
+﻿#include "animation/LinkAnimations/LinkAnimationController.h"
 #include "Image.h"
 #include "SpriteBatch.h"
 #include "Statics.h"

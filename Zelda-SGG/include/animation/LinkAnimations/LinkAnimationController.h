@@ -9,7 +9,7 @@
 #include "World.h"
 #include "animation/AnimationController.h"
 #include "animation/Animation.h"
-#include "LinkAnimations/LinkAnimations.h"
+#include "animation/LinkAnimations/LinkAnimations.h"
 
 
 class LinkAnimationController : public SG::AnimationController<LinkAnimations>

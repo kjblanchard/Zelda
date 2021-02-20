@@ -21,16 +21,7 @@
     <ClCompile Include="src\Statics.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\DebugRoomLevel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Link.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\ZeldaTiled.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\animation\LinkAnimationController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\ZeldaLevel.cpp">
@@ -54,6 +45,18 @@
     <ClCompile Include="src\animation\LinkAnimations\LinkAttackingAnimation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\animation\LinkAnimations\LinkAnimationController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\characters\Link.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\levels\DebugRoomLevel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\states\Link\LinkAttackingState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ZeldaWorld.h">
@@ -62,16 +65,7 @@
     <ClInclude Include="include\Statics.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\DebugRoomLevel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Link.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\ZeldaTiled.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\animation\LinkAnimationController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\ZeldaLevel.h">
@@ -93,6 +87,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\animation\LinkAnimations\LinkWalkingAnimation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\animation\LinkAnimations\LinkAnimationController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\characters\Link.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\levels\DebugRoomLevel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\states\Link\LinkAttackingState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

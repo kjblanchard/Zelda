@@ -19,27 +19,28 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\states\Link\LinkAttackingState.cpp" />
     <ClCompile Include="src\animation\LinkAnimations\LinkAttackingAnimation.cpp" />
     <ClCompile Include="src\animation\LinkAnimations\LinkWalkingAnimation.cpp" />
     <ClCompile Include="src\animation\LinkAnimations\LinkAnimations.cpp" />
     <ClCompile Include="src\states\Link\LinkMovingState.cpp" />
     <ClCompile Include="src\states\Link\LinkSpawningState.cpp" />
     <ClCompile Include="src\states\Link\LinkStates.cpp" />
-    <ClCompile Include="src\animation\LinkAnimationController.cpp" />
-    <ClCompile Include="src\DebugRoomLevel.cpp" />
-    <ClCompile Include="src\Link.cpp" />
+    <ClCompile Include="src\animation\LinkAnimations\LinkAnimationController.cpp" />
+    <ClCompile Include="src\levels\DebugRoomLevel.cpp" />
+    <ClCompile Include="src\characters\Link.cpp" />
     <ClCompile Include="src\Statics.cpp" />
     <ClCompile Include="src\ZeldaWorld.cpp" />
     <ClCompile Include="src\ZeldaTiled.cpp" />
     <ClCompile Include="src\ZeldaLevel.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\DebugRoomLevel.h" />
-    <ClInclude Include="include\Link.h" />
+    <ClInclude Include="include\levels\DebugRoomLevel.h" />
+    <ClInclude Include="include\characters\Link.h" />
     <ClInclude Include="include\Statics.h" />
     <ClInclude Include="include\ZeldaWorld.h" />
     <ClInclude Include="include\ZeldaTiled.h" />
-    <ClInclude Include="include\animation\LinkAnimationController.h" />
+    <ClInclude Include="include\animation\LinkAnimations\LinkAnimationController.h" />
     <ClInclude Include="include\ZeldaLevel.h" />
     <ClInclude Include="include\states\Link\LinkStates.h" />
     <ClInclude Include="include\states\Link\LinkMovingState.h" />
@@ -47,6 +48,7 @@
     <ClInclude Include="include\animation\LinkAnimations\LinkAnimations.h" />
     <ClInclude Include="include\animation\LinkAnimations\LinkWalkingAnimation.h" />
     <ClInclude Include="include\animation\LinkAnimations\LinkAttackingAnimation.h" />
+    <ClInclude Include="include\states\Link\LinkAttackingState.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SGGEngine\SGGEngine.vcxproj">

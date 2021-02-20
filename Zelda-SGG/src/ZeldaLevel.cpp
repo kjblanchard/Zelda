@@ -1,6 +1,6 @@
 ﻿#include "ZeldaLevel.h"
 #include "ZeldaWorld.h"
-#include "DebugRoomLevel.h"
+#include "levels/DebugRoomLevel.h"
 
 void ZeldaLevel::AddAllGameLevels()
 {

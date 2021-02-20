@@ -1,12 +1,12 @@
 ﻿#include "states/Link/LinkMovingState.h"
 #include "components/InputComponent.h"
 #include "Controller.h"
-#include "Link.h"
+#include "characters/Link.h"
 #include "ZeldaLevel.h"
 #include "collision/Collision.h"
 #include "GameLevel.h"
 #include "components/BoxColliderComponent.h"
-#include "animation/LinkAnimationController.h"
+#include "animation/LinkAnimations/LinkAnimationController.h"
 
 LinkMovingState::LinkMovingState(Link* link) : _link(link)
 {

@@ -2,13 +2,15 @@
 #include "components/InputComponent.h"
 #include "components/BoxColliderComponent.h"
 #include "animation/LinkAnimations/LinkAnimationController.h"
+#include "data/Directions.h"
 #include "states/Link/LinkStates.h"
 #include "states/Link/LinkSpawningState.h"
 #include "states/Link/LinkMovingState.h"
+#include "states/Link/LinkAttackingState.h"
 
 
 Link::Link(SG::Vector3 location)
-	: GameObject(location), _animationComponent(nullptr),_inputComponent(nullptr)
+	: GameObject(location), _currentDirection(SG::Directions::Down),_animationComponent(nullptr), _inputComponent(nullptr)
 {
 }
 
@@ -56,4 +58,10 @@ void Link::GenerateStates()
 {
 	_linkStateMachine->AddStateToGameStateList(LinkStates::Spawning, std::make_unique<LinkSpawningState>(this));
 	_linkStateMachine->AddStateToGameStateList(LinkStates::Moving, std::make_unique<LinkMovingState>(this));
+	_linkStateMachine->AddStateToGameStateList(LinkStates::Attacking, std::make_unique<LinkAttackingState>(this));
+}
+
+void Link::ChangeCurrentDirection(SG::Directions direction)
+{
+	_currentDirection = direction;
 }

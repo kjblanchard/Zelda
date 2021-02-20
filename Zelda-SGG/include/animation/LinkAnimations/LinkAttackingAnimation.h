@@ -20,6 +20,8 @@ public:
 		LocationAndLengthOfAnimation =
 		{
 			{SG::Point(0,0), 7},
+			{SG::Point(0,0), 7},
+
 		};
 	}
 };
@@ -33,7 +35,9 @@ public:
 		SpriteSheet = _graphics->LoadFromSpriteSheet(SG::SpriteSheetEnum::LinkAttacking);
 		LocationAndLengthOfAnimation =
 		{
-			{SG::Point(1,0), 7},
+			{SG::Point(0,1), 7},
+			{SG::Point(0,1), 7},
+
 		};
 	}
 };
@@ -47,7 +51,9 @@ public:
 		SpriteSheet = _graphics->LoadFromSpriteSheet(SG::SpriteSheetEnum::LinkAttacking);
 		LocationAndLengthOfAnimation =
 		{
-			{SG::Point(2,0), 7},
+			{SG::Point(0,2), 7},
+			{SG::Point(0,2), 7},
+
 		};
 	}
 };
@@ -61,7 +67,9 @@ public:
 		SpriteSheet = _graphics->LoadFromSpriteSheet(SG::SpriteSheetEnum::LinkAttacking);
 		LocationAndLengthOfAnimation =
 		{
-			{SG::Point(3,0), 7},
+			{SG::Point(0,3), 7},
+			{SG::Point(0,3), 7},
+
 		};
 	}
 };

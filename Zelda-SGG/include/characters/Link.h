@@ -16,6 +16,7 @@ class LinkAnimationController;
 enum class LinkAnimations;
 
 namespace SG {
+	enum class Directions;
 	class BoxColliderComponent;
 	class Controller;
 	class PlayerController;
@@ -34,12 +35,19 @@ public:
 	void Startup() override;
 	void Update(const double& deltaTime) override;
 	void Draw(SG::SpriteBatch& spriteBatch) override;
+	void ChangeState(LinkStates stateToChangeTo) const { _linkStateMachine->ChangeState(stateToChangeTo); }
 
 private:
 	void ComponentUpdate(const double& deltaTime) override;
 
 	void GenerateStates();
+
+
 	SG::StateMachine<LinkStates>* _linkStateMachine = new SG::StateMachine<LinkStates>;
+	void ChangeCurrentDirection(SG::Directions direction);
+
+	SG::Directions _currentDirection;
+
 
 		/// <summary>
 	/// Components
@@ -51,4 +59,5 @@ private:
 
 	friend class LinkSpawningState;
 	friend class LinkMovingState;
+	friend class LinkAttackingState;
 };

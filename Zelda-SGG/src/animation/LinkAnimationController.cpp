@@ -2,6 +2,7 @@
 #include "Image.h"
 #include "SpriteBatch.h"
 #include "Statics.h"
+#include "animation/LinkWalkingAnimation.h"
 #include "components/ImageComponent.h"
 
 

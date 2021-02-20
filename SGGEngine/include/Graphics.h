@@ -67,7 +67,9 @@ namespace SG
 		{
 		{SpriteSheetEnum::Link,new Spritesheet("hero.png")},
 		{SpriteSheetEnum::TileSet, new Spritesheet("tileset.png")},
-		{SpriteSheetEnum::LinkWalking,new Spritesheet("Link_Movement.png")}
+		{SpriteSheetEnum::LinkWalking,new Spritesheet("Link_Movement.png")},
+		{SpriteSheetEnum::LinkAttacking, new Spritesheet("Link_Attack.png")},
+		{SpriteSheetEnum::WoodSword,new Spritesheet("WoodSword.png")}
 		};
 
 		Point _screenSize;

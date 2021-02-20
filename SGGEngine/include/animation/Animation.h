@@ -18,6 +18,7 @@
 #include "Graphics.h"
 #include "Spritesheet.h"
 #include "data/Point.h"
+#include "World.h"
 
 namespace SG
 {
@@ -26,6 +27,9 @@ namespace SG
 	class Animation
 	{
 	public:
+		Animation() {
+			if (!_graphics) _graphics = SG::World::GetGraphics();
+		}
 		virtual ~Animation();
 		T AnimationEnumType {};
 		std::vector < std::pair<Point, int>> LocationAndLengthOfAnimation;
@@ -37,8 +41,10 @@ namespace SG
 
 			return LocationAndLengthOfAnimation[currentFrame].first * 32;
 		}
-
+	protected:
+	 inline static Graphics* _graphics = nullptr;
 	};
+
 
 	template <typename T>
 	Animation<T>::~Animation()

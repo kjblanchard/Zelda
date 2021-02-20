@@ -8,16 +8,21 @@
 #pragma once
 #include "state/State.h"
 
+class Link;
+
 class LinkSpawningState : public SG::State
 {
 public:
-	LinkSpawningState() = default;
+	LinkSpawningState(Link* link);
 	~LinkSpawningState() override = default;
 
 	void Startup() override;
 	void Update(const double& deltaTime) override;
 	void Draw(SG::SpriteBatch& spriteBatch) override;
 	void End() override;
+
+private:
+	Link* _link;
 
 
 };

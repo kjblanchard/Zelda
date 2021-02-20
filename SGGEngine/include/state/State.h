@@ -20,10 +20,14 @@ namespace SG
 		virtual void Startup() = 0;
 		virtual void Update(const double& deltaTime) = 0;
 		virtual void Draw(SpriteBatch& spriteBatch) = 0;
+		virtual void HandleInput();
 		virtual void End() = 0 ;
 
 	protected:
 
 	};
 
+	inline void State::HandleInput()
+	{
+	}
 }

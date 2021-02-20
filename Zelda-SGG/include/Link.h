@@ -37,7 +37,6 @@ public:
 
 private:
 	void ComponentUpdate(const double& deltaTime) override;
-	void HandleInput();
 
 	void GenerateStates();
 	SG::StateMachine<LinkStates>* _linkStateMachine = new SG::StateMachine<LinkStates>;
@@ -49,4 +48,7 @@ private:
 	std::unique_ptr<SG::AnimationComponent<LinkAnimationController, LinkAnimations>> _animationComponent;
 	std::unique_ptr<SG::InputComponent> _inputComponent;
 	std::unique_ptr<SG::BoxColliderComponent> _boxColliderComponent;
+
+	friend class LinkSpawningState;
+	friend class LinkMovingState;
 };

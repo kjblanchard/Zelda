@@ -39,6 +39,7 @@ namespace SG
 		 */
 		void UpdateSpriteSheetLocation(const Point& locationInSpriteSheet) const;
 		void UpdateSpriteDestinationInWorld(const Vector3& worldLocation);
+		void UpdateImageSpriteSheet(Spritesheet* spriteSheet) const;
 		std::unique_ptr<Image> image;
 	private:
 		SG::Vector3 _location;

@@ -52,4 +52,9 @@ namespace SG
 			image->LocationAndSizeOnRenderer.y = worldLocation.Y;
 		}
 	}
+
+	void ImageComponent::UpdateImageSpriteSheet(Spritesheet* spriteSheet) const
+	{
+		image->SpriteSheet = spriteSheet;
+	}
 }

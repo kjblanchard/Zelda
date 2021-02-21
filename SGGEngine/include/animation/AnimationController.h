@@ -17,6 +17,7 @@
 #include "GameObject.h"
 #include "components/ImageComponent.h"
 #include "data/Vector3.h"
+#include "Image.h"
 
 namespace SG
 {
@@ -69,6 +70,7 @@ namespace SG
 			if (Animations[i].AnimationEnumType == animationEnum)
 			{
 				_currentAnimation = &Animations[i];
+				_imageComponent->UpdateImageSpriteSheet(_currentAnimation->SpriteSheet);
 				break;
 			}
 		}

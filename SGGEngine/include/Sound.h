@@ -26,6 +26,18 @@ namespace SG
 		Overworld = 1,
 	};
 
+	enum class SoundFxToPlay
+	{
+		Default = 0,
+		BaseSwordAttack = 1,
+	};
+
+	struct SoundFile
+	{
+		std::string FileLocation;
+		Mix_Chunk* LoadedSound;
+	};
+
 	struct MusicFile
 	{
 		std::string FileLocation;
@@ -42,7 +54,13 @@ namespace SG
 			{MusicToPlay::Overworld, MusicFile{"assets/sound/Overworld.ogg",true,6.719, 51.418 }   }
 		};
 
+		inline static std::map<SoundFxToPlay, SoundFile> SoundFxToLoadedSoundDict =
+		{
+			{SoundFxToPlay::BaseSwordAttack,SoundFile{"assets/sound/sword.wav",NULL}}
+		};
+
 		static void PlayMusic(MusicToPlay musicToPlayEnum);
+		static void PlaySound(SoundFxToPlay soundToPlayEnum);
 		static Mix_Music* CurrentPlayingMixMusic;
 		static MusicFile CurrentPlayingMusicFile;
 

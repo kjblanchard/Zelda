@@ -1,4 +1,6 @@
 ﻿#include "states/Link/LinkAttackingState.h"
+
+#include "Sound.h"
 #include "data/Directions.h"
 #include "animation/LinkAnimations/LinkAnimationController.h"
 #include "characters/Link.h"
@@ -23,7 +25,7 @@ void LinkAttackingState::Startup()
 		_link->_animationComponent->ChangeAnimation(LinkAnimations::AttackLeft);
 		break;
 	}
-
+	SG::Sound::PlaySound(SG::SoundFxToPlay::BaseSwordAttack);
 }
 
 void LinkAttackingState::Update(const double& deltaTime)

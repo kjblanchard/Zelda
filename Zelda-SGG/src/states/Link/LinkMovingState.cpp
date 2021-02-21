@@ -15,6 +15,21 @@ LinkMovingState::LinkMovingState(Link* link) : _link(link)
 
 void LinkMovingState::Startup()
 {
+	switch (_link->_currentDirection)
+	{
+	case SG::Directions::Up:
+		_link->_animationComponent->ChangeAnimation(LinkAnimations::WalkUp);
+		break;
+	case SG::Directions::Right:
+		_link->_animationComponent->ChangeAnimation(LinkAnimations::WalkRight);
+		break;
+	case SG::Directions::Down:
+		_link->_animationComponent->ChangeAnimation(LinkAnimations::WalkDown);
+		break;
+	case SG::Directions::Left:
+		_link->_animationComponent->ChangeAnimation(LinkAnimations::WalkLeft);
+		break;
+	}
 }
 
 void LinkMovingState::Update(const double& deltaTime)

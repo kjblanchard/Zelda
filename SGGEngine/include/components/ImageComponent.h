@@ -27,8 +27,20 @@ namespace SG
 	class SGGENGINE_API ImageComponent : public Component
 	{
 	public:
+		/// <summary>
+		/// These two constructors are for static images that will not be controlled by the animation controller, they will need a spritesheet
+		/// </summary>
+		/// <param name="spriteSheetToLoad"></param>
+		/// <param name="spriteSheetLocationAndSize"></param>
+		/// <param name="gameObject"></param>
 		ImageComponent(SpriteSheetEnum spriteSheetToLoad, const SDL_Rect& spriteSheetLocationAndSize, GameObject* gameObject = nullptr);
 		ImageComponent(SpriteSheetEnum spriteSheetToLoad, Point imageSize, GameObject* gameObject = nullptr);
+		/// <summary>
+		/// This is used for animation components
+		/// </summary>
+		/// <param name="spriteSheetLocationAndSize"></param>
+		/// <param name="gameObject"></param>
+		ImageComponent(const SDL_Rect& spriteSheetLocationAndSize, GameObject* gameObject = nullptr);
 		~ImageComponent();
 
 		void Update(Vector3 location);
@@ -39,6 +51,11 @@ namespace SG
 		 */
 		void UpdateSpriteSheetLocation(const Point& locationInSpriteSheet) const;
 		void UpdateSpriteDestinationInWorld(const Vector3& worldLocation);
+
+		/// <summary>
+		/// Used by the animation controller when changing between animations.
+		/// </summary>
+		/// <param name="spriteSheet">The new spritesheet that should be placed into the Image class</param>
 		void UpdateImageSpriteSheet(Spritesheet* spriteSheet) const;
 		std::unique_ptr<Image> image;
 	private:

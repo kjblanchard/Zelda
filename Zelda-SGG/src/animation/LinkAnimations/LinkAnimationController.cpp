@@ -34,7 +34,9 @@ void LinkAnimationController::Startup()
 {
 
 	const auto sdlRect = SDL_Rect{ 0,0,Statics::TileSize.X, Statics::TileSize.Y };
-	_imageComponent = new SG::ImageComponent(SG::SpriteSheetEnum::LinkWalking,sdlRect, _gameObject);
+	//_imageComponent = new SG::ImageComponent(SG::SpriteSheetEnum::LinkWalking,sdlRect, _gameObject);
+	_imageComponent = new SG::ImageComponent( sdlRect, _gameObject);
+
 	_imageComponent->image->ImageIsWholeTexture = false;
 }
 

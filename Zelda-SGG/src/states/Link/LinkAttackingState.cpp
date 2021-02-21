@@ -1,7 +1,4 @@
 ﻿#include "states/Link/LinkAttackingState.h"
-
-#include <SDL_timer.h>
-
 #include "data/Directions.h"
 #include "animation/LinkAnimations/LinkAnimationController.h"
 #include "characters/Link.h"
@@ -10,7 +7,7 @@
 
 void LinkAttackingState::Startup()
 {
- 	_link->_animationComponent->IsAnimPlaying = true;
+ 	//_link->_animationComponent->IsAnimPlaying = true;
 	switch (_link->_currentDirection)
 	{
 	case SG::Directions::Up:
@@ -26,13 +23,14 @@ void LinkAttackingState::Startup()
 		_link->_animationComponent->ChangeAnimation(LinkAnimations::AttackLeft);
 		break;
 	}
-	_link->ChangeState(LinkStates::Moving);
-	//SDL_AddTimer(1000, Callback, this);
 
 }
 
 void LinkAttackingState::Update(const double& deltaTime)
 {
+	_timeInState += deltaTime;
+	if (_timeInState >= _maxTimeInState)
+		_link->ChangeState(LinkStates::Moving);
 }
 
 void LinkAttackingState::Draw(SG::SpriteBatch& spriteBatch)
@@ -41,12 +39,7 @@ void LinkAttackingState::Draw(SG::SpriteBatch& spriteBatch)
 
 void LinkAttackingState::End()
 {
+	_timeInState = 0;
 }
 
-Uint32 LinkAttackingState::Callback(Uint32 interval, void* param)
-{
-	auto link = static_cast<Link*>(param);
-	link->ChangeState(LinkStates::Moving);
-	return 0;
 
-}

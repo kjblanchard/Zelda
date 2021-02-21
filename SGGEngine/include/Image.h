@@ -29,6 +29,12 @@ namespace SG
 		Image();
 		Image(SpriteSheetEnum spriteSheetToLoad, const SDL_Rect& spriteSheetLocationAndSize);
 		Image(SpriteSheetEnum spriteSheetToLoad, Point imageSize);
+		/// <summary>
+		/// These constructors are used in the animation controller, and are not a static image.
+		/// </summary>
+		/// <param name="spriteSheetLocationAndSize"></param>
+		Image(const SDL_Rect& spriteSheetLocationAndSize);
+		Image(Point imageSize);
 		Spritesheet* SpriteSheet;
 		Vector3 Location;
 		Point Size;

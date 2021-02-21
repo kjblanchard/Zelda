@@ -16,6 +16,11 @@ namespace SG
 		image = std::make_unique<Image>(spriteSheetToLoad, imageSize);
 	}
 
+	ImageComponent::ImageComponent(const SDL_Rect& spriteSheetLocationAndSize, GameObject* gameObject) : Component(gameObject, SGComponentTypes::Image)
+	{
+		image = std::make_unique<Image>(spriteSheetLocationAndSize);
+	}
+
 	ImageComponent::~ImageComponent()
 	{
 	}

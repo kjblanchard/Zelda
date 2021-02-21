@@ -28,6 +28,20 @@ namespace SG
 		LocationAndSizeOnRenderer.w = Size.Y;
 	}
 
+	Image::Image(const SDL_Rect& spriteSheetLocationAndSize) : LocationAndSizeInSpriteSheet()
+	{
+		Size.X = LocationAndSizeOnRenderer.h = spriteSheetLocationAndSize.h;
+		Size.Y = LocationAndSizeOnRenderer.w = spriteSheetLocationAndSize.w;
+		LocationAndSizeInSpriteSheet = spriteSheetLocationAndSize;
+	}
+
+	Image::Image(Point imageSize) : Size(imageSize), LocationAndSizeInSpriteSheet()
+	{
+		ImageIsWholeTexture = true;
+		LocationAndSizeOnRenderer.h = Size.X;
+		LocationAndSizeOnRenderer.w = Size.Y;
+	}
+
 	Spritesheet* Image::GenerateImage(SpriteSheetEnum spriteSheetToLoad)
 	{
 		if (!_graphics)

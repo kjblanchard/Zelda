@@ -6,9 +6,6 @@
 ////////////////////////////////////////////////////////////
 
 #pragma once
-#include <SDL_stdinc.h>
-#include <SDL_timer.h>
-
 
 #include "state/State.h"
 
@@ -27,6 +24,7 @@ public:
 
 private:
 	Link* _link;
+	double _timeInState = 0;
+	inline static double _maxTimeInState = 500;
 
-	static Uint32 Callback(Uint32 interval, void* param);
 };

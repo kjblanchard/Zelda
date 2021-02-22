@@ -9,6 +9,7 @@
 
 #include "state/State.h"
 
+class WoodSwordWeapon;
 class Link;
 
 class LinkAttackingState : public SG::State
@@ -21,6 +22,8 @@ public:
 	void Update(const double& deltaTime) override;
 	void Draw(SG::SpriteBatch& spriteBatch) override;
 	void End() override;
+
+	WoodSwordWeapon* woodSwordDisplay;
 
 private:
 	Link* _link;

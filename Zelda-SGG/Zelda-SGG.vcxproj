@@ -33,6 +33,8 @@
     <ClCompile Include="src\ZeldaWorld.cpp" />
     <ClCompile Include="src\ZeldaTiled.cpp" />
     <ClCompile Include="src\ZeldaLevel.cpp" />
+    <ClCompile Include="Weapon.cpp" />
+    <ClCompile Include="WoodSwordWeapon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\levels\DebugRoomLevel.h" />
@@ -49,6 +51,8 @@
     <ClInclude Include="include\animation\LinkAnimations\LinkWalkingAnimation.h" />
     <ClInclude Include="include\animation\LinkAnimations\LinkAttackingAnimation.h" />
     <ClInclude Include="include\states\Link\LinkAttackingState.h" />
+    <ClInclude Include="Weapon.h" />
+    <ClInclude Include="WoodSwordWeapon.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SGGEngine\SGGEngine.vcxproj">

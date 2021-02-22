@@ -42,6 +42,7 @@ void Link::Update(const double& deltaTime)
 
 void Link::Draw(SG::SpriteBatch& spriteBatch)
 {
+	_linkStateMachine->Draw(spriteBatch);
 	_animationComponent->Draw(spriteBatch);
 	_boxColliderComponent->Draw(spriteBatch);
 

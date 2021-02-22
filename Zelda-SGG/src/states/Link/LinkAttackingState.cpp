@@ -5,11 +5,15 @@
 #include "animation/LinkAnimations/LinkAnimationController.h"
 #include "characters/Link.h"
 #include "states/Link/LinkStates.h"
+#include "../WoodSwordWeapon.h"
 
 
 void LinkAttackingState::Startup()
 {
- 	//_link->_animationComponent->IsAnimPlaying = true;
+
+	auto newLoc = SG::Vector3(_link->Location().X, _link->Location().Y - 32);
+	woodSwordDisplay = new WoodSwordWeapon(newLoc, _link);
+	woodSwordDisplay->Startup();
 	switch (_link->_currentDirection)
 	{
 	case SG::Directions::Up:
@@ -33,10 +37,12 @@ void LinkAttackingState::Update(const double& deltaTime)
 	_timeInState += deltaTime;
 	if (_timeInState >= _maxTimeInState)
 		_link->ChangeState(LinkStates::Moving);
+	woodSwordDisplay->Update(deltaTime);
 }
 
 void LinkAttackingState::Draw(SG::SpriteBatch& spriteBatch)
 {
+	woodSwordDisplay->Draw(spriteBatch);
 }
 
 void LinkAttackingState::End()

@@ -51,7 +51,12 @@ void LinkMovingState::HandleInput()
 		{
 			auto potentialMoveSpeed = SG::Point(0, 0);
 
-			if (_link->_inputComponent->CurrentController->IsButtonPressed(SG::ControllerButtons::Up) || _link->_inputComponent->CurrentController->IsButtonHeld(SG::ControllerButtons::Up))
+			if (_link->_inputComponent->CurrentController->IsButtonPressed(SG::ControllerButtons::A) || _link->_inputComponent->CurrentController->IsButtonHeld(SG::ControllerButtons::A))
+			{
+				_link->_linkStateMachine->ChangeState(LinkStates::Attacking);
+			}
+
+			else if (_link->_inputComponent->CurrentController->IsButtonPressed(SG::ControllerButtons::Up) || _link->_inputComponent->CurrentController->IsButtonHeld(SG::ControllerButtons::Up))
 			{
 				_link->_animationComponent->IsAnimPlaying = true;
 				_link->_animationComponent->ChangeAnimation(LinkAnimations::WalkUp);
@@ -83,11 +88,6 @@ void LinkMovingState::HandleInput()
 				_link->ChangeCurrentDirection(SG::Directions::Right);
 				potentialMoveSpeed.X += 3;
 
-			}
-
-			else if (_link->_inputComponent->CurrentController->IsButtonPressed(SG::ControllerButtons::A) || _link->_inputComponent->CurrentController->IsButtonHeld(SG::ControllerButtons::A))
-			{
-				_link->_linkStateMachine->ChangeState(LinkStates::Attacking);
 			}
 
 			auto bbox = _link->_boxColliderComponent->ColliderBox;

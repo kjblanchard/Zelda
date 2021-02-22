@@ -57,6 +57,12 @@
     <ClCompile Include="src\states\Link\LinkAttackingState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WoodSwordWeapon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ZeldaWorld.h">
@@ -99,6 +105,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\states\Link\LinkAttackingState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WoodSwordWeapon.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -44,7 +44,7 @@ void Link::Draw(SG::SpriteBatch& spriteBatch)
 {
 	_linkStateMachine->Draw(spriteBatch);
 	_animationComponent->Draw(spriteBatch);
-	_boxColliderComponent->Draw(spriteBatch);
+	//_boxColliderComponent->Draw(spriteBatch);
 
 }
 

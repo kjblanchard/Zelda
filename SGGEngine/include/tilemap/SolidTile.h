@@ -56,6 +56,6 @@ namespace SG
 	void SolidTile<T>::Draw(SpriteBatch& spriteBatch)
 	{
 		_tile->Draw(spriteBatch);
-		_boxColliderComponent->Draw(spriteBatch);
+		//_boxColliderComponent->Draw(spriteBatch);
 	}
 }

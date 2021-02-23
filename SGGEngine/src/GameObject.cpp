@@ -1,9 +1,11 @@
 ﻿#include "pch.h"
 #include "GameObject.h"
 
+#include "data/Directions.h"
+
 
 SG::GameObject::GameObject()
-	:_location{ Vector3() }
+	:_location{ Vector3() }, _currentDirection(SG::Directions::Down)
 {
 	++GameObjectCount;
 	Id = GameObjectCount;

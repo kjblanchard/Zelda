@@ -20,6 +20,7 @@
 
 namespace SG
 {
+	enum class Directions;
 	class SpriteBatch;
 	struct Component;
 
@@ -69,6 +70,7 @@ namespace SG
 		 * \return Returns the location in a vector3.  Z is used in the draw order
 		 */
 		Vector3 Location() const;
+		SG::Directions GetDirection() const { return _currentDirection; }
 
 	protected:
 
@@ -76,6 +78,8 @@ namespace SG
 		bool _shouldUpdate = true;
 		virtual void ComponentUpdate(const double& deltaTime);
 		std::vector<Component*> _components;
+		SG::Directions _currentDirection;
+
 	};
 
 	template <typename T>

@@ -10,8 +10,9 @@
 
 
 Link::Link(SG::Vector3 location)
-	: GameObject(location), _currentDirection(SG::Directions::Down),_animationComponent(nullptr), _inputComponent(nullptr)
+	: GameObject(location),_animationComponent(nullptr), _inputComponent(nullptr)
 {
+	_currentDirection = SG::Directions::Down;
 }
 
 Link::Link(SG::Vector3 location, SG::Controller* controller)
@@ -44,7 +45,8 @@ void Link::Draw(SG::SpriteBatch& spriteBatch)
 {
 	_linkStateMachine->Draw(spriteBatch);
 	_animationComponent->Draw(spriteBatch);
-	//_boxColliderComponent->Draw(spriteBatch);
+	if (SG::World::_isCollisionDebug)
+		_boxColliderComponent->Draw(spriteBatch);
 
 }
 

@@ -22,8 +22,9 @@ namespace SG
 		xSizeOffset =  (32 - ColliderBox.w) /2;
 		ySizeOffset = (32 - ColliderBox.h) /2;
 
-		ColliderBox.x = _gameObject->Location().X;
-		ColliderBox.y = _gameObject->Location().Y;
+		ColliderBox.x = _gameObject->Location().X + xOffset + xSizeOffset;
+		ColliderBox.y = _gameObject->Location().Y + yOffset + ySizeOffset;
+
 
 	}
 

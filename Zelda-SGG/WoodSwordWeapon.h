@@ -21,37 +21,29 @@ public:
 	void Draw(SG::SpriteBatch& spriteBatch) override;
 	void Reset() override;
 
-	SG::Point ReturnSwordOffsets(SG::Directions direction)
+	std::pair<SG::Point,SG::Point> ReturnSwordOffsets(SG::Directions direction)
 	{
-		switch (direction)
-		{
-		case SG::Directions::Up:
-			return swordDrawOffsets[0];
-			break;
-		case SG::Directions::Down:
-			return swordDrawOffsets[1];
-			break;
-		case SG::Directions::Left:
-			return swordDrawOffsets[2];
-			break;
-		case SG::Directions::Right:
-			return swordDrawOffsets[3];
-		}
+		return swordSpriteSheetLocationsAndOffset[(int)(direction)];
 	}
-	static inline std::vector<SG::Point> swordSpriteSheetLocations =
+
+	std::pair<SG::Point, SG::Point> ReturnSwordColliderOffsets(SG::Directions direction)
 	{
-		{0,0},
-		{0,32},
-		{0,64},
-		{0,96}
+		return boxCollidersizeAndOffset[(int)direction];
+	}
+	static inline std::vector<std::pair<SG::Point, SG::Point>> swordSpriteSheetLocationsAndOffset =
+	{
+		 {SG::Point(0,0), SG::Point(0,16)},
+		{SG::Point(0,96), SG::Point(-16,0)},
+		{SG::Point(0,32), SG::Point(0,-16)},
+		{SG::Point(0,64), SG::Point(16,0)},
 	};
 
-	static inline std::vector<SG::Point> swordDrawOffsets =
+	static inline std::vector<std::pair<SG::Point, SG::Point>> boxCollidersizeAndOffset =
 	{
-		{0,16},
-		{0,-16},
-		{16,0},
-		{-16,0}
+		{std::pair<SG::Point,SG::Point>(SG::Point(0,10),SG::Point(10,24))},
+		{std::pair<SG::Point,SG::Point>(SG::Point(-10,0),SG::Point(24,10))},
+		{std::pair<SG::Point,SG::Point>(SG::Point(0,-10),SG::Point(10,24))},
+		{std::pair<SG::Point,SG::Point>(SG::Point(10,0),SG::Point(24,10))},
 	};
 
 };

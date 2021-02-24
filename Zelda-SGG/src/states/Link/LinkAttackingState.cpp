@@ -51,27 +51,33 @@ void LinkAttackingState::Update(const double& deltaTime)
 	_timeInState += deltaTime;
 	if (_timeInState >= _maxTimeInState)
 		_link->ChangeState(LinkStates::Moving);
-	woodSwordDisplay->Update(deltaTime);
-
-
-	auto bbox = woodSwordDisplay->BoxColliderComp->ColliderBox;
-
-	auto* worldLevel = ZeldaLevel::GetLevel()->GetCurrentGameLevel();
-	if (worldLevel->IsThereACollision(bbox, SG::GameObjectTypes::SolidTile))
+	if (woodSwordDisplay)
 	{
-		SG::Sound::PlaySound(SG::SoundFxToPlay::EnemyKill);
+		woodSwordDisplay->Update(deltaTime);
+		auto bbox = woodSwordDisplay->BoxColliderComp->ColliderBox;
+
+		auto* worldLevel = ZeldaLevel::GetLevel()->GetCurrentGameLevel();
+		if (worldLevel->IsThereACollision(bbox, SG::GameObjectTypes::SolidTile))
+		{
+			SG::Sound::PlaySound(SG::SoundFxToPlay::EnemyKill);
+		}
 	}
+
+
 
 }
 
 void LinkAttackingState::Draw(SG::SpriteBatch& spriteBatch)
 {
-	woodSwordDisplay->Draw(spriteBatch);
+	if(woodSwordDisplay)
+		woodSwordDisplay->Draw(spriteBatch);
 }
 
 void LinkAttackingState::End()
 {
 	_timeInState = 0;
+	delete woodSwordDisplay;
+	woodSwordDisplay = nullptr;
 }
 
 

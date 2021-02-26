@@ -57,6 +57,22 @@ namespace SG
 		}
 	}
 
+	std::vector<GameObject*> GameLevel::ReturnAllCollisions(SDL_Rect& rect, GameObjectTypes listToSearch)
+	{
+		switch (listToSearch)
+		{
+		case GameObjectTypes::Default:
+			return ReturnAllCollissionsInList(rect, *TotalGameObjectList);
+		case GameObjectTypes::SolidTile:
+			return ReturnAllCollissionsInList(rect, *SolidLayerList);
+		case GameObjectTypes::Enemy:
+			return ReturnAllCollissionsInList(rect, *EnemiesLayerList);
+		case GameObjectTypes::Player:
+			return ReturnAllCollissionsInList(rect, *PlayerLayerList);
+		case GameObjectTypes::Tile: break;
+		}
+	}
+
 	bool GameLevel::CheckForCollisions(SDL_Rect& rect, GameObjectList& gameObjectList)
 	{
 		for (auto levelGameObjectList : gameObjectList._gameObjectList)
@@ -72,6 +88,23 @@ namespace SG
 			continue;
 		}
 		return false;
+	}
+
+	std::vector<GameObject*> GameLevel::ReturnAllCollissionsInList(SDL_Rect& rect, GameObjectList& gameObjectList)
+	{
+		std::vector<GameObject*> collisionsGameObjectList = {};
+		for (auto levelGameObjectList : gameObjectList._gameObjectList)
+		{
+			auto component = levelGameObjectList->GetComponent<SG::BoxColliderComponent>();
+			if (component)
+			{
+				if (component->IsCollision(rect))
+				{
+					collisionsGameObjectList.push_back(levelGameObjectList);
+				}
+			}
+		}
+		return collisionsGameObjectList;
 	}
 
 	const GameObject& GameLevel::ReturnFirstCollisionObjectInList(SDL_Rect& boxColliderToCheck,

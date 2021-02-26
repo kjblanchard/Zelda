@@ -39,7 +39,29 @@ namespace SG
 		virtual bool IsCollision(const SDL_Rect& otherCollider);
 		virtual bool IsCollision(const SDL_Rect& potentialMoveRect, const SDL_Rect& otherCollider);
 
-		
+		bool CheckIfJustIntersected(int gameObjectId)
+		{
+			bool returnAnswer = false;
+			for (auto currentFrameCollision : currentFrameCollisions)
+			{
+				if (currentFrameCollision->Id == gameObjectId)
+					returnAnswer = true;
+			}
+			if(returnAnswer)
+			{
+				for (auto previousFrameCollision : previousFrameCollisions)
+				{
+					if (previousFrameCollision->Id == gameObjectId)
+						returnAnswer = false;
+				}
+			}
+			return returnAnswer;
+		}
+
+
+		std::vector<GameObject*> previousFrameCollisions = {};
+		std::vector<GameObject*> currentFrameCollisions = {};
+
 		SDL_Rect ColliderBox;
 
 	private:
@@ -48,6 +70,9 @@ namespace SG
 
 		int xSizeOffset = 0;
 		int ySizeOffset = 0;
+
+
+
 
 
 	};

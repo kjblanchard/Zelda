@@ -57,9 +57,15 @@ void LinkAttackingState::Update(const double& deltaTime)
 		auto bbox = woodSwordDisplay->BoxColliderComp->ColliderBox;
 
 		auto* worldLevel = ZeldaLevel::GetLevel()->GetCurrentGameLevel();
-		if (worldLevel->IsThereACollision(bbox, SG::GameObjectTypes::SolidTile))
+
+		woodSwordDisplay->BoxColliderComp->previousFrameCollisions = woodSwordDisplay->BoxColliderComp->currentFrameCollisions;
+
+		woodSwordDisplay->BoxColliderComp->currentFrameCollisions = worldLevel->ReturnAllCollisions(bbox, SG::GameObjectTypes::SolidTile);
+
+		for (auto cu : woodSwordDisplay->BoxColliderComp->currentFrameCollisions)
 		{
-			SG::Sound::PlaySound(SG::SoundFxToPlay::EnemyKill);
+			if(woodSwordDisplay->BoxColliderComp->CheckIfJustIntersected(cu->Id))
+				SG::Sound::PlaySound(SG::SoundFxToPlay::EnemyKill);
 		}
 	}
 

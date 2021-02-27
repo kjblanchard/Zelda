@@ -7,6 +7,7 @@
 
 #pragma once
 #include "GameObject.h"
+#include <memory>
 
 namespace SG {
 	class ImageComponent;
@@ -17,8 +18,8 @@ class Weapon : public SG::GameObject
 {
 public:
 	Weapon(SG::Vector3 location, GameObject* owner, SG::GameObjectTypes gameObjectType = SG::GameObjectTypes::Default );
-	~Weapon() = default;
+	~Weapon() override = default;
 	GameObject* Owner;
-	SG::ImageComponent* ImageComp;
-	SG::BoxColliderComponent* BoxColliderComp;
+	std::unique_ptr<SG::ImageComponent> ImageComp = nullptr;
+	std::unique_ptr<SG::BoxColliderComponent> BoxColliderComp = nullptr;
 };

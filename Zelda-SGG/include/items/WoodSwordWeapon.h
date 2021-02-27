@@ -15,7 +15,7 @@ class WoodSwordWeapon : public Weapon
 public:
 
 	WoodSwordWeapon(SG::Vector3 location, GameObject* owner, SG::GameObjectTypes gameObjectType = SG::GameObjectTypes::Default );
-	~WoodSwordWeapon() = default;
+	 ~WoodSwordWeapon() override = default;
 	void Startup() override;
 	void Update(const double& deltaTime) override;
 	void Draw(SG::SpriteBatch& spriteBatch) override;
@@ -28,22 +28,22 @@ public:
 
 	std::pair<SG::Point, SG::Point> ReturnSwordColliderOffsets(SG::Directions direction)
 	{
-		return boxCollidersizeAndOffset[(int)direction];
+		return boxColliderOffsetAndSize[(int)direction];
 	}
 	static inline std::vector<std::pair<SG::Point, SG::Point>> swordSpriteSheetLocationsAndOffset =
 	{
-		 {SG::Point(0,0), SG::Point(0,16)},
-		{SG::Point(0,96), SG::Point(-16,0)},
-		{SG::Point(0,32), SG::Point(0,-16)},
-		{SG::Point(0,64), SG::Point(16,0)},
+		{SG::Point(0,0), SG::Point(0,-16)},
+		{SG::Point(0,96), SG::Point(16,0)},
+		{SG::Point(0,32), SG::Point(0,16)},
+		{SG::Point(0,64), SG::Point(-16,0)},
 	};
 
-	static inline std::vector<std::pair<SG::Point, SG::Point>> boxCollidersizeAndOffset =
+	static inline std::vector<std::pair<SG::Point, SG::Point>> boxColliderOffsetAndSize =
 	{
-		{std::pair<SG::Point,SG::Point>(SG::Point(0,10),SG::Point(10,24))},
-		{std::pair<SG::Point,SG::Point>(SG::Point(-10,0),SG::Point(24,10))},
-		{std::pair<SG::Point,SG::Point>(SG::Point(0,-10),SG::Point(10,24))},
-		{std::pair<SG::Point,SG::Point>(SG::Point(10,0),SG::Point(24,10))},
+		{std::pair<SG::Point,SG::Point>(SG::Point(0,-22),SG::Point(10,24))},
+		{std::pair<SG::Point,SG::Point>(SG::Point(22,0),SG::Point(24,10))},
+		{std::pair<SG::Point,SG::Point>(SG::Point(0,22),SG::Point(10,24))},
+		{std::pair<SG::Point,SG::Point>(SG::Point(-22,0),SG::Point(24,10))},
 	};
 
 };

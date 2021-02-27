@@ -1,45 +1,32 @@
 ﻿#include "states/Link/LinkAttackingState.h"
-
 #include "Sound.h"
 #include "ZeldaLevel.h"
 #include "data/Directions.h"
 #include "animation/LinkAnimations/LinkAnimationController.h"
 #include "characters/Link.h"
 #include "states/Link/LinkStates.h"
-#include "../WoodSwordWeapon.h"
+#include "items/WoodSwordWeapon.h"
 #include "components/BoxColliderComponent.h"
 #include "GameLevel.h"
-#include "Sound.h"
 
 
 void LinkAttackingState::Startup()
 {
+	woodSwordDisplay = new WoodSwordWeapon(_link->Location(), _link);
+	woodSwordDisplay->Startup();
 
-	auto newLoc = SG::Vector3(0);
 	switch (_link->_currentDirection)
 	{
 	case SG::Directions::Up:
-		 newLoc = SG::Vector3(_link->Location().X, _link->Location().Y - 32);
-		woodSwordDisplay = new WoodSwordWeapon(newLoc, _link);
-		woodSwordDisplay->Startup();
 		_link->_animationComponent->ChangeAnimation(LinkAnimations::AttackUp);
 		break;
 	case SG::Directions::Right:
-		 newLoc = SG::Vector3(_link->Location().X + 32, _link->Location().Y);
-		woodSwordDisplay = new WoodSwordWeapon(newLoc, _link);
-		woodSwordDisplay->Startup();
 		_link->_animationComponent->ChangeAnimation(LinkAnimations::AttackRight);
 		break;
 	case SG::Directions::Down:
-		newLoc = SG::Vector3(_link->Location().X, _link->Location().Y + 32);
-		woodSwordDisplay = new WoodSwordWeapon(newLoc, _link);
-		woodSwordDisplay->Startup();
 		_link->_animationComponent->ChangeAnimation(LinkAnimations::AttackDown);
 		break;
 	case SG::Directions::Left:
-		newLoc = SG::Vector3(_link->Location().X -32, _link->Location().Y);
-		woodSwordDisplay = new WoodSwordWeapon(newLoc, _link);
-		woodSwordDisplay->Startup();
 		_link->_animationComponent->ChangeAnimation(LinkAnimations::AttackLeft);
 		break;
 	}
@@ -54,23 +41,9 @@ void LinkAttackingState::Update(const double& deltaTime)
 	if (woodSwordDisplay)
 	{
 		woodSwordDisplay->Update(deltaTime);
-		auto bbox = woodSwordDisplay->BoxColliderComp->ColliderBox;
-
-		auto* worldLevel = ZeldaLevel::GetLevel()->GetCurrentGameLevel();
-
-		woodSwordDisplay->BoxColliderComp->previousFrameCollisions = woodSwordDisplay->BoxColliderComp->currentFrameCollisions;
-
-		woodSwordDisplay->BoxColliderComp->currentFrameCollisions = worldLevel->ReturnAllCollisions(bbox, SG::GameObjectTypes::SolidTile);
-
-		for (auto cu : woodSwordDisplay->BoxColliderComp->currentFrameCollisions)
-		{
-			if(woodSwordDisplay->BoxColliderComp->CheckIfJustIntersected(cu->Id))
-				SG::Sound::PlaySound(SG::SoundFxToPlay::EnemyKill);
-		}
+		woodSwordDisplay->BoxColliderComp->GatherAllCurrentIntersections(ZeldaLevel::GetLevel()->GetCurrentGameLevel(), SG::GameObjectTypes::SolidTile);
+		woodSwordDisplay->BoxColliderComp->CallFunctionOnEachJustIntersected(PlaySoundOnHit);
 	}
-
-
-
 }
 
 void LinkAttackingState::Draw(SG::SpriteBatch& spriteBatch)

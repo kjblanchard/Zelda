@@ -22,5 +22,6 @@ public:
 	void HandleInput() override;
 	void End() override;
 
+private:
 	Link* _link;
 };

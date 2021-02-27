@@ -12,7 +12,7 @@
 #define SGGENGINE_API __declspec(dllimport)
 #endif
 #include <SDL_rect.h>
-
+#include <functional>
 
 #include "GameObject.h"
 #include "components/Component.h"
@@ -20,6 +20,7 @@
 
 namespace SG
 {
+	class GameLevel;
 	class SpriteBatch;
 
 	class SGGENGINE_API BoxColliderComponent : public Component, public IUpdate
@@ -39,38 +40,21 @@ namespace SG
 		virtual bool IsCollision(const SDL_Rect& otherCollider);
 		virtual bool IsCollision(const SDL_Rect& potentialMoveRect, const SDL_Rect& otherCollider);
 
-		bool CheckIfJustIntersected(int gameObjectId)
-		{
-			bool returnAnswer = false;
-			for (auto currentFrameCollision : currentFrameCollisions)
-			{
-				if (currentFrameCollision->Id == gameObjectId)
-					returnAnswer = true;
-			}
-			if(returnAnswer)
-			{
-				for (auto previousFrameCollision : previousFrameCollisions)
-				{
-					if (previousFrameCollision->Id == gameObjectId)
-						returnAnswer = false;
-				}
-			}
-			return returnAnswer;
-		}
-
-
-		std::vector<GameObject*> previousFrameCollisions = {};
-		std::vector<GameObject*> currentFrameCollisions = {};
+		void GatherAllCurrentIntersections(SG::GameLevel* gameLevelToCheck,  SG::GameObjectTypes typeToCheckAgainst);
+		void CallFunctionOnEachJustIntersected(std::function<void()> functionToCallOnEach);
 
 		SDL_Rect ColliderBox;
 
 	private:
+		bool CheckIfJustIntersected(int gameObjectId);
 		int xOffset = 0;
 		int yOffset = 0;
 
 		int xSizeOffset = 0;
 		int ySizeOffset = 0;
 
+		std::vector<GameObject*> currentFrameCollisions = {};
+		std::vector<GameObject*> previousFrameCollisions = {};
 
 
 

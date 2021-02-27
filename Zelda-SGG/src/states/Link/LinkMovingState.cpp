@@ -90,7 +90,7 @@ void LinkMovingState::HandleInput()
 
 			}
 
-			auto bbox = _link->_boxColliderComponent->ColliderBox;
+			auto bbox = _link->_boxColliderComponent->ColliderBox();
 			bbox.x += potentialMoveSpeed.X;
 			bbox.y += potentialMoveSpeed.Y;
 			auto* worldLevel = ZeldaLevel::GetLevel()->GetCurrentGameLevel();
@@ -106,7 +106,7 @@ void LinkMovingState::HandleInput()
 					auto gameObject = worldLevel->ReturnFirstCollisionGameObject(bbox, SG::GameObjectTypes::SolidTile);
 					if (gameObject.Id)
 					{
-						const auto gameObjectColliderbox = gameObject.GetComponent<SG::BoxColliderComponent>()->ColliderBox;
+						const auto gameObjectColliderbox = gameObject.GetComponent<SG::BoxColliderComponent>()->ColliderBox();
 
 						const auto collisionArea = SG::Collision::ShapeIntersectionArea(&bbox, &gameObjectColliderbox);
 						switch (SG::Collision::CalculateIntersectionDirection(collisionArea, bbox))

@@ -54,7 +54,7 @@ namespace SG
 	{
 		auto spritesheetrect = SDL_Rect{ LocationInSpriteSheet.X * TileSize.X,LocationInSpriteSheet.Y * TileSize.Y ,TileSize.X,TileSize.Y };
 		_imageComponent = std::make_unique<SG::ImageComponent>(SpriteSheetEnum::TileSet, spritesheetrect, this);
-		_imageComponent->UpdateSpriteDestinationInWorld(Location());
+		_imageComponent->Update(Location());
 	}
 
 	template <typename T>

@@ -113,6 +113,6 @@ namespace SG
 	template <class T>
 	void AnimationController<T>::UpdateSpriteLocation(SG::Vector3 location)
 	{
-		_imageComponent->UpdateSpriteDestinationInWorld(location);
+		_imageComponent->Update(location);
 	}
 }

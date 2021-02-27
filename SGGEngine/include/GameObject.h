@@ -12,10 +12,8 @@
 #define SGGENGINE_API __declspec(dllimport)
 #endif
 #include <vector>
-
-
-#include "components/Component.h"
 #include "data/Vector3.h"
+#include "interfaces/IUpdate.h"
 
 
 namespace SG
@@ -33,50 +31,97 @@ namespace SG
 		Player
 	};
 
-	class SGGENGINE_API GameObject
+	/// <summary>
+	/// Class that is likely inherited by any player or enemy in the game.  Is a IUpdate interface
+	/// </summary>
+	class SGGENGINE_API GameObject : public IUpdate
 	{
 	public:
+
+		/// <summary>
+		/// This constructor shouldn't really be used, defaults to 0,0 location
+		/// </summary>
 		GameObject();
+		/// <summary>
+		/// Base class for tons of things
+		/// </summary>
+		/// <param name="location">Vector3 of the initial location</param>
+		/// <param name="gameObjectType">The type of gameobject this is</param>
 		GameObject(Vector3 location, GameObjectTypes gameObjectType = GameObjectTypes::Default);
 		virtual ~GameObject() = default;
-		/**
-		 * \brief This function is called ONCE when the object is first instantiated, this happens after the constructor and should contain the heavy lifting not needed in the Constructor
-		 */
-		virtual void Startup();
-		/**
-		 * \brief This is to be called by the game loop once per frame.
-		 */
-		virtual void Update(const double& deltaTime);
 
-		virtual void Draw(SpriteBatch& spriteBatch );
+		/// <summary>
+		/// This function should be called only once, and should do most of the "work" of initializing after the constructor
+		/// </summary>
+		void Startup() override {};
 
-		virtual void Reset();
+		/// <summary>
+		/// This is to be called once every frame, even if the game is lagging this will still be called as much as possible (60 times per second)
+		/// </summary>
+		/// <param name="deltaTime">The current time between frames, usually 16.6667, passed in from the current level</param>
+		void Update(const double& deltaTime) override {};
 
-		bool ShouldUpdate() const;
+		/// <summary>
+		/// This will draw something to the screen, make sure to add to the spritebatch
+		/// </summary>
+		/// <param name="spriteBatch">Reference to a spritebatch, likely passed from the game level</param>
+		void Draw(SpriteBatch& spriteBatch ) override {};
 
-		inline static int GameObjectCount = 0;
+		/// <summary>
+		/// Should be ran to bring things to the default on this object, if you don't want to delete it
+		/// </summary>
+		virtual void Reset() {};
 
-		int Id;
+		/// <summary>
+		/// Gets the should update value
+		/// </summary>
+		/// <returns>If this game object should run its update function</returns>
+		bool ShouldUpdate() const { return _shouldUpdate; };
+
+		/// <summary>
+		/// Each ID should be unique, and added to every game object
+		/// </summary>
+		uint16_t Id;
 
 		GameObjectTypes GameObjectType;
 
+		/// <summary>
+		/// Gets the first component of the type that you pass in
+		/// </summary>
+		/// <typeparam name="T">Should be a component type if you want to get anything back</typeparam>
+		/// <returns>The component that you searched for if it exists, else a null ptr</returns>
 		template <typename T >
 		T* GetComponent();
 
-		void AddComponent(Component* component);
+		/// <summary>
+		/// Adds a component to the list of components on this gameobject
+		/// </summary>
+		/// <param name="component">Pointer to a component</param>
+		void AddComponent(Component* component) { _components.push_back(component); };
 
-		/**
-		 * \brief Returns the location of the gameobject.
-		 * \return Returns the location in a vector3.  Z is used in the draw order
-		 */
-		Vector3 Location() const;
-		SG::Directions GetDirection() const { return _currentDirection; }
+		/// <summary>
+		/// Returns the location of the gameobject.
+		/// </summary>
+		/// <returns>Returns the location in a vector3.  Z is used in the draw order</returns>
+		Vector3 Location() const { return _location; };
+
+		/// <summary>
+		/// Gets the current direction of this gameobject
+		/// </summary>
+		/// <returns>Current direction of the gameobject</returns>
+		SG::Directions Direction() const { return _currentDirection; }
 
 	protected:
 
+		/// <summary>
+		/// Space saver, you should put this in your update function and call the update function on all of your components
+		/// </summary>
+		/// <param name="deltaTime">Delta time from the update function</param>
+		virtual void ComponentUpdate(const double& deltaTime) {};
+
+		inline static uint16_t GameObjectCount = 0;
 		Vector3 _location;
 		bool _shouldUpdate = true;
-		virtual void ComponentUpdate(const double& deltaTime);
 		std::vector<Component*> _components;
 		SG::Directions _currentDirection;
 

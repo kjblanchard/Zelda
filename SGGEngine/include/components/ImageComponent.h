@@ -50,7 +50,6 @@ namespace SG
 		 * \param location The new location of the Image
 		 */
 		void UpdateSpriteSheetLocation(const Point& locationInSpriteSheet) const;
-		void UpdateSpriteDestinationInWorld(const Vector3& worldLocation);
 
 		/// <summary>
 		/// Used by the animation controller when changing between animations.
@@ -59,6 +58,7 @@ namespace SG
 		void UpdateImageSpriteSheet(Spritesheet* spriteSheet) const;
 		std::unique_ptr<Image> image;
 	private:
+		void UpdateSpriteDestinationInWorld(const Vector3& worldLocation);
 		SG::Vector3 _location;
 
 	};

@@ -51,9 +51,8 @@ namespace SG
 			return ReturnFirstCollisionObjectInList(gameObjectChecking, *EnemiesLayerList);
 		case GameObjectTypes::Player:
 			return ReturnFirstCollisionObjectInList(gameObjectChecking, *PlayerLayerList);
-		default:
-			return GameObject();
-
+		case GameObjectTypes::Tile: break;
+		default: ;
 		}
 	}
 

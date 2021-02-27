@@ -12,25 +12,27 @@ WoodSwordWeapon::WoodSwordWeapon(SG::Vector3 location, GameObject* owner, SG::Ga
 
 void WoodSwordWeapon::Startup()
 {
-	const auto currentDirection = Owner->GetDirection();
+	const auto currentDirection = Owner->Direction();
 	const auto& swordSpriteLocAndOffset = ReturnSwordOffsets(currentDirection);
 	const auto& swordCompOffset = ReturnSwordColliderOffsets(currentDirection);
 
 	ImageComp.reset(new SG::ImageComponent(SG::SpriteSheetEnum::WoodSword, SDL_Rect{ swordSpriteLocAndOffset.first.X,swordSpriteLocAndOffset.first.Y, 32, 32 }, this));
 	ImageComp->image->LocationAndSizeOnRenderer = SDL_Rect{ Location().X + swordSpriteLocAndOffset.second.X,Location().Y + swordSpriteLocAndOffset.second.Y,32,32 };
 	const auto boxColliderBox = SDL_Rect{ swordCompOffset.first.X,swordCompOffset.first.Y,swordCompOffset.second.X,swordCompOffset.second.Y };
-	BoxColliderComp.reset(new SG::BoxColliderComponent(this, boxColliderBox));
+	BoxColliderComp.reset(new SG::BoxColliderComponent(this, boxColliderBox, true));
 
 	BoxColliderComp->Startup();
 }
 
 void WoodSwordWeapon::Update(const double& deltaTime)
 {
-	auto xyOffSetForSword = ReturnSwordOffsets(Owner->GetDirection());
+	auto xyOffSetForSword = ReturnSwordOffsets(Owner->Direction());
 
-	ImageComp->Update(deltaTime);
+	//ImageComp->Update(deltaTime);
+
 	const auto newLocation = SG::Vector3(Location().X + xyOffSetForSword.second.X, Location().Y + xyOffSetForSword.second.Y);
-	ImageComp->UpdateSpriteDestinationInWorld(newLocation);
+	ImageComp->Update(newLocation);
+	//ImageComp->UpdateSpriteDestinationInWorld(newLocation);
 	BoxColliderComp->Update(deltaTime);
 }
 

@@ -22,6 +22,9 @@ namespace SG
 	class SpriteBatch;
 	struct Component;
 
+	/// <summary>
+	/// The different types of GameObjects inside of the game
+	/// </summary>
 	enum class GameObjectTypes
 	{
 		Default,

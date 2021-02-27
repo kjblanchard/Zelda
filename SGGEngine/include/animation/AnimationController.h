@@ -17,18 +17,25 @@
 #include "GameObject.h"
 #include "components/ImageComponent.h"
 #include "data/Vector3.h"
-#include "Image.h"
 
 namespace SG
 {
 	class ImageComponent;
 	class GameObject;
 
+	/// <summary>
+	/// This should be the base class for all animation controllers in the game.  An animation controller should be made for everything that needs animation.
+	/// </summary>
+	/// <typeparam name="T">The enum that should be used for switching animations in this controller</typeparam>
 	template<class T>
 	class AnimationController : public IUpdate
 	{
 	public:
-		AnimationController(GameObject* gameObject = nullptr) : _gameObject(gameObject), _currentAnimation(nullptr),
+		/// <summary>
+		/// This should be the base class for all animation controllers in the game.  An animation controller should be made for everything that needs animation.
+		/// </summary>
+		/// <param name="gameObject">The owner of this animation controller</param>
+		AnimationController(GameObject* gameObject) : _gameObject(gameObject), _currentAnimation(nullptr),
 		                                                        _imageComponent(nullptr)
 		{
 		}
@@ -36,13 +43,19 @@ namespace SG
 
 		void Update(const double& deltaTime) override;
 		virtual void ChangeAnimation(T animationEnum);
+
+		/// <summary>
+		/// Updates the current location of the sprite
+		/// </summary>
+		/// <param name="location"></param>
 		void UpdateSpriteLocation(SG::Vector3 location);
 
 	protected:
+		//TODO get the gametime from a configuration variable
 		inline const static double FrameTime = 1000.00 / 60;
 		static std::vector<Animation<T>> Animations;
-
 		GameObject* _gameObject;
+
 		Animation<T>* _currentAnimation = nullptr;
 		int _currentFrameOnThisSprite = 0;
 		int _currentFrameInAnimation = 0;

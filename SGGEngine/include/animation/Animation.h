@@ -12,9 +12,6 @@
 #define SGGENGINE_API __declspec(dllimport)
 #endif
 #include <vector>
-
-
-
 #include "Graphics.h"
 #include "Spritesheet.h"
 #include "data/Point.h"
@@ -22,11 +19,17 @@
 
 namespace SG
 {
-
+	/// <summary>
+	/// The base class used for every animation
+	/// </summary>
+	/// <typeparam name="T">The enum type of the animation, this is used by the animation controller</typeparam>
 	template <typename T>
 	class Animation
 	{
 	public:
+		/// <summary>
+		/// The animation that will be played by a animation controller, gets the graphics if it hasn't already
+		/// </summary>
 		Animation() {
 			if (!_graphics) _graphics = SG::World::GetGraphics();
 		}
@@ -36,7 +39,12 @@ namespace SG
 		Spritesheet* SpriteSheet = nullptr;
 
 		int TotalAnimationFrames() const { return LocationAndLengthOfAnimation.size(); }
-		const Point DrawLocation(int currentFrame)
+		/// <summary>
+		/// Returns the location that this animation should be drawn
+		/// </summary>
+		/// <param name="currentFrame">The current frame that this animation is on</param>
+		/// <returns>A point from the vector of locations/lengths of the animation</returns>
+		Point DrawLocation(int currentFrame)
 		{
 
 			return LocationAndLengthOfAnimation[currentFrame].first * 32;

@@ -4,6 +4,8 @@
 #include  "core/GameLevel.h"
 #include "tilemap/TileMap.h"
 #include "components/BoxColliderComponent.h"
+#pragma warning( push )
+#pragma warning( disable : 4172 )
 
 namespace SG
 {
@@ -127,4 +129,5 @@ namespace SG
 
 		return GameObject();
 	}
+#pragma warning( pop )
 }

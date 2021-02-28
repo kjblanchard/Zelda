@@ -1,6 +1,5 @@
 ﻿#include "items/WoodSwordWeapon.h"
 
-#include "Statics.h"
 #include "components/ImageComponent.h"
 #include "components/BoxColliderComponent.h"
 #include "graphics/Image.h"
@@ -27,12 +26,8 @@ void WoodSwordWeapon::Startup()
 void WoodSwordWeapon::Update(const double& deltaTime)
 {
 	auto xyOffSetForSword = ReturnSwordOffsets(Owner->Direction());
-
-	//ImageComp->Update(deltaTime);
-
 	const auto newLocation = SG::Vector3(Location().X + xyOffSetForSword.second.X, Location().Y + xyOffSetForSword.second.Y);
 	ImageComp->Update(newLocation);
-	//ImageComp->UpdateSpriteDestinationInWorld(newLocation);
 	BoxColliderComp->Update(deltaTime);
 }
 

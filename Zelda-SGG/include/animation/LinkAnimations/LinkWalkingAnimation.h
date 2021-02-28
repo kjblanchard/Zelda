@@ -7,7 +7,7 @@
 
 #pragma once
 #include "LinkAnimations.h"
-#include "Spritesheet.h"
+#include "graphics/Spritesheet.h"
 #include "animation/Animation.h"
 #include "data/Point.h"
 

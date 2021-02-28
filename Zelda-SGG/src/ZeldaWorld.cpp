@@ -1,8 +1,8 @@
 ﻿#include "ZeldaWorld.h"
-#include "GameObjectList.h"
+#include "core/GameObjectList.h"
 #include "levels/DebugRoomLevel.h"
-#include "SpriteBatch.h"
-#include "Graphics.h"
+#include "graphics/SpriteBatch.h"
+#include "graphics/Graphics.h"
 #include "Statics.h"
 #include "ZeldaLevel.h"
 

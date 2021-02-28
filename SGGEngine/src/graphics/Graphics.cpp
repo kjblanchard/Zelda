@@ -1,10 +1,10 @@
 ﻿#include "pch.h"
-#include  "Graphics.h"
+#include  "graphics/Graphics.h"
 #include <SDL_image.h>
-#include "DebugHandler.h"
-#include "Image.h"
-#include "SpriteBatch.h"
-#include "World.h"
+#include "core/DebugHandler.h"
+#include "graphics/Image.h"
+#include "graphics/SpriteBatch.h"
+#include "core/World.h"
 
 
 namespace SG

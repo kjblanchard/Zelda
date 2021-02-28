@@ -1,9 +1,8 @@
 ﻿#include "pch.h"
+#include "input/PlayerController.h"
 
 
-#include  "PlayerController.h"
-
-#include "Input.h"
+#include "input/Input.h"
 
 namespace SG
 {

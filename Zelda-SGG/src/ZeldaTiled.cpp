@@ -1,6 +1,6 @@
 ﻿#include "ZeldaTiled.h"
-#include "GameObjectList.h"
-#include "Input.h"
+#include "core/GameObjectList.h"
+#include "input/Input.h"
 #include "characters/Link.h"
 
 

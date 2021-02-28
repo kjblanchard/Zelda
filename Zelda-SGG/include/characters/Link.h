@@ -6,7 +6,7 @@
 ////////////////////////////////////////////////////////////
 
 #pragma once
-#include "GameObject.h"
+#include "core/GameObject.h"
 #include <memory>
 #include "components/AnimationComponent.h"
 #include "state/StateMachine.h"

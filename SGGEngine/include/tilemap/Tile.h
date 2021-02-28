@@ -13,7 +13,7 @@
 #endif
 #include <memory>
 
-#include "GameObject.h"
+#include "core/GameObject.h"
 #include "components/ImageComponent.h"
 #include "data/Point.h"
 

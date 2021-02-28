@@ -1,5 +1,5 @@
 ﻿#include "states/Link/LinkAttackingState.h"
-#include "Sound.h"
+#include "core/Sound.h"
 #include "ZeldaLevel.h"
 #include "data/Directions.h"
 #include "animation/LinkAnimations/LinkAnimationController.h"
@@ -7,7 +7,7 @@
 #include "states/Link/LinkStates.h"
 #include "items/WoodSwordWeapon.h"
 #include "components/BoxColliderComponent.h"
-#include "GameLevel.h"
+#include "core/GameLevel.h"
 
 
 void LinkAttackingState::Startup()

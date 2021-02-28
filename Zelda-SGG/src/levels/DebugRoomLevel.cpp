@@ -1,7 +1,7 @@
 ﻿#include "levels/DebugRoomLevel.h"
 #include "characters/Link.h"
-#include "GameObjectList.h"
-#include "Sound.h"
+#include "core/GameObjectList.h"
+#include "core/Sound.h"
 #include "ZeldaTiled.h"
 
 

@@ -14,7 +14,7 @@
 #include <SDL_render.h>
 #include <memory>
 #include "Component.h"
-#include "Spritesheet.h"
+#include "graphics/Spritesheet.h"
 #include "data/Point.h"
 #include "data/Vector3.h"
 

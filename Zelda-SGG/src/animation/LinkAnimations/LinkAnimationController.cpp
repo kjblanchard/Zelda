@@ -1,6 +1,6 @@
 ﻿#include "animation/LinkAnimations/LinkAnimationController.h"
-#include "Image.h"
-#include "SpriteBatch.h"
+#include "graphics/Image.h"
+#include "graphics/SpriteBatch.h"
 #include "Statics.h"
 #include "animation/LinkAnimations/LinkAttackingAnimation.h"
 #include "animation/LinkAnimations/LinkWalkingAnimation.h"

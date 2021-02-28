@@ -16,8 +16,7 @@
 #include <SDL_scancode.h>
 #include <SDL_stdinc.h>
 #include <vector>
-#include "PlayerController.h"
-
+#include "input/PlayerController.h"
 
 
 namespace SG

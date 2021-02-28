@@ -1,10 +1,11 @@
 ﻿#include "states/Link/LinkMovingState.h"
 #include "components/InputComponent.h"
-#include "Controller.h"
+#include "input/Controller.h"
 #include "characters/Link.h"
 #include "ZeldaLevel.h"
 #include "collision/Collision.h"
-#include "GameLevel.h"
+
+#include "core/GameLevel.h"
 #include "components/BoxColliderComponent.h"
 #include "animation/LinkAnimations/LinkAnimationController.h"
 #include "states/Link/LinkStates.h"

@@ -1,6 +1,6 @@
 ﻿#include "pch.h"
 #include "components/Component.h"
-#include "GameObject.h"
+#include "core/GameObject.h"
 
 namespace SG
 {

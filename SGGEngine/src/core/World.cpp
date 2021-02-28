@@ -1,15 +1,15 @@
 ﻿#include "pch.h"
-#include "World.h"
+#include "core/World.h"
 #include <iostream>
 #include <SDL.h>
-#include "DebugHandler.h"
-#include "GameClock.h"
-#include "GameObjectList.h"
-#include "Graphics.h"
-#include "Input.h"
-#include "SpriteBatch.h"
+#include "core/DebugHandler.h"
+#include "core/GameClock.h"
+#include "core/GameObjectList.h"
+#include "graphics/Graphics.h"
+#include "input/Input.h"
+#include "graphics/SpriteBatch.h"
 #include "SDL_mixer.h"
-#include "Sound.h"
+#include "core/Sound.h"
 
 
 namespace SG

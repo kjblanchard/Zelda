@@ -13,8 +13,8 @@
 #endif
 #include "Animation.h"
 #include "interfaces/IUpdate.h"
-#include "DebugHandler.h"
-#include "GameObject.h"
+#include "core/DebugHandler.h"
+#include "core/GameObject.h"
 #include "components/ImageComponent.h"
 #include "data/Vector3.h"
 

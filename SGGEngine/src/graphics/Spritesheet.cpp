@@ -1,6 +1,6 @@
 ﻿#include "pch.h"
-#include  "Spritesheet.h"
-#include "Graphics.h"
+#include  "graphics/Spritesheet.h"
+#include "graphics/Graphics.h"
 
 
 namespace SG

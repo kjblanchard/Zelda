@@ -3,7 +3,7 @@
 #include "Statics.h"
 #include "components/ImageComponent.h"
 #include "components/BoxColliderComponent.h"
-#include "Image.h"
+#include "graphics/Image.h"
 
 
 WoodSwordWeapon::WoodSwordWeapon(SG::Vector3 location, GameObject* owner, SG::GameObjectTypes gameObjectType) : Weapon(location,owner,gameObjectType)

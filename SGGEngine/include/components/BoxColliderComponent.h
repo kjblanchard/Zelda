@@ -13,7 +13,7 @@
 #endif
 #include <SDL_rect.h>
 #include <functional>
-#include "GameObject.h"
+#include "core/GameObject.h"
 #include "components/Component.h"
 #include "interfaces/IUpdate.h"
 

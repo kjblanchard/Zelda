@@ -1,5 +1,5 @@
 ﻿#include "pch.h"
-#include  "GameClock.h"
+#include  "core/GameClock.h"
 
 namespace SG
 {

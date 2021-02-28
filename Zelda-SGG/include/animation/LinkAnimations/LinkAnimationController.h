@@ -6,7 +6,7 @@
 ////////////////////////////////////////////////////////////
 
 #pragma once
-#include "World.h"
+#include "core/World.h"
 #include "animation/AnimationController.h"
 #include "animation/Animation.h"
 #include "animation/LinkAnimations/LinkAnimations.h"

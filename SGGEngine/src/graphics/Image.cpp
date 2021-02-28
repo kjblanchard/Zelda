@@ -1,8 +1,8 @@
 ﻿#include "pch.h"
-#include  "Image.h"
-#include "Spritesheet.h"
-#include "World.h"
-#include "Graphics.h"
+#include  "graphics/Image.h"
+#include "graphics/Spritesheet.h"
+#include "core/World.h"
+#include "graphics/Graphics.h"
 
 namespace SG
 {

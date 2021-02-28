@@ -180,37 +180,37 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\data\Directions.h" />
-    <ClInclude Include="include\GameLevel.h" />
+    <ClInclude Include="include\core\GameLevel.h" />
     <ClInclude Include="include\components\BoxColliderComponent.h" />
     <ClInclude Include="include\collision\Collision.h" />
     <ClInclude Include="include\animation\Animation.h" />
     <ClInclude Include="include\animation\AnimationController.h" />
     <ClInclude Include="include\components\Component.h" />
-    <ClInclude Include="include\Controller.h" />
-    <ClInclude Include="include\DebugHandler.h" />
+    <ClInclude Include="include\input\Controller.h" />
+    <ClInclude Include="include\core\DebugHandler.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="include\external\json.hpp" />
-    <ClInclude Include="include\GameObjectList.h" />
+    <ClInclude Include="include\core\GameObjectList.h" />
     <ClInclude Include="include\interfaces\IUpdate.h" />
-    <ClInclude Include="include\Sound.h" />
-    <ClInclude Include="include\Spritesheet.h" />
-    <ClInclude Include="include\World.h" />
-    <ClInclude Include="include\GameClock.h" />
-    <ClInclude Include="include\GameObject.h" />
-    <ClInclude Include="include\Graphics.h" />
-    <ClInclude Include="include\Image.h" />
+    <ClInclude Include="include\core\Sound.h" />
+    <ClInclude Include="include\graphics\Spritesheet.h" />
+    <ClInclude Include="include\core\World.h" />
+    <ClInclude Include="include\core\GameClock.h" />
+    <ClInclude Include="include\core\GameObject.h" />
+    <ClInclude Include="include\graphics\Graphics.h" />
+    <ClInclude Include="include\graphics\Image.h" />
     <ClInclude Include="include\components\ImageComponent.h" />
-    <ClInclude Include="include\Input.h" />
+    <ClInclude Include="include\input\Input.h" />
     <ClInclude Include="include\components\InputComponent.h" />
-    <ClInclude Include="include\Level.h" />
+    <ClInclude Include="include\core\Level.h" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="include\PlayerController.h" />
+    <ClInclude Include="include\input\PlayerController.h" />
     <ClInclude Include="include\data\Point.h" />
-    <ClInclude Include="include\SpriteBatch.h" />
-    <ClInclude Include="include\Clock.h" />
+    <ClInclude Include="include\graphics\SpriteBatch.h" />
+    <ClInclude Include="include\core\Clock.h" />
     <ClInclude Include="include\state\State.h" />
     <ClInclude Include="include\state\StateMachine.h" />
-    <ClInclude Include="include\Time.h" />
+    <ClInclude Include="include\core\Time.h" />
     <ClInclude Include="include\data\Vector3.h" />
     <ClInclude Include="include\tilemap\TileMap.h" />
     <ClInclude Include="include\tilemap\Tiled.h" />
@@ -220,8 +220,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\data\Directions.cpp" />
-    <ClCompile Include="src\GameLevel.cpp" />
-    <ClCompile Include="src\Level.cpp" />
+    <ClCompile Include="src\core\GameLevel.cpp" />
+    <ClCompile Include="src\core\Level.cpp" />
     <ClCompile Include="src\tilemap\SolidTile.cpp" />
     <ClCompile Include="src\components\BoxColliderComponent.cpp" />
     <ClCompile Include="src\collision\Collision.cpp" />
@@ -230,19 +230,19 @@
     <ClCompile Include="src\animation\AnimationController.cpp" />
     <ClCompile Include="src\components\AnimationComponent.cpp" />
     <ClCompile Include="src\components\Component.cpp" />
-    <ClCompile Include="src\Controller.cpp" />
-    <ClCompile Include="src\DebugHandler.cpp" />
+    <ClCompile Include="src\input\Controller.cpp" />
+    <ClCompile Include="src\core\DebugHandler.cpp" />
     <ClCompile Include="dllmain.cpp" />
-    <ClCompile Include="src\GameObjectList.cpp" />
-    <ClCompile Include="src\Sound.cpp" />
-    <ClCompile Include="src\Spritesheet.cpp" />
-    <ClCompile Include="src\World.cpp" />
-    <ClCompile Include="src\GameClock.cpp" />
-    <ClCompile Include="src\GameObject.cpp" />
-    <ClCompile Include="src\Graphics.cpp" />
-    <ClCompile Include="src\Image.cpp" />
+    <ClCompile Include="src\core\GameObjectList.cpp" />
+    <ClCompile Include="src\core\Sound.cpp" />
+    <ClCompile Include="src\graphics\Spritesheet.cpp" />
+    <ClCompile Include="src\core\World.cpp" />
+    <ClCompile Include="src\core\GameClock.cpp" />
+    <ClCompile Include="src\core\GameObject.cpp" />
+    <ClCompile Include="src\graphics\Graphics.cpp" />
+    <ClCompile Include="src\graphics\Image.cpp" />
     <ClCompile Include="src\components\ImageComponent.cpp" />
-    <ClCompile Include="src\Input.cpp" />
+    <ClCompile Include="src\input\Input.cpp" />
     <ClCompile Include="src\components\InputComponent.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -250,13 +250,13 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="src\PlayerController.cpp" />
+    <ClCompile Include="src\input\PlayerController.cpp" />
     <ClCompile Include="src\data\Point.cpp" />
-    <ClCompile Include="src\SpriteBatch.cpp" />
-    <ClCompile Include="src\Clock.cpp" />
+    <ClCompile Include="src\graphics\SpriteBatch.cpp" />
+    <ClCompile Include="src\core\Clock.cpp" />
     <ClCompile Include="src\state\State.cpp" />
     <ClCompile Include="src\state\StateMachine.cpp" />
-    <ClCompile Include="src\Time.cpp" />
+    <ClCompile Include="src\core\Time.cpp" />
     <ClCompile Include="src\data\Vector3.cpp" />
     <ClCompile Include="src\tilemap\TileMap.cpp" />
     <ClCompile Include="src\tilemap\Tiled.cpp" />

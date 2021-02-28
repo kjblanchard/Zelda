@@ -12,10 +12,10 @@
 #define SGGENGINE_API __declspec(dllimport)
 #endif
 #include <vector>
-#include "Graphics.h"
-#include "Spritesheet.h"
+#include "graphics/Graphics.h"
+#include "graphics/Spritesheet.h"
 #include "data/Point.h"
-#include "World.h"
+#include "core/World.h"
 
 namespace SG
 {

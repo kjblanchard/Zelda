@@ -1,5 +1,5 @@
 ﻿#include "pch.h"
-#include  "Clock.h"
+#include  "core/Clock.h"
 #include <SDL_timer.h>
 
 namespace SG

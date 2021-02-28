@@ -2,7 +2,7 @@
 #include "pch.h"
 #pragma warning(push)
 #pragma warning(disable : 26819)
-#include  "DebugHandler.h"
+#include  "core/DebugHandler.h"
 
 #include <SDL_image.h>
 #include <SDL_mixer.h>

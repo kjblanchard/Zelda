@@ -2,7 +2,7 @@
 #pragma warning(push)
 #pragma warning(disable : 26812)
 
-#include  "Controller.h"
+#include "input/Controller.h"
 
 namespace SG
 {

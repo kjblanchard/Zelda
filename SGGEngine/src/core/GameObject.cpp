@@ -1,5 +1,5 @@
 ﻿#include "pch.h"
-#include "GameObject.h"
+#include "core/GameObject.h"
 #include "data/Directions.h"
 
 

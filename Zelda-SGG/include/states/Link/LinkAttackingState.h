@@ -9,7 +9,7 @@
 
 
 
-#include "Sound.h"
+#include "core/Sound.h"
 #include "state/State.h"
 
 class WoodSwordWeapon;

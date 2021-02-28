@@ -1,8 +1,8 @@
 ﻿#include "pch.h"
-#include  "Input.h"
+#include  "input/Input.h"
 #include <SDL.h>
 #include <SDL_keyboard.h>
-#include "DebugHandler.h"
+#include "core/DebugHandler.h"
 
 namespace SG
 {

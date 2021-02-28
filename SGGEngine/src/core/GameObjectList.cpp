@@ -1,5 +1,5 @@
 ﻿#include "pch.h"
-#include  "GameObjectList.h"
+#include  "core/GameObjectList.h"
 
 namespace SG
 {

@@ -11,7 +11,7 @@
 #else
 #define SGGENGINE_API __declspec(dllimport)
 #endif
-#include "GameObject.h"
+#include "core/GameObject.h"
 #include "components/ImageComponent.h"
 #include "AnimationComponent.h"
 #include "animation/AnimationController.h"

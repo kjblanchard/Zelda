@@ -1,9 +1,9 @@
 ﻿#include "pch.h"
 #include "components/BoxColliderComponent.h"
-#include "GameLevel.h"
-#include "GameObject.h"
-#include "SpriteBatch.h"
-#include "World.h"
+#include "core/GameLevel.h"
+#include "core/GameObject.h"
+#include "graphics/SpriteBatch.h"
+#include "core/World.h"
 #include "collision/Collision.h"
 
 namespace SG

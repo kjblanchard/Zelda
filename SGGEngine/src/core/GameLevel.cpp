@@ -1,7 +1,7 @@
 ﻿#include "pch.h"
 
-#include "GameObjectList.h"
-#include  "GameLevel.h"
+#include "core/GameObjectList.h"
+#include  "core/GameLevel.h"
 #include "tilemap/TileMap.h"
 #include "components/BoxColliderComponent.h"
 

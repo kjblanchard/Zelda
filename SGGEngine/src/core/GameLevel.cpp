@@ -74,7 +74,7 @@ namespace SG
 
 	bool GameLevel::CheckForCollisions(SDL_Rect& rect, GameObjectList& gameObjectList)
 	{
-		for (auto levelGameObjectList : gameObjectList._gameObjectList)
+		for (auto levelGameObjectList : gameObjectList.GetGameObjectList())
 		{
 			auto component = levelGameObjectList->GetComponent<SG::BoxColliderComponent>();
 			if (component)
@@ -92,7 +92,7 @@ namespace SG
 	std::vector<GameObject*> GameLevel::ReturnAllCollissionsInList(SDL_Rect& rect, GameObjectList& gameObjectList)
 	{
 		std::vector<GameObject*> collisionsGameObjectList = {};
-		for (auto levelGameObjectList : gameObjectList._gameObjectList)
+		for (auto levelGameObjectList : gameObjectList.GetGameObjectList())
 		{
 			auto component = levelGameObjectList->GetComponent<SG::BoxColliderComponent>();
 			if (component)
@@ -109,7 +109,7 @@ namespace SG
 	const GameObject& GameLevel::ReturnFirstCollisionObjectInList(SDL_Rect& boxColliderToCheck,
 		GameObjectList& gameObjectList)
 	{
-		for (auto levelGameObjectList : gameObjectList._gameObjectList)
+		for (auto levelGameObjectList : gameObjectList.GetGameObjectList())
 		{
 			auto component = levelGameObjectList->GetComponent<SG::BoxColliderComponent>();
 			if (component)

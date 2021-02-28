@@ -66,8 +66,6 @@ namespace SG
 		static World* _instance;
 		std::unique_ptr<Input> _input;
 
-		//TODO figure out how to handle the debug mode for collision
-
 
 	private:
 

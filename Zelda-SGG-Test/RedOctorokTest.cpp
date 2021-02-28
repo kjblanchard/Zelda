@@ -3,7 +3,6 @@
 
 #include "characters/RedOctorok.h"
 
-#include "../Zelda-SGG/src/characters/RedOctorok.cpp"
 
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;

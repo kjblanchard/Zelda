@@ -109,7 +109,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>C:\Users\$(USERNAME)\OneDrive - Supergoon Games\src\C++\libs\SDL2-2.0.14\lib\x86;C:\Users\$(USERNAME)\OneDrive - Supergoon Games\src\C++\ZeldaMulti\Zelda-SDL\bin\Win32\Debug;C:\Users\$(USERNAME)\OneDrive - Supergoon Games\src\C++\libs\SDL2_image-2.0.5\lib\x86;C:\Users\blanc\OneDrive - Supergoon Games\src\C++\libs\SDL2_mixer-2.0.4\lib\x86</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SGGEngine.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2.lib;SDL2main.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Zelda-SGG.exe.lib;SGGEngine.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2.lib;SDL2main.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -126,7 +126,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>C:\Users\$(USERNAME)\OneDrive - Supergoon Games\src\C++\libs\SDL2-2.0.14\lib\x86;C:\Users\$(USERNAME)\OneDrive - Supergoon Games\src\C++\ZeldaMulti\Zelda-SDL\bin\Win32\Debug;C:\Users\$(USERNAME)\OneDrive - Supergoon Games\src\C++\libs\SDL2_image-2.0.5\lib\x86;C:\Users\blanc\OneDrive - Supergoon Games\src\C++\libs\SDL2_mixer-2.0.4\lib\x86</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SGGEngine.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2.lib;SDL2main.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Zelda-SGG.exe.lib;SGGEngine.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2.lib;SDL2main.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -147,7 +147,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>C:\Users\$(USERNAME)\OneDrive - Supergoon Games\src\C++\libs\SDL2-2.0.14\lib\x86;C:\Users\$(USERNAME)\OneDrive - Supergoon Games\src\C++\ZeldaMulti\Zelda-SDL\bin\Win32\Debug;C:\Users\$(USERNAME)\OneDrive - Supergoon Games\src\C++\libs\SDL2_image-2.0.5\lib\x86;C:\Users\blanc\OneDrive - Supergoon Games\src\C++\libs\SDL2_mixer-2.0.4\lib\x86</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SGGEngine.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2.lib;SDL2main.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Zelda-SGG.exe.lib;SGGEngine.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2.lib;SDL2main.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -168,7 +168,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>C:\Users\$(USERNAME)\OneDrive - Supergoon Games\src\C++\libs\SDL2-2.0.14\lib\x86;C:\Users\$(USERNAME)\OneDrive - Supergoon Games\src\C++\ZeldaMulti\Zelda-SDL\bin\Win32\Debug;C:\Users\$(USERNAME)\OneDrive - Supergoon Games\src\C++\libs\SDL2_image-2.0.5\lib\x86;C:\Users\blanc\OneDrive - Supergoon Games\src\C++\libs\SDL2_mixer-2.0.4\lib\x86</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SGGEngine.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2.lib;SDL2main.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Zelda-SGG.exe.lib;SGGEngine.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2.lib;SDL2main.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

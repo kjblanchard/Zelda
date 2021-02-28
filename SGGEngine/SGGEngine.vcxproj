@@ -179,6 +179,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\core\Configuration.h" />
     <ClInclude Include="include\data\Directions.h" />
     <ClInclude Include="include\core\GameLevel.h" />
     <ClInclude Include="include\components\BoxColliderComponent.h" />
@@ -219,6 +220,7 @@
     <ClInclude Include="include\tilemap\SolidTile.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\core\Configuration.cpp" />
     <ClCompile Include="src\data\Directions.cpp" />
     <ClCompile Include="src\core\GameLevel.cpp" />
     <ClCompile Include="src\core\Level.cpp" />

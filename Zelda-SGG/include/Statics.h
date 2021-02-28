@@ -11,8 +11,8 @@
 class Statics
 {
 public:
-	static const int ScreenWidth = 512;
-	static const int ScreenHeight = 352-16;
-	inline static const double FrameTime = 1000.00 / 60;
-	inline static const SG::Point TileSize{ 32 };
+	//static const int ScreenWidth = 512;
+	//static const int ScreenHeight = 352-16;
+	//inline static const double FrameTime = 1000.00 / 60;
+	//inline static const SG::Point TileSize{ 32 };
 };

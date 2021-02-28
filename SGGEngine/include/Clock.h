@@ -16,9 +16,9 @@
 
 namespace SG
 {
-	/**
-	 * \brief Holds Time Variables, it is automatically initialized with the start time when a new timer is created.
-	 */
+	/// <summary>
+	/// Holds Time Variables, it is automatically initialized with the start time when a new timer is created.
+	/// </summary>
 	struct SGGENGINE_API Clock
 	{
 		Clock();

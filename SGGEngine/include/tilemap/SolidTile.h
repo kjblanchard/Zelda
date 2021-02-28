@@ -17,6 +17,10 @@
 namespace SG
 {
 
+	/// <summary>
+	/// Used when spawning from the tilemap, all of the solid tiles
+	/// </summary>
+	/// <typeparam name="T">An enum value of the tile type.  The enum value number should match from Tiled</typeparam>
 	template <typename T>
 	class  SolidTile : public GameObject
 	{
@@ -40,6 +44,7 @@ namespace SG
 	template <typename T>
 	void SolidTile<T>::Startup()
 	{
+		//TODO after configuration file, change these to pull from that
 		auto boxColliderBox = SDL_Rect{ 0,0,32,32};
 
 		_boxColliderComponent = std::make_unique<BoxColliderComponent>(this, boxColliderBox);

@@ -81,7 +81,7 @@ namespace SG
 	{
 		for (auto levelGameObjectList : gameObjectList.GetGameObjectList())
 		{
-			auto component = levelGameObjectList->GetComponent<SG::BoxColliderComponent>();
+			const auto component = levelGameObjectList->GetComponent<SG::BoxColliderComponent>();
 			if (component)
 			{
 				if (component->IsCollision(rect))
@@ -99,7 +99,7 @@ namespace SG
 		std::vector<GameObject*> collisionsGameObjectList = {};
 		for (auto levelGameObjectList : gameObjectList.GetGameObjectList())
 		{
-			auto component = levelGameObjectList->GetComponent<SG::BoxColliderComponent>();
+			const auto component = levelGameObjectList->GetComponent<SG::BoxColliderComponent>();
 			if (component)
 			{
 				if (component->IsCollision(rect))
@@ -116,7 +116,7 @@ namespace SG
 	{
 		for (auto levelGameObjectList : gameObjectList.GetGameObjectList())
 		{
-			auto component = levelGameObjectList->GetComponent<SG::BoxColliderComponent>();
+			const auto component = levelGameObjectList->GetComponent<SG::BoxColliderComponent>();
 			if (component)
 			{
 				if (component->IsCollision(boxColliderToCheck))

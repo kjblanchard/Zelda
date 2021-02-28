@@ -41,6 +41,7 @@ namespace SG
 		}
 		virtual ~AnimationController() = default;
 
+		void Startup() override;
 		void Update(const double& deltaTime) override;
 		virtual void ChangeAnimation(T animationEnum);
 
@@ -93,6 +94,12 @@ namespace SG
 	}
 
 	template <class T>
+	void AnimationController<T>::Startup()
+	{
+		UpdateSpriteLocation(_gameObject->Location());
+	}
+
+	template <class T>
 	void AnimationController<T>::Update(const double& deltaTime)
 	{
 		_timeOnCurrentFrame += deltaTime;
@@ -119,8 +126,7 @@ namespace SG
 		{
 			_currentFrameInAnimation = 0;
 		}
-
-		_timeOnCurrentFrame = 0;
+		UpdateSpriteLocation(_gameObject->Location());
 	}
 
 	template <class T>

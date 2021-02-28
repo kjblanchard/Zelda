@@ -59,11 +59,6 @@ namespace SG
 	{
 		if (IsAnimPlaying)
 			_animationController->Update(deltaTime);
-
-		if (_gameObject)
-		{
-			_animationController->UpdateSpriteLocation(_gameObject->Location());
-		}
 	}
 
 	template <typename T, typename F>

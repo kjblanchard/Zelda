@@ -11,11 +11,15 @@
 #else
 #define SGGENGINE_API __declspec(dllimport)
 #endif
+#include "interfaces/IUpdate.h"
 
 namespace SG
 {
 	class GameObject;
 
+	/// <summary>
+	/// The different component types in the gameengine
+	/// </summary>
 	enum class SGComponentTypes
 	{
 		Default,
@@ -25,15 +29,16 @@ namespace SG
 		BoxCollider
 	};
 
-	struct SGGENGINE_API Component
+	/// <summary>
+	/// The base class for all components, holds it's owner and it's component type, as well as a startup method
+	/// </summary>
+	struct SGGENGINE_API Component : IUpdate
 	{
 
 		Component(GameObject* gameObject);
 		Component(GameObject* gameObject, SGComponentTypes componentType);
 
 		virtual ~Component() = default;
-		virtual void Startup();
-
 
 	protected:
 		GameObject* _gameObject;

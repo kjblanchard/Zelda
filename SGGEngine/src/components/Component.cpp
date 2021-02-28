@@ -16,8 +16,4 @@ namespace SG
 		if (gameObject)
 			gameObject->AddComponent(this);
 	}
-
-	void Component::Startup()
-	{
-	}
 }

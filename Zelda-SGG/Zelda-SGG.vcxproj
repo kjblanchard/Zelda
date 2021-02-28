@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\characters\RedOctorok.cpp" />
     <ClCompile Include="src\states\Link\LinkAttackingState.cpp" />
     <ClCompile Include="src\animation\LinkAnimations\LinkAttackingAnimation.cpp" />
     <ClCompile Include="src\animation\LinkAnimations\LinkWalkingAnimation.cpp" />
@@ -53,6 +54,7 @@
     <ClInclude Include="include\states\Link\LinkAttackingState.h" />
     <ClInclude Include="include\items\Weapon.h" />
     <ClInclude Include="include\items\WoodSwordWeapon.h" />
+    <ClInclude Include="include\characters\RedOctorok.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SGGEngine\SGGEngine.vcxproj">

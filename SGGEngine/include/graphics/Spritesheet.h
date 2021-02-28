@@ -25,6 +25,7 @@ namespace SG
 		LinkWalking = 3,
 		LinkAttacking = 4,
 		WoodSword = 5,
+		RedOctorok = 6
 
 
 	};

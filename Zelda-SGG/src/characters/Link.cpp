@@ -21,7 +21,7 @@ Link::Link(SG::Vector3 location, SG::Controller* controller)
 	_inputComponent = std::make_unique<SG::InputComponent>(controller, this);
 	_animationComponent = std::make_unique<SG::AnimationComponent<LinkAnimationController, LinkAnimations>>(this, new LinkAnimationController(this));
 	auto boxColliderBox = SDL_Rect{ 0,0,24,24 };
-	_boxColliderComponent = std::make_unique<SG::BoxColliderComponent>(this,boxColliderBox);
+	_boxColliderComponent = std::make_unique<SG::BoxColliderComponent>(this,boxColliderBox, true);
 }
 
 Link::~Link()

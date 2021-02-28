@@ -17,6 +17,7 @@
 #include "core/GameObject.h"
 #include "components/ImageComponent.h"
 #include "data/Vector3.h"
+#include "core/Configuration.h"
 
 namespace SG
 {
@@ -52,8 +53,7 @@ namespace SG
 		void UpdateSpriteLocation(SG::Vector3 location);
 
 	protected:
-		//TODO get the gametime from a configuration variable
-		inline const static double FrameTime = 1000.00 / 60;
+		inline const static double FrameTime = SG::Configuration::FrameTime ;
 		static std::vector<Animation<T>> Animations;
 		GameObject* _gameObject;
 

@@ -2,24 +2,23 @@
 #include "core/GameObjectList.h"
 #include "graphics/SpriteBatch.h"
 #include "graphics/Graphics.h"
-#include "Statics.h"
 #include "ZeldaLevel.h"
 #include "core/Configuration.h"
 
 
 int main(int argc, char* args[])
 {
-	auto zeldaWorld = std::make_unique<ZeldaWorld>();
 	SG::Configuration::GenerateJsonFromConfigFile("appsettings.json");
 	if (!SG::Configuration::GenerateValuesFromJson())
 		return 1;
+	auto zeldaWorld = std::make_unique<ZeldaWorld>();
 	zeldaWorld->SetupWorldComponents();
 	zeldaWorld->Loop();
 	return 1;
 }
 
 ZeldaWorld::ZeldaWorld()
-	:World(SG::Point(Statics::ScreenWidth,Statics::ScreenHeight))
+	:World(SG::Point(SG::Configuration::ScreenWidth,SG::Configuration::ScreenHeight))
 {
 }
 

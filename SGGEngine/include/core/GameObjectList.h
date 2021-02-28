@@ -33,9 +33,9 @@ namespace SG
 		*/
 		void AddToGameObjectList(GameObject* gameObject);
 
-		//TODO make this private
-		std::vector<GameObject*> _gameObjectList;
+		const std::vector<GameObject*>& GetGameObjectList() const { return _gameObjectList; }
 	private:
+		std::vector<GameObject*> _gameObjectList;
 		void GameObjectStartup();
 		std::vector<GameObject*> _gameObjectStartupList;
 	};

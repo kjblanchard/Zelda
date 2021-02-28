@@ -5,6 +5,7 @@
 #include "graphics/SpriteBatch.h"
 #include "core/World.h"
 #include "collision/Collision.h"
+#include "core/Configuration.h"
 
 namespace SG
 {
@@ -19,9 +20,8 @@ namespace SG
 		_xOffset = _colliderBox.x;
 		_yOffset = _colliderBox.y;
 
-		//TODO change the 32's to a var in the configuration file
-		_xSizeOffset =  (32 - _colliderBox.w) /2;
-		_ySizeOffset = (32 - _colliderBox.h) /2;
+		_xSizeOffset =  (SG::Configuration::TileWidth - _colliderBox.w) /2;
+		_ySizeOffset = (SG::Configuration::TileHeight - _colliderBox.h) /2;
 
 		_colliderBox.x = _gameObject->Location().X + _xOffset + _xSizeOffset;
 		_colliderBox.y = _gameObject->Location().Y + _yOffset + _ySizeOffset;

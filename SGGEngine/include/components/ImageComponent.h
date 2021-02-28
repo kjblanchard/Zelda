@@ -24,31 +24,49 @@ namespace SG
 	class SpriteBatch;
 	class GameObject;
 
+	/// <summary>
+	/// The component that draws an image on the screen.  Can be used by itself, but also used in the animation controllers.
+	/// </summary>
 	class SGGENGINE_API ImageComponent : public Component
 	{
 	public:
 		/// <summary>
 		/// These two constructors are for static images that will not be controlled by the animation controller, they will need a spritesheet
 		/// </summary>
-		/// <param name="spriteSheetToLoad"></param>
-		/// <param name="spriteSheetLocationAndSize"></param>
-		/// <param name="gameObject"></param>
-		ImageComponent(SpriteSheetEnum spriteSheetToLoad, const SDL_Rect& spriteSheetLocationAndSize, GameObject* gameObject = nullptr);
-		ImageComponent(SpriteSheetEnum spriteSheetToLoad, Point imageSize, GameObject* gameObject = nullptr);
+		/// <param name="spriteSheetToLoad">The enum value of the spritesheet to use</param>
+		/// <param name="spriteSheetLocationAndSize">The location and size within the spritesheet to display</param>
+		/// <param name="gameObject">The owner</param>
+		ImageComponent(SpriteSheetEnum spriteSheetToLoad, const SDL_Rect& spriteSheetLocationAndSize, GameObject* gameObject);
+		/// <summary>
+		/// Used for a single static image within a sprite, not really a spritesheet, likely not used much
+		/// </summary>
+		/// <param name="spriteSheetToLoad">The sprite sheet enum</param>
+		/// <param name="imageSize">Point of the image size in xy</param>
+		/// <param name="gameObject">The owner</param>
+		ImageComponent(SpriteSheetEnum spriteSheetToLoad, Point imageSize, GameObject* gameObject);
 		/// <summary>
 		/// This is used for animation components
 		/// </summary>
-		/// <param name="spriteSheetLocationAndSize"></param>
+		/// <param name="spriteSheetLocationAndSize">The location and size of the image in the spritesheet at the default</param>
 		/// <param name="gameObject"></param>
-		ImageComponent(const SDL_Rect& spriteSheetLocationAndSize, GameObject* gameObject = nullptr);
+		ImageComponent(const SDL_Rect& spriteSheetLocationAndSize, GameObject* gameObject);
 		~ImageComponent();
 
+		/// <summary>
+		/// This Update function takes in a location to update the sprite with
+		/// </summary>
+		/// <param name="location"></param>
 		void Update(Vector3 location);
-		void Draw(SpriteBatch& spritebatch) const;
-		/**
-		 * \brief Updates the held image's location in the world
-		 * \param location The new location of the Image
-		 */
+		/// <summary>
+		/// Adds the image to the spritebatch that's passed in
+		/// </summary>
+		/// <param name="spriteBatch"></param>
+		void Draw(SpriteBatch& spriteBatch) override;
+
+		/// <summary>
+		/// Updates the held image's location in the spritesheet, used by animation controller
+		/// </summary>
+		/// <param name="locationInSpriteSheet">The new location of the image</param>
 		void UpdateSpriteSheetLocation(const Point& locationInSpriteSheet) const;
 
 		/// <summary>

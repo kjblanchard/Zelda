@@ -31,7 +31,7 @@ namespace SG
 		UpdateSpriteDestinationInWorld(location);
 	}
 
-	void ImageComponent::Draw(SpriteBatch& spritebatch) const
+	void ImageComponent::Draw(SpriteBatch& spritebatch)
 	{
 		if(image)
 			spritebatch.AddToSpriteBatch(image.get());

@@ -50,7 +50,6 @@ namespace SG
 		}
 
 	private:
-		//TODO fix these to work right and be references / pointers.
 		KeyMapping<SDL_Scancode> _keyboardMapping{*DefaultKeyboardMap};
 		KeyMapping<SDL_GameControllerButton> _joystickMapping{*DefaultJoystickMap};
 		bool _isUsingGamePad{false};

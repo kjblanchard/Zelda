@@ -13,6 +13,7 @@
 #endif
 #include  "Tile.h"
 #include "components/BoxColliderComponent.h"
+#include "core/Configuration.h"
 
 namespace SG
 {
@@ -44,8 +45,7 @@ namespace SG
 	template <typename T>
 	void SolidTile<T>::Startup()
 	{
-		//TODO after configuration file, change these to pull from that
-		auto boxColliderBox = SDL_Rect{ 0,0,32,32};
+		auto boxColliderBox = SDL_Rect{ 0,0,SG::Configuration::TileWidth,Configuration::TileHeight};
 
 		_boxColliderComponent = std::make_unique<BoxColliderComponent>(this, boxColliderBox);
 		_tile->Startup();

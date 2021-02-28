@@ -51,9 +51,10 @@ namespace SG
 			return ReturnFirstCollisionObjectInList(gameObjectChecking, *EnemiesLayerList);
 		case GameObjectTypes::Player:
 			return ReturnFirstCollisionObjectInList(gameObjectChecking, *PlayerLayerList);
-		case GameObjectTypes::Tile: break;
-		default: ;
+		case GameObjectTypes::Tile:
+			return ReturnFirstCollisionObjectInList(gameObjectChecking, *TileLayerList);
 		}
+		return {};
 	}
 
 	std::vector<GameObject*> GameLevel::ReturnAllCollisions(SDL_Rect& rect, GameObjectTypes listToSearch)
@@ -68,8 +69,10 @@ namespace SG
 			return ReturnAllCollissionsInList(rect, *EnemiesLayerList);
 		case GameObjectTypes::Player:
 			return ReturnAllCollissionsInList(rect, *PlayerLayerList);
-		case GameObjectTypes::Tile: break;
+		case GameObjectTypes::Tile:
+			return ReturnAllCollissionsInList(rect, *TileLayerList);
 		}
+		return {};
 	}
 
 	bool GameLevel::CheckForCollisions(SDL_Rect& rect, GameObjectList& gameObjectList)

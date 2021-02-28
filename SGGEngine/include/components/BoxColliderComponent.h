@@ -24,7 +24,7 @@ namespace SG
 	/// <summary>
 	/// Component used for collision detection
 	/// </summary>
-	class SGGENGINE_API BoxColliderComponent : public Component, public IUpdate
+	class SGGENGINE_API BoxColliderComponent : public Component
 	{
 	public:
 

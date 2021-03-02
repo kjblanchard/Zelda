@@ -9,7 +9,7 @@
 #include "core/GameObject.h"
 #include <memory>
 #include "components/AnimationComponent.h"
-#include "state/StateMachine.h"
+#include "interfaces/IObjectStateMachine.h"
 
 enum class LinkStates;
 class LinkAnimationController;
@@ -24,37 +24,32 @@ namespace SG {
 	class InputComponent;
 }
 
-class Link : public SG::GameObject
+class Link : public SG::GameObject, protected SG::IObjectStateMachine<LinkStates>
 {
 public:
 
 	Link(SG::Vector3 location);
 	Link(SG::Vector3 location, SG::Controller* controller);
-	virtual ~Link();
+
+	~Link();
 
 	void Startup() override;
 	void Update(const double& deltaTime) override;
 	void Draw(SG::SpriteBatch& spriteBatch) override;
-	void ChangeState(LinkStates stateToChangeTo) const { _linkStateMachine->ChangeState(stateToChangeTo); }
 
 private:
 	void ComponentUpdate(const double& deltaTime) override;
+	void GenerateStates() override;
 
-	void GenerateStates();
-
-
-	SG::StateMachine<LinkStates>* _linkStateMachine = new SG::StateMachine<LinkStates>;
-
-
-
-
-		/// <summary>
+	/// <summary>
 	/// Components
 	/// </summary>
 	///
 	std::unique_ptr<SG::AnimationComponent<LinkAnimationController, LinkAnimations>> _animationComponent;
 	std::unique_ptr<SG::InputComponent> _inputComponent;
 	std::unique_ptr<SG::BoxColliderComponent> _boxColliderComponent;
+
+
 
 	friend class LinkSpawningState;
 	friend class LinkMovingState;

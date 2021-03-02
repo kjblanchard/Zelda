@@ -204,6 +204,7 @@
     <ClInclude Include="include\input\Input.h" />
     <ClInclude Include="include\components\InputComponent.h" />
     <ClInclude Include="include\core\Level.h" />
+    <ClInclude Include="include\interfaces\IObjectStateMachine.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="include\input\PlayerController.h" />
     <ClInclude Include="include\data\Point.h" />
@@ -220,6 +221,7 @@
     <ClInclude Include="include\tilemap\SolidTile.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\interfaces\IObjectStateMachine.cpp" />
     <ClCompile Include="src\core\Configuration.cpp" />
     <ClCompile Include="src\data\Directions.cpp" />
     <ClCompile Include="src\core\GameLevel.cpp" />

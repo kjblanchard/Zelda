@@ -12,7 +12,7 @@ void LinkSpawningState::Startup()
 {
 	_link->_animationComponent->Startup();
 	_link->_boxColliderComponent->Startup();
-	_link->_linkStateMachine->ChangeState(LinkStates::Moving);
+	_link->_objectStateMachine->ChangeState(LinkStates::Moving);
 
 }
 

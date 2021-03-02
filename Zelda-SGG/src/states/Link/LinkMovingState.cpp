@@ -54,7 +54,7 @@ void LinkMovingState::HandleInput()
 
 			if (_link->_inputComponent->CurrentController->IsButtonPressed(SG::ControllerButtons::A) || _link->_inputComponent->CurrentController->IsButtonHeld(SG::ControllerButtons::A))
 			{
-				_link->_linkStateMachine->ChangeState(LinkStates::Attacking);
+				_link->_objectStateMachine->ChangeState(LinkStates::Attacking);
 			}
 
 			else if (_link->_inputComponent->CurrentController->IsButtonPressed(SG::ControllerButtons::Up) || _link->_inputComponent->CurrentController->IsButtonHeld(SG::ControllerButtons::Up))

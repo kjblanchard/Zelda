@@ -52,12 +52,16 @@ namespace SG
 	{
 		switch (typeToCheckAgainst)
 		{
+
+		case GameObjectTypes::Default: break;
+		case GameObjectTypes::Tile: break;
+		case GameObjectTypes::SolidTile: break;
+		case GameObjectTypes::Player: break;
 		case GameObjectTypes::Enemy:
 			auto collisions = gameLevelToCheck->ReturnAllCollisions(_colliderBox, SG::GameObjectTypes::Enemy);
 			_currentFrameCollisions.insert(std::end(_currentFrameCollisions), std::begin(collisions), std::end(collisions));
 			break;
 		}
-
 
 	}
 

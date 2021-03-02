@@ -35,7 +35,6 @@ public:
 	void Update(const double& deltaTime) override;
 	void Draw(SG::SpriteBatch& spriteBatch) override;
 	void ComponentUpdate(const double& deltaTime) override;
-
 	void GenerateStates() override;
 
 

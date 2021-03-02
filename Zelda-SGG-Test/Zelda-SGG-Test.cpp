@@ -13,7 +13,7 @@ namespace ZeldaSGGTest
 	{
 	public:
 
-		TEST_METHOD(TestMethod1)
+		TEST_METHOD(Vector3Test)
 		{
 			auto location = SG::Vector3(0);
 			Assert::AreEqual(location.X, location.X);

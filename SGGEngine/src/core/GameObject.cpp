@@ -18,6 +18,17 @@ SG::GameObject::GameObject(Vector3 location, GameObjectTypes gameObjectType)
 	Id = GameObjectCount;
 }
 
+SG::Component* SG::GameObject::GetComponent(SGComponentTypes componentType)
+{
+	for (auto* component : _components)
+	{
+		if (component->ComponentType() == componentType)
+			return component;
+	}
+	return nullptr;
+}
+
+
 
 
 

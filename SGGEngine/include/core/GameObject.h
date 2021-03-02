@@ -12,6 +12,8 @@
 #define SGGENGINE_API __declspec(dllimport)
 #endif
 #include <vector>
+
+#include "components/Component.h"
 #include "data/Vector3.h"
 #include "interfaces/IUpdate.h"
 
@@ -88,13 +90,20 @@ namespace SG
 
 		GameObjectTypes GameObjectType;
 
+		//TODO Fix this up
 		/// <summary>
-		/// Gets the first component of the type that you pass in
+		/// Gets the first component of the type that you pass in, This is an expensive operation and can potentially fail on things like animation controllers
 		/// </summary>
 		/// <typeparam name="T">Should be a component type if you want to get anything back</typeparam>
 		/// <returns>The component that you searched for if it exists, else a null ptr</returns>
 		template <typename T >
 		T* GetComponent();
+		/// <summary>
+		/// Not as useful as the template, as you'll need to cast this to what you want after you get it back, and it only retrieves from the component types built in
+		/// </summary>
+		/// <param name="componentType"></param>
+		/// <returns></returns>
+		Component* GetComponent(SGComponentTypes componentType);
 
 		/// <summary>
 		/// Adds a component to the list of components on this gameobject

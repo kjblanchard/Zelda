@@ -7,6 +7,9 @@
 
 #pragma once
 
+/// <summary>
+/// List of all the animations that this Object can change to
+/// </summary>
 enum class RedOctorokAnimations
 {
 	Default = 0,

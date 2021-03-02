@@ -37,7 +37,7 @@ namespace SG
 
 		Component(GameObject* gameObject);
 		Component(GameObject* gameObject, SGComponentTypes componentType);
-
+		SGComponentTypes ComponentType() const { return _componentType; }
 		virtual ~Component() = default;
 
 	protected:

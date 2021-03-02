@@ -19,6 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\states\RedOctorok\RedOctorokStates.cpp" />
+    <ClCompile Include="src\animation\RedOctorokAnimations\RecOctorokWalkingAnimation.cpp" />
+    <ClCompile Include="src\animation\RedOctorokAnimations\RedOctorokAnimations.cpp" />
+    <ClCompile Include="src\animation\RedOctorokAnimations\RedOctorokAnimationController.cpp" />
     <ClCompile Include="src\characters\RedOctorok.cpp" />
     <ClCompile Include="src\states\Link\LinkAttackingState.cpp" />
     <ClCompile Include="src\animation\LinkAnimations\LinkAttackingAnimation.cpp" />
@@ -37,6 +41,7 @@
     <ClCompile Include="src\items\WoodSwordWeapon.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\animation\RedOctorokAnimations\RedOctorokAnimations.h" />
     <ClInclude Include="include\levels\DebugRoomLevel.h" />
     <ClInclude Include="include\characters\Link.h" />
     <ClInclude Include="include\ZeldaWorld.h" />
@@ -53,6 +58,9 @@
     <ClInclude Include="include\items\Weapon.h" />
     <ClInclude Include="include\items\WoodSwordWeapon.h" />
     <ClInclude Include="include\characters\RedOctorok.h" />
+    <ClInclude Include="include\animation\RedOctorokAnimations\RedOctorokAnimationController.h" />
+    <ClInclude Include="include\animation\RedOctorokAnimations\RecOctorokWalkingAnimation.h" />
+    <ClInclude Include="include\states\RedOctorok\RedOctorokStates.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SGGEngine\SGGEngine.vcxproj">

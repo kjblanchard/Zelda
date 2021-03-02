@@ -1,5 +1,4 @@
 #include "pch.h"
-#define private public
 #include "CppUnitTest.h"
 
 #include "characters/RedOctorok.h"

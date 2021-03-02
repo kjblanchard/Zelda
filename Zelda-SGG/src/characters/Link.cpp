@@ -63,8 +63,3 @@ void Link::GenerateStates()
 	_linkStateMachine->AddStateToGameStateList(LinkStates::Moving, std::make_unique<LinkMovingState>(this));
 	_linkStateMachine->AddStateToGameStateList(LinkStates::Attacking, std::make_unique<LinkAttackingState>(this));
 }
-
-void Link::ChangeCurrentDirection(SG::Directions direction)
-{
-	_currentDirection = direction;
-}

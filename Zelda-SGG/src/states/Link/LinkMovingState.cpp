@@ -61,7 +61,7 @@ void LinkMovingState::HandleInput()
 			{
 				_link->_animationComponent->IsAnimPlaying = true;
 				_link->_animationComponent->ChangeAnimation(LinkAnimations::WalkUp);
-				_link->ChangeCurrentDirection(SG::Directions::Up);
+				_link->_currentDirection = SG::Directions::Up;
 				potentialMoveSpeed.Y -= 3;
 
 			}
@@ -69,7 +69,7 @@ void LinkMovingState::HandleInput()
 			{
 				_link->_animationComponent->IsAnimPlaying = true;
 				_link->_animationComponent->ChangeAnimation(LinkAnimations::WalkDown);
-				_link->ChangeCurrentDirection(SG::Directions::Down);
+				_link->_currentDirection = SG::Directions::Down;
 
 				potentialMoveSpeed.Y += 3;
 
@@ -78,7 +78,7 @@ void LinkMovingState::HandleInput()
 			{
 				_link->_animationComponent->IsAnimPlaying = true;
 				_link->_animationComponent->ChangeAnimation((LinkAnimations::WalkLeft));
-				_link->ChangeCurrentDirection(SG::Directions::Left);
+				_link->_currentDirection = SG::Directions::Left;
 				potentialMoveSpeed.X -= 3;
 
 			}
@@ -86,7 +86,7 @@ void LinkMovingState::HandleInput()
 			{
 				_link->_animationComponent->IsAnimPlaying = true;
 				_link->_animationComponent->ChangeAnimation(LinkAnimations::WalkRight);
-				_link->ChangeCurrentDirection(SG::Directions::Right);
+				_link->_currentDirection = SG::Directions::Right;
 				potentialMoveSpeed.X += 3;
 
 			}

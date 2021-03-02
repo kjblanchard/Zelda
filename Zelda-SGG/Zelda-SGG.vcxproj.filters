@@ -63,6 +63,18 @@
     <ClCompile Include="src\characters\RedOctorok.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\animation\RedOctorokAnimations\RedOctorokAnimationController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\animation\RedOctorokAnimations\RedOctorokAnimations.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\animation\RedOctorokAnimations\RecOctorokWalkingAnimation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\states\RedOctorok\RedOctorokStates.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ZeldaWorld.h">
@@ -111,6 +123,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\characters\RedOctorok.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\animation\RedOctorokAnimations\RedOctorokAnimationController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\animation\RedOctorokAnimations\RedOctorokAnimations.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\animation\RedOctorokAnimations\RecOctorokWalkingAnimation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\states\RedOctorok\RedOctorokStates.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -44,7 +44,7 @@ private:
 
 
 	SG::StateMachine<LinkStates>* _linkStateMachine = new SG::StateMachine<LinkStates>;
-	void ChangeCurrentDirection(SG::Directions direction);
+
 
 
 

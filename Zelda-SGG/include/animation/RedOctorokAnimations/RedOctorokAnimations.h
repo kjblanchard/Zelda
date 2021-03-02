@@ -15,4 +15,7 @@ enum class RedOctorokAnimations
 	Default = 0,
 	Idle = 1,
 	WalkUp= 2,
+	WalkDown = 3,
+	WalkLeft = 4,
+	WalkRight = 5
 };

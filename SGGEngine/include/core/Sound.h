@@ -30,7 +30,8 @@ namespace SG
 	{
 		Default = 0,
 		BaseSwordAttack = 1,
-		EnemyKill = 2
+		EnemyKill = 2,
+		LinkHurt = 3
 	};
 
 	struct SoundFile
@@ -58,7 +59,8 @@ namespace SG
 		inline static std::map<SoundFxToPlay, SoundFile> SoundFxToLoadedSoundDict =
 		{
 			{SoundFxToPlay::BaseSwordAttack,SoundFile{"assets/sound/sword.wav",NULL}},
-			{SoundFxToPlay::EnemyKill,SoundFile{"assets/sound/enemyKill.wav", NULL}}
+			{SoundFxToPlay::EnemyKill,SoundFile{"assets/sound/enemyKill.wav", NULL}},
+			{SoundFxToPlay::LinkHurt,SoundFile{"assets/sound/linkHurt.wav",NULL}}
 		};
 
 		static void PlayMusic(MusicToPlay musicToPlayEnum);

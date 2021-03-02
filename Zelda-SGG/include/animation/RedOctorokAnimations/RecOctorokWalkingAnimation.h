@@ -24,5 +24,49 @@ public:
 			{SG::Point(1,0), 7 }
 		};
 	}
+};
+class RedOctorokWalkDown : public SG::Animation<RedOctorokAnimations>
+{
+public:
 
+	RedOctorokWalkDown() : Animation<RedOctorokAnimations>()
+	{
+		AnimationEnumType = RedOctorokAnimations::WalkDown;
+		SpriteSheet = _graphics->LoadFromSpriteSheet(SG::SpriteSheetEnum::RedOctorok);
+		LocationAndLengthOfAnimation =
+		{
+			{SG::Point(0,0), 7},
+			{SG::Point(1,0), 7 }
+		};
+	}
+};
+class RedOctorokWalkLeft : public SG::Animation<RedOctorokAnimations>
+{
+public:
+
+	RedOctorokWalkLeft() : Animation<RedOctorokAnimations>()
+	{
+		AnimationEnumType = RedOctorokAnimations::WalkLeft;
+		SpriteSheet = _graphics->LoadFromSpriteSheet(SG::SpriteSheetEnum::RedOctorok);
+		LocationAndLengthOfAnimation =
+		{
+			{SG::Point(0,0), 7},
+			{SG::Point(1,0), 7 }
+		};
+	}
+};
+class RedOctorokWalkRight : public SG::Animation<RedOctorokAnimations>
+{
+public:
+
+	RedOctorokWalkRight() : Animation<RedOctorokAnimations>()
+	{
+		AnimationEnumType = RedOctorokAnimations::WalkRight;
+		SpriteSheet = _graphics->LoadFromSpriteSheet(SG::SpriteSheetEnum::RedOctorok);
+		LocationAndLengthOfAnimation =
+		{
+			{SG::Point(0,0), 7},
+			{SG::Point(1,0), 7 }
+		};
+	}
 };

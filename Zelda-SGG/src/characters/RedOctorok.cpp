@@ -1,10 +1,12 @@
 ﻿#include "characters/RedOctorok.h"
-#include <SDL_rect.h>
+
 #include "components/BoxColliderComponent.h"
+#include "states/RedOctorok/RedOctorokSpawningState.h"
+#include "animation/RedOctorokAnimations/RedOctorokAnimations.h"
+#include <SDL_rect.h>
 #include "states/RedOctorok/RedOctorokStates.h"
 #include "animation/RedOctorokAnimations/RedOctorokAnimationController.h"
-#include "animation/RedOctorokAnimations/RedOctorokAnimations.h"
-
+#include "states/RedOctorok/RedOctorokMovingState.h"
 
 
 RedOctorok::RedOctorok(SG::Vector3 location) : GameObject(location,SG::GameObjectTypes::Enemy),_boxColliderComponent(nullptr)
@@ -16,29 +18,33 @@ RedOctorok::RedOctorok(SG::Vector3 location) : GameObject(location,SG::GameObjec
 
 void RedOctorok::Startup()
 {
-	_boxColliderComponent->Startup();
-	_animationComponent->Startup();
 	GenerateStates();
-	_animationComponent->ChangeAnimation(RedOctorokAnimations::WalkUp);
-	_animationComponent->IsAnimPlaying = true;
+	_objectStateMachine->ChangeState(RedOctorokStates::Spawning);
+
 }
 
 void RedOctorok::Update(const double& deltaTime)
 {
-	_animationComponent->Update(deltaTime);
+	_objectStateMachine->Update(deltaTime);
+	ComponentUpdate(deltaTime);
 }
 
 void RedOctorok::Draw(SG::SpriteBatch& spriteBatch)
 {
+	_objectStateMachine->Draw(spriteBatch);
 	_animationComponent->Draw(spriteBatch);
-	if (SG::World::_isCollisionDebug)
-		_boxColliderComponent->Draw(spriteBatch);
+
 }
 
 void RedOctorok::ComponentUpdate(const double& deltaTime)
 {
+	_animationComponent->Update(deltaTime);
+	_boxColliderComponent->Update(deltaTime);
 }
 
 void RedOctorok::GenerateStates()
 {
+	_objectStateMachine->AddStateToGameStateList(RedOctorokStates::Spawning, std::make_unique<RedOctorokSpawningState>(this));
+	_objectStateMachine->AddStateToGameStateList(RedOctorokStates::Moving, std::make_unique<RedOctorokMovingState>(this));
+
 }

@@ -8,6 +8,7 @@
 #include "core/GameLevel.h"
 #include "components/BoxColliderComponent.h"
 #include "animation/LinkAnimations/LinkAnimationController.h"
+#include "core/Sound.h"
 #include "states/Link/LinkStates.h"
 
 LinkMovingState::LinkMovingState(Link* link) : _link(link)
@@ -127,8 +128,43 @@ void LinkMovingState::HandleInput()
 						}
 					}
 
+
 				}
 			}
+			if (!worldLevel->IsThereACollision(bbox, SG::GameObjectTypes::Enemy))
+			{
+				//dosomething?
+			}
+			else
+			{
+				if (worldLevel)
+				{
+					auto enemy = worldLevel->ReturnFirstCollisionGameObject(bbox, SG::GameObjectTypes::Enemy);
+					if (enemy.Id)
+					{
+						const auto gameObjectColliderbox = enemy.GetComponent<SG::BoxColliderComponent>()->ColliderBox();
+
+						const auto collisionArea = SG::Collision::ShapeIntersectionArea(&bbox, &gameObjectColliderbox);
+						switch (SG::Collision::CalculateIntersectionDirection(collisionArea, bbox))
+						{
+						case SG::Directions::Up:
+							_link->_location.Y += potentialMoveSpeed.Y += 50;
+							break;
+						case SG::Directions::Right:
+							_link->_location.X += potentialMoveSpeed.X -= 50;
+							break;
+						case SG::Directions::Down:
+							_link->_location.Y += potentialMoveSpeed.Y -= 50;
+							break;
+						case SG::Directions::Left:
+							_link->_location.X += potentialMoveSpeed.X += 50;
+							break;
+						}
+						SG::Sound::PlaySound(SG::SoundFxToPlay::LinkHurt);
+					}
+				}
+			}
+
 		}
 	}
 }

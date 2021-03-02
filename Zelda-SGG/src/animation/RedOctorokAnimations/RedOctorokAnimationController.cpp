@@ -10,6 +10,9 @@ RedOctorokAnimationController::RedOctorokAnimationController(SG::GameObject* own
 	{
 		Animations = {
 			{RedOctorokWalkUp() },
+			{RedOctorokWalkDown() },
+			{RedOctorokWalkLeft() },
+			{RedOctorokWalkRight() },
 
 		};
 		staticsInitialized = true;

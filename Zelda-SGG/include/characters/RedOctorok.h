@@ -13,10 +13,12 @@
 #include "components/AnimationComponent.h"
 #include "core/GameObject.h"
 #include "interfaces/IObjectStateMachine.h"
+#include "states/RedOctorok/RedOctorokStates.h"
 
+class RedOctorokMovingState;
+class RedOctorokSpawningState;
 enum class RedOctorokAnimations;
 class RedOctorokAnimationController;
-class RedOctorokStates;
 
 namespace SG {
 	class BoxColliderComponent;
@@ -46,4 +48,7 @@ private:
 	/// </summary>
 	std::unique_ptr<SG::BoxColliderComponent> _boxColliderComponent;
 	std::unique_ptr<SG::AnimationComponent<RedOctorokAnimationController, RedOctorokAnimations>> _animationComponent;
+
+	friend RedOctorokSpawningState;
+	friend RedOctorokMovingState;
 };

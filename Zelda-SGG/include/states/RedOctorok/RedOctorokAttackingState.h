@@ -7,11 +7,7 @@
 
 #pragma once
 
-enum class RedOctorokStates
+class RedOctorokAttackingState
 {
-	Spawning,
-	Moving,
-	Idle,
-	Attacking,
-	TakingDamage
+	
 };

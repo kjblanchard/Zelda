@@ -19,6 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\states\RedOctorok\RedOctorokAttackingState.cpp" />
+    <ClCompile Include="src\states\RedOctorok\RedOctorokMovingState.cpp" />
+    <ClCompile Include="src\states\RedOctorok\RedOctorokSpawningState.cpp" />
     <ClCompile Include="src\states\RedOctorok\RedOctorokStates.cpp" />
     <ClCompile Include="src\animation\RedOctorokAnimations\RecOctorokWalkingAnimation.cpp" />
     <ClCompile Include="src\animation\RedOctorokAnimations\RedOctorokAnimations.cpp" />
@@ -61,6 +64,9 @@
     <ClInclude Include="include\animation\RedOctorokAnimations\RedOctorokAnimationController.h" />
     <ClInclude Include="include\animation\RedOctorokAnimations\RecOctorokWalkingAnimation.h" />
     <ClInclude Include="include\states\RedOctorok\RedOctorokStates.h" />
+    <ClInclude Include="include\states\RedOctorok\RedOctorokAttackingState.h" />
+    <ClInclude Include="include\states\RedOctorok\RedOctorokMovingState.h" />
+    <ClInclude Include="include\states\RedOctorok\RedOctorokSpawningState.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SGGEngine\SGGEngine.vcxproj">

@@ -75,6 +75,15 @@
     <ClCompile Include="src\states\RedOctorok\RedOctorokStates.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\states\RedOctorok\RedOctorokAttackingState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\states\RedOctorok\RedOctorokMovingState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\states\RedOctorok\RedOctorokSpawningState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ZeldaWorld.h">
@@ -135,6 +144,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\states\RedOctorok\RedOctorokStates.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\states\RedOctorok\RedOctorokAttackingState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\states\RedOctorok\RedOctorokMovingState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\states\RedOctorok\RedOctorokSpawningState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -34,6 +34,7 @@ namespace SG
 
 		nlohmann::basic_json<> JsonMapData = nullptr;
 		nlohmann::basic_json<> JsonSolidLayer = nullptr;
+		nlohmann::basic_json<> JsonEnemiesLayer = nullptr;
 
 		int WidthOfMap = 0;
 		int HeightOfMap = 0;

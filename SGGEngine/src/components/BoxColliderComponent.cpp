@@ -50,8 +50,14 @@ namespace SG
 	void BoxColliderComponent::GatherAllCurrentIntersections(SG::GameLevel* gameLevelToCheck,
 		SG::GameObjectTypes typeToCheckAgainst)
 	{
-		auto collisions = gameLevelToCheck->ReturnAllCollisions(_colliderBox, SG::GameObjectTypes::SolidTile);
-		_currentFrameCollisions.insert(std::end(_currentFrameCollisions), std::begin(collisions), std::end(collisions));
+		switch (typeToCheckAgainst)
+		{
+		case GameObjectTypes::Enemy:
+			auto collisions = gameLevelToCheck->ReturnAllCollisions(_colliderBox, SG::GameObjectTypes::Enemy);
+			_currentFrameCollisions.insert(std::end(_currentFrameCollisions), std::begin(collisions), std::end(collisions));
+			break;
+		}
+
 
 	}
 

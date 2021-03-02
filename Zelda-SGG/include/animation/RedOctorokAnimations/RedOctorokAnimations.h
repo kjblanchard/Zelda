@@ -7,7 +7,9 @@
 
 #pragma once
 
-class RedOctorokAnimations
+enum class RedOctorokAnimations
 {
-	
+	Default = 0,
+	Idle = 1,
+	WalkUp= 2,
 };

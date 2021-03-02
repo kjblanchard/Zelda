@@ -2,6 +2,7 @@
 #include "core/GameObjectList.h"
 #include "input/Input.h"
 #include "characters/Link.h"
+#include "characters/RedOctorok.h"
 
 
 void ZeldaTiled::CreateTileMapGameObjects(const SG::TileMap& tileMap, SG::GameObjectList& gameObjectList)
@@ -66,14 +67,37 @@ void ZeldaTiled::CreatePlayersFromJson(SG::GameObjectList& gameObjectList)
 		if (jsonFile.contains("layers"))
 		{
 			auto jsonLayers = jsonFile["layers"];
-			if (jsonLayers[2].contains("objects"))
+			if (jsonLayers[3].contains("objects"))
 			{
-				auto jsonObjects = jsonLayers[2]["objects"][0];
+				auto jsonObjects = jsonLayers[3]["objects"][0];
 				auto spawnX = jsonObjects["x"];
 				auto spawnY = jsonObjects["y"];
 				gameObjectList.AddToGameObjectList(new Link(SG::Vector3(spawnX, spawnY), SG::Input::GetPlayerController(0)));
 			}
 		}
+	}
+}
+
+void ZeldaTiled::CreateEnemiesFromJson(const SG::TileMap& tileMap, SG::GameObjectList& gameObjectList)
+{
+	int currentX = 0;
+	int currentY = 0;
+	currentX = 0;
+	currentY = 0;
+	for (unsigned int i = 0; i < tileMap.JsonEnemiesLayer.size(); ++i)
+	{
+		auto yLocation = currentY * 32;
+		auto xLocation = currentX * 32;
+		if (++currentX >= tileMap.WidthOfMap)
+		{
+			currentX = 0;
+			currentY++;
+		}
+
+		if (tileMap.JsonEnemiesLayer[i] == 0)
+			continue;
+		if(tileMap.JsonEnemiesLayer[i] == 4)
+			gameObjectList.AddToGameObjectList(new RedOctorok(SG::Vector3(xLocation, yLocation)));
 	}
 }
 

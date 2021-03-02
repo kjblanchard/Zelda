@@ -43,6 +43,7 @@ public:
 	static void CreateTileMapGameObjects(const SG::TileMap& tileMap, SG::GameObjectList& gameObjectList);
 	static void CreateSolidTileMapGameObjects(const SG::TileMap& tileMap, SG::GameObjectList& gameObjectList);
 	static void CreatePlayersFromJson(SG::GameObjectList& gameObjectList);
+	static void CreateEnemiesFromJson(const SG::TileMap& tileMap, SG::GameObjectList& gameObjectList);
 
 private:
 

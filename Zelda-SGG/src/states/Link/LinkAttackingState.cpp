@@ -41,7 +41,7 @@ void LinkAttackingState::Update(const double& deltaTime)
 	if (woodSwordDisplay)
 	{
 		woodSwordDisplay->Update(deltaTime);
-		woodSwordDisplay->BoxColliderComp->GatherAllCurrentIntersections(ZeldaLevel::GetLevel()->GetCurrentGameLevel(), SG::GameObjectTypes::SolidTile);
+		woodSwordDisplay->BoxColliderComp->GatherAllCurrentIntersections(ZeldaLevel::GetLevel()->GetCurrentGameLevel(), SG::GameObjectTypes::Enemy);
 		woodSwordDisplay->BoxColliderComp->CallFunctionOnEachJustIntersected(PlaySoundOnHit);
 	}
 }

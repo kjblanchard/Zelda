@@ -26,6 +26,7 @@ namespace SG
 			{
 				tilemap->JsonMapData = jsonLayers[0][Data];
 				tilemap->JsonSolidLayer = jsonLayers[1][Data];
+				tilemap->JsonEnemiesLayer = jsonLayers[2][Data];
 
 			}
 		}

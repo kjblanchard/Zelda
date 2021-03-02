@@ -6,8 +6,14 @@
 ////////////////////////////////////////////////////////////
 
 #pragma once
+#include "RedOctorokAnimations.h"
+#include "animation/AnimationController.h"
 
-class RedOctorokAnimationController
+class RedOctorokAnimationController : public SG::AnimationController<RedOctorokAnimations>
 {
-	
+public:
+	RedOctorokAnimationController(SG::GameObject* owner);
+
+	void Startup() override;
+	void Draw(SG::SpriteBatch& spriteBatch) override;
 };

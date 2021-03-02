@@ -11,6 +11,7 @@ void DebugRoomLevel::Startup()
 	ZeldaTiled::CreateTileMapGameObjects(*TileMap, *TileLayerList);
 	ZeldaTiled::CreateSolidTileMapGameObjects(*TileMap,* SolidLayerList);
     ZeldaTiled::CreatePlayersFromJson(*PlayerLayerList);
+	ZeldaTiled::CreateEnemiesFromJson(*TileMap, *EnemiesLayerList);
 	SG::Sound::PlayMusic(SG::MusicToPlay::Overworld);
 }
 

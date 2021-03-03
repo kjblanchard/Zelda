@@ -1,5 +1,4 @@
 ﻿#include "states/RedOctorok/RedOctorokMovingState.h"
-
 #include "characters/RedOctorok.h"
 
 RedOctorokMovingState::RedOctorokMovingState(RedOctorok* owner) : _redOctorok(owner)

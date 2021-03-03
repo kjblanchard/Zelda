@@ -1,5 +1,7 @@
 ﻿#include "animation/RedOctorokAnimations/RedOctorokAnimationController.h"
 #include "animation/RedOctorokAnimations/RecOctorokWalkingAnimation.h"
+#include "graphics/Image.h"
+
 
 //statics
 std::vector<SG::Animation<RedOctorokAnimations>> SG::AnimationController<RedOctorokAnimations>::Animations;

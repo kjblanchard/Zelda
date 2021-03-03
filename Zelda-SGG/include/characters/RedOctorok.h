@@ -7,14 +7,11 @@
 
 #pragma once
 #include <memory>
-
-
-
 #include "components/AnimationComponent.h"
 #include "core/GameObject.h"
 #include "interfaces/IObjectStateMachine.h"
-#include "states/RedOctorok/RedOctorokStates.h"
 
+enum class RedOctorokStates;
 class RedOctorokMovingState;
 class RedOctorokSpawningState;
 enum class RedOctorokAnimations;
@@ -25,7 +22,7 @@ namespace SG {
 }
 
 /// <summary>
-/// The first enemy that we implemented!
+/// The first enemy in the game, the little red circle dude that shoots the wood balls all over
 /// </summary>
 class RedOctorok : public SG::GameObject, protected SG::IObjectStateMachine<RedOctorokStates>
 {

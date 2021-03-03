@@ -16,7 +16,6 @@ void RedOctorokSpawningState::Startup()
 	_redOctorok->_animationComponent->Startup();
 	_redOctorok->_animationComponent->ChangeAnimation(RedOctorokAnimations::WalkUp);
 	_redOctorok->_animationComponent->IsAnimPlaying = true;
-	//_redOctorok->_objectStateMachine->ChangeState(RedOctorokStates::Moving);
 }
 
 void RedOctorokSpawningState::Update(const double& deltaTime)

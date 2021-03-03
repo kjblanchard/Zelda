@@ -1,11 +1,9 @@
 ﻿#include "characters/RedOctorok.h"
-
 #include "components/BoxColliderComponent.h"
-#include "states/RedOctorok/RedOctorokSpawningState.h"
-#include "animation/RedOctorokAnimations/RedOctorokAnimations.h"
-#include <SDL_rect.h>
-#include "states/RedOctorok/RedOctorokStates.h"
 #include "animation/RedOctorokAnimations/RedOctorokAnimationController.h"
+#include "animation/RedOctorokAnimations/RedOctorokAnimations.h"
+#include "states/RedOctorok/RedOctorokStates.h"
+#include "states/RedOctorok/RedOctorokSpawningState.h"
 #include "states/RedOctorok/RedOctorokMovingState.h"
 
 

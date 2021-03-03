@@ -8,7 +8,6 @@
 #pragma once
 #include "RedOctorokAnimations.h"
 #include "animation/Animation.h"
-#include "graphics/Image.h"
 
 class RedOctorokWalkUp : public SG::Animation<RedOctorokAnimations>
 {

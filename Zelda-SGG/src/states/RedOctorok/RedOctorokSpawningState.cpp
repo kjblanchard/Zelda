@@ -5,10 +5,6 @@
 #include "animation/RedOctorokAnimations/RedOctorokAnimationController.h"
 
 
-
-
-
-
 RedOctorokSpawningState::RedOctorokSpawningState(RedOctorok* owner) : _redOctorok(owner)
 {
 

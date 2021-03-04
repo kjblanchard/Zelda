@@ -1,4 +1,6 @@
 ﻿#include "characters/Link.h"
+
+#include "../../Damage.h"
 #include "components/InputComponent.h"
 #include "components/BoxColliderComponent.h"
 #include "animation/LinkAnimations/LinkAnimationController.h"
@@ -62,4 +64,11 @@ void Link::GenerateStates()
 	_objectStateMachine->AddStateToGameStateList(LinkStates::Spawning, std::make_unique<LinkSpawningState>(this));
 	_objectStateMachine->AddStateToGameStateList(LinkStates::Moving, std::make_unique<LinkMovingState>(this));
 	_objectStateMachine->AddStateToGameStateList(LinkStates::Attacking, std::make_unique<LinkAttackingState>(this));
+}
+
+void Link::TakeDamage(Damage* damage)
+{
+	std::cout << damage->DamageAmount;
+	SG::Sound::PlaySound(SG::SoundFxToPlay::LinkHurt);
+
 }

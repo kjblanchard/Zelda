@@ -9,6 +9,7 @@
 #include <memory>
 #include "components/AnimationComponent.h"
 #include "core/GameObject.h"
+#include "interfaces/IGiveDamage.h"
 #include "interfaces/IObjectStateMachine.h"
 
 enum class RedOctorokStates;
@@ -24,7 +25,7 @@ namespace SG {
 /// <summary>
 /// The first enemy in the game, the little red circle dude that shoots the wood balls all over
 /// </summary>
-class RedOctorok : public SG::GameObject, protected SG::IObjectStateMachine<RedOctorokStates>
+class RedOctorok : public SG::GameObject, public IGiveDamage, protected SG::IObjectStateMachine<RedOctorokStates>
 {
 public:
 	RedOctorok(SG::Vector3 location);

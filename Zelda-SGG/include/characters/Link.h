@@ -10,6 +10,7 @@
 #include <memory>
 #include "components/AnimationComponent.h"
 #include "interfaces/IObjectStateMachine.h"
+#include "interfaces/ITakeDamage.h"
 
 enum class LinkStates;
 class LinkAnimationController;
@@ -24,7 +25,7 @@ namespace SG {
 	class InputComponent;
 }
 
-class Link : public SG::GameObject, protected SG::IObjectStateMachine<LinkStates>
+class Link : public SG::GameObject, protected SG::IObjectStateMachine<LinkStates>, protected ITakeDamage
 {
 public:
 
@@ -40,6 +41,8 @@ public:
 private:
 	void ComponentUpdate(const double& deltaTime) override;
 	void GenerateStates() override;
+
+	void TakeDamage(Damage* damage) override;
 
 	/// <summary>
 	/// Components

@@ -19,6 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Damage.cpp" />
+    <ClCompile Include="src\interfaces\IGiveDamage.cpp" />
+    <ClCompile Include="src\interfaces\ITakeDamage.cpp" />
     <ClCompile Include="src\states\RedOctorok\RedOctorokAttackingState.cpp" />
     <ClCompile Include="src\states\RedOctorok\RedOctorokMovingState.cpp" />
     <ClCompile Include="src\states\RedOctorok\RedOctorokSpawningState.cpp" />
@@ -44,6 +47,8 @@
     <ClCompile Include="src\items\WoodSwordWeapon.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Damage.h" />
+    <ClInclude Include="include\interfaces\IGiveDamage.h" />
     <ClInclude Include="include\animation\RedOctorokAnimations\RedOctorokAnimations.h" />
     <ClInclude Include="include\levels\DebugRoomLevel.h" />
     <ClInclude Include="include\characters\Link.h" />
@@ -67,6 +72,7 @@
     <ClInclude Include="include\states\RedOctorok\RedOctorokAttackingState.h" />
     <ClInclude Include="include\states\RedOctorok\RedOctorokMovingState.h" />
     <ClInclude Include="include\states\RedOctorok\RedOctorokSpawningState.h" />
+    <ClInclude Include="include\interfaces\ITakeDamage.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SGGEngine\SGGEngine.vcxproj">

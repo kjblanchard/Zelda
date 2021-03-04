@@ -88,6 +88,8 @@ namespace SG
 		/// </summary>
 		uint16_t Id;
 
+		GameObject* ReturnItself() { return this; }
+
 		GameObjectTypes GameObjectType;
 
 		//TODO Fix this up

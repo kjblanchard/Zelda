@@ -8,8 +8,9 @@
 #include "core/GameLevel.h"
 #include "components/BoxColliderComponent.h"
 #include "animation/LinkAnimations/LinkAnimationController.h"
-#include "core/Sound.h"
+#include "characters/RedOctorok.h"
 #include "states/Link/LinkStates.h"
+#include "interfaces/IGiveDamage.h"
 
 LinkMovingState::LinkMovingState(Link* link) : _link(link)
 {
@@ -160,7 +161,12 @@ void LinkMovingState::HandleInput()
 							_link->_location.X += potentialMoveSpeed.X += 50;
 							break;
 						}
-						SG::Sound::PlaySound(SG::SoundFxToPlay::LinkHurt);
+						auto convertedToTakingDamage =  dynamic_cast<IGiveDamage*>(&enemy);
+						if(convertedToTakingDamage)
+						{
+							std::cout << "boi";
+						_link->TakeDamage(convertedToTakingDamage->GiveDamage());
+						}
 					}
 				}
 			}

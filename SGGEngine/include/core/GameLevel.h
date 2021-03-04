@@ -29,7 +29,7 @@ namespace SG
 
 		bool IsThereACollision(SDL_Rect& boxColliderToCheck, GameObjectTypes listToSearch = GameObjectTypes::Default);
 
-		const GameObject& ReturnFirstCollisionGameObject(SDL_Rect& gameObjectChecking, GameObjectTypes listToSearch = GameObjectTypes::Default);
+		GameObject* ReturnFirstCollisionGameObject(SDL_Rect& gameObjectChecking, GameObjectTypes listToSearch = GameObjectTypes::Default);
 		std::vector<GameObject*> ReturnAllCollisions(SDL_Rect& rect, GameObjectTypes listToSearch = GameObjectTypes::Default);
 
 		protected:
@@ -43,7 +43,7 @@ namespace SG
 		bool CheckForCollisions(SDL_Rect& rect, GameObjectList& gameObjectList);
 		std::vector<GameObject*> ReturnAllCollissionsInList(SDL_Rect& rect, GameObjectList& gameObjectList);
 
-		const GameObject& ReturnFirstCollisionObjectInList(SDL_Rect& boxColliderToCheck, GameObjectList& gameObjectList);
+		GameObject* ReturnFirstCollisionObjectInList(SDL_Rect& boxColliderToCheck, GameObjectList& gameObjectList);
 	private:
 	};
 }

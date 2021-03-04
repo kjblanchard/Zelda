@@ -107,9 +107,9 @@ void LinkMovingState::HandleInput()
 				if (worldLevel)
 				{
 					auto gameObject = worldLevel->ReturnFirstCollisionGameObject(bbox, SG::GameObjectTypes::SolidTile);
-					if (gameObject.Id)
+					if (gameObject->Id)
 					{
-						const auto gameObjectColliderbox = gameObject.GetComponent<SG::BoxColliderComponent>()->ColliderBox();
+						const auto gameObjectColliderbox = gameObject->GetComponent<SG::BoxColliderComponent>()->ColliderBox();
 
 						const auto collisionArea = SG::Collision::ShapeIntersectionArea(&bbox, &gameObjectColliderbox);
 						switch (SG::Collision::CalculateIntersectionDirection(collisionArea, bbox))
@@ -141,9 +141,9 @@ void LinkMovingState::HandleInput()
 				if (worldLevel)
 				{
 					auto enemy = worldLevel->ReturnFirstCollisionGameObject(bbox, SG::GameObjectTypes::Enemy);
-					if (enemy.Id)
+					if (enemy->Id)
 					{
-						const auto gameObjectColliderbox = enemy.GetComponent<SG::BoxColliderComponent>()->ColliderBox();
+						const auto gameObjectColliderbox = enemy->GetComponent<SG::BoxColliderComponent>()->ColliderBox();
 
 						const auto collisionArea = SG::Collision::ShapeIntersectionArea(&bbox, &gameObjectColliderbox);
 						switch (SG::Collision::CalculateIntersectionDirection(collisionArea, bbox))
@@ -161,11 +161,10 @@ void LinkMovingState::HandleInput()
 							_link->_location.X += potentialMoveSpeed.X += 50;
 							break;
 						}
-						auto convertedToTakingDamage =  dynamic_cast<IGiveDamage*>(&enemy);
+						auto* convertedToTakingDamage =  dynamic_cast<IGiveDamage*>(enemy);
 						if(convertedToTakingDamage)
 						{
-							std::cout << "boi";
-						_link->TakeDamage(convertedToTakingDamage->GiveDamage());
+							_link->TakeDamage(convertedToTakingDamage->GiveDamage());
 						}
 					}
 				}

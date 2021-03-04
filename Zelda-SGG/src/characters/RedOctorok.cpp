@@ -7,7 +7,7 @@
 #include "states/RedOctorok/RedOctorokMovingState.h"
 
 
-RedOctorok::RedOctorok(SG::Vector3 location) : GameObject(location,SG::GameObjectTypes::Enemy),IGiveDamage(new Damage{10,10,this}), _boxColliderComponent(nullptr)
+RedOctorok::RedOctorok(SG::Vector3 location) : GameObject(location,SG::GameObjectTypes::Enemy), IGiveDamage( new Damage{10,10,this}), ITakeDamage(20), _boxColliderComponent(nullptr)
 {
 	_animationComponent = std::make_unique<SG::AnimationComponent<RedOctorokAnimationController, RedOctorokAnimations>>(this, new RedOctorokAnimationController(this));
 	auto boxColliderBox = SDL_Rect{ 0,0,30,30 };
@@ -44,5 +44,15 @@ void RedOctorok::GenerateStates()
 {
 	_objectStateMachine->AddStateToGameStateList(RedOctorokStates::Spawning, std::make_unique<RedOctorokSpawningState>(this));
 	_objectStateMachine->AddStateToGameStateList(RedOctorokStates::Moving, std::make_unique<RedOctorokMovingState>(this));
+
+}
+
+Damage* RedOctorok::GiveDamage()
+{
+	return _baseDamage;
+}
+
+void RedOctorok::TakeDamage(Damage* damage)
+{
 
 }

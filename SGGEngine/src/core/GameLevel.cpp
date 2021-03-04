@@ -40,7 +40,7 @@ namespace SG
 		}
 	}
 
-	const GameObject& GameLevel::ReturnFirstCollisionGameObject(SDL_Rect& gameObjectChecking,
+	GameObject* GameLevel::ReturnFirstCollisionGameObject(SDL_Rect& gameObjectChecking,
 		GameObjectTypes listToSearch)
 	{
 		switch (listToSearch)
@@ -111,7 +111,7 @@ namespace SG
 		return collisionsGameObjectList;
 	}
 
-	const GameObject& GameLevel::ReturnFirstCollisionObjectInList(SDL_Rect& boxColliderToCheck,
+	GameObject* GameLevel::ReturnFirstCollisionObjectInList(SDL_Rect& boxColliderToCheck,
 		GameObjectList& gameObjectList)
 	{
 		for (auto levelGameObjectList : gameObjectList.GetGameObjectList())
@@ -121,13 +121,13 @@ namespace SG
 			{
 				if (component->IsCollision(boxColliderToCheck))
 				{
-					return *levelGameObjectList;
+					return levelGameObjectList;
 				}
 			}
 			continue;
 		}
 
-		return GameObject();
+		return nullptr;
 	}
 #pragma warning( pop )
 }

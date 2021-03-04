@@ -12,7 +12,7 @@
 
 
 Link::Link(SG::Vector3 location)
-	: GameObject(location),_animationComponent(nullptr), _inputComponent(nullptr)
+	: GameObject(location),ITakeDamage(20), _animationComponent(nullptr), _inputComponent(nullptr)
 {
 	_currentDirection = SG::Directions::Down;
 }
@@ -68,7 +68,7 @@ void Link::GenerateStates()
 
 void Link::TakeDamage(Damage* damage)
 {
-	std::cout << damage->DamageAmount;
+	ApplyDamage(damage->DamageAmount);
 	SG::Sound::PlaySound(SG::SoundFxToPlay::LinkHurt);
 
 }

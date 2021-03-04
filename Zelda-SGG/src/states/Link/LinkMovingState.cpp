@@ -64,7 +64,7 @@ void LinkMovingState::HandleInput()
 				_link->_animationComponent->IsAnimPlaying = true;
 				_link->_animationComponent->ChangeAnimation(LinkAnimations::WalkUp);
 				_link->_currentDirection = SG::Directions::Up;
-				potentialMoveSpeed.Y -= 3;
+				potentialMoveSpeed.Y -= _link->_speed;
 
 			}
 			else if (_link->_inputComponent->CurrentController->IsButtonPressed(SG::ControllerButtons::Down) || _link->_inputComponent->CurrentController->IsButtonHeld(SG::ControllerButtons::Down))
@@ -73,7 +73,7 @@ void LinkMovingState::HandleInput()
 				_link->_animationComponent->ChangeAnimation(LinkAnimations::WalkDown);
 				_link->_currentDirection = SG::Directions::Down;
 
-				potentialMoveSpeed.Y += 3;
+				potentialMoveSpeed.Y += _link->_speed;
 
 			}
 			else if (_link->_inputComponent->CurrentController->IsButtonPressed(SG::ControllerButtons::Left) || _link->_inputComponent->CurrentController->IsButtonHeld(SG::ControllerButtons::Left))
@@ -81,7 +81,7 @@ void LinkMovingState::HandleInput()
 				_link->_animationComponent->IsAnimPlaying = true;
 				_link->_animationComponent->ChangeAnimation((LinkAnimations::WalkLeft));
 				_link->_currentDirection = SG::Directions::Left;
-				potentialMoveSpeed.X -= 3;
+				potentialMoveSpeed.X -= _link->_speed;
 
 			}
 			else if (_link->_inputComponent->CurrentController->IsButtonPressed(SG::ControllerButtons::Right) || _link->_inputComponent->CurrentController->IsButtonHeld(SG::ControllerButtons::Right))
@@ -89,7 +89,7 @@ void LinkMovingState::HandleInput()
 				_link->_animationComponent->IsAnimPlaying = true;
 				_link->_animationComponent->ChangeAnimation(LinkAnimations::WalkRight);
 				_link->_currentDirection = SG::Directions::Right;
-				potentialMoveSpeed.X += 3;
+				potentialMoveSpeed.X += _link->_speed;
 
 			}
 

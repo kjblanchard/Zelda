@@ -1,4 +1,6 @@
 ﻿#include "ZeldaWorld.h"
+
+#include "ZeldaConfig.h"
 #include "core/GameObjectList.h"
 #include "graphics/SpriteBatch.h"
 #include "graphics/Graphics.h"
@@ -9,6 +11,7 @@
 int main(int argc, char* args[])
 {
 	SG::Configuration::GenerateJsonFromConfigFile("appsettings.json");
+	ZeldaConfig::PopulatePlayerStats();
 	if (!SG::Configuration::GenerateValuesFromJson())
 		return 1;
 	auto zeldaWorld = std::make_unique<ZeldaWorld>();

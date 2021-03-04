@@ -1,5 +1,7 @@
 ﻿#include "characters/Link.h"
 
+
+#include "ZeldaConfig.h"
 #include "../../Damage.h"
 #include "components/InputComponent.h"
 #include "components/BoxColliderComponent.h"
@@ -12,7 +14,7 @@
 
 
 Link::Link(SG::Vector3 location)
-	: GameObject(location),ITakeDamage(20), _animationComponent(nullptr), _inputComponent(nullptr)
+	: GameObject(location),ITakeDamage(ZeldaConfig::LinkBaseStats.MaxHp), _animationComponent(nullptr), _inputComponent(nullptr), _speed(ZeldaConfig::LinkBaseStats.Speed)
 {
 	_currentDirection = SG::Directions::Down;
 }

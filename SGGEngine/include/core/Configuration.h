@@ -40,7 +40,7 @@ namespace SG
 		static inline int TileHeight = 0;
 
 
-	private:
+	protected:
 		inline static const std::string _ScreenWidth = "ScreenWidth";
 		inline static const std::string _ScreenHeight = "ScreenHeight";
 		inline static const std::string _FrameTime = "FrameTime";

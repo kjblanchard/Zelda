@@ -43,6 +43,7 @@ private:
 	void GenerateStates() override;
 
 	void TakeDamage(Damage* damage) override;
+	int _speed;
 
 	/// <summary>
 	/// Components

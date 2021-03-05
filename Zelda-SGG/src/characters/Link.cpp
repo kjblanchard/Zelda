@@ -2,6 +2,7 @@
 
 
 #include "ZeldaConfig.h"
+//TODO move the damage file into the right folder
 #include "../../Damage.h"
 #include "components/InputComponent.h"
 #include "components/BoxColliderComponent.h"
@@ -11,6 +12,7 @@
 #include "states/Link/LinkSpawningState.h"
 #include "states/Link/LinkMovingState.h"
 #include "states/Link/LinkAttackingState.h"
+#include "states/Link/LinkHitState.h"
 
 
 Link::Link(SG::Vector3 location)
@@ -56,6 +58,7 @@ void Link::Draw(SG::SpriteBatch& spriteBatch)
 
 void Link::ComponentUpdate(const double& deltaTime)
 {
+	UpdateInvincibilityTime(deltaTime);
 	_animationComponent->Update(deltaTime);
 	_boxColliderComponent->Update(deltaTime);
 }
@@ -66,11 +69,18 @@ void Link::GenerateStates()
 	_objectStateMachine->AddStateToGameStateList(LinkStates::Spawning, std::make_unique<LinkSpawningState>(this));
 	_objectStateMachine->AddStateToGameStateList(LinkStates::Moving, std::make_unique<LinkMovingState>(this));
 	_objectStateMachine->AddStateToGameStateList(LinkStates::Attacking, std::make_unique<LinkAttackingState>(this));
+	_objectStateMachine->AddStateToGameStateList(LinkStates::TakingDamage, std::make_unique<LinkHitState>(this));
 }
 
 void Link::TakeDamage(Damage* damage)
 {
-	ApplyDamage(damage->DamageAmount);
-	SG::Sound::PlaySound(SG::SoundFxToPlay::LinkHurt);
+	if (!_isInvincible)
+	{
+		SetInvincibilityTimer();
+		SetKnockBackAmount(damage->PushbackAmount);
+		ApplyDamage(damage->DamageAmount);
+		SG::Sound::PlaySound(SG::SoundFxToPlay::LinkHurt);
+		ChangeState(LinkStates::TakingDamage);
+	}
 
 }

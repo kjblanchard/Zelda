@@ -19,13 +19,14 @@ namespace SG
 {
 	enum class SpriteSheetEnum
 	{
-		Default = 0,
-		TileSet = 1,
-		Link = 2,
-		LinkWalking = 3,
-		LinkAttacking = 4,
-		WoodSword = 5,
-		RedOctorok = 6
+		Default,
+		TileSet,
+		Link,
+		LinkWalking,
+		LinkWalkingHit,
+		LinkAttacking,
+		WoodSword,
+		RedOctorok
 
 
 	};

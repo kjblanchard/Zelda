@@ -20,6 +20,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Damage.cpp" />
+    <ClCompile Include="src\states\Link\LinkHitState.cpp" />
+    <ClCompile Include="src\animation\LinkAnimations\LinkWalkingHitAnimation.cpp" />
     <ClCompile Include="src\models\LinkModel.cpp" />
     <ClCompile Include="src\interfaces\IGiveDamage.cpp" />
     <ClCompile Include="src\interfaces\ITakeDamage.cpp" />
@@ -77,6 +79,8 @@
     <ClInclude Include="include\interfaces\ITakeDamage.h" />
     <ClInclude Include="include\ZeldaConfig.h" />
     <ClInclude Include="include\models\LinkModel.h" />
+    <ClInclude Include="include\animation\LinkAnimations\LinkWalkingHitAnimation.h" />
+    <ClInclude Include="include\states\Link\LinkHitState.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SGGEngine\SGGEngine.vcxproj">

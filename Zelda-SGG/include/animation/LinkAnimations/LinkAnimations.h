@@ -18,5 +18,9 @@ enum class LinkAnimations
 	AttackUp = 6,
 	AttackRight = 7,
 	AttackDown = 8,
-	AttackLeft = 9
+	AttackLeft = 9,
+	WalkHitUp,
+	WalkHitDown,
+	WalkHitLeft,
+	WalkHitRight
 };

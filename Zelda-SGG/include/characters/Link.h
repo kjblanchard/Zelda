@@ -43,6 +43,8 @@ private:
 	void GenerateStates() override;
 
 	void TakeDamage(Damage* damage) override;
+
+
 	int _speed;
 
 	/// <summary>
@@ -58,4 +60,5 @@ private:
 	friend class LinkSpawningState;
 	friend class LinkMovingState;
 	friend class LinkAttackingState;
+	friend class LinkHitState;
 };

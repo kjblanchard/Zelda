@@ -18,20 +18,41 @@ LinkMovingState::LinkMovingState(Link* link) : _link(link)
 
 void LinkMovingState::Startup()
 {
-	switch (_link->_currentDirection)
+	if (!_link->_isInvincible)
 	{
-	case SG::Directions::Up:
-		_link->_animationComponent->ChangeAnimation(LinkAnimations::WalkUp);
-		break;
-	case SG::Directions::Right:
-		_link->_animationComponent->ChangeAnimation(LinkAnimations::WalkRight);
-		break;
-	case SG::Directions::Down:
-		_link->_animationComponent->ChangeAnimation(LinkAnimations::WalkDown);
-		break;
-	case SG::Directions::Left:
-		_link->_animationComponent->ChangeAnimation(LinkAnimations::WalkLeft);
-		break;
+		switch (_link->_currentDirection)
+		{
+		case SG::Directions::Up:
+			_link->_animationComponent->ChangeAnimation(LinkAnimations::WalkUp);
+			break;
+		case SG::Directions::Right:
+			_link->_animationComponent->ChangeAnimation(LinkAnimations::WalkRight);
+			break;
+		case SG::Directions::Down:
+			_link->_animationComponent->ChangeAnimation(LinkAnimations::WalkDown);
+			break;
+		case SG::Directions::Left:
+			_link->_animationComponent->ChangeAnimation(LinkAnimations::WalkLeft);
+			break;
+		}
+	}
+	else
+	{
+		switch (_link->_currentDirection)
+		{
+		case SG::Directions::Up:
+			_link->_animationComponent->ChangeAnimation(LinkAnimations::WalkHitUp);
+			break;
+		case SG::Directions::Right:
+			_link->_animationComponent->ChangeAnimation(LinkAnimations::WalkHitRight);
+			break;
+		case SG::Directions::Down:
+			_link->_animationComponent->ChangeAnimation(LinkAnimations::WalkHitDown);
+			break;
+		case SG::Directions::Left:
+			_link->_animationComponent->ChangeAnimation(LinkAnimations::WalkHitRight);
+			break;
+		}
 	}
 }
 
@@ -46,7 +67,9 @@ void LinkMovingState::Draw(SG::SpriteBatch& spriteBatch)
 
 void LinkMovingState::HandleInput()
 {
-	_link->_animationComponent->IsAnimPlaying = false;
+	//TODO fix this after the demo
+	(!_link->_isInvincible) ? _link->_animationComponent->IsAnimPlaying = false : _link->_animationComponent->IsAnimPlaying = true;
+
 	if (_link->_inputComponent)
 	{
 
@@ -146,25 +169,28 @@ void LinkMovingState::HandleInput()
 						const auto gameObjectColliderbox = enemy->GetComponent<SG::BoxColliderComponent>()->ColliderBox();
 
 						const auto collisionArea = SG::Collision::ShapeIntersectionArea(&bbox, &gameObjectColliderbox);
-						switch (SG::Collision::CalculateIntersectionDirection(collisionArea, bbox))
+						if (!_link->_isInvincible)
 						{
-						case SG::Directions::Up:
-							_link->_location.Y += potentialMoveSpeed.Y += 50;
-							break;
-						case SG::Directions::Right:
-							_link->_location.X += potentialMoveSpeed.X -= 50;
-							break;
-						case SG::Directions::Down:
-							_link->_location.Y += potentialMoveSpeed.Y -= 50;
-							break;
-						case SG::Directions::Left:
-							_link->_location.X += potentialMoveSpeed.X += 50;
-							break;
-						}
-						auto* convertedToTakingDamage =  dynamic_cast<IGiveDamage*>(enemy);
-						if(convertedToTakingDamage)
-						{
-							_link->TakeDamage(convertedToTakingDamage->GiveDamage());
+							//switch (SG::Collision::CalculateIntersectionDirection(collisionArea, bbox))
+							//{
+							//case SG::Directions::Up:
+							//	_link->_location.Y += potentialMoveSpeed.Y += 50;
+							//	break;
+							//case SG::Directions::Right:
+							//	_link->_location.X += potentialMoveSpeed.X -= 50;
+							//	break;
+							//case SG::Directions::Down:
+							//	_link->_location.Y += potentialMoveSpeed.Y -= 50;
+							//	break;
+							//case SG::Directions::Left:
+							//	_link->_location.X += potentialMoveSpeed.X += 50;
+							//	break;
+							//}
+							auto* convertedToTakingDamage = dynamic_cast<IGiveDamage*>(enemy);
+							if (convertedToTakingDamage)
+							{
+								_link->TakeDamage(convertedToTakingDamage->GiveDamage());
+							}
 						}
 					}
 				}

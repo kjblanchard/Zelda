@@ -19,20 +19,34 @@ void LinkHitState::Startup()
 		_link->_animationComponent->ChangeAnimation(LinkAnimations::WalkHitDown);
 		break;
 	case SG::Directions::Left:
-		_link->_animationComponent->ChangeAnimation(LinkAnimations::WalkHitRight);
+		_link->_animationComponent->ChangeAnimation(LinkAnimations::WalkHitLeft);
 		break;
 	}
 }
 
 void LinkHitState::Update(const double& deltaTime)
 {
-	if (_link->_knockBackAmount >= 0)
+	if (_link->_knockBackAmount > 0)
 	{
-		auto movementAmount = 10;
-		_link->_location.X -= movementAmount;
-		_link->UpdateKnockBackAmount(movementAmount);
+		switch (_link->_knockBackDirection)
+		{
+		case SG::Directions::Up:
+			_link->_location.Y += _link->_knockBackAmountPerFrame;
+			break;
+		case SG::Directions::Right:
+			_link->_location.X -= _link->_knockBackAmountPerFrame;
+			break;
+		case SG::Directions::Down:
+			_link->_location.Y -= _link->_knockBackAmountPerFrame;
+			break;
+		case SG::Directions::Left:
+			_link->_location.X += _link->_knockBackAmountPerFrame;
+			break;
+		}
+		_link->UpdateKnockBackAmount(_link->_knockBackAmountPerFrame);
 	}
-	if(_link->_knockBackAmount <= 0)
+
+	if (_link->_knockBackAmount <= 0)
 	{
 		_link->_knockBackAmount = 0;
 		_link->ChangeState(LinkStates::Moving);

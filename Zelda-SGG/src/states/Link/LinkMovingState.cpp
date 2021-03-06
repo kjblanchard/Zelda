@@ -36,24 +36,24 @@ void LinkMovingState::Startup()
 			break;
 		}
 	}
-	else
-	{
-		switch (_link->_currentDirection)
-		{
-		case SG::Directions::Up:
-			_link->_animationComponent->ChangeAnimation(LinkAnimations::WalkHitUp);
-			break;
-		case SG::Directions::Right:
-			_link->_animationComponent->ChangeAnimation(LinkAnimations::WalkHitRight);
-			break;
-		case SG::Directions::Down:
-			_link->_animationComponent->ChangeAnimation(LinkAnimations::WalkHitDown);
-			break;
-		case SG::Directions::Left:
-			_link->_animationComponent->ChangeAnimation(LinkAnimations::WalkHitRight);
-			break;
-		}
-	}
+	//else
+	//{
+	//	switch (_link->_currentDirection)
+	//	{
+	//	case SG::Directions::Up:
+	//		_link->_animationComponent->ChangeAnimation(LinkAnimations::WalkHitUp);
+	//		break;
+	//	case SG::Directions::Right:
+	//		_link->_animationComponent->ChangeAnimation(LinkAnimations::WalkHitRight);
+	//		break;
+	//	case SG::Directions::Down:
+	//		_link->_animationComponent->ChangeAnimation(LinkAnimations::WalkHitDown);
+	//		break;
+	//	case SG::Directions::Left:
+	//		_link->_animationComponent->ChangeAnimation(LinkAnimations::WalkHitRight);
+	//		break;
+	//	}
+	//}
 }
 
 void LinkMovingState::Update(const double& deltaTime)

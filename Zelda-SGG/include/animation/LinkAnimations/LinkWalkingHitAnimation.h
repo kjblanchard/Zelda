@@ -17,7 +17,7 @@ public:
 
 	LinkWalkHitUp() : Animation<LinkAnimations>()
 	{
-		AnimationEnumType = LinkAnimations::WalkUp;
+		AnimationEnumType = LinkAnimations::WalkHitUp;
 		SpriteSheet = _graphics->LoadFromSpriteSheet(SG::SpriteSheetEnum::LinkWalkingHit);
 		LocationAndLengthOfAnimation =
 		{

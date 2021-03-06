@@ -1,4 +1,4 @@
-﻿////////////////////////////////////////////////////////////
+﻿  ////////////////////////////////////////////////////////////
 //
 // Super Goon Games - 2D Game Engine
 // Copyright (C) 2020-2021 - Kevin Blanchard
@@ -40,4 +40,12 @@ namespace SG
 		int X;
 		int Y;
 	};
+
+	inline Point operator+(const Point &lhs, const Point &rhs)
+	{
+		auto sum = lhs;
+		sum.X += rhs.X;
+		sum.Y += rhs.Y;
+		return sum;
+	}
 }

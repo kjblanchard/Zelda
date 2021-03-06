@@ -7,6 +7,7 @@
 #include "components/InputComponent.h"
 #include "components/BoxColliderComponent.h"
 #include "animation/LinkAnimations/LinkAnimationController.h"
+#include "collision/Collision.h"
 #include "data/Directions.h"
 #include "states/Link/LinkStates.h"
 #include "states/Link/LinkSpawningState.h"
@@ -76,8 +77,14 @@ void Link::TakeDamage(Damage* damage)
 {
 	if (!_isInvincible)
 	{
+		auto bbox = _boxColliderComponent->ColliderBox();
+		const auto gameObjectColliderbox = damage->GameObjectCausingDamage->GetComponent<SG::BoxColliderComponent>()->ColliderBox();
+		const auto collisionArea = SG::Collision::ShapeIntersectionArea(&bbox, &gameObjectColliderbox);
+		_knockBackDirection = SG::Collision::CalculateIntersectionDirection(collisionArea, bbox);
+
+		_knockBackAmount = damage->PushbackAmount;
+		_knockBackAmountPerFrame = _knockBackAmount / 5;
 		SetInvincibilityTimer();
-		SetKnockBackAmount(damage->PushbackAmount);
 		ApplyDamage(damage->DamageAmount);
 		SG::Sound::PlaySound(SG::SoundFxToPlay::LinkHurt);
 		ChangeState(LinkStates::TakingDamage);

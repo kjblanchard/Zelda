@@ -26,7 +26,7 @@ LinkAnimationController::LinkAnimationController(SG::GameObject* gameObject) : A
 			{LinkAttackDown()},
 			{LinkAttackLeft()},
 			{LinkWalkHitUp()},
-			{LinkWalkDown()},
+			{LinkWalkHitDown()},
 			{LinkWalkHitLeft()},
 			{LinkWalkHitRight()}
 

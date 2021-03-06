@@ -6,10 +6,12 @@
 ////////////////////////////////////////////////////////////
 
 #pragma once
+#include "data/Point.h"
 
 struct Damage;
 
 namespace SG {
+	enum class Directions;
 	class GameObject;
 }
 
@@ -56,6 +58,8 @@ protected:
 	double _baseInvincibilityTime = 1000;
 	double _invincibilityTimer = 0.0;
 	int _knockBackAmount;
+	int _knockBackAmountPerFrame;
+	SG::Directions _knockBackDirection;
 	bool _isInvincible = false;
 
 };

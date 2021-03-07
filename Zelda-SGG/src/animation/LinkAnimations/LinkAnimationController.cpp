@@ -55,6 +55,7 @@ void LinkAnimationController::Update(const double& deltaTime)
 		currentInvincibilityFrame++;
 		if (currentInvincibilityFrame > maxInvFrame)
 			currentInvincibilityFrame = 0;
+		UpdateSpriteLocation(_gameObject->Location());
 	}
 
 }

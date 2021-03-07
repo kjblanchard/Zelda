@@ -29,9 +29,9 @@ namespace SG
 		void Draw(SpriteBatch& spriteBatch);
 		void ChangeAnimation(F whatToChangeTo);
 		bool IsAnimPlaying = true;
-
-	private:
+		//TODO move this back to private
 		T* _animationController;
+	private:
 
 	};
 

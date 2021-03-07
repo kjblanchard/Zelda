@@ -51,7 +51,8 @@ namespace SG
 		/// </summary>
 		/// <param name="location"></param>
 		void UpdateSpriteLocation(SG::Vector3 location);
-
+		//TODO movet his back to protected
+		ImageComponent* _imageComponent;
 	protected:
 		inline const static double FrameTime = SG::Configuration::FrameTime ;
 		static std::vector<Animation<T>> Animations;
@@ -63,7 +64,6 @@ namespace SG
 		int _currentTotalAnimationFrames = 0;
 		double _timeOnCurrentFrame = 0.0;
 		bool staticsInitialized = false;
-		ImageComponent* _imageComponent;
 
 	};
 

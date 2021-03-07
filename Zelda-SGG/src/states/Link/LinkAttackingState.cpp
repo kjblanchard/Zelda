@@ -42,7 +42,24 @@ void LinkAttackingState::Update(const double& deltaTime)
 	{
 		woodSwordDisplay->Update(deltaTime);
 		woodSwordDisplay->BoxColliderComp->GatherAllCurrentIntersections(ZeldaLevel::GetLevel()->GetCurrentGameLevel(), SG::GameObjectTypes::Enemy);
-		woodSwordDisplay->BoxColliderComp->CallFunctionOnEachJustIntersected(PlaySoundOnHit);
+
+		//TODO probably fix this, it's ugly
+		for (auto currentFrameCollision : woodSwordDisplay->BoxColliderComp->_currentFrameCollisions)
+		{
+			if (woodSwordDisplay->BoxColliderComp->CheckIfJustIntersected(currentFrameCollision->Id))
+			{
+				auto giveDamageGuy = dynamic_cast<ITakeDamage*>(currentFrameCollision);
+				if(giveDamageGuy)
+				{
+					giveDamageGuy->TakeDamage(_link->GiveDamage());
+				}
+
+			}
+
+		}
+
+		woodSwordDisplay->BoxColliderComp->CallFunctionOnEachJustIntersected(ApplyDamageOnHit);
+
 	}
 }
 

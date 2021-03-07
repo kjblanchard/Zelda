@@ -77,14 +77,17 @@ namespace SG
 		{
 			return _colliderBox;
 		}
+		//TODO make this private again
+		std::vector<GameObject*> _currentFrameCollisions = {};
 
-	private:
+		//TODO make this private again
 		/// <summary>
 		/// Used by the call function on each intersected function.  Compares the current and previous frame collisions of a current object ID and this one
 		/// </summary>
 		/// <param name="gameObjectId">The ID that will be checked against</param>
 		/// <returns>True if the collider with the ID is in the current frame and not previous frame</returns>
 		bool CheckIfJustIntersected(int gameObjectId);
+	private:
 		SDL_Rect _colliderBox;
 		bool _shouldDrawDebugBox = false;
 		int _xOffset = 0;
@@ -92,7 +95,6 @@ namespace SG
 		int _xSizeOffset = 0;
 		int _ySizeOffset = 0;
 
-		std::vector<GameObject*> _currentFrameCollisions = {};
 		std::vector<GameObject*> _previousFrameCollisions = {};
 
 

@@ -25,7 +25,7 @@ public:
 
 	Link* _link;
 
-
+	//TODO remove this and the red octos and put it somewhere that makes sense and is organized and reusable
 	int CalculateCurrentFrameInInvincibility()
 	{
 		if (currentInvincibilityFrame < maxInvFrame / 2)

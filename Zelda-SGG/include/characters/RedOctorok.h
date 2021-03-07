@@ -14,6 +14,7 @@
 #include "interfaces/IObjectStateMachine.h"
 #include "interfaces/ITakeDamage.h"
 
+class RedOctorokHitState;
 enum class RedOctorokStates;
 class RedOctorokMovingState;
 class RedOctorokSpawningState;
@@ -53,4 +54,5 @@ private:
 
 	friend RedOctorokSpawningState;
 	friend RedOctorokMovingState;
+	friend RedOctorokHitState;
 };

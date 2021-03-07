@@ -96,13 +96,19 @@
     <ClCompile Include="src\ZeldaConfig.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\models\LinkModel.cpp">
+    <ClCompile Include="src\models\CharacterModel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\animation\LinkAnimations\LinkWalkingHitAnimation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\states\Link\LinkHitState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\models\WeaponModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\states\RedOctorok\RedOctorokHitState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -188,13 +194,19 @@
     <ClInclude Include="include\ZeldaConfig.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\models\LinkModel.h">
+    <ClInclude Include="include\models\CharacterModel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\animation\LinkAnimations\LinkWalkingHitAnimation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\states\Link\LinkHitState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\models\WeaponModel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\states\RedOctorok\RedOctorokHitState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

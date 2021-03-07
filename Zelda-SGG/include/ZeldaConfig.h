@@ -7,9 +7,9 @@
 
 #pragma once
 #include "core/Configuration.h"
-#include "models/LinkModel.h"
+#include "models/CharacterModel.h"
+#include "models/WeaponModel.h"
 
-struct LinkModel;
 
 class ZeldaConfig : SG::Configuration
 {
@@ -18,10 +18,16 @@ public:
 
 	static void PopulatePlayerStats();
 
-	static LinkModel LinkBaseStats;
+	static inline CharacterModel LinkBaseStats{};
+	static inline CharacterModel RedOctoBaseStats{};
+
+	static inline WeaponModel WoodSwordBaseStats{};
+	static inline WeaponModel WoodBallBaseStats{};
 
 
-	static void ZeldaFromJson(const nlohmann::json& jsonObject, LinkModel& ThingToPopulate);
+
+	static void CharacterFromJson(const nlohmann::json& jsonObject, CharacterModel& ThingToPopulate);
+	static void WeaponFromJson(const nlohmann::json& jsonObject, WeaponModel& ThingToPopulate);
 };
 
 

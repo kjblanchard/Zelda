@@ -9,6 +9,7 @@
 #include "core/GameObject.h"
 #include <memory>
 #include "components/AnimationComponent.h"
+#include "interfaces/IGiveDamage.h"
 #include "interfaces/IObjectStateMachine.h"
 #include "interfaces/ITakeDamage.h"
 
@@ -25,7 +26,7 @@ namespace SG {
 	class InputComponent;
 }
 
-class Link : public SG::GameObject, protected SG::IObjectStateMachine<LinkStates>, public ITakeDamage
+class Link : public SG::GameObject, protected SG::IObjectStateMachine<LinkStates>, public ITakeDamage, public IGiveDamage
 {
 public:
 

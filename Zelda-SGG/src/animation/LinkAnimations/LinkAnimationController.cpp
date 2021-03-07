@@ -62,6 +62,7 @@ void LinkAnimationController::Update(const double& deltaTime)
 
 void LinkAnimationController::Draw(SG::SpriteBatch& spriteBatch)
 {
+	//TODO should I fix this for link and the redocto?  Same with the update, seems repetitive
 	if(_link->_isInvincible)
 	{
 		auto currentFrameInInvincibility = CalculateCurrentFrameInInvincibility();

@@ -6,13 +6,12 @@
 ////////////////////////////////////////////////////////////
 
 #pragma once
-#include <string>
 
-struct LinkModel
+struct WeaponModel
 {
-	std::string Name;
-	int MaxHp;
-	int Defense;
-	int Speed;
-	int InvincibilityFrames;
+    int Damage;
+    int Knockback;
+    int Cooldown;
 };
+
+

@@ -8,7 +8,7 @@
 #pragma once
 
 
-
+#include "characters/Link.h"
 #include "core/Sound.h"
 #include "state/State.h"
 
@@ -18,8 +18,9 @@ class Link;
 class LinkAttackingState : public SG::State
 {
 public:
-	LinkAttackingState(Link* link) : _link(link), woodSwordDisplay(nullptr)
+	LinkAttackingState(Link* link) :  woodSwordDisplay(nullptr)
 	{
+		_link = link;
 	}
 
 	virtual ~LinkAttackingState() = default;
@@ -32,7 +33,7 @@ public:
 
 
 private:
-	Link* _link;
+	static inline Link* _link;
 	double _timeInState = 0;
 	inline static double _maxTimeInState = 500;
 	WoodSwordWeapon* woodSwordDisplay;
@@ -44,5 +45,10 @@ private:
 	static void PlaySoundOnHit()
 	{
 		SG::Sound::PlaySound(SG::SoundFxToPlay::EnemyKill);
+	}
+
+	static void ApplyDamageOnHit()
+	{
+		_link->GiveDamage();
 	}
 };

@@ -1,23 +1,39 @@
 ﻿#include "ZeldaConfig.h"
 #include "external/json.hpp"
 
-//statics
-LinkModel ZeldaConfig::LinkBaseStats;
-
 
 void ZeldaConfig::PopulatePlayerStats()
 {
 	nlohmann::json charactersJson = _currentConfigJson["Characters"];
+	nlohmann::json weaponsJson = _currentConfigJson["Weapons"];
+
 	nlohmann::json linkJson = charactersJson["Link"];
-	ZeldaFromJson(linkJson, LinkBaseStats);
+	nlohmann::json redOctoJson = charactersJson["RedOctorok"];
+
+	nlohmann::json WoodSwordJson = weaponsJson["WoodSword"];
+	nlohmann::json WoodBallJson = weaponsJson["WoodBall"];
+
+	CharacterFromJson(linkJson, LinkBaseStats);
+	CharacterFromJson(redOctoJson, RedOctoBaseStats);
+
+	WeaponFromJson(WoodSwordJson, WoodSwordBaseStats);
+	WeaponFromJson(WoodBallJson, WoodBallBaseStats);
+
 }
 
-void ZeldaConfig::ZeldaFromJson(const nlohmann::json& jsonObject, LinkModel& ThingToPopulate)
+void ZeldaConfig::CharacterFromJson(const nlohmann::json& jsonObject, CharacterModel& ThingToPopulate)
 {
 	ThingToPopulate.MaxHp = jsonObject["MaxHp"].get<int>();
 	ThingToPopulate.Defense = jsonObject.at("Defense").get<int>();
 	ThingToPopulate.Speed = jsonObject.at("Speed").get<int>();
-	ThingToPopulate.InvincibilityFrames = jsonObject.at("InvincibilityFrames").get<int>();
+	ThingToPopulate.InvincibilityTime = jsonObject.at("InvincibilityTime").get<int>();
 	ThingToPopulate.Name = jsonObject.at("Name").get<std::string>();
 
+}
+
+void ZeldaConfig::WeaponFromJson(const nlohmann::json& jsonObject, WeaponModel& ThingToPopulate)
+{
+	ThingToPopulate.Damage = jsonObject.at("Damage").get<int>();
+	ThingToPopulate.Knockback = jsonObject.at("Knockback").get<int>();
+	ThingToPopulate.Cooldown = jsonObject.at("Cooldown").get<int>();
 }

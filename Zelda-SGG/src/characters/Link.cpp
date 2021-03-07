@@ -4,6 +4,7 @@
 #include "ZeldaConfig.h"
 //TODO move the damage file into the right folder
 #include "ZeldaWorld.h"
+#include "models/CharacterModel.h"
 #include "../../Damage.h"
 #include "components/InputComponent.h"
 #include "components/BoxColliderComponent.h"
@@ -18,7 +19,9 @@
 
 
 Link::Link(SG::Vector3 location)
-	: GameObject(location),ITakeDamage(ZeldaConfig::LinkBaseStats.MaxHp), _animationComponent(nullptr), _inputComponent(nullptr), _speed(ZeldaConfig::LinkBaseStats.Speed)
+	: GameObject(location), ITakeDamage(ZeldaConfig::LinkBaseStats.MaxHp, ZeldaConfig::LinkBaseStats.InvincibilityTime),
+	  IGiveDamage(new Damage{ZeldaConfig::WoodSwordBaseStats.Damage, ZeldaConfig::WoodSwordBaseStats.Knockback, this}),
+	  _speed(ZeldaConfig::LinkBaseStats.Speed), _animationComponent(nullptr), _inputComponent(nullptr)
 {
 	_currentDirection = SG::Directions::Down;
 }
@@ -60,6 +63,7 @@ void Link::Draw(SG::SpriteBatch& spriteBatch)
 
 void Link::ComponentUpdate(const double& deltaTime)
 {
+	//TODO should update invincibility time be here?
 	UpdateInvincibilityTime(deltaTime);
 	_animationComponent->Update(deltaTime);
 	_boxColliderComponent->Update(deltaTime);

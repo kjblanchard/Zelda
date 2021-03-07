@@ -74,6 +74,7 @@ namespace SG
 		}
 	}
 
+
 	bool BoxColliderComponent::CheckIfJustIntersected(int gameObjectId)
 	{
 		bool returnAnswer = false;

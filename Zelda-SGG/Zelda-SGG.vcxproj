@@ -20,9 +20,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Damage.cpp" />
+    <ClCompile Include="src\states\RedOctorok\RedOctorokHitState.cpp" />
     <ClCompile Include="src\states\Link\LinkHitState.cpp" />
     <ClCompile Include="src\animation\LinkAnimations\LinkWalkingHitAnimation.cpp" />
-    <ClCompile Include="src\models\LinkModel.cpp" />
+    <ClCompile Include="src\models\CharacterModel.cpp" />
     <ClCompile Include="src\interfaces\IGiveDamage.cpp" />
     <ClCompile Include="src\interfaces\ITakeDamage.cpp" />
     <ClCompile Include="src\states\RedOctorok\RedOctorokAttackingState.cpp" />
@@ -49,6 +50,7 @@
     <ClCompile Include="src\items\Weapon.cpp" />
     <ClCompile Include="src\items\WoodSwordWeapon.cpp" />
     <ClCompile Include="src\ZeldaConfig.cpp" />
+    <ClCompile Include="src\models\WeaponModel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Damage.h" />
@@ -78,9 +80,11 @@
     <ClInclude Include="include\states\RedOctorok\RedOctorokSpawningState.h" />
     <ClInclude Include="include\interfaces\ITakeDamage.h" />
     <ClInclude Include="include\ZeldaConfig.h" />
-    <ClInclude Include="include\models\LinkModel.h" />
+    <ClInclude Include="include\models\CharacterModel.h" />
     <ClInclude Include="include\animation\LinkAnimations\LinkWalkingHitAnimation.h" />
     <ClInclude Include="include\states\Link\LinkHitState.h" />
+    <ClInclude Include="include\models\WeaponModel.h" />
+    <ClInclude Include="include\states\RedOctorok\RedOctorokHitState.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SGGEngine\SGGEngine.vcxproj">

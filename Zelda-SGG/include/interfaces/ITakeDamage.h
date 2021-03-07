@@ -21,11 +21,11 @@ namespace SG {
 class ITakeDamage
 {
 public:
-	ITakeDamage(int maxHp, int currentHp = 0) { _maxHp = currentHp; if (currentHp != 0)_currentHp = currentHp; else _currentHp = maxHp; }
+	ITakeDamage(int maxHp,int invincibilityTime = 1000, int currentHp = 0) : _baseInvincibilityTime(invincibilityTime) { _maxHp = currentHp; if (currentHp != 0)_currentHp = currentHp; else _currentHp = maxHp; }
 	virtual ~ITakeDamage() = default;
 	bool _isInvincible = false;
-protected:
 	virtual void TakeDamage(Damage* damage) = 0;
+protected:
 	int ApplyDamage(int damageAmount) { _currentHp -= damageAmount; return _currentHp; }
 	void SetInvincibilityTimer()
 	{

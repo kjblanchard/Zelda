@@ -85,6 +85,7 @@ namespace SG
 			{
 				_currentAnimation = &Animations[i];
 				_imageComponent->UpdateImageSpriteSheet(_currentAnimation->SpriteSheet);
+				//_imageComponent->UpdateSpriteSheetLocation(_currentAnimation->DrawLocation(_currentFrameOnThisSprite));
 				break;
 			}
 		}

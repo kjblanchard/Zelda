@@ -7,21 +7,7 @@
 
 void LinkHitState::Startup()
 {
-	switch (_link->_currentDirection)
-	{
-	case SG::Directions::Up:
-		_link->_animationComponent->ChangeAnimation(LinkAnimations::WalkHitUp);
-		break;
-	case SG::Directions::Right:
-		_link->_animationComponent->ChangeAnimation(LinkAnimations::WalkHitRight);
-		break;
-	case SG::Directions::Down:
-		_link->_animationComponent->ChangeAnimation(LinkAnimations::WalkHitDown);
-		break;
-	case SG::Directions::Left:
-		_link->_animationComponent->ChangeAnimation(LinkAnimations::WalkHitLeft);
-		break;
-	}
+
 }
 
 void LinkHitState::Update(const double& deltaTime)

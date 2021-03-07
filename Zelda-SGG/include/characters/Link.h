@@ -25,7 +25,7 @@ namespace SG {
 	class InputComponent;
 }
 
-class Link : public SG::GameObject, protected SG::IObjectStateMachine<LinkStates>, protected ITakeDamage
+class Link : public SG::GameObject, protected SG::IObjectStateMachine<LinkStates>, public ITakeDamage
 {
 public:
 
@@ -38,6 +38,8 @@ public:
 	void Update(const double& deltaTime) override;
 	void Draw(SG::SpriteBatch& spriteBatch) override;
 
+	//TODO remove this?
+	bool isLinkMoving = true;
 private:
 	void ComponentUpdate(const double& deltaTime) override;
 	void GenerateStates() override;
@@ -54,6 +56,7 @@ private:
 	std::unique_ptr<SG::AnimationComponent<LinkAnimationController, LinkAnimations>> _animationComponent;
 	std::unique_ptr<SG::InputComponent> _inputComponent;
 	std::unique_ptr<SG::BoxColliderComponent> _boxColliderComponent;
+
 
 
 

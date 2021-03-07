@@ -6,6 +6,7 @@
 #include "animation/LinkAnimations/LinkWalkingHitAnimation.h"
 #include "components/ImageComponent.h"
 #include "core/Configuration.h"
+#include "characters/Link.h"
 
 
 //statics
@@ -33,6 +34,7 @@ LinkAnimationController::LinkAnimationController(SG::GameObject* gameObject) : A
 		};
 		staticsInitialized = true;
 	}
+	_link = dynamic_cast<Link*>(gameObject);
 }
 
 void LinkAnimationController::Startup()
@@ -44,8 +46,34 @@ void LinkAnimationController::Startup()
 	AnimationController::Startup();
 }
 
+void LinkAnimationController::Update(const double& deltaTime)
+{
+	if(_link->isLinkMoving)
+		AnimationController::Update(deltaTime);
+	if(_link->_isInvincible)
+	{
+		currentInvincibilityFrame++;
+		if (currentInvincibilityFrame > maxInvFrame)
+			currentInvincibilityFrame = 0;
+	}
+
+}
+
 void LinkAnimationController::Draw(SG::SpriteBatch& spriteBatch)
 {
-	_imageComponent->UpdateSpriteSheetLocation(_currentAnimation->DrawLocation(_currentFrameOnThisSprite));
+	if(_link->_isInvincible)
+	{
+		auto currentFrameInInvincibility = CalculateCurrentFrameInInvincibility();
+		auto coolBoi = _currentAnimation->DrawLocation(_currentFrameOnThisSprite);
+		coolBoi.Y += currentFrameInInvincibility * invFrameOffset;
+		_imageComponent->UpdateSpriteSheetLocation(coolBoi);
+		_imageComponent->Draw(spriteBatch);
+
+	}
+	else
+	{
+	_imageComponent->UpdateSpriteSheetLocation(_currentAnimation->DrawLocation(_currentFrameOnThisSprite)); //this was one of the two only things here, besides draw
 	_imageComponent->Draw(spriteBatch);
+
+	}
 }

@@ -28,7 +28,7 @@ namespace SG
 		void Update(const double& deltaTime);
 		void Draw(SpriteBatch& spriteBatch);
 		void ChangeAnimation(F whatToChangeTo);
-		bool IsAnimPlaying;
+		bool IsAnimPlaying = true;
 
 	private:
 		T* _animationController;

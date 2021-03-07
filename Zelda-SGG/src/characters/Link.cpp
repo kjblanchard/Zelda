@@ -3,6 +3,7 @@
 
 #include "ZeldaConfig.h"
 //TODO move the damage file into the right folder
+#include "ZeldaWorld.h"
 #include "../../Damage.h"
 #include "components/InputComponent.h"
 #include "components/BoxColliderComponent.h"
@@ -52,7 +53,7 @@ void Link::Draw(SG::SpriteBatch& spriteBatch)
 {
 	_objectStateMachine->Draw(spriteBatch);
 	_animationComponent->Draw(spriteBatch);
-	if (SG::World::_isCollisionDebug)
+	if (ZeldaWorld::_isCollisionDebug)
 		_boxColliderComponent->Draw(spriteBatch);
 
 }

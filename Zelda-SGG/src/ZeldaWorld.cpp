@@ -30,6 +30,7 @@ void ZeldaWorld::Startup()
 	_zeldaLevel = std::make_unique<ZeldaLevel>();
 	_zeldaLevel->Startup();
 	_zeldaLevel->ChangeLevel(ZeldaLevels::DebugRoom);
+	_isCollisionDebug = false;
 }
 
 void ZeldaWorld::Update(const double& deltaTime)

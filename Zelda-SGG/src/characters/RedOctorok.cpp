@@ -12,7 +12,6 @@ RedOctorok::RedOctorok(SG::Vector3 location) : GameObject(location,SG::GameObjec
 	_animationComponent = std::make_unique<SG::AnimationComponent<RedOctorokAnimationController, RedOctorokAnimations>>(this, new RedOctorokAnimationController(this));
 	auto boxColliderBox = SDL_Rect{ 0,0,30,30 };
 	_boxColliderComponent = std::make_unique<SG::BoxColliderComponent>(this, boxColliderBox, true);
-	_baseDamage->BoxColliderOfDamageGiver = _boxColliderComponent->ColliderBox();
 }
 
 void RedOctorok::Startup()

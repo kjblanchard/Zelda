@@ -75,7 +75,7 @@ namespace SG
 
 		bool InitializeSdlMixer() const;
 
-		static bool LoadConfigFromJson();
+		static void LoadConfigFromJson();
 
 		/**
 		 * \brief Checks the event queue, and if there are any quit events (like from clicking the X) the game will quit.

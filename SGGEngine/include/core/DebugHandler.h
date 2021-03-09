@@ -29,7 +29,8 @@ namespace SG
 		GameSlowdown = 5,
 		SDLSpriteSheetError = 6,
 		SDLMixerError = 7,
-		AnimationError = 8
+		AnimationError = 8,
+		JsonLoadError
 
 	};
 

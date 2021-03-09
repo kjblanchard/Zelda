@@ -13,7 +13,14 @@
 #include "states/RedOctorok/RedOctorokHitState.h"
 
 
-RedOctorok::RedOctorok(SG::Vector3 location) : GameObject(location,SG::GameObjectTypes::Enemy), IGiveDamage( new Damage{ZeldaConfig::WoodBallBaseStats.Damage,ZeldaConfig::WoodBallBaseStats.Knockback,this}), ITakeDamage(20,ZeldaConfig::RedOctoBaseStats.InvincibilityTime), _boxColliderComponent(nullptr)
+RedOctorok::RedOctorok(SG::Vector3 location) : GameObject(location, SG::GameObjectTypes::Enemy),
+                                               IGiveDamage(new Damage{
+	                                               ZeldaConfig::ZeldaStats.WoodBallBaseStats.Damage,
+	                                               ZeldaConfig::ZeldaStats.WoodBallBaseStats.Knockback, this
+                                               }),
+                                               ITakeDamage(
+	                                               20, ZeldaConfig::ZeldaStats.RedOctoBaseStats.InvincibilityTime),
+                                               _boxColliderComponent(nullptr)
 {
 	_animationComponent = std::make_unique<SG::AnimationComponent<RedOctorokAnimationController, RedOctorokAnimations>>(this, new RedOctorokAnimationController(this));
 	auto boxColliderBox = SDL_Rect{ 0,0,30,30 };

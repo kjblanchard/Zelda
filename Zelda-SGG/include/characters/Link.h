@@ -8,11 +8,13 @@
 #pragma once
 #include "core/GameObject.h"
 #include <memory>
+
 #include "components/AnimationComponent.h"
 #include "interfaces/IGiveDamage.h"
 #include "interfaces/IObjectStateMachine.h"
 #include "interfaces/ITakeDamage.h"
 
+struct ZeldaConfigData;
 enum class LinkStates;
 class LinkAnimationController;
 enum class LinkAnimations;

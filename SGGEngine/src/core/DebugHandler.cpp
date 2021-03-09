@@ -40,6 +40,9 @@ namespace SG
 			break;
 		case ErrorCodes::AnimationError:
 			printf("Somehow there isn't a valid animation, probably forgot some boilerplate in the enum, etc");
+		case ErrorCodes::JsonLoadError:
+			printf("There isn't a json value for this param ");
+			break;
 		default: break;
 		}
 	}

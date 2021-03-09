@@ -19,9 +19,9 @@
 
 
 Link::Link(SG::Vector3 location)
-	: GameObject(location), ITakeDamage(ZeldaConfig::LinkBaseStats.MaxHp, ZeldaConfig::LinkBaseStats.InvincibilityTime),
-	  IGiveDamage(new Damage{ZeldaConfig::WoodSwordBaseStats.Damage, ZeldaConfig::WoodSwordBaseStats.Knockback, this}),
-	  _speed(ZeldaConfig::LinkBaseStats.Speed), _animationComponent(nullptr), _inputComponent(nullptr)
+	: GameObject(location), ITakeDamage(ZeldaConfig::ZeldaStats.LinkBaseStats.MaxHp, ZeldaConfig::ZeldaStats.LinkBaseStats.InvincibilityTime),
+	  IGiveDamage(new Damage{ZeldaConfig::ZeldaStats.WoodSwordBaseStats.Damage, ZeldaConfig::ZeldaStats.WoodSwordBaseStats.Knockback, this}),
+	  _speed(ZeldaConfig::ZeldaStats.LinkBaseStats.Speed), _animationComponent(nullptr), _inputComponent(nullptr)
 {
 	_currentDirection = SG::Directions::Down;
 }

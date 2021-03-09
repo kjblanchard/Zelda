@@ -24,7 +24,7 @@ ZeldaWorld::ZeldaWorld()
 
 void ZeldaWorld::Startup()
 {
-	ZeldaConfig::PopulatePlayerStats();
+	ZeldaConfig::PopulateZeldaConfigStats();
 	_zeldaLevel = std::make_unique<ZeldaLevel>();
 	_zeldaLevel->Startup();
 	_zeldaLevel->ChangeLevel(ZeldaLevels::DebugRoom);

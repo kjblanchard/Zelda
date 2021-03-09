@@ -75,12 +75,10 @@ namespace SG
 	/// Loads the configuration file from the json appsettings.json file.  This needs to be done in the constructor, before graphics
 	/// </summary>
 	/// <returns>Returns true if it actually generated a value from the configuration</returns>
-	bool World::LoadConfigFromJson()
+	void World::LoadConfigFromJson()
 	{
-		SG::Configuration::GenerateJsonFromConfigFile("appsettings.json");
-		if (!SG::Configuration::GenerateValuesFromJson())
-			return false;
-		return true;
+		Configuration::GenerateJsonFromConfigFile("appsettings.json");
+		Configuration::GenerateValuesFromJson();
 	}
 
 

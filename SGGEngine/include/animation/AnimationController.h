@@ -54,7 +54,7 @@ namespace SG
 		//TODO movet his back to protected
 		ImageComponent* _imageComponent;
 	protected:
-		inline const static double FrameTime = SG::Configuration::FrameTime ;
+		inline const static double FrameTime = Configuration::BaseConfigurationSettings.FrameTime ;
 		static std::vector<Animation<T>> Animations;
 		GameObject* _gameObject;
 

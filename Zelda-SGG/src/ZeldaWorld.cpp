@@ -10,23 +10,21 @@
 
 int main(int argc, char* args[])
 {
-	SG::Configuration::GenerateJsonFromConfigFile("appsettings.json");
-	ZeldaConfig::PopulatePlayerStats();
-	if (!SG::Configuration::GenerateValuesFromJson())
-		return 1;
 	auto zeldaWorld = std::make_unique<ZeldaWorld>();
-	zeldaWorld->SetupWorldComponents();
+	if (!zeldaWorld->SetupWorldComponents())
+		return 0;
 	zeldaWorld->Loop();
 	return 1;
 }
 
 ZeldaWorld::ZeldaWorld()
-	:World(SG::Point(SG::Configuration::ScreenWidth,SG::Configuration::ScreenHeight))
+	:World()
 {
 }
 
 void ZeldaWorld::Startup()
 {
+	ZeldaConfig::PopulatePlayerStats();
 	_zeldaLevel = std::make_unique<ZeldaLevel>();
 	_zeldaLevel->Startup();
 	_zeldaLevel->ChangeLevel(ZeldaLevels::DebugRoom);

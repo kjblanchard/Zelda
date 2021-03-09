@@ -20,8 +20,8 @@ namespace SG
 		_xOffset = _colliderBox.x;
 		_yOffset = _colliderBox.y;
 
-		_xSizeOffset =  (SG::Configuration::TileWidth - _colliderBox.w) /2;
-		_ySizeOffset = (SG::Configuration::TileHeight - _colliderBox.h) /2;
+		_xSizeOffset =  (Configuration::BaseConfigurationSettings.TileWidth - _colliderBox.w) /2;
+		_ySizeOffset = (SG::Configuration::BaseConfigurationSettings.TileHeight - _colliderBox.h) /2;
 
 		_colliderBox.x = _gameObject->Location().X + _xOffset + _xSizeOffset;
 		_colliderBox.y = _gameObject->Location().Y + _yOffset + _ySizeOffset;

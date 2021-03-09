@@ -4,39 +4,35 @@
 
 namespace SG
 {
-	//statics
-	std::string Configuration::_currentConfigString;
-	nlohmann::json Configuration::_currentConfigJson;
 
-	const void Configuration::GenerateJsonFromConfigFile(std::string fileName)
+	void Configuration::GenerateJsonFromConfigFile(std::string fileName)
 	{
 		std::ifstream infile{ "assets/configuration/" + fileName };
-		_currentConfigString = { std::istreambuf_iterator<char>(infile), std::istreambuf_iterator<char>() };
-		_currentConfigJson = nlohmann::json::parse(_currentConfigString);
+		std::string currentConfigString = { std::istreambuf_iterator<char>(infile), std::istreambuf_iterator<char>() };
+		_currentConfigJson = nlohmann::json::parse(currentConfigString);
 	}
 
 	bool Configuration::GenerateValuesFromJson()
 	{
-
-		if (!_currentConfigJson.contains(_ScreenWidth))
+		if (!_currentConfigJson.contains(_screenWidth))
 			return false;
-		ScreenWidth = _currentConfigJson[_ScreenWidth];
+		BaseConfigurationSettings.ScreenWidth = _currentConfigJson.at(_screenWidth);
 
-		if (!_currentConfigJson.contains(_ScreenHeight))
+		if (!_currentConfigJson.contains(_screenHeight))
 			return false;
-		ScreenHeight = _currentConfigJson[_ScreenHeight];
+		BaseConfigurationSettings.ScreenHeight = _currentConfigJson.at(_screenHeight);
 
-		if (!_currentConfigJson.contains(_FrameTime))
+		if (!_currentConfigJson.contains(_frameTime))
 			return false;
-		FrameTime = _currentConfigJson[_FrameTime];
+		BaseConfigurationSettings.FrameTime = _currentConfigJson.at(_frameTime);
 
-		if (!_currentConfigJson.contains(_TileWidth))
+		if (!_currentConfigJson.contains(_tileWidth))
 			return false;
-		TileWidth = _currentConfigJson[_TileWidth];
+		BaseConfigurationSettings.TileWidth = _currentConfigJson.at(_tileWidth);
 
-		if (!_currentConfigJson.contains(_TileHeight))
+		if (!_currentConfigJson.contains(_tileHeight))
 			return false;
-		TileHeight = _currentConfigJson[_TileHeight];
+		BaseConfigurationSettings.TileHeight = _currentConfigJson.at(_tileHeight);
 		return true;
 
 	}

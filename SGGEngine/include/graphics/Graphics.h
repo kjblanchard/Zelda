@@ -28,7 +28,7 @@ namespace SG
 	class SGGENGINE_API Graphics
 	{
 	public:
-		Graphics(Point screenSize);
+		Graphics();
 
 		/**
 		 * \brief This initializes some of the SDL components, and returns true if successful

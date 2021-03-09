@@ -13,6 +13,8 @@
 #endif
 #include <vector>
 
+
+#include "Configuration.h"
 #include "components/Component.h"
 #include "data/Vector3.h"
 #include "interfaces/IUpdate.h"
@@ -20,6 +22,7 @@
 
 namespace SG
 {
+	struct Config;
 	enum class Directions;
 	class SpriteBatch;
 	struct Component;
@@ -133,7 +136,10 @@ namespace SG
 		/// <param name="deltaTime">Delta time from the update function</param>
 		virtual void ComponentUpdate(const double& deltaTime) {};
 
-		inline static uint16_t GameObjectCount = 0;
+		inline static unsigned int GameObjectCount = 0;
+
+		static inline Config* _config = &Configuration::BaseConfigurationSettings;
+
 		Vector3 _location;
 		bool _shouldUpdate = true;
 		std::vector<Component*> _components;

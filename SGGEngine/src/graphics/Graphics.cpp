@@ -1,6 +1,8 @@
 ﻿#include "pch.h"
 #include  "graphics/Graphics.h"
 #include <SDL_image.h>
+
+#include "core/Configuration.h"
 #include "core/DebugHandler.h"
 #include "graphics/Image.h"
 #include "graphics/SpriteBatch.h"
@@ -10,8 +12,10 @@
 namespace SG
 {
 
-	Graphics::Graphics(Point screenSize)
-		: _screenSize(screenSize), _windowSurface(nullptr), _renderer(nullptr)
+	Graphics::Graphics()
+		: _screenSize(Configuration::BaseConfigurationSettings.ScreenWidth,
+		              Configuration::BaseConfigurationSettings.ScreenHeight), _windowSurface(nullptr),
+		  _renderer(nullptr)
 	{
 	}
 

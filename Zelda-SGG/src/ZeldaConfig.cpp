@@ -4,8 +4,8 @@
 
 void ZeldaConfig::PopulatePlayerStats()
 {
-	nlohmann::json charactersJson = _currentConfigJson["Characters"];
-	nlohmann::json weaponsJson = _currentConfigJson["Weapons"];
+	nlohmann::json charactersJson = _currentConfigJson.at("Characters");
+	nlohmann::json weaponsJson = _currentConfigJson.at("Weapons");
 
 	nlohmann::json linkJson = charactersJson["Link"];
 	nlohmann::json redOctoJson = charactersJson["RedOctorok"];

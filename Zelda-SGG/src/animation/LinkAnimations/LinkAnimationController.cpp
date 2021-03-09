@@ -39,7 +39,7 @@ LinkAnimationController::LinkAnimationController(SG::GameObject* gameObject) : A
 
 void LinkAnimationController::Startup()
 {
-	const auto sdlRect = SDL_Rect{ 0,0, SG::Configuration::TileWidth, SG::Configuration::TileWidth};
+	const auto sdlRect = SDL_Rect{ 0,0,  SG::Configuration::BaseConfigurationSettings.TileWidth, SG::Configuration::BaseConfigurationSettings.TileWidth};
 	_imageComponent = new SG::ImageComponent( sdlRect, _gameObject);
 
 	_imageComponent->image->ImageIsWholeTexture = false;

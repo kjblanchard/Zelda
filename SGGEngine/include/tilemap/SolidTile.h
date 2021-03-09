@@ -45,7 +45,7 @@ namespace SG
 	template <typename T>
 	void SolidTile<T>::Startup()
 	{
-		auto boxColliderBox = SDL_Rect{ 0,0,SG::Configuration::TileWidth,Configuration::TileHeight};
+		auto boxColliderBox = SDL_Rect{ 0,0,Configuration::BaseConfigurationSettings.TileWidth,Configuration::BaseConfigurationSettings.TileHeight};
 
 		_boxColliderComponent = std::make_unique<BoxColliderComponent>(this, boxColliderBox);
 		_tile->Startup();

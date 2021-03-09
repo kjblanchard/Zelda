@@ -21,10 +21,11 @@ namespace SG
 
 
 
-	World::World(const Point& screenSize)
-		: _screenSize(screenSize), _gameWindow(nullptr), _gameClock{std::make_unique<GameClock>()},_input{std::make_unique<Input>()}
+	World::World()
+		: _gameWindow(nullptr), _gameClock{std::make_unique<GameClock>()},_input{std::make_unique<Input>()}
 	{
-		_graphics = std::make_unique<class Graphics>(_screenSize);
+		LoadConfigFromJson();
+		_graphics = std::make_unique<class Graphics>();
 		if (_instance == nullptr)
 			_instance = this;
 	}
@@ -36,10 +37,8 @@ namespace SG
 		SDL_Quit();
 	}
 
-	bool World::SetupWorldComponents()
+	bool World::SetupWorldComponents() const
 	{
-
-
 		if (!InitializeSdl())
 			return false;
 		if (!_graphics->Startup())
@@ -69,6 +68,18 @@ namespace SG
 			return false;
 		}
 		_sound = new Sound();
+		return true;
+	}
+
+	/// <summary>
+	/// Loads the configuration file from the json appsettings.json file.  This needs to be done in the constructor, before graphics
+	/// </summary>
+	/// <returns>Returns true if it actually generated a value from the configuration</returns>
+	bool World::LoadConfigFromJson()
+	{
+		SG::Configuration::GenerateJsonFromConfigFile("appsettings.json");
+		if (!SG::Configuration::GenerateValuesFromJson())
+			return false;
 		return true;
 	}
 

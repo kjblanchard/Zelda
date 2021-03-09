@@ -33,14 +33,14 @@ namespace SG
 	{
 
 	public:
-		World(const Point& screenSize = Point(640, 480));
+		World();
 		virtual ~World();
 
 		/**
 		 * \brief Used to initialize the proper components to start the game, this is ran after the constructor and prior to the loop being called.
 		 * \return Returns true if things were initialized successfully
 		 */
-		bool SetupWorldComponents();
+		bool SetupWorldComponents() const;
 		/**
 		 * \brief Main Game loop, this is called by the main function when the program is started.
 		 */
@@ -54,7 +54,6 @@ namespace SG
 		inline static bool _isCollisionDebug = true;
 
 	protected:
-		Point _screenSize;
 		/**
 		 * \brief Game window,  we can use a Raw pointer here, as this has built in destroy functionality that we will put in the Game destructor
 		 */
@@ -75,6 +74,8 @@ namespace SG
 		static bool InitializeSdl();
 
 		bool InitializeSdlMixer() const;
+
+		static bool LoadConfigFromJson();
 
 		/**
 		 * \brief Checks the event queue, and if there are any quit events (like from clicking the X) the game will quit.

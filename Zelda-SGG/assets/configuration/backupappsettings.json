@@ -10,26 +10,26 @@
             "MaxHp": 12,
             "Defense": 3,
             "Speed": 3,
-            "InvincibilityTime": 1000
+            "InvincibilityTime": 2000
         },
         "RedOctorok": {
             "Name": "Red Octorok",
             "MaxHp": 4,
             "Defense": 0,
             "Speed": 2,
-            "InvincibilityTime": 2000
+            "InvincibilityTime": 1000
         }
     },
     "Weapons": {
         "WoodSword": {
             "Damage": 4,
-            "Knockback": 50,
-            "Cooldown": 500
+            "Knockback": 0,
+            "Cooldown" : 500
         },
         "WoodBall": {
             "Damage": 4,
-            "Knockback": 70,
-            "Cooldown": 500
+            "Knockback": 50,
+            "Cooldown" : 500
         }
     }
 }

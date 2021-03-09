@@ -1,8 +1,5 @@
 ﻿#include "characters/Link.h"
-
-
 #include "ZeldaConfig.h"
-//TODO move the damage file into the right folder
 #include "ZeldaWorld.h"
 #include "models/CharacterModel.h"
 #include "structs/Damage.h"
@@ -19,36 +16,40 @@
 
 
 Link::Link(SG::Vector3 location)
-	: GameObject(location), ITakeDamage(ZeldaConfig::ZeldaStats.LinkBaseStats.MaxHp, ZeldaConfig::ZeldaStats.LinkBaseStats.InvincibilityTime),
-	  IGiveDamage(new Damage{ZeldaConfig::ZeldaStats.WoodSwordBaseStats.Damage, ZeldaConfig::ZeldaStats.WoodSwordBaseStats.Knockback, this}),
-	  _speed(ZeldaConfig::ZeldaStats.LinkBaseStats.Speed), _animationComponent(nullptr), _inputComponent(nullptr)
+	:
+	GameObject(location),
+	ITakeDamage(ZeldaConfig::ZeldaStats.LinkBaseStats.MaxHp, ZeldaConfig::ZeldaStats.LinkBaseStats.InvincibilityTime),
+	IGiveDamage(new Damage{
+		ZeldaConfig::ZeldaStats.WoodSwordBaseStats.Damage, ZeldaConfig::ZeldaStats.WoodSwordBaseStats.Knockback, this
+	}),
+	_speed(ZeldaConfig::ZeldaStats.LinkBaseStats.Speed), _animationComponent(nullptr), _inputComponent(nullptr)
 {
 	_currentDirection = SG::Directions::Down;
+	_animationComponent = std::make_unique<SG::AnimationComponent<LinkAnimationController, LinkAnimations>>(
+		this, new LinkAnimationController(this));
+	auto boxColliderBox = SDL_Rect{
+		ZeldaConfig::ZeldaStats.LinkBaseStats.HitboxXOffset, ZeldaConfig::ZeldaStats.LinkBaseStats.HitboxYOffset,
+		ZeldaConfig::ZeldaStats.LinkBaseStats.HitboxWidth, ZeldaConfig::ZeldaStats.LinkBaseStats.HitboxHeight
+	};
+	_boxColliderComponent = std::make_unique<SG::BoxColliderComponent>(this,boxColliderBox, true);
 }
 
 Link::Link(SG::Vector3 location, SG::Controller* controller)
 	: Link(location)
 {
 	_inputComponent = std::make_unique<SG::InputComponent>(controller, this);
-	_animationComponent = std::make_unique<SG::AnimationComponent<LinkAnimationController, LinkAnimations>>(this, new LinkAnimationController(this));
-	auto boxColliderBox = SDL_Rect{ 0,0,24,24 };
-	_boxColliderComponent = std::make_unique<SG::BoxColliderComponent>(this,boxColliderBox, true);
 }
-
-Link::~Link()
-{
-}
-
 
 void Link::Startup()
 {
+	_animationComponent->Startup();
+	_boxColliderComponent->Startup();
 	GenerateStates();
 	_objectStateMachine->ChangeState(LinkStates::Spawning);
 }
 
 void Link::Update(const double& deltaTime)
 {
-	_objectStateMachine->Update(deltaTime);
 	ComponentUpdate(deltaTime);
 }
 
@@ -56,13 +57,13 @@ void Link::Draw(SG::SpriteBatch& spriteBatch)
 {
 	_objectStateMachine->Draw(spriteBatch);
 	_animationComponent->Draw(spriteBatch);
-	if (ZeldaWorld::_isCollisionDebug)
-		_boxColliderComponent->Draw(spriteBatch);
+	_boxColliderComponent->Draw(spriteBatch);
 
 }
 
 void Link::ComponentUpdate(const double& deltaTime)
 {
+	_objectStateMachine->Update(deltaTime);
 	//TODO should update invincibility time be here?
 	UpdateInvincibilityTime(deltaTime);
 	_animationComponent->Update(deltaTime);

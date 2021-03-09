@@ -51,6 +51,7 @@
     <ClCompile Include="src\items\WoodSwordWeapon.cpp" />
     <ClCompile Include="src\ZeldaConfig.cpp" />
     <ClCompile Include="src\models\WeaponModel.cpp" />
+    <ClCompile Include="src\characters\ZeldaCharacters.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\structs\Damage.h" />
@@ -85,6 +86,7 @@
     <ClInclude Include="include\states\Link\LinkHitState.h" />
     <ClInclude Include="include\models\WeaponModel.h" />
     <ClInclude Include="include\states\RedOctorok\RedOctorokHitState.h" />
+    <ClInclude Include="include\characters\ZeldaCharacters.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SGGEngine\SGGEngine.vcxproj">

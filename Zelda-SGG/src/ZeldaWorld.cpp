@@ -25,10 +25,10 @@ ZeldaWorld::ZeldaWorld()
 void ZeldaWorld::Startup()
 {
 	ZeldaConfig::PopulateZeldaConfigStats();
+	_isCollisionDebug = ZeldaConfig::ZeldaStats.CollisionDebug;
 	_zeldaLevel = std::make_unique<ZeldaLevel>();
 	_zeldaLevel->Startup();
 	_zeldaLevel->ChangeLevel(ZeldaLevels::DebugRoom);
-	_isCollisionDebug = false;
 }
 
 void ZeldaWorld::Update(const double& deltaTime)

@@ -30,7 +30,7 @@ namespace SG
 	};
 
 	/// <summary>
-	/// The base class for all components, holds it's owner and it's component type, as well as a startup method
+	/// The base class for all components, holds it's owner and it's component type, as well as a startup method that must be implemented
 	/// </summary>
 	struct SGGENGINE_API Component : IUpdate
 	{
@@ -39,6 +39,8 @@ namespace SG
 		Component(GameObject* gameObject, SGComponentTypes componentType);
 		SGComponentTypes ComponentType() const { return _componentType; }
 		virtual ~Component() = default;
+
+		void Startup() override = 0;
 
 	protected:
 		GameObject* _gameObject;

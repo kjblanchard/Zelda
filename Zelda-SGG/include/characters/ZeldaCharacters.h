@@ -6,17 +6,13 @@
 ////////////////////////////////////////////////////////////
 
 #pragma once
-#include <string>
 
-struct CharacterModel
+/// <summary>
+/// Every character that derives from ZeldaCharacterBase in the game should be here, for proper instantiation
+/// </summary>
+enum class ZeldaCharacters : unsigned char
 {
-	std::string Name;
-	int MaxHp;
-	int Defense;
-	int Speed;
-	int InvincibilityTime;
-	int HitboxXOffset;
-	int HitboxYOffset;
-	int HitboxWidth;
-	int HitboxHeight;
+	Default,
+	Link,
+	RedOctorok
 };

@@ -22,6 +22,10 @@ namespace SG
 	public:
 		InputComponent(Controller* controller, GameObject* gameObject = nullptr);
 
+		void Startup() override
+		{
+
+		}
 		void TakeControl(Controller* controllerToUse);
 
 		Controller* CurrentController;

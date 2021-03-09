@@ -111,6 +111,9 @@
     <ClCompile Include="src\states\RedOctorok\RedOctorokHitState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\characters\ZeldaCharacters.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ZeldaWorld.h">
@@ -207,6 +210,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\states\RedOctorok\RedOctorokHitState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\characters\ZeldaCharacters.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

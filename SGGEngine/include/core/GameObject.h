@@ -89,9 +89,8 @@ namespace SG
 		/// <summary>
 		/// Each ID should be unique, and added to every game object
 		/// </summary>
-		uint16_t Id;
+		unsigned int Id;
 
-		GameObject* ReturnItself() { return this; }
 
 		GameObjectTypes GameObjectType;
 
@@ -129,6 +128,7 @@ namespace SG
 		SG::Directions Direction() const { return _currentDirection; }
 
 	protected:
+
 
 		/// <summary>
 		/// Space saver, you should put this in your update function and call the update function on all of your components

@@ -52,6 +52,11 @@ namespace SG
 		ImageComponent(const SDL_Rect& spriteSheetLocationAndSize, GameObject* gameObject);
 		~ImageComponent();
 
+		void Startup() override
+		{
+
+		}
+
 		/// <summary>
 		/// This Update function takes in a location to update the sprite with
 		/// </summary>

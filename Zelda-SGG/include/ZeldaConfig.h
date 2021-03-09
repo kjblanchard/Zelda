@@ -12,6 +12,8 @@
 
 struct ZeldaConfigData
 {
+	bool CollisionDebug;
+
 	CharacterModel LinkBaseStats;
 	CharacterModel RedOctoBaseStats;
 
@@ -37,7 +39,11 @@ public:
 
 private:
 
-
+	/// <summary>
+	/// Loads in the game configuration stats to the in game variables
+	/// ex: debug boxes
+	/// </summary>
+	static void PopulateGameConfiguration();
 
 	/// <summary>
 	/// Loads the character stats from the json file

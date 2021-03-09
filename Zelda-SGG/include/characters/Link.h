@@ -28,14 +28,15 @@ namespace SG {
 	class InputComponent;
 }
 
-class Link : public SG::GameObject, protected SG::IObjectStateMachine<LinkStates>, public ITakeDamage, public IGiveDamage
+class Link : public SG::GameObject, protected SG::IObjectStateMachine<LinkStates>, public ITakeDamage,
+             public IGiveDamage
 {
 public:
 
 	Link(SG::Vector3 location);
 	Link(SG::Vector3 location, SG::Controller* controller);
 
-	~Link();
+	virtual ~Link() = default;
 
 	void Startup() override;
 	void Update(const double& deltaTime) override;

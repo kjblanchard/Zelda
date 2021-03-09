@@ -10,8 +10,7 @@ LinkSpawningState::LinkSpawningState(Link* link) : _link(link)
 
 void LinkSpawningState::Startup()
 {
-	_link->_animationComponent->Startup();
-	_link->_boxColliderComponent->Startup();
+
 	_link->_objectStateMachine->ChangeState(LinkStates::Moving);
 
 }

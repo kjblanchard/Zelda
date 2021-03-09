@@ -5,7 +5,7 @@
 //TODO move the damage file into the right folder
 #include "ZeldaWorld.h"
 #include "models/CharacterModel.h"
-#include "../../Damage.h"
+#include "structs/Damage.h"
 #include "components/InputComponent.h"
 #include "components/BoxColliderComponent.h"
 #include "animation/LinkAnimations/LinkAnimationController.h"

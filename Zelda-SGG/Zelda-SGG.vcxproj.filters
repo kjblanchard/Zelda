@@ -90,7 +90,7 @@
     <ClCompile Include="src\interfaces\IGiveDamage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Damage.cpp">
+    <ClCompile Include="src\structs\Damage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\ZeldaConfig.cpp">
@@ -188,7 +188,7 @@
     <ClInclude Include="include\interfaces\IGiveDamage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Damage.h">
+    <ClInclude Include="include\structs\Damage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\ZeldaConfig.h">

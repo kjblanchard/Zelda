@@ -6,7 +6,7 @@
 ////////////////////////////////////////////////////////////
 
 #pragma once
-#include "../../Damage.h"
+#include "structs/Damage.h"
 
 class IGiveDamage
 {

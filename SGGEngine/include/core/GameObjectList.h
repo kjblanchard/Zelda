@@ -17,14 +17,15 @@
 
 namespace SG
 {
-	class SGGENGINE_API GameObjectList : public SG::GameObject
+	class SGGENGINE_API GameObjectList : public SG::IUpdate
 	{
 
 	public:
+
 		void Startup() override;
 		void Update(const double& deltaTime) override;
 		void Draw(SpriteBatch& spriteBatch) override;
-		void Reset() override;
+		void Reset();
 
 
 		/**

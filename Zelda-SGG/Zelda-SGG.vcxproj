@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Damage.cpp" />
+    <ClCompile Include="src\structs\Damage.cpp" />
     <ClCompile Include="src\states\RedOctorok\RedOctorokHitState.cpp" />
     <ClCompile Include="src\states\Link\LinkHitState.cpp" />
     <ClCompile Include="src\animation\LinkAnimations\LinkWalkingHitAnimation.cpp" />
@@ -53,7 +53,7 @@
     <ClCompile Include="src\models\WeaponModel.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Damage.h" />
+    <ClInclude Include="include\structs\Damage.h" />
     <ClInclude Include="include\interfaces\IGiveDamage.h" />
     <ClInclude Include="include\animation\RedOctorokAnimations\RedOctorokAnimations.h" />
     <ClInclude Include="include\levels\DebugRoomLevel.h" />

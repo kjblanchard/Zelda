@@ -48,7 +48,7 @@ void LinkMovingState::Draw(SG::SpriteBatch& spriteBatch)
 void LinkMovingState::HandleInput()
 {
 	_link->_animationComponent->IsAnimPlaying = true;
-	_link->isLinkMoving = false;
+	_link->_isMoving = false;
 
 	if (_link->_inputComponent)
 	{
@@ -66,7 +66,7 @@ void LinkMovingState::HandleInput()
 			{
 				//_link->_animationComponent->IsAnimPlaying = true;
 
-				_link->isLinkMoving = true;
+				_link->_isMoving = true;
 				_link->_animationComponent->ChangeAnimation(LinkAnimations::WalkUp);
 				_link->_currentDirection = SG::Directions::Up;
 				potentialMoveSpeed.Y -= _link->_speed;
@@ -74,7 +74,7 @@ void LinkMovingState::HandleInput()
 			}
 			else if (_link->_inputComponent->CurrentController->IsButtonPressed(SG::ControllerButtons::Down) || _link->_inputComponent->CurrentController->IsButtonHeld(SG::ControllerButtons::Down))
 			{
-				_link->isLinkMoving = true;
+				_link->_isMoving = true;
 				//_link->_animationComponent->IsAnimPlaying = true;
 				_link->_animationComponent->ChangeAnimation(LinkAnimations::WalkDown);
 				_link->_currentDirection = SG::Directions::Down;
@@ -84,7 +84,7 @@ void LinkMovingState::HandleInput()
 			}
 			else if (_link->_inputComponent->CurrentController->IsButtonPressed(SG::ControllerButtons::Left) || _link->_inputComponent->CurrentController->IsButtonHeld(SG::ControllerButtons::Left))
 			{
-				_link->isLinkMoving = true;
+				_link->_isMoving = true;
 				//_link->_animationComponent->IsAnimPlaying = true;
 				_link->_animationComponent->ChangeAnimation((LinkAnimations::WalkLeft));
 				_link->_currentDirection = SG::Directions::Left;
@@ -93,7 +93,7 @@ void LinkMovingState::HandleInput()
 			}
 			else if (_link->_inputComponent->CurrentController->IsButtonPressed(SG::ControllerButtons::Right) || _link->_inputComponent->CurrentController->IsButtonHeld(SG::ControllerButtons::Right))
 			{
-				_link->isLinkMoving = true;
+				_link->_isMoving = true;
 				//_link->_animationComponent->IsAnimPlaying = true;
 				_link->_animationComponent->ChangeAnimation(LinkAnimations::WalkRight);
 				_link->_currentDirection = SG::Directions::Right;
@@ -156,21 +156,7 @@ void LinkMovingState::HandleInput()
 						const auto collisionArea = SG::Collision::ShapeIntersectionArea(&bbox, &gameObjectColliderbox);
 						if (!_link->_isInvincible)
 						{
-							//switch (SG::Collision::CalculateIntersectionDirection(collisionArea, bbox))
-							//{
-							//case SG::Directions::Up:
-							//	_link->_location.Y += potentialMoveSpeed.Y += 50;
-							//	break;
-							//case SG::Directions::Right:
-							//	_link->_location.X += potentialMoveSpeed.X -= 50;
-							//	break;
-							//case SG::Directions::Down:
-							//	_link->_location.Y += potentialMoveSpeed.Y -= 50;
-							//	break;
-							//case SG::Directions::Left:
-							//	_link->_location.X += potentialMoveSpeed.X += 50;
-							//	break;
-							//}
+
 							auto* convertedToTakingDamage = dynamic_cast<IGiveDamage*>(enemy);
 							if (convertedToTakingDamage)
 							{

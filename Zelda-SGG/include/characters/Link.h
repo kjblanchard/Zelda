@@ -10,6 +10,7 @@
 #include <memory>
 
 #include "components/AnimationComponent.h"
+#include "interfaces/IGameObjectMovement.h"
 #include "interfaces/IGiveDamage.h"
 #include "interfaces/IObjectStateMachine.h"
 #include "interfaces/ITakeDamage.h"
@@ -29,7 +30,7 @@ namespace SG {
 }
 
 class Link : public SG::GameObject, protected SG::IObjectStateMachine<LinkStates>, public ITakeDamage,
-             public IGiveDamage
+             public IGiveDamage, public IGameObjectMovement
 {
 public:
 
@@ -43,7 +44,6 @@ public:
 	void Draw(SG::SpriteBatch& spriteBatch) override;
 
 	//TODO remove this?
-	bool isLinkMoving = true;
 private:
 	void ComponentUpdate(const double& deltaTime) override;
 	void GenerateStates() override;

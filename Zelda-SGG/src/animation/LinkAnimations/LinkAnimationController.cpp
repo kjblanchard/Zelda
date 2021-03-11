@@ -48,7 +48,7 @@ void LinkAnimationController::Startup()
 
 void LinkAnimationController::Update(const double& deltaTime)
 {
-	if(_link->isLinkMoving)
+	if(_link->_isMoving)
 		AnimationController::Update(deltaTime);
 	if(_link->_isInvincible)
 	{

@@ -1,0 +1,17 @@
+﻿////////////////////////////////////////////////////////////
+//
+// Super Goon Games - Multiplayer Zelda
+// Copyright (C) 2020-2021 - Kevin Blanchard
+//
+////////////////////////////////////////////////////////////
+
+#pragma once
+
+class IGameObjectMovement
+{
+
+public:
+
+
+	bool _isMoving = false;
+};

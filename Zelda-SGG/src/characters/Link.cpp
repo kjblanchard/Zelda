@@ -23,8 +23,8 @@ Link::Link(SG::Vector3 location)
 		ZeldaConfig::ZeldaStats.WoodSwordBaseStats.Damage, ZeldaConfig::ZeldaStats.WoodSwordBaseStats.Knockback, this
 
 	}),
-IGameObjectMovement(),
-	_speed(ZeldaConfig::ZeldaStats.LinkBaseStats.Speed), _animationComponent(nullptr), _inputComponent(nullptr)
+ICharacterMovement(ZeldaConfig::ZeldaStats.LinkBaseStats.Speed),
+_animationComponent(nullptr), _inputComponent(nullptr)
 {
 	_currentDirection = SG::Directions::Down;
 	_animationComponent = std::make_unique<SG::AnimationComponent<LinkAnimationController, LinkAnimations>>(

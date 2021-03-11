@@ -1,6 +1,6 @@
 ﻿#include "pch.h"
 
-
+#include "data/Point.h"
 #include "data/Vector3.h"
 
 namespace SG
@@ -18,4 +18,12 @@ namespace SG
 	{
 	}
 
+	Vector3& Vector3::operator+=(const SG::Point& point)
+	{
+		{
+			this->X += point.X;
+			this->Y += point.Y;
+			return *this;
+		}
+	}
 }

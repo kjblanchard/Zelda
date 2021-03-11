@@ -14,6 +14,8 @@
 
 namespace SG
 {
+	struct Point;
+
 	struct SGGENGINE_API Vector3
 	{
 		Vector3();
@@ -23,5 +25,10 @@ namespace SG
 		int X;
 		int Y;
 		int Z;
+
+
+
+		Vector3& operator+=(const SG::Point& point);
+
 	};
 }

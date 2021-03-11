@@ -4,7 +4,6 @@
 #include "characters/Link.h"
 #include "ZeldaLevel.h"
 #include "collision/Collision.h"
-
 #include "core/GameLevel.h"
 #include "components/BoxColliderComponent.h"
 #include "animation/LinkAnimations/LinkAnimationController.h"
@@ -33,7 +32,6 @@ void LinkMovingState::Startup()
 			_link->_animationComponent->ChangeAnimation(LinkAnimations::WalkLeft);
 			break;
 		}
-
 }
 
 void LinkMovingState::Update(const double& deltaTime)
@@ -64,109 +62,26 @@ void LinkMovingState::HandleInput()
 
 			else if (_link->_inputComponent->CurrentController->IsButtonPressed(SG::ControllerButtons::Up) || _link->_inputComponent->CurrentController->IsButtonHeld(SG::ControllerButtons::Up))
 			{
-				//_link->_animationComponent->IsAnimPlaying = true;
-
-				_link->_isMoving = true;
-				_link->_animationComponent->ChangeAnimation(LinkAnimations::WalkUp);
-				_link->_currentDirection = SG::Directions::Up;
-				potentialMoveSpeed.Y -= _link->_speed;
+				HandleMovement(SG::Directions::Up, potentialMoveSpeed);
 
 			}
 			else if (_link->_inputComponent->CurrentController->IsButtonPressed(SG::ControllerButtons::Down) || _link->_inputComponent->CurrentController->IsButtonHeld(SG::ControllerButtons::Down))
 			{
-				_link->_isMoving = true;
-				//_link->_animationComponent->IsAnimPlaying = true;
-				_link->_animationComponent->ChangeAnimation(LinkAnimations::WalkDown);
-				_link->_currentDirection = SG::Directions::Down;
-
-				potentialMoveSpeed.Y += _link->_speed;
+				HandleMovement(SG::Directions::Down, potentialMoveSpeed);
 
 			}
 			else if (_link->_inputComponent->CurrentController->IsButtonPressed(SG::ControllerButtons::Left) || _link->_inputComponent->CurrentController->IsButtonHeld(SG::ControllerButtons::Left))
 			{
-				_link->_isMoving = true;
-				//_link->_animationComponent->IsAnimPlaying = true;
-				_link->_animationComponent->ChangeAnimation((LinkAnimations::WalkLeft));
-				_link->_currentDirection = SG::Directions::Left;
-				potentialMoveSpeed.X -= _link->_speed;
+				HandleMovement(SG::Directions::Left, potentialMoveSpeed);
 
 			}
 			else if (_link->_inputComponent->CurrentController->IsButtonPressed(SG::ControllerButtons::Right) || _link->_inputComponent->CurrentController->IsButtonHeld(SG::ControllerButtons::Right))
 			{
-				_link->_isMoving = true;
-				//_link->_animationComponent->IsAnimPlaying = true;
-				_link->_animationComponent->ChangeAnimation(LinkAnimations::WalkRight);
-				_link->_currentDirection = SG::Directions::Right;
-				potentialMoveSpeed.X += _link->_speed;
-
+				HandleMovement(SG::Directions::Right, potentialMoveSpeed);
 			}
 
-			auto bbox = _link->_boxColliderComponent->ColliderBox();
-			bbox.x += potentialMoveSpeed.X;
-			bbox.y += potentialMoveSpeed.Y;
-			auto* worldLevel = ZeldaLevel::GetLevel()->GetCurrentGameLevel();
-			if (!worldLevel->IsThereACollision(bbox, SG::GameObjectTypes::SolidTile))
-			{
-				_link->_location.X += potentialMoveSpeed.X;
-				_link->_location.Y += potentialMoveSpeed.Y;
-			}
-			else
-			{
-				if (worldLevel)
-				{
-					auto gameObject = worldLevel->ReturnFirstCollisionGameObject(bbox, SG::GameObjectTypes::SolidTile);
-					if (gameObject->Id)
-					{
-						const auto gameObjectColliderbox = gameObject->GetComponent<SG::BoxColliderComponent>()->ColliderBox();
-
-						const auto collisionArea = SG::Collision::ShapeIntersectionArea(&bbox, &gameObjectColliderbox);
-						switch (SG::Collision::CalculateIntersectionDirection(collisionArea, bbox))
-						{
-						case SG::Directions::Up:
-							_link->_location.Y += potentialMoveSpeed.Y += collisionArea.h;
-							break;
-						case SG::Directions::Right:
-							_link->_location.X += potentialMoveSpeed.X -= collisionArea.w;
-							break;
-						case SG::Directions::Down:
-							_link->_location.Y += potentialMoveSpeed.Y -= collisionArea.h;
-							break;
-						case SG::Directions::Left:
-							_link->_location.X += potentialMoveSpeed.X += collisionArea.w;
-							break;
-						}
-					}
-
-
-				}
-			}
-			if (!worldLevel->IsThereACollision(bbox, SG::GameObjectTypes::Enemy))
-			{
-				//dosomething?
-			}
-			else
-			{
-				if (worldLevel)
-				{
-					auto enemy = worldLevel->ReturnFirstCollisionGameObject(bbox, SG::GameObjectTypes::Enemy);
-					if (enemy->Id)
-					{
-						const auto gameObjectColliderbox = enemy->GetComponent<SG::BoxColliderComponent>()->ColliderBox();
-
-						const auto collisionArea = SG::Collision::ShapeIntersectionArea(&bbox, &gameObjectColliderbox);
-						if (!_link->_isInvincible)
-						{
-
-							auto* convertedToTakingDamage = dynamic_cast<IGiveDamage*>(enemy);
-							if (convertedToTakingDamage)
-							{
-								_link->TakeDamage(convertedToTakingDamage->GiveDamage());
-							}
-						}
-					}
-				}
-			}
-
+			HandleSolidTileCollisions(potentialMoveSpeed);
+			HandleEnemyCollisions();
 		}
 	}
 }
@@ -174,3 +89,56 @@ void LinkMovingState::HandleInput()
 void LinkMovingState::End()
 {
 }
+
+void LinkMovingState::HandleMovement(SG::Directions direction, SG::Point& outPotentialMove) const
+{
+	_link->_isMoving = true;
+	switch (direction)
+	{
+	case SG::Directions::Up:
+		_link->_animationComponent->ChangeAnimation(LinkAnimations::WalkUp);
+		_link->_currentDirection = SG::Directions::Up;
+		outPotentialMove.Y -= _link->_speed;
+		break;
+	case SG::Directions::Right:
+		_link->_animationComponent->ChangeAnimation(LinkAnimations::WalkRight);
+		_link->_currentDirection = SG::Directions::Right;
+		outPotentialMove.X += _link->_speed;
+		break;
+	case SG::Directions::Down:
+		_link->_animationComponent->ChangeAnimation(LinkAnimations::WalkDown);
+		_link->_currentDirection = SG::Directions::Down;
+
+		outPotentialMove.Y += _link->_speed;
+		break;
+	case SG::Directions::Left:
+		_link->_animationComponent->ChangeAnimation((LinkAnimations::WalkLeft));
+		_link->_currentDirection = SG::Directions::Left;
+		outPotentialMove.X -= _link->_speed;
+		break;
+	}
+}
+
+void LinkMovingState::HandleSolidTileCollisions(SG::Point potentialMove) const
+{
+	const auto newPotentialMove = _link->HandleSolidTileCollision(_link->_boxColliderComponent->ColliderBox(), potentialMove);
+	_link->_location += newPotentialMove;
+}
+
+void LinkMovingState::HandleEnemyCollisions() const
+{
+	auto* const enemy = _link->PlayerHandleEnemyCollision(_link->_boxColliderComponent->ColliderBox());
+	if (enemy)
+	{
+		if (!_link->_isInvincible)
+		{
+			auto* convertedToTakingDamage = dynamic_cast<IGiveDamage*>(enemy);
+			if (convertedToTakingDamage)
+			{
+				_link->TakeDamage(convertedToTakingDamage->GiveDamage());
+			}
+		}
+	}
+}
+
+

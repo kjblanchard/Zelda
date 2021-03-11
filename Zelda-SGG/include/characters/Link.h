@@ -10,7 +10,7 @@
 #include <memory>
 
 #include "components/AnimationComponent.h"
-#include "interfaces/IGameObjectMovement.h"
+#include "interfaces/ICharacterMovement.h"
 #include "interfaces/IGiveDamage.h"
 #include "interfaces/IObjectStateMachine.h"
 #include "interfaces/ITakeDamage.h"
@@ -30,7 +30,7 @@ namespace SG {
 }
 
 class Link : public SG::GameObject, protected SG::IObjectStateMachine<LinkStates>, public ITakeDamage,
-             public IGiveDamage, public IGameObjectMovement
+             public IGiveDamage, public ICharacterMovement
 {
 public:
 
@@ -51,7 +51,6 @@ private:
 	void TakeDamage(Damage* damage) override;
 
 
-	int _speed;
 
 	/// <summary>
 	/// Components

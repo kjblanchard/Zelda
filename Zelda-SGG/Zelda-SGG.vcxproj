@@ -55,7 +55,7 @@
     <ClCompile Include="src\characters\ZeldaCharacters.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\interfaces\IGameObjectMovement.h" />
+    <ClInclude Include="include\interfaces\ICharacterMovement.h" />
     <ClInclude Include="include\structs\Damage.h" />
     <ClInclude Include="include\interfaces\IGiveDamage.h" />
     <ClInclude Include="include\animation\RedOctorokAnimations\RedOctorokAnimations.h" />

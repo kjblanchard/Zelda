@@ -43,6 +43,9 @@ namespace SG
 		case ErrorCodes::JsonLoadError:
 			printf("There isn't a json value for this param ");
 			break;
+		case ErrorCodes::CollisionError: 
+			printf("There was some error with the colission, and the additional data is: ");
+			break;
 		default: break;
 		}
 	}

@@ -30,7 +30,8 @@ namespace SG
 		SDLSpriteSheetError = 6,
 		SDLMixerError = 7,
 		AnimationError = 8,
-		JsonLoadError
+		JsonLoadError,
+		CollisionError,
 
 	};
 

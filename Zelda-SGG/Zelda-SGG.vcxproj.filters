@@ -218,7 +218,7 @@
     <ClInclude Include="include\characters\ZeldaCharacters.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\interfaces\IGameObjectMovement.h">
+    <ClInclude Include="include\interfaces\ICharacterMovement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
